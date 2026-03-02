@@ -1506,37 +1506,138 @@ box-shadow: 0 0 20px rgba(242,196,0,0.4);
 
 
 
-  
+
+
+
 /* =========================
-   RESPONSIVE MEDIA QUERIES
+   HAMBURGER MENU SYSTEM
 ========================= */
 
+/* Hide toggle on desktop */
+.menu-toggle {
+  display: none;
+}
 
-/* =========================================
-   ABOUT PAGE RESPONSIVE SYSTEM
-========================================= */
+/* Mobile styles */
+@media (max-width: 768px) {
 
-/* ---------- 1200px ---------- */
-
-
-@media (max-width: 1200px) {
-
-  .who-we-are {
-    gap: 50px;
+  /* Show hamburger */
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 1100;
   }
 
-  .journey-card {
-    width: 45%;
+  .menu-toggle span {
+    height: 2px;
+    width: 100%;
+    background: #0a3d91;
+    border-radius: 2px;
+    transition: 0.4s ease;
   }
 
-  .division-row {
-    max-width: 1100px;
+  /* Animate to X */
+  .menu-toggle.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+
+  /* NAV PANEL */
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 260px;
+    height: 100vh;
+
+    background: #ffffff;
+
+    display: flex;
+    flex-direction: column;
+    padding: 120px 40px;
+    gap: 30px;
+
+    transition: right 0.4s ease;
+    box-shadow: -10px 0 40px rgba(0,0,0,0.1);
+
+    z-index: 1000;
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .nav-links a {
+    font-size: 18px;
+    text-decoration: none;
+    color: #000;
+  }
+
+  .nav-links a:hover {
+    color: #f2c400;
+  }
+
+  /* Overlay */
+  .menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.4s ease;
+    z-index: 900;
+  }
+
+  .menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Lock body scroll */
+  body.menu-open {
+    overflow: hidden;
   }
 
 }
 
 
-/* ---------- 992px (Tablet) ---------- */
+
+
+
+/* =========================================
+   GLOBAL RESPONSIVE FIX SYSTEM
+========================================= */
+
+/* 1200px */
+@media (max-width: 1200px) {
+
+  .journey-card {
+    width: 50%;
+  }
+
+  .division-row {
+    gap: 40px;
+  }
+
+  .impact-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+
+/* 992px – Tablet */
 @media (max-width: 992px) {
 
   body {
@@ -1552,14 +1653,11 @@ box-shadow: 0 0 20px rgba(242,196,0,0.4);
     height: 60px;
   }
 
-  .brand-name {
-    font-size: 20px;
-  }
-
   .about-hero h1 {
-    font-size: 36px;
+    font-size: 34px;
   }
 
+  /* WHO WE ARE */
   .who-we-are {
     grid-template-columns: 1fr;
     text-align: center;
@@ -1569,35 +1667,26 @@ box-shadow: 0 0 20px rgba(242,196,0,0.4);
     margin-top: 40px;
   }
 
+  /* JOURNEY */
   .journey-card {
-    width: 80%;
-    margin: 120px auto;
+    width: 85%;
+    margin: 100px auto;
     text-align: center;
   }
 
   .journey-card.left,
   .journey-card.right {
     margin-left: auto;
-    text-align: center;
   }
 
   .journey-card::before {
-    left: 50% !important;
-    right: auto;
+    left: 50%;
     transform: translateX(-50%);
   }
 
-
-
-/* =========================================
-   DIVISION – MOBILE RESPONSIVE FIX
-========================================= */
-
-@media (max-width: 900px) {
-
+  /* DIVISIONS */
   .division-row {
     flex-direction: column;
-    gap: 40px;
     margin: 80px auto;
   }
 
@@ -1607,68 +1696,33 @@ box-shadow: 0 0 20px rgba(242,196,0,0.4);
   }
 
   .division-block {
-    padding: 40px 25px;
     text-align: center;
-  }
-
-  .division-block h2 {
-    font-size: 24px;
-  }
-
-  .division-block p {
-    font-size: 14px;
-  }
-
-  .division-tag {
-    font-size: 11px;
-    letter-spacing: 2px;
-  }
-
-  /* IMAGE SECTION */
-  .division-media {
-    margin-top: 20px;
+    padding: 40px 30px;
   }
 
   .media-track img {
-    height: 180px; /* smaller for mobile */
-    border-radius: 6px;
+    height: 200px;
   }
 
-  /* Remove fade edges on mobile (cleaner look) */
-  .division-media::before,
-  .division-media::after {
-    display: none;
-  }
-
-}
-@media (max-width: 480px) {
-
-  .media-track img {
-    height: 150px;
-  }
-
-  .division-block {
-    padding: 30px 20px;
-  }
-
-}
-
-.vision-mission {
+  /* VISION / MISSION */
+  .vision-mission {
     grid-template-columns: 1fr;
   }
 
-  .why-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
+  /* STORY */
   .story-timeline {
     grid-template-columns: 1fr;
   }
 
+  /* WHY US */
+  .why-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
 }
 
 
-/* ---------- 768px (Mobile) ---------- */
+/* 768px – Mobile */
 @media (max-width: 768px) {
 
   body {
@@ -1689,7 +1743,7 @@ box-shadow: 0 0 20px rgba(242,196,0,0.4);
   }
 
   nav {
-    display: none; /* handled by hamburger */
+    display: none;
   }
 
   .about-hero {
@@ -1697,59 +1751,42 @@ box-shadow: 0 0 20px rgba(242,196,0,0.4);
   }
 
   .about-hero h1 {
-    font-size: 28px;
-  }
-
-  .about-hero p {
-    font-size: 14px;
-    letter-spacing: 1px;
+    font-size: 26px;
   }
 
   .identity-rotator {
-    font-size: 26px;
-    text-align: center;
+    font-size: 24px;
   }
 
   .journey-header h2 {
-    font-size: 28px;
-  }
-
-  .journey-card {
-    width: 90%;
-  }
-
-  .content {
-    padding: 25px;
+    font-size: 26px;
   }
 
   .card-image {
-    height: 180px;
-  }
-
-  .division-block {
-    padding: 40px 20px;
+    height: 170px;
   }
 
   .impact-container {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
   .leaders-container {
-    gap: 40px;
+    gap: 30px;
   }
 
   .leader-card {
-    width: 220px;
+    width: 100%;
+    max-width: 300px;
   }
 
   .brand-statement h2 {
-    font-size: 32px;
+    font-size: 30px;
   }
 
 }
 
 
-/* ---------- 480px (Small Mobile) ---------- */
+/* 480px – Small Mobile */
 @media (max-width: 480px) {
 
   .about-hero h1 {
@@ -1757,31 +1794,15 @@ box-shadow: 0 0 20px rgba(242,196,0,0.4);
   }
 
   .identity-rotator {
-    font-size: 20px;
-  }
-
-  .journey-header h2 {
-    font-size: 22px;
-  }
-
-  .journey-quote blockquote {
     font-size: 18px;
   }
 
-  .next-chapter h3 {
-    font-size: 22px;
+  .journey-quote blockquote {
+    font-size: 16px;
   }
 
-  .impact-container {
-    grid-template-columns: 1fr;
-  }
-
-  .why-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .leader-card {
-    width: 100%;
+  .impact-item h3 {
+    font-size: 26px;
   }
 
   .footer-tagline {
@@ -1789,89 +1810,5 @@ box-shadow: 0 0 20px rgba(242,196,0,0.4);
   }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* =========================================
-   IMPACT STRIP – RESPONSIVE FIX
-========================================= */
-
-/* Make grid fully flexible */
-.impact-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 40px;
-}
-
-/* Tablet */
-@media (max-width: 992px) {
-
-  .impact-strip {
-    padding: 90px 8%;
-  }
-
-  .impact-grid {
-    gap: 30px;
-  }
-
-  .impact-item h3 {
-    font-size: 38px;
-  }
-
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-
-  .impact-strip {
-    padding: 70px 6%;
-  }
-
-  .impact-grid {
-    gap: 25px;
-  }
-
-  .impact-item {
-    padding: 20px;
-  }
-
-  .impact-item h3 {
-    font-size: 30px;
-  }
-
-  .impact-item p {
-    font-size: 14px;
-  }
-
-}
-
-/* Small Mobile */
-@media (max-width: 480px) {
-
-  .impact-strip {
-    padding: 60px 5%;
-  }
-
-  .impact-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .impact-item h3 {
-    font-size: 26px;
-  }
-
-}
-
-
 
 

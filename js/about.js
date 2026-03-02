@@ -240,144 +240,57 @@ animateLogos();
 
 
 /* =========================
-bee landing sound effect
+   HAMBURGER MENU SYSTEM
 ========================= */
+
 document.addEventListener("DOMContentLoaded", function () {
 
-  const beeWrapper = document.querySelector(".bee-wrapper");
-  const bee = document.querySelector(".bee");
-  const canvas = document.getElementById("beeTrail");
+  const toggle = document.getElementById("menuToggle");
+  const nav = document.querySelector(".nav-links");
 
-  if (!beeWrapper || !bee || !canvas) return;
+  if (!toggle || !nav) return;
 
-  const ctx = canvas.getContext("2d");
+  /* Create overlay */
+  const overlay = document.createElement("div");
+  overlay.classList.add("menu-overlay");
+  document.body.appendChild(overlay);
 
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+  function openMenu() {
+    toggle.classList.add("active");
+    nav.classList.add("active");
+    overlay.classList.add("active");
+    document.body.classList.add("menu-open");
   }
 
-  resizeCanvas();
-  window.addEventListener("resize", resizeCanvas);
+  function closeMenu() {
+    toggle.classList.remove("active");
+    nav.classList.remove("active");
+    overlay.classList.remove("active");
+    document.body.classList.remove("menu-open");
+  }
 
-  const sectionTitles = document.querySelectorAll("h2");
+  function toggleMenu() {
+    if (nav.classList.contains("active")) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  }
 
-  let scrollTarget = window.scrollY;
-  let scrollCurrent = window.scrollY;
+  toggle.addEventListener("click", toggleMenu);
+  overlay.addEventListener("click", closeMenu);
 
-  let beeX = window.innerWidth * 0.2;
-  let beeY = window.innerHeight * 0.4;
-
-  let trail = [];
-  let lastScroll = window.scrollY;
-
-  /* =========================
-     SMOOTH SCROLL TRACKING
-  ========================= */
-
-  window.addEventListener("scroll", () => {
-    scrollTarget = window.scrollY;
+  /* Close when link clicked */
+  nav.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", closeMenu);
   });
 
-  /* =========================
-     MAIN ANIMATION LOOP
-  ========================= */
-
-  function animate() {
-
-    /* Smooth scroll interpolation */
-    scrollCurrent += (scrollTarget - scrollCurrent) * 0.08;
-
-    const maxScroll = document.body.scrollHeight - window.innerHeight;
-    const progress = maxScroll > 0 ? scrollCurrent / maxScroll : 0;
-
-    /* Smooth flight curve */
-    const targetX = window.innerWidth * (0.1 + progress * 0.8);
-    const targetY = window.innerHeight * (0.35 + Math.sin(progress * Math.PI * 2) * 0.15);
-
-    beeX += (targetX - beeX) * 0.1;
-    beeY += (targetY - beeY) * 0.1;
-
-    beeWrapper.style.left = beeX + "px";
-    beeWrapper.style.top = beeY + "px";
-
-    /* Rotation based on direction */
-    const scrollSpeed = scrollTarget - lastScroll;
-    bee.style.transform = scrollSpeed > 0 ? "rotate(15deg)" : "rotate(-15deg)";
-    lastScroll = scrollTarget;
-
-    /* Flap speed dynamic */
-    const flapSpeed = Math.max(0.4, 1 - Math.abs(scrollSpeed) / 100);
-    bee.style.animation = `wingFloat ${flapSpeed}s ease-in-out infinite`;
-
-    /* Trail */
-    trail.push({ x: beeX + 20, y: beeY + 20 });
-    if (trail.length > 30) trail.shift();
-
-    drawTrail();
-
-    checkLanding();
-
-    requestAnimationFrame(animate);
-  }
-
-  /* =========================
-     TRAIL DRAW
-  ========================= */
-
-  function drawTrail() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    for (let i = 0; i < trail.length; i++) {
-      const p = trail[i];
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, i * 0.5, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(242,196,0,${i / trail.length})`;
-      ctx.fill();
-    }
-  }
-
-  /* =========================
-     LAND ON TITLES
-  ========================= */
-
-  function checkLanding() {
-
-    const mid = window.innerHeight / 2;
-    let landed = false;
-
-    sectionTitles.forEach(title => {
-      const rect = title.getBoundingClientRect();
-
-      if (rect.top < mid && rect.bottom > mid) {
-
-        const targetLandX = rect.left + rect.width / 2;
-        const targetLandY = rect.top - 40;
-
-        beeX += (targetLandX - beeX) * 0.08;
-        beeY += (targetLandY - beeY) * 0.08;
-
-        landed = true;
-      }
-    });
-
-    if (landed) {
-      bee.style.animation = "wingFloat 1.2s ease-in-out infinite";
-    }
-  }
-
-  animate();
+  /* Close on ESC */
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeMenu();
+  });
 
 });
-
-
-
-
-
-
-
-
-
 
 
 
