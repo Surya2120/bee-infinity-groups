@@ -1066,6 +1066,9 @@ nav a.active {
 /* =========================
    RESPONSIVE
    ========================= */
+
+
+   
 @media (max-width: 900px) {
   body {
     padding-top: 68px;
@@ -1098,79 +1101,6 @@ nav a.active {
     padding: 70px 10%;
   }
 }
-
-
-/* =========================
-   BEE WRAPPER
-========================= */
-
-.bee-wrapper {
-  position: fixed;
-  top: 50%;
-  left: 10%;
-  width: 60px;
-  height: 60px;
-  z-index: 9999;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.6s ease;
-}
-
-.bee-wrapper.visible {
-  opacity: 1;
-}
-
-.bee {
-  width: 100%;
-  transition: transform 0.2s ease;
-}
-
-.bee-shadow {
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  width: 40px;
-  height: 10px;
-  background: radial-gradient(ellipse at center, rgba(0,0,0,0.3), transparent);
-  transform: translateX(-50%);
-  filter: blur(4px);
-}
-
-/* Trail canvas */
-#beeTrail {
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 9998;
-}
-
-/* Resting state */
-.bee-wrapper.resting .bee {
-  transform: scale(0.9);
-}
-
-/* Infinity glow */
-.infinity-glow {
-  position: fixed;
-  width: 80px;
-  height: 80px;
-  border: 3px solid #f2c400;
-  border-radius: 50%;
-  opacity: 0.8;
-  animation: infinityPulse 2s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 9997;
-}
-
-@keyframes infinityPulse {
-  0%,100% { transform: scale(0.8); opacity: 0.6; }
-  50% { transform: scale(1.1); opacity: 1; }
-}
-
-
-
-
 
 
 
@@ -1211,7 +1141,6 @@ Desktop First (default styles)
     grid-template-columns: repeat(2, 1fr);
   }
 }
-
 
 
 
@@ -1268,7 +1197,11 @@ Desktop First (default styles)
 
 
 
+
+
 @media (max-width: 768px) {
+
+  /* NAVBAR */
 
   .navbar {
     height: 70px;
@@ -1282,6 +1215,8 @@ Desktop First (default styles)
   .brand-name {
     font-size: 14px;
   }
+
+@media (max-width: 768px) {
 
   nav {
     position: fixed;
@@ -1301,6 +1236,7 @@ Desktop First (default styles)
   }
 
 }
+
   /* HERO */
 
   .hero-video {
@@ -1405,198 +1341,104 @@ Desktop First (default styles)
 
 
 
-
 /* =========================
-   MOBILE NAV SYSTEM
-========================= *//* =========================
-   BEE SIGNATURE MENU SYSTEM
+   HAMBURGER MENU SYSTEM
 ========================= */
 
-/* Lock scroll */
-body.menu-open {
-  overflow: hidden;
-}
-
-/* Overlay */
-.menu-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.4s ease;
-  z-index: 900;
-}
-
-.menu-overlay.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* =========================
-   MAGNETIC TOGGLE
-========================= */
-
+/* Hide toggle on desktop */
 .menu-toggle {
   display: none;
-  width: 34px;
-  height: 22px;
-  position: relative;
-  cursor: pointer;
-  z-index: 1100;
-  transition: transform 0.2s ease;
 }
 
-.menu-toggle span {
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  border-radius: 2px;
-  background: linear-gradient(90deg, #0a3d91, #f2c400);
-  transition: all 0.45s cubic-bezier(0.68, -0.6, 0.32, 1.6);
-}
-
-.menu-toggle span:nth-child(1) { top: 0; }
-.menu-toggle span:nth-child(2) { top: 10px; }
-.menu-toggle span:nth-child(3) { bottom: 0; }
-
-/* Morph */
-.menu-toggle.active span:nth-child(1) {
-  transform: translateY(10px) rotate(45deg);
-}
-.menu-toggle.active span:nth-child(2) {
-  opacity: 0;
-  transform: scaleX(0);
-}
-.menu-toggle.active span:nth-child(3) {
-  transform: translateY(-10px) rotate(-45deg);
-}
-
-.menu-toggle.active span {
-  background: #f2c400;
-  box-shadow: 0 0 15px rgba(242,196,0,0.9);
-}
-
-
-.menu-toggle.active {
-    position: fixed;
-    top: 22px;
-    right: 20px;
-}
-
-
-/* =========================
-   MOBILE NAV SYSTEM
-========================= */
-
-/* Lock scroll when menu opens */
-body.menu-open {
-  overflow: hidden;
-}
-
-/* Overlay */
-.menu-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(6px);
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.4s ease;
-  z-index: 900;
-}
-
-.menu-overlay.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* Hamburger */
-.menu-toggle {
-  display: none;
-  width: 34px;
-  height: 22px;
-  position: relative;
-  cursor: pointer;
-  z-index: 1100;
-}
-
-.menu-toggle span {
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  border-radius: 2px;
-  background: linear-gradient(90deg, #0a3d91, #f2c400);
-  transition: 0.4s ease;
-}
-
-.menu-toggle span:nth-child(1) { top: 0; }
-.menu-toggle span:nth-child(2) { top: 10px; }
-.menu-toggle span:nth-child(3) { bottom: 0; }
-
-/* Hamburger animation */
-.menu-toggle.active span:nth-child(1) {
-  transform: translateY(10px) rotate(45deg);
-}
-
-.menu-toggle.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.menu-toggle.active span:nth-child(3) {
-  transform: translateY(-10px) rotate(-45deg);
-}
-
-
-/* =========================
-   MOBILE VIEW
-========================= */
-
+/* Mobile styles */
 @media (max-width: 768px) {
 
   /* Show hamburger */
   .menu-toggle {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 1100;
   }
 
-  /* Hide desktop nav */
+  .menu-toggle span {
+    height: 2px;
+    width: 100%;
+    background: #0a3d91;
+    border-radius: 2px;
+    transition: 0.4s ease;
+  }
+
+  /* Animate to X */
+  .menu-toggle.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+
+  /* NAV PANEL */
   .nav-links {
     position: fixed;
     top: 0;
-    right: -320px;   /* Hidden by default */
-    width: 280px;
+    right: -100%;
+    width: 260px;
     height: 100vh;
 
-    background: linear-gradient(160deg, #0b1220, #111827);
+    background: #ffffff;
 
     display: flex;
     flex-direction: column;
-    padding: 140px 40px;
+    padding: 120px 40px;
     gap: 30px;
 
-    transition: right 0.45s cubic-bezier(0.77, 0, 0.175, 1);
+    transition: right 0.4s ease;
+    box-shadow: -10px 0 40px rgba(0,0,0,0.1);
 
-    box-shadow: -30px 0 80px rgba(0,0,0,0.6);
     z-index: 1000;
   }
 
-  /* Slide in */
   .nav-links.active {
     right: 0;
   }
 
-  /* Links */
   .nav-links a {
-    font-size: 20px;
-    color: #ffffff;
+    font-size: 18px;
     text-decoration: none;
-    letter-spacing: 1px;
-    transition: 0.3s ease;
+    color: #000;
   }
 
   .nav-links a:hover {
     color: #f2c400;
-    transform: translateX(6px);
+  }
+
+  /* Overlay */
+  .menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.4s ease;
+    z-index: 900;
+  }
+
+  .menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Lock body scroll */
+  body.menu-open {
+    overflow: hidden;
   }
 
 }

@@ -95,115 +95,57 @@ if (track) {
 }
 
 
-/* =========================
-   BEE EFFECT
-========================= */
-
-const beeWrapper = document.querySelector(".bee-wrapper");
-const bee = document.querySelector(".bee");
-const canvas = document.getElementById("beeTrail");
-const sound = document.getElementById("beeSound");
-const heroSection = document.querySelector(".about-hero");
-const sectionTitles = document.querySelectorAll("h2");
-
-if (beeWrapper && bee && canvas) {
-
-  const ctx = canvas.getContext("2d");
-
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  let lastScroll = window.scrollY;
-  let trail = [];
-  let infinityElement = null;
-
-  function updateBee() {
-
-    const scrollY = window.scrollY;
-
-    if (heroSection) {
-      const heroBottom = heroSection.getBoundingClientRect().bottom;
-      if (heroBottom > window.innerHeight / 2) {
-        beeWrapper.classList.remove("visible");
-      } else {
-        beeWrapper.classList.add("visible");
-      }
-    }
-
-    const maxScroll = document.body.scrollHeight - window.innerHeight;
-    const progress = scrollY / maxScroll;
-
-    const x = 10 + progress * 70;
-    const y = 30 + Math.sin(progress * Math.PI * 2) * 15;
-
-    beeWrapper.style.transform = `translate(${x}vw, ${y}vh)`;
-
-    if (scrollY > lastScroll) {
-      bee.style.transform = "rotate(25deg)";
-    } else {
-      bee.style.transform = "rotate(-25deg)";
-    }
-
-    const rect = beeWrapper.getBoundingClientRect();
-    trail.push({ x: rect.left + 30, y: rect.top + 30 });
-    if (trail.length > 25) trail.shift();
-
-    drawTrail();
-    lastScroll = scrollY;
-  }
-
-  function drawTrail() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    for (let i = 0; i < trail.length; i++) {
-      const p = trail[i];
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, i * 0.4, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(242,196,0,${i / trail.length})`;
-      ctx.fill();
-    }
-  }
-
-  window.addEventListener("scroll", updateBee);
-
-  window.addEventListener("resize", () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  });
-}
 
 
 /* =========================
-   MOBILE NAV TOGGLE
+   HAMBURGER MENU SYSTEM
 ========================= */
+
 document.addEventListener("DOMContentLoaded", function () {
 
   const toggle = document.getElementById("menuToggle");
   const nav = document.querySelector(".nav-links");
-  const overlay = document.getElementById("menuOverlay");
-  const body = document.body;
 
   if (!toggle || !nav) return;
 
+  /* Create overlay */
+  const overlay = document.createElement("div");
+  overlay.classList.add("menu-overlay");
+  document.body.appendChild(overlay);
+
   function openMenu() {
-    nav.classList.add("active");
     toggle.classList.add("active");
-    if (overlay) overlay.classList.add("active");
+    nav.classList.add("active");
+    overlay.classList.add("active");
+    document.body.classList.add("menu-open");
   }
 
   function closeMenu() {
-    nav.classList.remove("active");
     toggle.classList.remove("active");
-    body.classList.remove("menu-open");
-    if (overlay) overlay.classList.remove("active");
+    nav.classList.remove("active");
+    overlay.classList.remove("active");
+    document.body.classList.remove("menu-open");
   }
 
-  toggle.addEventListener("click", () => {
-    nav.classList.contains("active") ? closeMenu() : openMenu();
+  function toggleMenu() {
+    if (nav.classList.contains("active")) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  }
+
+  toggle.addEventListener("click", toggleMenu);
+  overlay.addEventListener("click", closeMenu);
+
+  /* Close when link clicked */
+  nav.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", closeMenu);
   });
 
-  if (overlay) {
-    overlay.addEventListener("click", closeMenu);
-  }
+  /* Close on ESC */
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeMenu();
+  });
 
 });
