@@ -182,48 +182,28 @@ document.addEventListener("DOMContentLoaded", function () {
   const nav = document.querySelector(".nav-links");
   const overlay = document.getElementById("menuOverlay");
   const body = document.body;
-  const clickSound = document.getElementById("menuClick");
 
-  if (!toggle || !nav || !overlay) return;
-
-  const links = document.querySelectorAll(".nav-links a");
+  if (!toggle || !nav) return;
 
   function openMenu() {
     nav.classList.add("active");
     toggle.classList.add("active");
-    overlay.classList.add("active");
-    body.classList.add("menu-open");
-
-    links.forEach((link, i) => {
-      link.style.transitionDelay = `${i * 0.08}s`;
-    });
-
-    if (clickSound) clickSound.play();
+    if (overlay) overlay.classList.add("active");
   }
 
   function closeMenu() {
     nav.classList.remove("active");
     toggle.classList.remove("active");
-    overlay.classList.remove("active");
     body.classList.remove("menu-open");
-
-    links.forEach(link => {
-      link.style.transitionDelay = "0s";
-    });
+    if (overlay) overlay.classList.remove("active");
   }
 
-  toggle.addEventListener("click", function () {
-    if (nav.classList.contains("active")) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
+  toggle.addEventListener("click", () => {
+    nav.classList.contains("active") ? closeMenu() : openMenu();
   });
 
-  overlay.addEventListener("click", closeMenu);
-
-  links.forEach(link => {
-    link.addEventListener("click", closeMenu);
-  });
+  if (overlay) {
+    overlay.addEventListener("click", closeMenu);
+  }
 
 });
