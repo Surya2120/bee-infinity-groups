@@ -1,0 +1,573 @@
+/* =========================
+   BRAND VARIABLES
+   ========================= */
+:root {
+  --primary-blue: #0a3d91;
+  --accent-yellow: #f2c400;
+
+  --bg-main: #f5f7fa;
+  --bg-white: #ffffff;
+  --bg-dark: #0e1a2b;
+
+  --border-soft: #e1e6ee;
+  --text-dark: #0b0b0b;
+  --text-muted: #555;
+}
+
+/* =========================
+   RESET
+   ========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =========================
+   BASE
+   ========================= */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-dark);
+  line-height: 1.7;
+  padding-top: 110px;
+}
+/* =========================
+   HEADER / NAVBAR
+   ========================= */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 110px;
+  padding: 0 60px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: #ffffff;
+  border-bottom: 1px solid var(--border-soft);
+  z-index: 1000;
+}
+
+/* =========================
+   LOGO
+   ========================= */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.logo img {
+  height: 90px;
+  width: auto;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.brand-name {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--primary-blue);
+}
+
+.brand-sub {
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--text-muted);
+}
+
+/* =========================
+   NAV LINKS
+   ========================= */
+nav {
+  display: flex;
+  align-items: center;
+}
+
+nav a {
+  margin-left: 28px;
+  font-size: 14px;
+  text-decoration: none;
+  color: var(--text-main);
+}
+
+nav a:hover {
+  color: var(--primary-blue);
+}
+nav a.active {
+  color: var(--accent-yellow);
+  font-weight: 600;
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+.portfolio-hero {
+ padding: 40px 10px;
+  text-align: center;
+  background: url("../assets/images/dance/Dance (1).jpg") center/cover no-repeat fixed;
+  position: relative;
+}
+
+.portfolio-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(14,26,43,1));
+}
+
+.portfolio-hero h1,
+.portfolio-hero p {
+  position: relative;
+  z-index: 2;
+}
+
+.portfolio-hero h1 {
+  font-size: 42px;
+  margin-bottom: 8px;
+  background: linear-gradient(to right,#f2c400,#ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.portfolio-hero p {
+  font-size: 13px;
+  letter-spacing: 2px;
+  opacity: 0.85;
+}
+
+/* =========================
+   CATEGORY TABS
+========================= */
+.portfolio-tabs {
+  text-align: center;
+  padding: 25px 10% 45px;
+}
+
+.tab {
+  background: none;
+  border: none;
+  color: #777;
+  font-size: 13px;
+  letter-spacing: 3px;
+  margin: 0 25px;
+  cursor: pointer;
+  position: relative;
+  transition: 0.3s ease;
+}
+
+.tab:hover,
+.tab.active {
+  color: #f2c400;
+}
+
+.tab.active::after {
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background: #f2c400;
+}
+
+/* =========================
+   GRID LAYOUT
+========================= */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  padding: 40px 10% 120px;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.portfolio-grid.fade {
+  opacity: 0.3;
+  transform: scale(0.98);
+}
+
+/* =========================
+   IMAGE CARD
+========================= */
+.image-wrapper {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+
+/* GOLD FRAME (REAL PHOTO FRAME STYLE) */
+.image-wrapper {
+  border: 2px solid #f2c400;
+  box-shadow:
+    0 0 0 2px rgba(242,196,0,0.2),
+    0 20px 40px rgba(0,0,0,0.4);
+}
+
+/* IMAGE */
+.image-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+/* Hover zoom */
+.image-wrapper:hover img {
+  transform: scale(1.08);
+}
+
+/* =========================
+   ANIMATED GOLD CORNERS
+========================= */
+.image-wrapper::before,
+.image-wrapper::after {
+  content: "";
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  border: 2px solid #f2c400;
+  pointer-events: none;
+  transition: 0.2s ease;
+}
+
+/* Top left */
+.image-wrapper::before {
+  top: 10px;
+  left: 10px;
+  border-right: none;
+  border-bottom: none;
+  opacity: 0;
+}
+
+/* Bottom right */
+.image-wrapper::after {
+  bottom: 10px;
+  right: 10px;
+  border-left: none;
+  border-top: none;
+  opacity: 0;
+}
+
+/* Animate */
+.image-wrapper:hover::before,
+.image-wrapper:hover::after {
+  opacity: 1;
+  animation: cornerPulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes cornerPulse {
+  from { box-shadow: 0 0 0px #f2c400; }
+  to { box-shadow: 0 0 14px #f2c400; }
+}
+
+/* =========================
+   NETFLIX STYLE TITLE
+========================= */
+.image-wrapper::after {
+  pointer-events: none;
+}
+
+.image-wrapper::after,
+.image-wrapper::before {
+  z-index: 2;
+}
+
+.image-wrapper::after {
+  background: none;
+}
+
+.image-wrapper::before {
+  background: none;
+}
+
+/* Gradient fade */
+.image-wrapper .image-title {
+  position: absolute;
+  bottom: 15px;
+  left: 20px;
+  right: 20px;
+  font-size: 15px;
+  font-weight: 600;
+  z-index: 3;
+  color: #ffffff;
+  transition: 0.3s ease;
+}
+
+.image-wrapper::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+  z-index: 1;
+}
+
+/* Hover title glow */
+.image-wrapper:hover .image-title {
+  color: #ffd000;
+  transform: translateY(-6px);
+}
+
+/* =========================
+   LIGHTBOX
+========================= */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  backdrop-filter: blur(14px);
+  background: rgba(0,0,0,0.95);
+  justify-content: center;
+  align-items: center;
+  z-index: 5000;
+  padding: 40px;
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+#lightbox-img {
+  max-width: 95vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 16px;
+  animation: zoomIn 0.4s ease;
+}
+
+.counter {
+  position: absolute;
+  bottom: 30px;
+  right: 50px;
+  font-size: 14px;
+  letter-spacing: 2px;
+  opacity: 0.85;
+}
+
+.close-btn {
+  position: absolute;
+  top: 30px;
+  right: 50px;
+  font-size: 40px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.close-btn:hover {
+  color: #f20000;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  font-size: 60px;
+  cursor: pointer;
+  transform: translateY(-50%);
+  padding: 20px;
+  transition: 0.3s ease;
+}
+
+.prev { left: 40px; }
+.next { right: 40px; }
+
+.prev:hover,
+.next:hover {
+  color: #f2c400;
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 1200px) {
+  .portfolio-grid { grid-template-columns: repeat(3,1fr); }
+}
+
+@media (max-width: 900px) {
+  .portfolio-grid { grid-template-columns: repeat(2,1fr); }
+  .portfolio-hero h1 { font-size: 28px; }
+}
+
+@media (max-width: 600px) {
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .tab { margin: 0 10px; font-size: 11px; }
+}
+
+
+/* =========================
+   PREMIUM CONTACT BUTTON
+========================= */
+
+.contact-btn {
+  display: inline-block;
+  padding: 14px 32px;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #000;
+  background: linear-gradient(45deg, #f2c400, #ffdf6e);
+  border-radius: 50px;
+  font-weight: 600;
+  transition: 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(242,196,0,0.4);
+}
+
+/* Glow Hover */
+.contact-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(242,196,0,0.7);
+}
+
+/* Shine Animation */
+.contact-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.6),
+    transparent
+  );
+  transform: skewX(-25deg);
+  transition: 0.6s;
+}
+
+.contact-btn:hover::before {
+  left: 130%;
+}
+
+
+
+
+/* =========================
+   PREMIUM CINEMATIC FOOTER
+   ========================= */
+
+.site-footer {
+  position: relative;
+  padding: 120px 10% 60px;
+  background: var(--primary-blue);
+  color: #ffffff;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Subtle gradient lighting */
+.site-footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(242,196,0,0.08),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/* LOGO WATERMARK */
+.site-footer {
+  position: relative;
+  overflow: hidden;
+}
+
+.site-footer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: url("../assets/images/contact-bg.jpg") no-repeat center center;
+  background-size: cover; /* 👈 This makes it fully responsive */
+
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+/* Content wrapper */
+.footer-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Big Tagline */
+.footer-tagline {
+  font-size: 42px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 40px;
+  color: #ffffff;
+}
+
+/* Premium Contact Button */
+.footer-contact-btn {
+  display: inline-block;
+  padding: 16px 40px;
+  font-size: 14px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #0e0e0e;
+  background: linear-gradient(45deg, #f2c400, #ffdf6e);
+  border-radius: 50px;
+  font-weight: 600;
+  transition: 0.4s ease;
+  box-shadow: 0 15px 40px rgba(242,196,0,0.4);
+}
+
+.footer-contact-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(242,196,0,0.7);
+}
+
+/* Divider */
+.footer-divider {
+  width: 80px;
+  height: 2px;
+  background: #f2c400;
+  margin: 50px auto 30px;
+  opacity: 0.7;
+}
+
+/* Copyright */
+.footer-copy {
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-tagline {
+    font-size: 28px;
+  }
+
+  .site-footer {
+    padding: 90px 8% 50px;
+  }
+}

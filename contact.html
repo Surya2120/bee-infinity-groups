@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact | Bee Infinity Groups</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/contact.css">
+
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+</head>
+
+<body>
+  <canvas id="particles"></canvas>
+<header class="navbar">
+  <div class="logo">
+   <a href="index.html" class="logo-btn">
+     <img src="assets/images/BEE INIFINITY GROUPZ - STUDIOZ.png" alt="Bee Infinity Groups Logo"></a>  
+    <div class="logo-text">
+      <span class="brand-name">Bee Infinity Groups</span>
+      <span class="brand-sub">STUDIOZ</span>
+    </div>
+ </div>
+  <nav>
+  
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="divisions.html">Divisions</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="contact.html" class="active">Contact</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="contact-hero" id="contactHero">
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <h1 id="typing-text">Let’s Build Something Legendary</h1>
+    <p>Films • Events • Dance • Collaborations</p>
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section class="contact-section">
+
+  <div class="contact-info">
+    <h2>Connect With Us</h2>
+
+    <div class="info-item">
+      <h4>Phone</h4>
+      <p>+91 9739710942</p>
+    </div>
+
+    <div class="info-item">
+      <h4>Email</h4>
+      <p>beeinfinitygroups2020@gmail.com</p>
+    </div>
+
+    <div class="info-item">
+      <h4>Location</h4>
+      <p>Bangalore, India</p>
+    </div>
+  </div>
+
+  <div class="contact-form-wrapper">
+    <form id="contact-form">
+
+      <div class="input-group">
+        <input type="text" name="name" required>
+        <label>Full Name</label>
+      </div>
+
+      <div class="input-group">
+        <input type="email" name="email" required>
+        <label>Email Address</label>
+      </div>
+
+      <div class="input-group">
+        <input type="tel" name="phone" required>
+        <label>Phone Number</label>
+      </div>
+
+      <div class="input-group">
+        <textarea name="message" rows="4" required></textarea>
+        <label>Your Message</label>
+      </div>
+
+      <button type="submit" class="submit-btn">
+        <span class="btn-text">Send Message</span>
+        <span class="loader"></span>
+      </button>
+
+    </form>
+  </div>
+
+</section>
+
+<!-- MAP -->
+<section class="map-section">
+  <iframe
+    src="https://www.google.com/maps?q=Bangalore&output=embed">
+  </iframe>
+</section>
+
+<!-- WHATSAPP BUTTON -->
+<a href="https://wa.me/919739730942"
+   class="whatsapp-btn"
+   target="_blank">
+   💬
+</a>
+
+<!-- AI CHAT TOGGLE BUTTON -->
+<div class="ai-chat-toggle" onclick="toggleChat()">
+  💬
+</div>
+
+<!-- AI CHAT BOX 
+<div class="ai-chat-box" id="aiChatBox">
+
+  <div class="ai-chat-header">
+    Bee Infinity AI
+    <span onclick="toggleChat()">✕</span>
+  </div>
+
+  <div class="ai-chat-messages" id="chatMessages">
+    <div class="ai-message bot">
+      Hello 👋 I’m Bee Infinity AI. How can I assist you?
+    </div>
+  </div>
+
+  <div class="ai-chat-input">
+    <input type="text" id="userInput" placeholder="Type your message...">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+</div>
+-->
+
+<script src="js/ai.js"></script>
+
+
+<script src="js/contact.js"></script>
+</body>
+</html>

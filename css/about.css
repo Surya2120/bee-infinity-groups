@@ -1,0 +1,1872 @@
+/* ABOUT HERO */
+:root {
+  --bg-main: #f5f7fa;
+  --bg-section: #ffffff;
+  --bg-card: #ffffff;
+
+  --primary-blue: #0a3d91;
+  --accent-yellow: #f2c400;
+
+  --text-main: #000000;
+  --text-muted: #000000;
+
+  --border-soft: #e1e6ee;
+}
+
+/* =========================
+   RESET
+   ========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =========================
+   BASE
+   ========================= */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.7;
+  padding-top: 110px; /* navbar height */
+}
+
+
+/* =========================
+   HEADER / NAVBAR
+   ========================= */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 110px;
+  padding: 0 60px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: #ffffff;
+  border-bottom: 1px solid var(--border-soft);
+  z-index: 1000;
+}
+
+/* =========================
+   LOGO
+   ========================= */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.logo img {
+  height: 90px;
+  width: auto;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.brand-name {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--primary-blue);
+}
+
+.brand-sub {
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--text-muted);
+}
+
+/* =========================
+   NAV LINKS
+   ========================= */
+nav {
+  display: flex;
+  align-items: center;
+}
+
+nav a {
+  margin-left: 28px;
+  font-size: 14px;
+  text-decoration: none;
+  color: var(--text-main);
+}
+
+nav a:hover {
+  color: var(--primary-blue);
+}
+nav a.active {
+  color: var(--accent-yellow);
+  font-weight: 600;
+}
+
+/* =========================================
+   SHRINKED HEADER (ON SCROLL)
+========================================= */
+
+.navbar.scrolled {
+  height: 70px;
+  padding: 10px 40px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.navbar.scrolled .logo img {
+  height: 50px;
+}
+
+.navbar.scrolled nav a {
+  font-size: 12px;
+  margin-left: 20px;
+}
+
+/* =========================
+   HERO
+   ========================= */
+
+.about-hero {
+   padding: 40px 10px;
+    background: linear-gradient(to bottom, #ffffff, #ffffff);
+    background: url("../assets/images/dance/dance\ \(8\).JPG") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  
+}
+
+.about-hero h1 {
+  font-size: 48px;
+  color: var(--primary-blue);
+}
+
+.about-hero p {
+  margin-top: 10px;
+  letter-spacing: 3px;
+  color: var(--text-muted);
+}
+
+
+/* ===============================
+   BEE INFINITY – PREMIUM TIMELINE
+================================ */
+
+
+
+/* ===============================
+   JOURNEY HEADER
+================================ */
+
+.journey-header {
+  text-align: center;
+  margin-bottom: 120px;
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease;
+}
+
+.journey-header h2 {
+  font-size: 40px;
+  color: #ffffff;
+  letter-spacing: 2px;
+}
+
+.journey-header p {
+  margin-top: 15px;
+  font-size: 16px;
+  color: #bbbbbb;
+  letter-spacing: 1px;
+}
+
+.journey-header.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ===============================
+   FOUNDER QUOTE
+================================ */
+
+.journey-quote {
+  margin-top: 200px;
+  text-align: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 1s ease;
+}
+
+.journey-quote blockquote {
+  font-size: 24px;
+  line-height: 1.7;
+  color: #ffffff;
+  font-weight: 300;
+}
+
+.quote-author {
+  display: block;
+  margin-top: 20px;
+  color: #ffcc00;
+  letter-spacing: 2px;
+  font-size: 14px;
+}
+
+.journey-quote.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ===============================
+   NEXT CHAPTER
+================================ */
+
+.next-chapter {
+  margin-top: 150px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1.2s ease;
+}
+
+.next-chapter h3 {
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: #ffffff;
+}
+
+.next-chapter.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ===============================
+   INFINITY STYLE
+================================ */
+
+#infinityPath {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.9;
+  transition: all 0.6s ease;
+}
+
+#infinityPath.glow {
+  filter: drop-shadow(0 0 12px #ffffff)
+          drop-shadow(0 0 25px rgba(255,255,255,0.6));
+}
+
+.journey-section {
+  position: relative;
+  padding: 200px 0;
+  background: #0b0b12;
+  overflow: hidden;
+}
+
+/* Background */
+.journey-bg {
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  top: -20%;
+  left: -20%;
+  background:
+    radial-gradient(circle at 30% 30%, #ffcc00 0%, transparent 40%),
+    radial-gradient(circle at 70% 70%, #00c3ff 0%, transparent 40%);
+  opacity: 0.05;
+  animation: bgMove 18s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+@keyframes bgMove {
+  0% { transform: translate(0,0); }
+  100% { transform: translate(10%,10%); }
+}
+
+/* SVG Line */
+.journey-line {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.journey-line path {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Wrapper */
+.journey-wrapper {
+  width: 85%;
+  margin: auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* Cards */
+.journey-card {
+  width: 40%;
+  margin: 150px 0;
+  opacity: 0;
+  transform: translateY(80px);
+  transition: all 0.6s ease;
+  position: relative;
+}
+
+.journey-card.left { text-align: right; }
+.journey-card.right { margin-left: 60%; text-align: left; }
+
+/* Dot */
+.journey-card::before {
+  content: "";
+  position: absolute;
+  top: 30px;
+  width: 16px;
+  height: 16px;
+  background: #ffffff;
+  border-radius: 50%;
+}
+
+.journey-card.left::before { right: -55px; }
+.journey-card.right::before { left: -55px; }
+
+/* Glass */
+.content {
+  background: rgba(255,255,255,0.06);
+  padding: 35px;
+  border-radius: 20px;
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.card-image {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.year {
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: #ffcc00;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.content h3 { color: #fff; }
+.content p { color: #ccc; }
+
+.journey-card.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+/* =========================
+   SECTIONS (DIVISIONS / CLIENTS / TESTIMONIALS)
+   ========================= */
+.divisions {
+  padding: 90px 10%;
+}
+
+.divisions h2 {
+  text-align: center;
+  margin-bottom: 70px;
+  color: var(--primary-blue);
+}
+
+
+/* =========================
+   CLIENT LOGOS – AUTO SCROLL
+========================= */
+
+
+.clients {
+  padding: 50px 0%;
+}
+
+.clients h2 {
+  text-align: center;
+  margin-bottom: 70px;
+  color: var(--primary-blue);
+}
+
+
+.clients-wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.clients-scroll {
+  display: flex;
+  gap: 80px;
+  width: max-content;
+}
+
+.client-logo {
+  flex-shrink: 0;
+  height: 80px;
+}
+
+.client-logo img {
+  height: 100%;
+  width: auto;
+}
+
+
+
+/* Smooth infinite scroll */
+@keyframes scrollClients {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+
+
+
+/* WHO WE ARE */
+
+.who-we-are {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 80px;
+  padding: 120px 10%;
+  color: saddlebrown  ;
+}
+
+.who-we-are h2 {
+  display: inline-block;
+  font-size: 28px;
+  margin-bottom: 60px;
+  padding: 14px 36px;
+
+  background: linear-gradient(135deg, #f2c400, #ffdf6e);
+  color: #000;
+
+  border-radius: 50px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+
+  box-shadow: 0 15px 35px rgba(242,196,0,0.4);
+}
+
+
+
+.who-we-are h2 {
+  transition: 0.4s ease;
+}
+
+.who-we-are h2:hover {
+  transform: scale(1.05);
+  color: var(--primary-blue);
+}
+
+.who-we-are p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text-muted);
+}
+
+
+.who-images {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.who-images img:nth-child(2),
+.who-images img:nth-child(4) {
+  transform: translateY(100px);
+}
+
+.who-images img {
+  height: auto;
+  width: 100%;
+  object-fit: contain;
+  border-radius: 0%;
+  flex-shrink: 0;
+
+}
+
+
+
+
+
+
+/* =========================
+   IDENTITY ROTATOR
+========================= */
+
+.identity-rotator {
+  margin-top: 70px;
+  font-size: 48px;      /* bigger */
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+.identity-rotator .static-text {
+  color: #888;
+  margin-right: 10px;
+}
+
+.identity-rotator .dynamic-text {
+  color: #f2c400;
+    display: inline-block;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* animation states */
+.dynamic-text.hide {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.dynamic-text.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* mobile */
+@media (max-width: 768px) {
+  .identity-rotator {
+    font-size: 26px;
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* =========================
+   DIVIDER
+   ========================= */
+
+.about-divider {
+  padding: 1px 1%;
+  text-align: center;
+box-shadow: 0 0 20px rgba(242,196,0,0.4);
+  background: linear-gradient(
+    90deg,
+    #fff200,
+    var(--primary-blue),
+    #fff200
+  );
+
+  background-size: 300% 100%;
+  animation: gradientMove 6s ease-in-out infinite;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.about-divider h3 {
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: rgb(255, 255, 255);
+}
+
+
+/* =========================
+   DIVISION ROW (ZIG-ZAG LAYOUT)
+   ========================= */
+
+.division-row {
+  display: flex;
+  align-items: center;
+  gap: 0px;
+  max-width: 1400px;
+  margin: 140px auto;
+}
+
+/* Reverse layout for zig-zag */
+.division-row:nth-of-type(even) {
+  flex-direction: row-reverse;
+}
+
+/* =========================
+   DIVISION TEXT BLOCK
+   ========================= */
+
+.division-block {
+  width: 50%;
+  padding: 60px 70px;
+  background: #000000;
+  color: #ffffff;
+  border-radius: 8px;
+}
+
+/* Light version */
+.division-block.alt {
+  background: var(--bg-section);
+  color: #000000;
+}
+
+/* Title */
+.division-block h2 {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+/* Tag */
+.division-tag {
+  display: inline-block;
+  margin-bottom: 18px;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent-yellow);
+}
+
+
+
+/* Paragraph */
+.division-block p {
+  font-size: 15px;
+  line-height: 1.8;
+  max-width: 650px;
+}
+
+/* =========================
+   DIVISION MEDIA SLIDER
+   ========================= */
+
+.division-media {
+  width: 50%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Track that moves */
+.media-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: mediaScroll 120s linear infinite;
+  will-change: transform;
+}
+
+.media-track img {
+  height: 280px;
+  width: auto;
+  object-fit: contain;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+
+/* Auto scroll animation */
+
+@keyframes mediaScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* DEFAULT → Right to Left */
+.division-row .media-track {
+  animation-direction: normal;
+}
+
+/* LEFT to RIGHT */
+.division-row.reverse .media-track {
+  animation-direction: reverse;
+}
+
+/* =========================
+   MOBILE (IGNORE FOR NOW)
+   ========================= */
+@media (max-width: 900px) {
+  .division-row {
+    flex-direction: column;
+    gap: 40px;
+    margin: 80px auto;
+  }
+
+  .division-block,
+  .division-media {
+    width: 100%;
+  }
+
+  .division-block {
+    padding: 50px 30px;
+  }
+}
+
+/* =========================================
+   VISION & MISSION – FINAL CORRECT VERSION
+========================================= */
+
+.vision-mission {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* equal width */
+  gap: 60px;
+  padding: 80px 10%;
+  background: #1a3f8b;
+}
+
+/* Card */
+.vision-item,
+.mission-item {
+  background: rgba(255, 255, 255, 0.90);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 16px;
+  padding: 60px 50px;
+  text-align: center;
+  h2 {
+    color: #f2c400;
+  }
+  color: #000000;
+  transition: 0.4s ease;
+}
+
+
+
+.vision-item:hover,
+.mission-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+}
+
+/* Titles */
+.vision-title,
+.mission-title {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+/* Text */
+.vision-text,
+.mission-text {
+  font-size: 16px;
+  line-height: 1.8;
+   h2 {
+    color: #f2c400;
+  }
+  opacity: 0.9;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .vision-mission {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   LEADERSHIP SECTION
+========================= */
+
+
+.leadership-section {
+  position: relative;
+  padding: 120px 8%;
+  text-align: center;
+  background: url("../assets/images/contact-bg.jpg") center/cover no-repeat;
+  background: linear-gradient(to bottom, var(--primary-blue), rgba(255, 255, 255, 0.5)), url("../assets/images/contact-bg.jpg") center/cover no-repeat;
+  
+  overflow: hidden;
+}
+
+/* TITLE */
+
+.leadership-title {
+  font-size: 40px;
+  margin-bottom: 80px;
+  font-weight: 700;
+  color: var(--accent-yellow)
+}
+
+/* LEADER CARDS */
+
+.leaders-container {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  flex-wrap: wrap;
+}
+
+.leader-card {
+  width: 260px;
+  padding: 40px;
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+  transition: transform 0.4s ease;
+}
+
+.leader-card:hover {
+  transform: translateY(-10px);
+}
+
+.leader-card img {
+  width: 120px;
+  height: 120px;
+  object-fit:  cover  ;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.leader-card h3 {
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+.leader-card p {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+/* =========================
+   FLOWING GOLD LINE
+========================= */
+
+.gold-line {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #f2c400,
+    #ffd84a,
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: flowLine 8s linear infinite;
+}
+
+.top-line {
+  top: 40px;
+}
+
+.bottom-line {
+  bottom: 40px;
+}
+
+@keyframes flowLine {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+/* WHY US */
+.why-us {
+  padding: 120px 10%;
+  text-align: center;
+  background: var(--bg-main);
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.why-grid div {
+  padding: 30px;
+  border: 1px solid var(--border-soft);
+  text-align: center;
+}
+
+/* =========================
+   PREMIUM CONTACT BUTTON
+========================= */
+
+.contact-btn {
+  display: inline-block;
+  padding: 14px 32px;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #000;
+  background: linear-gradient(45deg, #f2c400, #ffdf6e);
+  border-radius: 50px;
+  font-weight: 600;
+  transition: 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(242,196,0,0.4);
+}
+
+/* Glow Hover */
+.contact-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(242,196,0,0.7);
+}
+
+/* Shine Animation */
+.contact-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.6),
+    transparent
+  );
+  transform: skewX(-25deg);
+  transition: 0.6s;
+}
+
+.contact-btn:hover::before {
+  left: 130%;
+}
+
+/* =========================
+   PREMIUM CINEMATIC FOOTER
+   ========================= */
+
+.site-footer {
+  position: relative;
+  padding: 120px 10% 60px;
+  background: var(--primary-blue);
+  color: #ffffff;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Subtle gradient lighting */
+.site-footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(242,196,0,0.08),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/* LOGO WATERMARK */
+.site-footer {
+  position: relative;
+  overflow: hidden;
+}
+
+.site-footer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: url("../assets/images/contact/contact-bg.jpg") no-repeat center center;
+  background-size: cover; /* 👈 This makes it fully responsive */
+
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+/* Content wrapper */
+.footer-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Big Tagline */
+.footer-tagline {
+  font-size: 42px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 40px;
+  color: #ffffff;
+}
+
+/* Premium Contact Button */
+.footer-contact-btn {
+  display: inline-block;
+  padding: 16px 40px;
+  font-size: 14px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #0e0e0e;
+  background: linear-gradient(45deg, #f2c400, #ffdf6e);
+  border-radius: 50px;
+  font-weight: 600;
+  transition: 0.4s ease;
+  box-shadow: 0 15px 40px rgba(242,196,0,0.4);
+}
+
+.footer-contact-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(242,196,0,0.7);
+}
+
+/* Divider */
+.footer-divider {
+  width: 80px;
+  height: 2px;
+  background: #f2c400;
+  margin: 50px auto 30px;
+  opacity: 0.7;
+}
+
+/* Copyright */
+.footer-copy {
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-tagline {
+    font-size: 28px;
+  }
+
+  .site-footer {
+    padding: 90px 8% 50px;
+  }
+}
+
+
+/* =========================
+   PREMIUM IMPACT / STATS
+   ========================= */
+
+.impact-stats {
+  padding: 120px 10%;
+  background:
+    linear-gradient(
+      135deg,
+      #0a3d91 0%,
+      #062a66 60%,
+      #0042ac 100%
+    );
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle texture glow */
+.impact-stats::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(242, 196, 0, 0.12),
+      transparent 60%
+    );
+  pointer-events: none;
+}
+
+.impact-container {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+
+  position: relative;
+  z-index: 2;
+}
+
+/* STAT CARD */
+.impact-item {
+  padding: 50px 30px;
+  text-align: center;
+
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(8px);
+
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.12);
+
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.impact-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.45);
+}
+
+/* NUMBER */
+.impact-number {
+  font-size: 52px;
+  font-weight: 700;
+  margin-bottom: 12px;
+
+  color: #f2c400; /* premium gold */
+  letter-spacing: 1px;
+}
+
+/* LABEL */
+.impact-label {
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+
+  color: rgba(255,255,255,0.85);
+}
+
+/* Optional thin underline */
+.impact-item::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: #f2c400;
+  margin: 20px auto 0;
+  opacity: 0.6;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 900px) {
+  .impact-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .impact-number {
+    font-size: 42px;
+  }
+}
+
+@media (max-width: 500px) {
+  .impact-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* =========================
+   PREMIUM CONTACT BUTTON
+========================= */
+
+.contact-btn {
+  display: inline-block;
+  padding: 14px 32px;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #000;
+  background: linear-gradient(45deg, #f2c400, #ffdf6e);
+  border-radius: 50px;
+  font-weight: 600;
+  transition: 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(242,196,0,0.4);
+}
+
+/* Glow Hover */
+.contact-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(242,196,0,0.7);
+}
+
+/* Shine Animation */
+.contact-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.6),
+    transparent
+  );
+  transform: skewX(-25deg);
+  transition: 0.6s;
+}
+
+.contact-btn:hover::before {
+  left: 130%;
+}
+
+
+
+
+/* =========================
+   PREMIUM CINEMATIC FOOTER
+   ========================= */
+
+.site-footer {
+  position: relative;
+  padding: 120px 10% 60px;
+  background: var(--primary-blue);
+  color: #ffffff;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Subtle gradient lighting */
+.site-footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(242,196,0,0.08),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/* LOGO WATERMARK */
+.site-footer {
+  position: relative;
+  overflow: hidden;
+}
+
+.site-footer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: url("../assets/images/contact-bg.jpg") no-repeat center center;
+  background-size: cover; /* 👈 This makes it fully responsive */
+
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+/* Content wrapper */
+.footer-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Big Tagline */
+.footer-tagline {
+  font-size: 42px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 40px;
+  color: #ffffff;
+}
+
+/* Premium Contact Button */
+.footer-contact-btn {
+  display: inline-block;
+  padding: 16px 40px;
+  font-size: 14px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #0e0e0e;
+  background: linear-gradient(45deg, #f2c400, #ffdf6e);
+  border-radius: 50px;
+  font-weight: 600;
+  transition: 0.4s ease;
+  box-shadow: 0 15px 40px rgba(242,196,0,0.4);
+}
+
+.footer-contact-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(242,196,0,0.7);
+}
+
+/* Divider */
+.footer-divider {
+  width: 80px;
+  height: 2px;
+  background: #f2c400;
+  margin: 50px auto 30px;
+  opacity: 0.7;
+}
+
+/* Copyright */
+.footer-copy {
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-tagline {
+    font-size: 28px;
+  }
+
+  .site-footer {
+    padding: 90px 8% 50px;
+  }
+}
+
+
+/* =========================
+   FOUNDER MESSAGE SECTION
+   ========================= */
+
+.founder-message {
+  padding: 120px 12%;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fb 100%);
+  text-align: center;
+  position: relative;
+}
+
+.founder-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.founder-title {
+  font-size: 38px;
+  color: var(--primary-blue);
+  margin-bottom: 40px;
+  letter-spacing: 1px;
+}
+
+.founder-quote {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--primary-blue);
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.founder-message p {
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.founder-sign {
+  margin-top: 40px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--primary-blue);
+}
+
+/* subtle gold divider */
+.founder-message::before {
+  content: "";
+  width: 80px;
+  height: 3px;
+  background: var(--accent-yellow);
+  display: block;
+  margin: 0 auto 40px auto;
+}
+
+/* =========================
+   OUR STORY – LEGACY STYLE
+   ========================= */
+
+.our-story {
+  padding: 150px 10%;
+  background: #ffffff;
+}
+
+.story-header {
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+.story-header h2 {
+  font-size: 44px;
+  color: var(--primary-blue);
+}
+
+.story-sub {
+  margin-top: 20px;
+  color: var(--text-muted);
+}
+
+.story-timeline {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 80px;
+}
+
+.story-item {
+  border-left: 3px solid var(--accent-yellow);
+  padding-left: 25px;
+}
+
+.story-year {
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent-yellow);
+}
+
+.story-item h3 {
+  margin: 15px 0;
+  font-size: 20px;
+  color: var(--primary-blue);
+}
+
+.story-item p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text-muted);
+}
+
+/* =========================
+   IMPACT STRIP
+   ========================= */
+
+.impact-strip {
+  padding: 120px 10%;
+  background: #f5f7fa;
+}
+
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  text-align: center;
+}
+
+.impact-item h3 {
+  font-size: 50px;
+  color: var(--primary-blue);
+}
+
+.impact-item p {
+  margin-top: 10px;
+  color: var(--text-muted);
+}
+
+/* =========================
+   BRAND STATEMENT
+   ========================= */
+
+.brand-statement {
+  padding: 180px 10%;
+  text-align: center;
+  background: #ffffff;
+}
+
+.brand-statement h2 {
+  font-size: 50px;
+  color: var(--primary-blue);
+  margin-bottom: 20px;
+}
+
+.brand-statement .highlight {
+  color: var(--accent-yellow);
+}
+
+
+
+  
+/* =========================
+   RESPONSIVE MEDIA QUERIES
+========================= */
+
+
+/* =========================================
+   ABOUT PAGE RESPONSIVE SYSTEM
+========================================= */
+
+/* ---------- 1200px ---------- */
+@media (max-width: 1200px) {
+
+  .who-we-are {
+    gap: 50px;
+  }
+
+  .journey-card {
+    width: 45%;
+  }
+
+  .division-row {
+    max-width: 1100px;
+  }
+
+}
+
+
+/* ---------- 992px (Tablet) ---------- */
+@media (max-width: 992px) {
+
+  body {
+    padding-top: 90px;
+  }
+
+  .navbar {
+    height: 90px;
+    padding: 0 30px;
+  }
+
+  .logo img {
+    height: 60px;
+  }
+
+  .brand-name {
+    font-size: 20px;
+  }
+
+  .about-hero h1 {
+    font-size: 36px;
+  }
+
+  .who-we-are {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .who-images {
+    margin-top: 40px;
+  }
+
+  .journey-card {
+    width: 80%;
+    margin: 120px auto;
+    text-align: center;
+  }
+
+  .journey-card.left,
+  .journey-card.right {
+    margin-left: auto;
+    text-align: center;
+  }
+
+  .journey-card::before {
+    left: 50% !important;
+    right: auto;
+    transform: translateX(-50%);
+  }
+/* =========================================
+   DIVISION – MOBILE RESPONSIVE FIX
+========================================= */
+
+@media (max-width: 900px) {
+
+  .division-row {
+    flex-direction: column;
+    gap: 40px;
+    margin: 80px auto;
+  }
+
+  .division-block,
+  .division-media {
+    width: 100%;
+  }
+
+  .division-block {
+    padding: 40px 25px;
+    text-align: center;
+  }
+
+  .division-block h2 {
+    font-size: 24px;
+  }
+
+  .division-block p {
+    font-size: 14px;
+  }
+
+  .division-tag {
+    font-size: 11px;
+    letter-spacing: 2px;
+  }
+
+  /* IMAGE SECTION */
+  .division-media {
+    margin-top: 20px;
+  }
+
+  .media-track img {
+    height: 180px; /* smaller for mobile */
+    border-radius: 6px;
+  }
+
+  /* Remove fade edges on mobile (cleaner look) */
+  .division-media::before,
+  .division-media::after {
+    display: none;
+  }
+
+}
+@media (max-width: 480px) {
+
+  .media-track img {
+    height: 150px;
+  }
+
+  .division-block {
+    padding: 30px 20px;
+  }
+
+}
+
+.vision-mission {
+    grid-template-columns: 1fr;
+  }
+
+  .why-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .story-timeline {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+/* ---------- 768px (Mobile) ---------- */
+@media (max-width: 768px) {
+
+  body {
+    padding-top: 70px;
+  }
+
+  .navbar {
+    height: 70px;
+    padding: 0 20px;
+  }
+
+  .logo img {
+    height: 40px;
+  }
+
+  .brand-name {
+    font-size: 16px;
+  }
+
+  nav {
+    display: none; /* handled by hamburger */
+  }
+
+  .about-hero {
+    padding: 60px 20px;
+  }
+
+  .about-hero h1 {
+    font-size: 28px;
+  }
+
+  .about-hero p {
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+
+  .identity-rotator {
+    font-size: 26px;
+    text-align: center;
+  }
+
+  .journey-header h2 {
+    font-size: 28px;
+  }
+
+  .journey-card {
+    width: 90%;
+  }
+
+  .content {
+    padding: 25px;
+  }
+
+  .card-image {
+    height: 180px;
+  }
+
+  .division-block {
+    padding: 40px 20px;
+  }
+
+  .impact-container {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .leaders-container {
+    gap: 40px;
+  }
+
+  .leader-card {
+    width: 220px;
+  }
+
+  .brand-statement h2 {
+    font-size: 32px;
+  }
+
+}
+
+
+/* ---------- 480px (Small Mobile) ---------- */
+@media (max-width: 480px) {
+
+  .about-hero h1 {
+    font-size: 22px;
+  }
+
+  .identity-rotator {
+    font-size: 20px;
+  }
+
+  .journey-header h2 {
+    font-size: 22px;
+  }
+
+  .journey-quote blockquote {
+    font-size: 18px;
+  }
+
+  .next-chapter h3 {
+    font-size: 22px;
+  }
+
+  .impact-container {
+    grid-template-columns: 1fr;
+  }
+
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .leader-card {
+    width: 100%;
+  }
+
+  .footer-tagline {
+    font-size: 22px;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================
+   IMPACT STRIP – RESPONSIVE FIX
+========================================= */
+
+/* Make grid fully flexible */
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 40px;
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+
+  .impact-strip {
+    padding: 90px 8%;
+  }
+
+  .impact-grid {
+    gap: 30px;
+  }
+
+  .impact-item h3 {
+    font-size: 38px;
+  }
+
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+  .impact-strip {
+    padding: 70px 6%;
+  }
+
+  .impact-grid {
+    gap: 25px;
+  }
+
+  .impact-item {
+    padding: 20px;
+  }
+
+  .impact-item h3 {
+    font-size: 30px;
+  }
+
+  .impact-item p {
+    font-size: 14px;
+  }
+
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+
+  .impact-strip {
+    padding: 60px 5%;
+  }
+
+  .impact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .impact-item h3 {
+    font-size: 26px;
+  }
+
+}
+
+
+
+

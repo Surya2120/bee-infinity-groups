@@ -1,0 +1,147 @@
+/* =========================
+   BASE
+========================= */
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #0b0f18;
+  color: #ffffff;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.cinemaz-hero {
+  position: relative;
+  height: 80vh;
+  background: url("../assets/images/contact-bg.jpg") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-content h1 {
+  font-size: 56px;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+  color: #f2c400;
+}
+
+.hero-content p {
+  font-size: 18px;
+  letter-spacing: 2px;
+  opacity: 0.8;
+}
+
+/* =========================
+   STATS
+========================= */
+
+.cinemaz-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 80px 10%;
+  text-align: center;
+  background: #0f1522;
+}
+
+.stat h2 {
+  font-size: 42px;
+  color: #f2c400;
+  margin-bottom: 10px;
+}
+
+.stat p {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* =========================
+   SERVICES
+========================= */
+
+.cinemaz-services {
+  padding: 100px 12%;
+}
+
+.service {
+  margin-bottom: 80px;
+  border-left: 3px solid #f2c400;
+  padding-left: 25px;
+}
+
+.service h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+  color: #f2c400;
+}
+
+.service p {
+  line-height: 1.8;
+  opacity: 0.85;
+}
+
+/* =========================
+   CTA
+========================= */
+
+.cinemaz-cta {
+  text-align: center;
+  padding: 100px 10%;
+  background: linear-gradient(135deg, #111827, #0b0f18);
+}
+
+.cinemaz-cta h2 {
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+.cta-btn {
+  display: inline-block;
+  padding: 14px 36px;
+  background: linear-gradient(45deg, #f2c400, #ffd84a);
+  color: #000;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 40px;
+  transition: 0.4s ease;
+}
+
+.cta-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(242,196,0,0.5);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+  .cinemaz-stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .hero-content h1 {
+    font-size: 38px;
+  }
+
+  .service h2 {
+    font-size: 22px;
+  }
+}
