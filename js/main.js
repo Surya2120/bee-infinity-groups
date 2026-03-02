@@ -149,3 +149,136 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 });
+
+
+
+
+/* =========================================
+   WHAT WE DO – SLIDE REVEAL
+========================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const whatItems = document.querySelectorAll(".what-item");
+
+  function revealWhat() {
+    const triggerPoint = window.innerHeight * 0.85;
+
+    whatItems.forEach((item, index) => {
+      const rect = item.getBoundingClientRect();
+
+      if (rect.top < triggerPoint) {
+
+        // Stagger effect
+        setTimeout(() => {
+          item.classList.add("show");
+        }, index * 150);
+
+      }
+    });
+  }
+
+  window.addEventListener("scroll", revealWhat);
+  revealWhat(); // run once on load
+
+});
+
+
+/* =========================================
+   IMPACT STATS – POP + COUNT UP
+========================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const impactItems = document.querySelectorAll(".impact-item");
+  const numbers = document.querySelectorAll(".impact-number");
+
+  let hasAnimated = false;
+
+  function animateNumbers() {
+
+    numbers.forEach(number => {
+
+      const targetText = number.textContent.trim();
+      const target = parseInt(targetText.replace("+", ""));
+      const suffix = targetText.includes("+") ? "+" : "";
+
+      let current = 0;
+      const duration = 1500;
+      const increment = target / (duration / 16);
+
+      function updateCount() {
+        current += increment;
+
+        if (current < target) {
+          number.textContent = Math.floor(current) + suffix;
+          requestAnimationFrame(updateCount);
+        } else {
+          number.textContent = target + suffix;
+        }
+      }
+
+      updateCount();
+    });
+  }
+
+  function revealImpact() {
+
+    const section = document.querySelector(".impact-stats");
+    const rect = section.getBoundingClientRect();
+    const triggerPoint = window.innerHeight * 0.8;
+
+    if (rect.top < triggerPoint && !hasAnimated) {
+
+      impactItems.forEach((item, index) => {
+        setTimeout(() => {
+          item.classList.add("show");
+        }, index * 200);
+      });
+
+      animateNumbers();
+      hasAnimated = true;
+    }
+  }
+
+  window.addEventListener("scroll", revealImpact);
+  revealImpact();
+
+});
+
+
+
+
+
+
+/* =========================================
+   ULTRA FLAGSHIP – SLIDE IN REVEAL
+========================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const ultraCard = document.querySelector(".ultra-card");
+  const ultraBadge = document.querySelector(".ultra-badge");
+
+  if (!ultraCard) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+
+        ultraCard.classList.add("show");
+
+        setTimeout(() => {
+          if (ultraBadge) ultraBadge.classList.add("show");
+        }, 300); // slight delay for cinematic feel
+
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.3
+  });
+
+  observer.observe(ultraCard);
+
+});

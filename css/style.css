@@ -667,7 +667,7 @@ nav a.active {
 }
 
 /* =========================
-   ANIMATIONS
+       ULTRA FLAGSHIP   ANIMATIONS
    ========================= */
 
 @keyframes spotlightSweep {
@@ -687,6 +687,39 @@ nav a.active {
     opacity: 0.8;
   }
 }
+
+/* =========================================
+   ULTRA FLAGSHIP – SLIDE REVEAL
+========================================= */
+
+/* Initial hidden state */
+.ultra-card,
+.ultra-bg {
+  transform: translateX(120px);
+  opacity: 0;
+  transition: transform 1.2s cubic-bezier(0.22,1,0.36,1),
+              opacity 1s ease;
+}
+
+.ultra-badge {
+  transform: translateX(-120px);
+  opacity: 0;
+  transition: transform 1.2s cubic-bezier(0.22,1,0.36,1),
+              opacity 1s ease;
+}
+
+/* Active state */
+.ultra-card.show,
+.ultra-card.show .ultra-bg {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.ultra-badge.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
 
 
 
@@ -1439,6 +1472,69 @@ Desktop First (default styles)
   /* Lock body scroll */
   body.menu-open {
     overflow: hidden;
+  }
+
+}
+
+
+/* =========================
+   IMPACT STATS RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+  .impact-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    gap: 20px;
+  }
+
+  .impact-item {
+    padding: 30px 20px;
+  }
+
+  .impact-number {
+    font-size: 36px;
+  }
+
+  .impact-label {
+    font-size: 12px;
+    letter-spacing: 2px;
+  }
+
+}
+
+/* =========================================
+   IMPACT STATS – POP ANIMATION
+========================================= */
+
+
+.impact-item {
+  opacity: 0;
+  transform: translateY(40px) scale(0.95);
+  transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.impact-item.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+
+/* =========================================
+   WHAT WE DO – MOBILE SLIDE ANIMATION
+========================================= */
+
+@media (max-width: 768px) {
+
+  .what-item {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.6s ease;
+  }
+
+  .what-item.show {
+    opacity: 1;
+    transform: translateY(0);
   }
 
 }
