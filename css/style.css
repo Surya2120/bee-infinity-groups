@@ -1268,11 +1268,7 @@ Desktop First (default styles)
 
 
 
-
-
 @media (max-width: 768px) {
-
-  /* NAVBAR */
 
   .navbar {
     height: 70px;
@@ -1286,8 +1282,6 @@ Desktop First (default styles)
   .brand-name {
     font-size: 14px;
   }
-
-@media (max-width: 768px) {
 
   nav {
     position: fixed;
@@ -1307,7 +1301,6 @@ Desktop First (default styles)
   }
 
 }
-
   /* HERO */
 
   .hero-video {
