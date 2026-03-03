@@ -216,4 +216,61 @@ submitBtn.addEventListener("mouseleave", function(){
 
 
 
+
+
+/* =========================
+   HAMBURGER MENU SYSTEM
+========================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const toggle = document.getElementById("menuToggle");
+  const nav = document.querySelector(".nav-links");
+
+  if (!toggle || !nav) return;
+
+  /* Create overlay */
+  const overlay = document.createElement("div");
+  overlay.classList.add("menu-overlay");
+  document.body.appendChild(overlay);
+
+  function openMenu() {
+    toggle.classList.add("active");
+    nav.classList.add("active");
+    overlay.classList.add("active");
+    document.body.classList.add("menu-open");
+  }
+
+  function closeMenu() {
+    toggle.classList.remove("active");
+    nav.classList.remove("active");
+    overlay.classList.remove("active");
+    document.body.classList.remove("menu-open");
+  }
+
+  function toggleMenu() {
+    if (nav.classList.contains("active")) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  }
+
+  toggle.addEventListener("click", toggleMenu);
+  overlay.addEventListener("click", closeMenu);
+
+  /* Close when link clicked */
+  nav.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", closeMenu);
+  });
+
+  /* Close on ESC */
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeMenu();
+  });
+
+});
+
+  
+
   

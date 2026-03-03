@@ -571,3 +571,299 @@ nav a.active {
     padding: 90px 8% 50px;
   }
 }
+
+
+
+
+
+
+
+
+
+
+/* =========================
+   HAMBURGER MENU SYSTEM
+========================= */
+
+/* Hide toggle on desktop */
+.menu-toggle {
+  display: none;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+
+  /* Show hamburger */
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 1100;
+  }
+
+  .menu-toggle span {
+    height: 2px;
+    width: 100%;
+    background: #0a3d91;
+    border-radius: 2px;
+    transition: 0.4s ease;
+  }
+
+  /* Animate to X */
+  .menu-toggle.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+
+  /* NAV PANEL */
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 260px;
+    height: 100vh;
+
+    background: #ffffff;
+
+    display: flex;
+    flex-direction: column;
+    padding: 120px 40px;
+    gap: 30px;
+
+    transition: right 0.4s ease;
+    box-shadow: -10px 0 40px rgba(0,0,0,0.1);
+
+    z-index: 1000;
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .nav-links a {
+    font-size: 18px;
+    text-decoration: none;
+    color: #000;
+  }
+
+  .nav-links a:hover {
+    color: #f2c400;
+  }
+
+  /* Overlay */
+  .menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.4s ease;
+    z-index: 900;
+  }
+
+  .menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Lock body scroll */
+  body.menu-open {
+    overflow: hidden;
+  }
+
+}
+
+
+
+
+
+/* =========================================
+   ULTRA MOBILE RESPONSIVE – PORTFOLIO PAGE
+========================================= */
+
+/* Disable background-attachment fixed on mobile (important fix) */
+@media (max-width: 1024px) {
+  .portfolio-hero {
+    background-attachment: scroll;
+    padding: 80px 20px 60px;
+  }
+}
+
+/* =========================================
+   TABLET (Below 900px)
+========================================= */
+
+@media (max-width: 900px) {
+
+  body {
+    padding-top: 100px;
+  }
+
+  /* Navbar */
+  .navbar {
+    padding: 0 20px;
+    height: 100px;
+  }
+
+  .logo img {
+    height: 70px;
+  }
+
+  .brand-name {
+    font-size: 20px;
+  }
+
+  nav a {
+    margin-left: 14px;
+    font-size: 13px;
+  }
+
+  /* Hero */
+  .portfolio-hero h1 {
+    font-size: 28px;
+  }
+
+  .portfolio-hero p {
+    font-size: 12px;
+  }
+
+  /* Tabs */
+  .portfolio-tabs {
+    padding: 20px 5% 30px;
+  }
+
+  .tab {
+    margin: 0 12px;
+    font-size: 12px;
+  }
+
+  /* Grid */
+  .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    padding: 30px 6% 80px;
+  }
+
+}
+
+
+/* =========================================
+   MOBILE (Below 600px)
+========================================= */
+
+@media (max-width: 600px) {
+
+  body {
+    padding-top: 90px;
+  }
+
+  .navbar {
+    height: 90px;
+  }
+
+  .logo img {
+    height: 60px;
+  }
+
+  .brand-name {
+    font-size: 18px;
+  }
+
+  .brand-sub {
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+
+  /* Hero */
+  .portfolio-hero {
+    padding: 70px 20px 50px;
+  }
+
+  .portfolio-hero h1 {
+    font-size: 22px;
+  }
+
+  .portfolio-hero p {
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+
+  /* Tabs → Scrollable instead of wrapping ugly */
+  .portfolio-tabs {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 15px 15px 30px;
+  }
+
+  .tab {
+    display: inline-block;
+    margin: 0 15px;
+    font-size: 11px;
+  }
+
+  /* Grid → Single Column */
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px 5% 70px;
+  }
+
+  .image-wrapper {
+    border-radius: 16px;
+  }
+
+  .image-wrapper .image-title {
+    font-size: 13px;
+    bottom: 12px;
+  }
+
+  /* Lightbox Fix */
+  .prev,
+  .next {
+    font-size: 40px;
+    padding: 10px;
+  }
+
+  .prev { left: 10px; }
+  .next { right: 10px; }
+
+  .close-btn {
+    font-size: 30px;
+    top: 20px;
+    right: 20px;
+  }
+
+  .counter {
+    right: 20px;
+    bottom: 20px;
+    font-size: 12px;
+  }
+
+}
+
+
+/* =========================================
+   EXTRA SMALL DEVICES (Below 400px)
+========================================= */
+
+@media (max-width: 400px) {
+
+  .portfolio-hero h1 {
+    font-size: 18px;
+  }
+
+  .image-wrapper .image-title {
+    font-size: 12px;
+  }
+
+}

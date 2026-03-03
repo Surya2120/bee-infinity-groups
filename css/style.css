@@ -1,6 +1,7 @@
 /* =========================
    BEE INFINITY – BRAND COLORS
    ========================= */
+
 :root {
   --bg-main: #f5f7fa;
   --bg-section: #ffffff;
@@ -141,21 +142,27 @@ nav a.active {
 
 
 
+
+
+
+
+
+
+
 /* =========================================
    HERO SECTION – PREMIUM DARK (FIXED)
 ========================================= */
 
 :root {
-  --hero-border-size: 8px;        /* 🔥 CHANGE BORDER THICKNESS */
+  --hero-border-size: 8px;      
   --hero-border-radius: 14px;
 }
 
 /* HERO CONTAINER */
-/* HERO CONTAINER */
 .hero-video {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 6;   /* 🔥 FORCE 16:6 */
+  aspect-ratio: 16 / 6;  
   margin: 0 auto;
   background: #ffffff;
   display: flex;
@@ -987,8 +994,6 @@ nav a.active {
 }
 
 
-
-
 /* =========================
    PREMIUM CINEMATIC FOOTER
    ========================= */
@@ -1340,10 +1345,6 @@ Desktop First (default styles)
     font-size: 24px;
   }
 }
-
-
-
-
 
 
 

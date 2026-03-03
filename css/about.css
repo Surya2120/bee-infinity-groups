@@ -129,6 +129,14 @@ nav a.active {
   margin-left: 20px;
 }
 
+
+
+
+
+
+
+
+
 /* =========================
    HERO
    ========================= */
@@ -1509,185 +1517,62 @@ box-shadow: 0 0 20px rgba(242,196,0,0.4);
 
 
 
-/* =========================
-   HAMBURGER MENU SYSTEM
-========================= */
-
-/* Hide toggle on desktop */
-.menu-toggle {
-  display: none;
-}
-
-/* Mobile styles */
-@media (max-width: 768px) {
-
-  /* Show hamburger */
-  .menu-toggle {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 28px;
-    height: 20px;
-    cursor: pointer;
-    z-index: 1100;
-  }
-
-  .menu-toggle span {
-    height: 2px;
-    width: 100%;
-    background: #0a3d91;
-    border-radius: 2px;
-    transition: 0.4s ease;
-  }
-
-  /* Animate to X */
-  .menu-toggle.active span:nth-child(1) {
-    transform: translateY(9px) rotate(45deg);
-  }
-
-  .menu-toggle.active span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .menu-toggle.active span:nth-child(3) {
-    transform: translateY(-9px) rotate(-45deg);
-  }
-
-  /* NAV PANEL */
-  .nav-links {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 260px;
-    height: 100vh;
-
-    background: #ffffff;
-
-    display: flex;
-    flex-direction: column;
-    padding: 120px 40px;
-    gap: 30px;
-
-    transition: right 0.4s ease;
-    box-shadow: -10px 0 40px rgba(0,0,0,0.1);
-
-    z-index: 1000;
-  }
-
-  .nav-links.active {
-    right: 0;
-  }
-
-  .nav-links a {
-    font-size: 18px;
-    text-decoration: none;
-    color: #000;
-  }
-
-  .nav-links a:hover {
-    color: #f2c400;
-  }
-
-  /* Overlay */
-  .menu-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.5);
-    opacity: 0;
-    visibility: hidden;
-    transition: 0.4s ease;
-    z-index: 900;
-  }
-
-  .menu-overlay.active {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  /* Lock body scroll */
-  body.menu-open {
-    overflow: hidden;
-  }
-
-}
-
-
-
-
 
 /* =========================================
-   GLOBAL RESPONSIVE FIX SYSTEM
+   ULTRA MOBILE RESPONSIVE – ABOUT PAGE
 ========================================= */
 
-/* 1200px */
-@media (max-width: 1200px) {
-
-  .journey-card {
-    width: 50%;
-  }
-
-  .division-row {
-    gap: 40px;
-  }
-
-  .impact-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-}
-
-
-/* 992px – Tablet */
-@media (max-width: 992px) {
+/* Tablet */
+@media (max-width: 1000px) {
 
   body {
-    padding-top: 90px;
+    padding-top: 95px;
   }
 
   .navbar {
     height: 90px;
-    padding: 0 30px;
+    padding: 0 20px;
   }
 
   .logo img {
     height: 60px;
   }
 
+  .brand-name {
+    font-size: 20px;
+  }
+
+  nav a {
+    margin-left: 15px;
+    font-size: 12px;
+  }
+
+  /* Hero */
   .about-hero h1 {
     font-size: 34px;
   }
 
-  /* WHO WE ARE */
+  .about-hero p {
+    font-size: 13px;
+  }
+
+  /* Who We Are */
   .who-we-are {
     grid-template-columns: 1fr;
-    text-align: center;
+    gap: 50px;
+    padding: 90px 6%;
   }
 
-  .who-images {
-    margin-top: 40px;
+  .who-images img:nth-child(2),
+  .who-images img:nth-child(4) {
+    transform: none;
   }
 
-  /* JOURNEY */
-  .journey-card {
-    width: 85%;
-    margin: 100px auto;
-    text-align: center;
-  }
-
-  .journey-card.left,
-  .journey-card.right {
-    margin-left: auto;
-  }
-
-  .journey-card::before {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  /* DIVISIONS */
+  /* Division Zigzag */
   .division-row {
-    flex-direction: column;
+    flex-direction: column !important;
     margin: 80px auto;
+    gap: 40px;
   }
 
   .division-block,
@@ -1696,119 +1581,170 @@ box-shadow: 0 0 20px rgba(242,196,0,0.4);
   }
 
   .division-block {
-    text-align: center;
-    padding: 40px 30px;
+    padding: 40px 25px;
   }
 
-  .media-track img {
-    height: 200px;
-  }
-
-  /* VISION / MISSION */
+  /* Vision Mission */
   .vision-mission {
     grid-template-columns: 1fr;
+    padding: 80px 6%;
   }
 
-  /* STORY */
+  /* Leadership */
+  .leaders-container {
+    gap: 40px;
+  }
+
+  /* Why Us */
+  .why-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Story Timeline */
   .story-timeline {
     grid-template-columns: 1fr;
+    gap: 50px;
   }
 
-  /* WHY US */
-  .why-grid {
+  /* Impact Strip */
+  .impact-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
 }
 
 
-/* 768px – Mobile */
-@media (max-width: 768px) {
+/* =========================================
+   MOBILE (Below 600px)
+========================================= */
+
+@media (max-width: 600px) {
 
   body {
-    padding-top: 70px;
+    padding-top: 85px;
   }
 
   .navbar {
-    height: 70px;
-    padding: 0 20px;
+    height: 80px;
   }
 
   .logo img {
-    height: 40px;
+    height: 50px;
   }
 
   .brand-name {
-    font-size: 16px;
+    font-size: 18px;
   }
 
-  nav {
-    display: none;
-  }
-
+  /* Hero */
   .about-hero {
-    padding: 60px 20px;
+    padding: 70px 20px;
   }
 
   .about-hero h1 {
-    font-size: 26px;
-  }
-
-  .identity-rotator {
     font-size: 24px;
   }
 
-  .journey-header h2 {
-    font-size: 26px;
+  .about-hero p {
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+
+  /* Journey Section */
+  .journey-section {
+    padding: 120px 0;
+  }
+
+  .journey-card {
+    width: 100%;
+    margin: 80px 0;
+    text-align: left !important;
+  }
+
+  .journey-card.left::before,
+  .journey-card.right::before {
+    display: none;
+  }
+
+  .journey-card.right {
+    margin-left: 0;
+  }
+
+  .content {
+    padding: 25px;
   }
 
   .card-image {
-    height: 170px;
+    height: 180px;
   }
 
+  /* Identity Rotator */
+  .identity-rotator {
+    font-size: 22px;
+  }
+
+  /* Impact Stats */
   .impact-container {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .impact-number {
+    font-size: 36px;
+  }
+
+  /* Leadership */
+  .leader-card {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  /* Why Us */
+  .why-grid {
     grid-template-columns: 1fr;
   }
 
-  .leaders-container {
-    gap: 30px;
+  /* Founder Message */
+  .founder-message {
+    padding: 80px 6%;
   }
 
-  .leader-card {
-    width: 100%;
-    max-width: 300px;
+  .founder-title {
+    font-size: 26px;
+  }
+
+  .founder-quote {
+    font-size: 18px;
+  }
+
+  /* Brand Statement */
+  .brand-statement {
+    padding: 120px 6%;
   }
 
   .brand-statement h2 {
+    font-size: 28px;
+  }
+
+}
+
+
+/* =========================================
+   EXTRA SMALL (Below 400px)
+========================================= */
+
+@media (max-width: 400px) {
+
+  .about-hero h1 {
+    font-size: 20px;
+  }
+
+  .journey-header h2 {
+    font-size: 24px;
+  }
+
+  .impact-number {
     font-size: 30px;
   }
 
 }
-
-
-/* 480px – Small Mobile */
-@media (max-width: 480px) {
-
-  .about-hero h1 {
-    font-size: 22px;
-  }
-
-  .identity-rotator {
-    font-size: 18px;
-  }
-
-  .journey-quote blockquote {
-    font-size: 16px;
-  }
-
-  .impact-item h3 {
-    font-size: 26px;
-  }
-
-  .footer-tagline {
-    font-size: 22px;
-  }
-
-}
-
-
