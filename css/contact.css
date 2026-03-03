@@ -36,7 +36,6 @@ body {
 }
 
 
-
 /* =========================
    HEADER / NAVBAR
    ========================= */
@@ -121,18 +120,20 @@ nav a.active {
   height: 70px;
   padding: 10px 40px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  transition: all 0.4s ease;
 }
 
 .navbar.scrolled .logo img {
   height: 50px;
+    transition: all 0.4s ease-in;
 }
 
 .navbar.scrolled nav a {
   font-size: 12px;
   margin-left: 20px;
+    transition: all 0.4s ease-in;
+        transition: all 0.4s ease-out;
 }
-
-
 
 
 
@@ -395,23 +396,7 @@ nav a.active {
   100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
-@media(max-width: 1000px){
-  .contact-section {
-    grid-template-columns: 1fr;
-    gap: 60px;
-  }
 
-  .contact-hero h1 {
-    font-size: 34px;
-  }
-
-  .navbar {
-    padding: 0 20px;
-  }
-}
 
 
 

@@ -113,6 +113,29 @@ nav a.active {
 
 
 
+/* =========================================
+   SHRINKED HEADER (ON SCROLL)
+========================================= */
+
+.navbar.scrolled {
+  height: 70px;
+  padding: 10px 40px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  transition: all 0.4s ease;
+}
+
+.navbar.scrolled .logo img {
+  height: 50px;
+    transition: all 0.4s ease-in;
+}
+
+.navbar.scrolled nav a {
+  font-size: 12px;
+  margin-left: 20px;
+    transition: all 0.4s ease-in;
+        transition: all 0.4s ease-out;
+}
+
 
 
 /* =========================
@@ -437,26 +460,7 @@ flex-wrap: nowrap;
   }
 }
 
-/* =========================
-   RESPONSIVE
-   ========================= */
-@media (max-width: 900px) {
-  .division-box-grid,
-  .project-grid,
-  .process-steps {
-    grid-template-columns: 1fr;
-  }
 
-  .divisions-hero h1 {
-    font-size: 38px;
-  }
-
-  .division-head {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
-  }
-}
 
 /* =========================
    ANIMATED BORDER
@@ -555,17 +559,7 @@ flex-wrap: nowrap;
   background: linear-gradient(to right, transparent, #f2c400, transparent);
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-  .ecosystem-flow {
-    flex-direction: column;
-  }
 
-  .flow-line {
-    width: 2px;
-    height: 40px;
-  }
-}
 
 /* =========================
    ULTRA FLAGSHIP – Animated Luxury Background
@@ -835,28 +829,7 @@ flex-wrap: nowrap;
   letter-spacing: 6px;
 }
 
-/* =========================
-   RESPONSIVE
-   ========================= */
 
-@media (max-width: 900px) {
-
-  .ultra-content {
-    padding: 50px;
-    text-align: center;
-    margin: 0 auto;
-  }
-
-  .ultra-title {
-    font-size: 36px;
-  }
-
-  .ultra-badge {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-}
 
 
 
@@ -1007,16 +980,7 @@ flex-wrap: nowrap;
   opacity: 0.7;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .footer-tagline {
-    font-size: 28px;
-  }
 
-  .site-footer {
-    padding: 90px 8% 50px;
-  }
-}
 
 
 

@@ -239,6 +239,7 @@ animateLogos();
 
 
 
+
 /* =========================
    HAMBURGER MENU SYSTEM
 ========================= */
@@ -291,10 +292,4 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 });
-
-
-
-
-
-
 

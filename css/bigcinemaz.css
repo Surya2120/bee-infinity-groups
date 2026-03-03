@@ -126,22 +126,3 @@ body {
   box-shadow: 0 15px 40px rgba(242,196,0,0.5);
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 900px) {
-
-  .cinemaz-stats {
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-  }
-
-  .hero-content h1 {
-    font-size: 38px;
-  }
-
-  .service h2 {
-    font-size: 22px;
-  }
-}

@@ -110,6 +110,7 @@ nav a.active {
   font-weight: 600;
 }
 
+
 /* =========================================
    SHRINKED HEADER (ON SCROLL)
 ========================================= */
@@ -118,22 +119,20 @@ nav a.active {
   height: 70px;
   padding: 10px 40px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  transition: all 0.4s ease;
 }
 
 .navbar.scrolled .logo img {
   height: 50px;
+    transition: all 0.4s ease-in;
 }
 
 .navbar.scrolled nav a {
   font-size: 12px;
   margin-left: 20px;
+    transition: all 0.4s ease-in;
+        transition: all 0.4s ease-out;
 }
-
-
-
-
-
-
 
 
 
@@ -163,10 +162,108 @@ nav a.active {
   color: var(--text-muted);
 }
 
+/* WHO WE ARE */
 
-/* ===============================
-   BEE INFINITY – PREMIUM TIMELINE
-================================ */
+.who-we-are {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 80px;
+  padding: 120px 10%;
+  color: saddlebrown  ;
+}
+
+.who-we-are h2 {
+  display: inline-block;
+  font-size: 28px;
+  margin-bottom: 60px;
+  padding: 14px 36px;
+
+  background: linear-gradient(135deg, #f2c400, #ffdf6e);
+  color: #000;
+
+  border-radius: 50px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+
+  box-shadow: 0 15px 35px rgba(242,196,0,0.4);
+}
+
+
+
+.who-we-are h2 {
+  transition: 0.4s ease;
+}
+
+.who-we-are h2:hover {
+  transform: scale(1.05);
+  color: var(--primary-blue);
+}
+
+.who-we-are p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text-muted);
+}
+
+
+.who-images {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.who-images img:nth-child(2),
+.who-images img:nth-child(4) {
+  transform: translateY(100px);
+}
+
+.who-images img {
+  height: auto;
+  width: 100%;
+  object-fit: contain;
+  border-radius: 0%;
+  flex-shrink: 0;
+
+}
+
+
+
+
+
+
+/* =========================
+   IDENTITY ROTATOR
+========================= */
+
+.identity-rotator {
+  margin-top: 70px;
+  font-size: 48px;      /* bigger */
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+.identity-rotator .static-text {
+  color: #888;
+  margin-right: 10px;
+}
+
+.identity-rotator .dynamic-text {
+  color: #f2c400;
+    display: inline-block;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* animation states */
+.dynamic-text.hide {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.dynamic-text.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
 
 
 
@@ -471,115 +568,7 @@ nav a.active {
 
 
 
-/* WHO WE ARE */
 
-.who-we-are {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 80px;
-  padding: 120px 10%;
-  color: saddlebrown  ;
-}
-
-.who-we-are h2 {
-  display: inline-block;
-  font-size: 28px;
-  margin-bottom: 60px;
-  padding: 14px 36px;
-
-  background: linear-gradient(135deg, #f2c400, #ffdf6e);
-  color: #000;
-
-  border-radius: 50px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-
-  box-shadow: 0 15px 35px rgba(242,196,0,0.4);
-}
-
-
-
-.who-we-are h2 {
-  transition: 0.4s ease;
-}
-
-.who-we-are h2:hover {
-  transform: scale(1.05);
-  color: var(--primary-blue);
-}
-
-.who-we-are p {
-  font-size: 15px;
-  line-height: 1.8;
-  color: var(--text-muted);
-}
-
-
-.who-images {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-}
-
-.who-images img:nth-child(2),
-.who-images img:nth-child(4) {
-  transform: translateY(100px);
-}
-
-.who-images img {
-  height: auto;
-  width: 100%;
-  object-fit: contain;
-  border-radius: 0%;
-  flex-shrink: 0;
-
-}
-
-
-
-
-
-
-/* =========================
-   IDENTITY ROTATOR
-========================= */
-
-.identity-rotator {
-  margin-top: 70px;
-  font-size: 48px;      /* bigger */
-  font-weight: 700;
-  letter-spacing: 3px;
-}
-.identity-rotator .static-text {
-  color: #888;
-  margin-right: 10px;
-}
-
-.identity-rotator .dynamic-text {
-  color: #f2c400;
-    display: inline-block;
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-/* animation states */
-.dynamic-text.hide {
-  opacity: 0;
-  transform: translateY(8px);
-}
-
-.dynamic-text.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* mobile */
-@media (max-width: 768px) {
-  .identity-rotator {
-    font-size: 26px;
-    flex-direction: column;
-    text-align: center;
-  }
-}
 
 /* =========================
    DIVIDER
@@ -729,25 +718,7 @@ box-shadow: 0 0 20px rgba(242,196,0,0.4);
   animation-direction: reverse;
 }
 
-/* =========================
-   MOBILE (IGNORE FOR NOW)
-   ========================= */
-@media (max-width: 900px) {
-  .division-row {
-    flex-direction: column;
-    gap: 40px;
-    margin: 80px auto;
-  }
 
-  .division-block,
-  .division-media {
-    width: 100%;
-  }
-
-  .division-block {
-    padding: 50px 30px;
-  }
-}
 
 /* =========================================
    VISION & MISSION – FINAL CORRECT VERSION
@@ -802,12 +773,6 @@ box-shadow: 0 0 20px rgba(242,196,0,0.4);
   opacity: 0.9;
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-  .vision-mission {
-    grid-template-columns: 1fr;
-  }
-}
 
 /* =========================
    LEADERSHIP SECTION
@@ -873,6 +838,7 @@ box-shadow: 0 0 20px rgba(242,196,0,0.4);
   opacity: 0.7;
 }
 
+
 /* =========================
    FLOWING GOLD LINE
 ========================= */
@@ -930,53 +896,31 @@ box-shadow: 0 0 20px rgba(242,196,0,0.4);
 }
 
 /* =========================
-   PREMIUM CONTACT BUTTON
-========================= */
+   IMPACT STRIP
+   ========================= */
 
-.contact-btn {
-  display: inline-block;
-  padding: 14px 32px;
-  font-size: 14px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: #000;
-  background: linear-gradient(45deg, #f2c400, #ffdf6e);
-  border-radius: 50px;
-  font-weight: 600;
-  transition: 0.4s ease;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 8px 25px rgba(242,196,0,0.4);
+.impact-strip {
+  padding: 120px 10%;
+  background: #f5f7fa;
 }
 
-/* Glow Hover */
-.contact-btn:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 15px 40px rgba(242,196,0,0.7);
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  text-align: center;
 }
 
-/* Shine Animation */
-.contact-btn::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 75%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(
-    120deg,
-    transparent,
-    rgba(255,255,255,0.6),
-    transparent
-  );
-  transform: skewX(-25deg);
-  transition: 0.6s;
+.impact-item h3 {
+  font-size: 50px;
+  color: var(--primary-blue);
 }
 
-.contact-btn:hover::before {
-  left: 130%;
+.impact-item p {
+  margin-top: 10px;
+  color: var(--text-muted);
 }
+
 
 /* =========================
    PREMIUM CINEMATIC FOOTER
@@ -1073,16 +1017,6 @@ box-shadow: 0 0 20px rgba(242,196,0,0.4);
   opacity: 0.7;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .footer-tagline {
-    font-size: 28px;
-  }
-
-  .site-footer {
-    padding: 90px 8% 50px;
-  }
-}
 
 
 /* =========================
@@ -1176,77 +1110,6 @@ box-shadow: 0 0 20px rgba(242,196,0,0.4);
   margin: 20px auto 0;
   opacity: 0.6;
 }
-
-/* =========================
-   RESPONSIVE
-   ========================= */
-
-@media (max-width: 900px) {
-  .impact-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .impact-number {
-    font-size: 42px;
-  }
-}
-
-@media (max-width: 500px) {
-  .impact-container {
-    grid-template-columns: 1fr;
-  }
-}
-
-
-/* =========================
-   PREMIUM CONTACT BUTTON
-========================= */
-
-.contact-btn {
-  display: inline-block;
-  padding: 14px 32px;
-  font-size: 14px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: #000;
-  background: linear-gradient(45deg, #f2c400, #ffdf6e);
-  border-radius: 50px;
-  font-weight: 600;
-  transition: 0.4s ease;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 8px 25px rgba(242,196,0,0.4);
-}
-
-/* Glow Hover */
-.contact-btn:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 15px 40px rgba(242,196,0,0.7);
-}
-
-/* Shine Animation */
-.contact-btn::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 75%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(
-    120deg,
-    transparent,
-    rgba(255,255,255,0.6),
-    transparent
-  );
-  transform: skewX(-25deg);
-  transition: 0.6s;
-}
-
-.contact-btn:hover::before {
-  left: 130%;
-}
-
 
 
 
@@ -1345,16 +1208,7 @@ box-shadow: 0 0 20px rgba(242,196,0,0.4);
   opacity: 0.7;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .footer-tagline {
-    font-size: 28px;
-  }
 
-  .site-footer {
-    padding: 90px 8% 50px;
-  }
-}
 
 
 /* =========================
@@ -1466,31 +1320,6 @@ box-shadow: 0 0 20px rgba(242,196,0,0.4);
   color: var(--text-muted);
 }
 
-/* =========================
-   IMPACT STRIP
-   ========================= */
-
-.impact-strip {
-  padding: 120px 10%;
-  background: #f5f7fa;
-}
-
-.impact-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 40px;
-  text-align: center;
-}
-
-.impact-item h3 {
-  font-size: 50px;
-  color: var(--primary-blue);
-}
-
-.impact-item p {
-  margin-top: 10px;
-  color: var(--text-muted);
-}
 
 /* =========================
    BRAND STATEMENT
@@ -1513,54 +1342,77 @@ box-shadow: 0 0 20px rgba(242,196,0,0.4);
 }
 
 
+/* =========================
+   PREMIUM CONTACT BUTTON
+========================= */
+
+.contact-btn {
+  display: inline-block;
+  padding: 14px 32px;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #000;
+  background: linear-gradient(45deg, #f2c400, #ffdf6e);
+  border-radius: 50px;
+  font-weight: 600;
+  transition: 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(242,196,0,0.4);
+}
+
+/* Glow Hover */
+.contact-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(242,196,0,0.7);
+}
+
+/* Shine Animation */
+.contact-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.6),
+    transparent
+  );
+  transform: skewX(-25deg);
+  transition: 0.6s;
+}
+
+.contact-btn:hover::before {
+  left: 130%;
+}
+
+
+
 
 
 
 
 
 /* =========================================
-   ULTRA MOBILE RESPONSIVE – ABOUT PAGE
+   ABOUT PAGE RESPONSIVE SYSTEM
 ========================================= */
 
-/* Tablet */
-@media (max-width: 1000px) {
 
-  body {
-    padding-top: 95px;
-  }
+/* ===============================
+   LARGE TABLET (max 992px)
+================================ */
 
-  .navbar {
-    height: 90px;
-    padding: 0 20px;
-  }
+@media (max-width: 992px) {
 
-  .logo img {
-    height: 60px;
-  }
-
-  .brand-name {
-    font-size: 20px;
-  }
-
-  nav a {
-    margin-left: 15px;
-    font-size: 12px;
-  }
-
-  /* Hero */
-  .about-hero h1 {
-    font-size: 34px;
-  }
-
-  .about-hero p {
-    font-size: 13px;
-  }
-
-  /* Who We Are */
+  /* WHO WE ARE */
   .who-we-are {
     grid-template-columns: 1fr;
-    gap: 50px;
-    padding: 90px 6%;
+    gap: 60px;
   }
 
   .who-images img:nth-child(2),
@@ -1568,11 +1420,25 @@ box-shadow: 0 0 20px rgba(242,196,0,0.4);
     transform: none;
   }
 
-  /* Division Zigzag */
-  .division-row {
-    flex-direction: column !important;
-    margin: 80px auto;
+  /* STORY */
+  .story-timeline {
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+  }
+
+  /* VISION & MISSION */
+  .vision-mission {
+    grid-template-columns: 1fr;
     gap: 40px;
+  }
+
+  /* DIVISION ROW */
+  .division-row {
+    flex-direction: column;
+  }
+
+  .division-row:nth-of-type(even) {
+    flex-direction: column;
   }
 
   .division-block,
@@ -1581,132 +1447,181 @@ box-shadow: 0 0 20px rgba(242,196,0,0.4);
   }
 
   .division-block {
-    padding: 40px 25px;
+    padding: 40px;
   }
 
-  /* Vision Mission */
-  .vision-mission {
-    grid-template-columns: 1fr;
-    padding: 80px 6%;
-  }
-
-  /* Leadership */
-  .leaders-container {
-    gap: 40px;
-  }
-
-  /* Why Us */
-  .why-grid {
+  /* IMPACT STRIP */
+  .impact-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  /* Story Timeline */
-  .story-timeline {
-    grid-template-columns: 1fr;
-    gap: 50px;
-  }
-
-  /* Impact Strip */
-  .impact-grid {
+  /* IMPACT STATS */
+  .impact-container {
     grid-template-columns: repeat(2, 1fr);
   }
 
 }
 
 
-/* =========================================
-   MOBILE (Below 600px)
-========================================= */
+/* ===============================
+   MOBILE (max 768px)
+================================ */
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
 
-  body {
-    padding-top: 85px;
+  html, body {
+    overflow-x: hidden;
   }
 
+  /* NAVBAR */
   .navbar {
-    height: 80px;
+    height: 70px;
+    padding: 0 16px;
+  }
+
+  body {
+    padding-top: 70px;
+  }
+
+  .logo {
+    gap: 10px;
   }
 
   .logo img {
-    height: 50px;
+    height: 40px;
   }
 
   .brand-name {
-    font-size: 18px;
+    font-size: 14px;
   }
 
-  /* Hero */
-  .about-hero {
-    padding: 70px 20px;
+  .brand-sub {
+    font-size: 8px;
+    letter-spacing: 2px;
   }
 
+  /* HERO */
   .about-hero h1 {
-    font-size: 24px;
+    font-size: 30px;
   }
 
   .about-hero p {
     font-size: 12px;
-    letter-spacing: 1px;
   }
 
-  /* Journey Section */
-  .journey-section {
-    padding: 120px 0;
+  /* WHO WE ARE */
+  .who-we-are {
+    padding: 80px 6%;
+  }
+
+  .who-we-are h2 {
+    font-size: 20px;
+    padding: 10px 24px;
+  }
+
+  .identity-rotator {
+    font-size: 28px;
+  }
+
+  /* JOURNEY */
+  .journey-wrapper {
+    width: 92%;
   }
 
   .journey-card {
     width: 100%;
     margin: 80px 0;
-    text-align: left !important;
   }
 
-  .journey-card.left::before,
-  .journey-card.right::before {
+  .journey-card.left,
+  .journey-card.right {
+    margin-left: 0;
+    text-align: left;
+  }
+
+  .journey-card::before {
     display: none;
   }
 
-  .journey-card.right {
-    margin-left: 0;
+  .journey-line {
+    display: none;
   }
 
-  .content {
-    padding: 25px;
+  /* STORY */
+  .story-timeline {
+    grid-template-columns: 1fr;
   }
 
-  .card-image {
-    height: 180px;
+  .story-header h2 {
+    font-size: 30px;
   }
 
-  /* Identity Rotator */
-  .identity-rotator {
-    font-size: 22px;
+  /* BRAND STATEMENT */
+  .brand-statement {
+    padding: 120px 6%;
   }
 
-  /* Impact Stats */
+  .brand-statement h2 {
+    font-size: 30px;
+  }
+
+  /* LEADERSHIP */
+  .leaders-container {
+    gap: 40px;
+  }
+
+  .leader-card {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  /* WHY GRID */
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* IMPACT */
+  .impact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .impact-item h3 {
+    font-size: 32px;
+  }
+
+  /* IMPACT STATS */
   .impact-container {
     grid-template-columns: 1fr;
-    gap: 25px;
   }
 
   .impact-number {
     font-size: 36px;
   }
 
-  /* Leadership */
-  .leader-card {
-    width: 100%;
-    max-width: 320px;
+  /* FOOTER */
+  .footer-tagline {
+    font-size: 26px;
   }
 
-  /* Why Us */
-  .why-grid {
-    grid-template-columns: 1fr;
+}
+
+
+/* ===============================
+   SMALL MOBILE (max 480px)
+================================ */
+
+@media (max-width: 480px) {
+
+  .about-hero h1 {
+    font-size: 24px;
   }
 
-  /* Founder Message */
-  .founder-message {
-    padding: 80px 6%;
+  .identity-rotator {
+    font-size: 22px;
+  }
+
+  .journey-header h2 {
+    font-size: 26px;
   }
 
   .founder-title {
@@ -1717,34 +1632,120 @@ box-shadow: 0 0 20px rgba(242,196,0,0.4);
     font-size: 18px;
   }
 
-  /* Brand Statement */
-  .brand-statement {
-    padding: 120px 6%;
+  .vision-title,
+  .mission-title {
+    font-size: 22px;
   }
 
-  .brand-statement h2 {
-    font-size: 28px;
+  .footer-tagline {
+    font-size: 20px;
   }
 
 }
 
 
-/* =========================================
-   EXTRA SMALL (Below 400px)
-========================================= */
 
-@media (max-width: 400px) {
 
-  .about-hero h1 {
-    font-size: 20px;
+
+
+/* =========================
+   HAMBURGER MENU SYSTEM
+========================= */
+
+/* Hide toggle on desktop */
+.menu-toggle {
+  display: none;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+
+  /* Show hamburger */
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 1100;
   }
 
-  .journey-header h2 {
-    font-size: 24px;
+  .menu-toggle span {
+    height: 2px;
+    width: 100%;
+    background: #0a3d91;
+    border-radius: 2px;
+    transition: 0.4s ease;
   }
 
-  .impact-number {
-    font-size: 30px;
+  /* Animate to X */
+  .menu-toggle.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+
+  /* NAV PANEL */
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 260px;
+    height: 100vh;
+
+    background: #ffffff;
+
+    display: flex;
+    flex-direction: column;
+    padding: 120px 40px;
+    gap: 30px;
+
+    transition: right 0.4s ease;
+    box-shadow: -10px 0 40px rgba(0,0,0,0.1);
+
+    z-index: 1000;
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .nav-links a {
+    font-size: 18px;
+    text-decoration: none;
+    color: #000;
+  }
+
+  .nav-links a:hover {
+    color: #f2c400;
+  }
+
+  /* Overlay */
+  .menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.4s ease;
+    z-index: 900;
+  }
+
+  .menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Lock body scroll */
+  body.menu-open {
+    overflow: hidden;
   }
 
 }

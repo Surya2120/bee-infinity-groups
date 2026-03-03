@@ -109,6 +109,33 @@ nav a.active {
   font-weight: 600;
 }
 
+
+
+/* =========================================
+   SHRINKED HEADER (ON SCROLL)
+========================================= */
+
+.navbar.scrolled {
+  height: 70px;
+  padding: 10px 40px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  transition: all 0.4s ease;
+}
+
+.navbar.scrolled .logo img {
+  height: 50px;
+    transition: all 0.4s ease-in;
+}
+
+.navbar.scrolled nav a {
+  font-size: 12px;
+  margin-left: 20px;
+    transition: all 0.4s ease-in;
+        transition: all 0.4s ease-out;
+}
+
+
+
 /* =========================
    HERO SECTION
 ========================= */
@@ -396,22 +423,7 @@ nav a.active {
   to { transform: scale(1); opacity: 1; }
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 1200px) {
-  .portfolio-grid { grid-template-columns: repeat(3,1fr); }
-}
 
-@media (max-width: 900px) {
-  .portfolio-grid { grid-template-columns: repeat(2,1fr); }
-  .portfolio-hero h1 { font-size: 28px; }
-}
-
-@media (max-width: 600px) {
-  .portfolio-grid { grid-template-columns: 1fr; }
-  .tab { margin: 0 10px; font-size: 11px; }
-}
 
 
 /* =========================
@@ -561,16 +573,6 @@ nav a.active {
   opacity: 0.7;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .footer-tagline {
-    font-size: 28px;
-  }
-
-  .site-footer {
-    padding: 90px 8% 50px;
-  }
-}
 
 
 

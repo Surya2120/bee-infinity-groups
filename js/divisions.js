@@ -1,3 +1,26 @@
+/* =========================
+   HEADER SCROLL EFFECT
+========================= */
+
+const navbar = document.querySelector(".navbar");
+
+if (navbar) {
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+      navbar.classList.add("scrolled");
+    } else {
+      navbar.classList.remove("scrolled");
+    }
+  });
+}
+
+
+
+/* =========================
+   CLIENTS LOGO SCROLL
+========================= */
+
+
 document.addEventListener("DOMContentLoaded", () => {
   const track = document.querySelector(".clients-scroll");
   if (!track) return;
