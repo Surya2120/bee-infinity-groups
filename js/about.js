@@ -49,7 +49,7 @@ setInterval(rotateWord, changeSpeed);
 
 
 
-  /* ---------- JOURNEY ---------- */
+/* ---------- JOURNEY ---------- */
 document.addEventListener("DOMContentLoaded", function () {
 
   const section = document.querySelector(".journey-section");
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const path = document.querySelector("#mainLine");
 
 
-  
+
   function generateCurve() {
 
     const sectionTop = section.getBoundingClientRect().top + window.scrollY;
@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    
+
     /* Infinity End */
     const infinityWidth = 60;
     const infinityHeight = 30;

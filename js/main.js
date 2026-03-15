@@ -2,17 +2,15 @@
    HEADER SCROLL EFFECT
 ========================= */
 
-const navbar = document.querySelector(".navbar");
+window.addEventListener("scroll", function () {
+  const navbar = document.querySelector(".navbar");
 
-if (navbar) {
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 50) {
-      navbar.classList.add("scrolled");
-    } else {
-      navbar.classList.remove("scrolled");
-    }
-  });
-}
+  if (window.scrollY > 50) {
+    navbar.classList.add("scrolled");
+  } else {
+    navbar.classList.remove("scrolled");
+  }
+});
 
 
 /* =========================
@@ -133,8 +131,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("DOMContentLoaded", function () {
 
+  const section = document.querySelector(".impact-stats");
   const impactItems = document.querySelectorAll(".impact-item");
   const numbers = document.querySelectorAll(".impact-number");
+
+  if (!section) return;
 
   let hasAnimated = false;
 
@@ -148,9 +149,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
       let current = 0;
       const duration = 1500;
-      const increment = target / (duration / 16);
+      const frameRate = 60;
+      const totalFrames = duration / (1000 / frameRate);
+      const increment = target / totalFrames;
 
       function updateCount() {
+
         current += increment;
 
         if (current < target) {
@@ -159,38 +163,41 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
           number.textContent = target + suffix;
         }
+
       }
 
       updateCount();
+
     });
+
   }
 
   function revealImpact() {
 
-    const section = document.querySelector(".impact-stats");
     const rect = section.getBoundingClientRect();
     const triggerPoint = window.innerHeight * 0.8;
 
     if (rect.top < triggerPoint && !hasAnimated) {
 
       impactItems.forEach((item, index) => {
+
         setTimeout(() => {
           item.classList.add("show");
         }, index * 200);
+
       });
 
       animateNumbers();
       hasAnimated = true;
     }
+
   }
 
   window.addEventListener("scroll", revealImpact);
+
   revealImpact();
 
 });
-
-
-
 
 
 
@@ -200,27 +207,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("DOMContentLoaded", function () {
 
-  const ultraCard = document.querySelector(".ultra-card");
-  const ultraBadge = document.querySelector(".ultra-badge");
+const ultra = document.querySelector(".ultra-card");
+const badge = document.querySelector(".ultra-badge");
 
-  if (!ultraCard) return;
+window.addEventListener("scroll", () => {
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
+  const trigger = window.innerHeight * 0.85;
+  const top = ultra.getBoundingClientRect().top;
 
-        ultraCard.classList.add("show");
+  if (top < trigger) {
+    ultra.classList.add("show");
+    badge.classList.add("show");
+  }
 
-        setTimeout(() => {
-          if (ultraBadge) ultraBadge.classList.add("show");
-        }, 300); // slight delay for cinematic feel
-
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.3
-  });
+});
 
   observer.observe(ultraCard);
 
@@ -283,3 +283,119 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+
+
+/* =========================
+   BEE INFINITY → CURSOR
+========================= */
+
+const bee = document.querySelector(".bee-cursor");
+
+let mouseX = 0;
+let mouseY = 0;
+
+let posX = window.innerWidth / 2;
+let posY = window.innerHeight / 2;
+
+let drawingInfinity = true;
+
+/* =========================
+   CREATE POLLEN
+========================= */
+
+function createPollen(x, y) {
+
+  const pollen = document.createElement("div");
+  pollen.className = "pollen";
+
+  pollen.style.left = x + "px";
+  pollen.style.top = y + "px";
+
+  document.body.appendChild(pollen);
+
+  setTimeout(() => pollen.remove(), 900);
+
+}
+
+/* =========================
+   DRAW INFINITY
+========================= */
+
+function drawInfinity() {
+
+  const centerX = window.innerWidth / 2;
+  const centerY = window.innerHeight / 2;
+
+  let t = 0;
+
+  function loop() {
+
+    if (t > Math.PI * 2) {
+      drawingInfinity = false;
+      return;
+    }
+
+    const a = 140;
+
+    const x = centerX + (a * Math.cos(t)) / (1 + Math.sin(t) ** 2);
+    const y = centerY + (a * Math.sin(t) * Math.cos(t)) / (1 + Math.sin(t) ** 2);
+
+    posX = x;
+    posY = y;
+
+    bee.style.left = posX + "px";
+    bee.style.top = posY + "px";
+
+    createPollen(x, y);
+
+    t += 0.05;
+
+    requestAnimationFrame(loop);
+  }
+
+  loop();
+}
+
+/* =========================
+   TRACK CURSOR
+========================= */
+
+document.addEventListener("mousemove", e => {
+
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+
+});
+
+/* =========================
+   FOLLOW CURSOR
+========================= */
+
+function followCursor() {
+
+  if (!drawingInfinity) {
+
+    posX += (mouseX - posX) * 0.08;
+    posY += (mouseY - posY) * 0.08;
+
+    bee.style.left = posX + "px";
+    bee.style.top = posY + "px";
+
+    createPollen(posX, posY);
+
+  }
+
+  requestAnimationFrame(followCursor);
+
+}
+
+/* =========================
+   START
+========================= */
+
+window.addEventListener("load", () => {
+
+  drawInfinity();
+  followCursor();
+
+});

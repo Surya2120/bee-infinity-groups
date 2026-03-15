@@ -29,12 +29,11 @@
 body {
   font-family: "Segoe UI", Arial, sans-serif;
   background: var(--bg-main);
-    background: #0b1626;
+  background: #0b1626;
   color: var(--text-dark);
   line-height: 1.7;
   padding-top: 110px;
 }
-
 
 /* =========================
    HEADER / NAVBAR
@@ -119,25 +118,21 @@ nav a.active {
 .navbar.scrolled {
   height: 70px;
   padding: 10px 40px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   transition: all 0.4s ease;
 }
 
 .navbar.scrolled .logo img {
   height: 50px;
-    transition: all 0.4s ease-in;
+  transition: all 0.4s ease-in;
 }
 
 .navbar.scrolled nav a {
   font-size: 12px;
   margin-left: 20px;
-    transition: all 0.4s ease-in;
-        transition: all 0.4s ease-out;
+  transition: all 0.4s ease-in;
+  transition: all 0.4s ease-out;
 }
-
-
-
-
 
 /* =========================
    PARTICLES FULL PAGE
@@ -151,8 +146,6 @@ nav a.active {
   z-index: 0;
   pointer-events: none;
 }
-
-
 
 /* =========================
    HERO SECTION
@@ -173,9 +166,11 @@ nav a.active {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center,
-    rgba(242,196,0,0.08),
-    transparent 60%);
+  background: radial-gradient(
+    circle at center,
+    rgba(242, 196, 0, 0.08),
+    transparent 60%
+  );
   z-index: 1;
 }
 
@@ -185,7 +180,6 @@ nav a.active {
   max-width: 900px;
 }
 
-
 /* =========================
    HERO SECTION
 ========================= */
@@ -193,7 +187,7 @@ nav a.active {
   font-size: 48px;
   line-height: 1.2;
   margin-bottom: 10px;
-  background: linear-gradient(to right,#f2c400,#ffffff);
+  background: linear-gradient(to right, #f2c400, #ffffff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -203,9 +197,11 @@ nav a.active {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center,
-    rgba(242,196,0,0.08),
-    transparent 60%);
+  background: radial-gradient(
+    circle at center,
+    rgba(242, 196, 0, 0.08),
+    transparent 60%
+  );
   z-index: 1;
 }
 
@@ -215,7 +211,6 @@ nav a.active {
   max-width: 900px;
 }
 
-
 .contact-hero p {
   opacity: 0.8;
   letter-spacing: 2px;
@@ -224,7 +219,6 @@ nav a.active {
   color: #f5f7fa;
 }
 
-
 .contact-hero p {
   opacity: 0.8;
   letter-spacing: 2px;
@@ -232,8 +226,6 @@ nav a.active {
   margin-top: 0;
   color: #f5f7fa;
 }
-
-
 
 /* =========================
    CONTACT SECTION
@@ -278,17 +270,17 @@ nav a.active {
    GLASS FORM
 ========================= */
 .contact-form-wrapper {
-  background: rgba(255,255,255,0.04);
+  background: rgba(255, 255, 255, 0.04);
   padding: 60px;
   border-radius: 24px;
   backdrop-filter: blur(25px);
-  border: 1px solid rgba(255,255,255,0.06);
-  box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
   transition: 0.4s ease;
 }
 
 .contact-form-wrapper:hover {
-  box-shadow: 0 50px 100px rgba(242,196,0,0.15);
+  box-shadow: 0 50px 100px rgba(242, 196, 0, 0.15);
 }
 
 /* =========================
@@ -303,8 +295,8 @@ nav a.active {
 .input-group textarea {
   width: 100%;
   padding: 18px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 12px;
   color: #fff;
   font-size: 14px;
@@ -315,7 +307,7 @@ nav a.active {
 .input-group input:focus,
 .input-group textarea:focus {
   border-color: #f2c400;
-  box-shadow: 0 0 15px rgba(242,196,0,0.3);
+  box-shadow: 0 0 15px rgba(242, 196, 0, 0.3);
 }
 
 .input-group label {
@@ -348,16 +340,15 @@ nav a.active {
   border-radius: 12px;
   border: none;
   font-weight: bold;
-  background: linear-gradient(45deg,#f2c400,#ffdf6e);
+  background: linear-gradient(45deg, #f2c400, #ffdf6e);
   cursor: pointer;
   transition: 0.3s ease;
 }
 
 .submit-btn:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(242,196,0,0.4);
+  box-shadow: 0 20px 40px rgba(242, 196, 0, 0.4);
 }
-
 
 /* =========================
    MAP
@@ -376,7 +367,7 @@ nav a.active {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  background: #25D366;
+  background: #25d366;
   color: #fff;
   font-size: 24px;
   width: 60px;
@@ -386,20 +377,21 @@ nav a.active {
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
   animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.6); }
-  70% { box-shadow: 0 0 0 18px rgba(37,211,102,0); }
-  100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 18px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
 }
-
-
-
-
-
 
 /* =========================
    HAMBURGER MENU SYSTEM
@@ -412,7 +404,6 @@ nav a.active {
 
 /* Mobile styles */
 @media (max-width: 768px) {
-
   /* Show hamburger */
   .menu-toggle {
     display: flex;
@@ -461,7 +452,7 @@ nav a.active {
     gap: 30px;
 
     transition: right 0.4s ease;
-    box-shadow: -10px 0 40px rgba(0,0,0,0.1);
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.1);
 
     z-index: 1000;
   }
@@ -484,7 +475,7 @@ nav a.active {
   .menu-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
     opacity: 0;
     visibility: hidden;
     transition: 0.4s ease;
@@ -500,13 +491,7 @@ nav a.active {
   body.menu-open {
     overflow: hidden;
   }
-
 }
-
-
-
-
-
 
 /* =========================================
    ULTRA MOBILE RESPONSIVE – CONTACT PAGE
@@ -514,7 +499,6 @@ nav a.active {
 
 /* Tablet */
 @media (max-width: 1000px) {
-
   body {
     padding-top: 100px;
   }
@@ -566,16 +550,13 @@ nav a.active {
   .contact-form-wrapper {
     padding: 40px;
   }
-
 }
-
 
 /* =========================================
    MOBILE (Below 600px)
 ========================================= */
 
 @media (max-width: 600px) {
-
   body {
     padding-top: 85px;
   }
@@ -654,16 +635,13 @@ nav a.active {
     bottom: 20px;
     right: 20px;
   }
-
 }
-
 
 /* =========================================
    EXTRA SMALL DEVICES (Below 400px)
 ========================================= */
 
 @media (max-width: 400px) {
-
   .contact-hero h1 {
     font-size: 20px;
   }
@@ -675,5 +653,4 @@ nav a.active {
   .submit-btn {
     font-size: 12px;
   }
-
-}  
+}

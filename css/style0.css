@@ -1,7 +1,6 @@
 /* =========================
    BEE INFINITY – BRAND COLORS
    ========================= */
-
 :root {
   --bg-main: #f5f7fa;
   --bg-section: #ffffff;
@@ -44,8 +43,8 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 110px;
-  padding: 0 60px;
+  height: var(--navbar-height);
+  padding: 0 20px;
 
   display: flex;
   justify-content: space-between;
@@ -53,8 +52,9 @@ body {
 
   background: #ffffff;
   border-bottom: 1px solid var(--border-soft);
-  z-index: 1000;
+  z-index: 2000; /* higher than everything */
 }
+
 
 /* =========================
    LOGO
@@ -136,17 +136,6 @@ nav a.active {
     transition: all 0.4s ease-in;
         transition: all 0.4s ease-out;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 /* =========================================
@@ -279,26 +268,6 @@ nav a.active {
 .video-btn:hover {
   background: #f2c400;
   color: #000;
-}
-
-
-
-@media (max-width: 768px) {
-
-  .hero-title {
-    font-size: 28px;
-  }
-
-  .tagline {
-    font-size: 14px;
-    letter-spacing: 2px;
-  }
-
-  .video-controls {
-    bottom: 20px;
-    right: 20px;
-  }
-
 }
 
 
@@ -440,36 +409,6 @@ nav a.active {
 
 .what-item:hover .what-link::after {
   width: 70px;
-}
-
-/* =========================================
-   RESPONSIVE
-========================================= */
-
-@media (max-width: 900px) {
-
-  .hero-frame {
-    inset: 30px;
-  }
-
-  .hero-title {
-    font-size: 38px;
-  }
-
-  .what-grid {
-    grid-template-columns: 1fr;
-    gap: 35px;
-  }
-
-  .what-we-do {
-    padding: 40px 8%;
-  }
-
-  .what-we-do .section-title {
-    font-size: 28px;
-    margin-bottom: 30px;
-  }
-
 }
 
 
@@ -730,107 +669,6 @@ nav a.active {
 
 
 
-
-/* =========================
-   CLIENT LOGOS – AUTO SCROLL
-========================= */
-
-
-
-.clients {
-  padding: 40px 0%;
-}
-
-.clients h2 {
-  text-align: center;
-  margin-bottom: 70px;
-  color: var(--primary-blue);
-}
-
-
-.clients-wrapper {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-}
-
-.clients-scroll {
-  display: flex;
-  gap: 30px;
-  width: max-content;
-}
-
-.client-logo {
-  flex-shrink: 0;
-  height: 150px;
-}
-
-.client-logo img {
-  height: 100%;
-  width: auto;
-
-}
-
-
-
-/* Smooth infinite scroll */
-@keyframes scrollClients {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-
-
-/* =========================
-      WHY CHOOSE US
-   ========================= */
-.divisions {
-  padding: 50px 10%;
-}
-
-.divisions h2 {
-  text-align: center;
-  margin-bottom: 70px;
-  color: var(--primary-blue);
-}
-
-/* =========================
-   GRID CARDS
-   ========================= */
-.division-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 40px;
-}
-
-.division-card {
-  background: var(--bg-card);
-  padding: 50px 40px;
-  border: 1px solid var(--border-soft);
-  border-radius: 6px;
-}
-
-.division-card h3 {
-  font-size: 20px;
-  color: var(--primary-blue);
-}
-
-.division-sub {
-  font-size: 13px;
-  color: var(--accent-yellow);
-  margin-bottom: 22px;
-  letter-spacing: 1px;
-}
-
-.division-card p {
-  font-size: 14px;
-  color: var(--text-muted);
-}
-
 /* =========================
    PREMIUM IMPACT / STATS
    ========================= */
@@ -923,25 +761,103 @@ nav a.active {
   opacity: 0.6;
 }
 
+
+
+
+
+
+
 /* =========================
-   RESPONSIVE
+   CLIENT LOGOS – AUTO SCROLL
+========================= */
+
+
+
+.clients {
+  padding: 40px 0%;
+}
+
+.clients h2 {
+  text-align: center;
+  margin-bottom: 70px;
+  color: var(--primary-blue);
+}
+
+
+.clients-wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.clients-scroll {
+  display: flex;
+  gap: 30px;
+  width: max-content;
+}
+
+.client-logo {
+  flex-shrink: 0;
+  height: 150px;
+}
+
+.client-logo img {
+  height: 100%;
+  width: auto;
+
+}
+
+
+
+
+
+
+/* =========================
+      WHY CHOOSE US
    ========================= */
-
-@media (max-width: 900px) {
-  .impact-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .impact-number {
-    font-size: 42px;
-  }
+.divisions {
+  padding: 50px 10%;
 }
 
-@media (max-width: 500px) {
-  .impact-container {
-    grid-template-columns: 1fr;
-  }
+.divisions h2 {
+  text-align: center;
+  margin-bottom: 70px;
+  color: var(--primary-blue);
 }
+
+/* =========================
+   GRID CARDS
+   ========================= */
+.division-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 40px;
+}
+
+.division-card {
+  background: var(--bg-card);
+  padding: 50px 40px;
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+}
+
+.division-card h3 {
+  font-size: 20px;
+  color: var(--primary-blue);
+}
+
+.division-sub {
+  font-size: 13px;
+  color: var(--accent-yellow);
+  margin-bottom: 22px;
+  letter-spacing: 1px;
+}
+
+.division-card p {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
 
 
 /* =========================
@@ -1089,74 +1005,26 @@ nav a.active {
   opacity: 0.7;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .footer-tagline {
-    font-size: 28px;
-  }
-
-  .site-footer {
-    padding: 90px 8% 50px;
-  }
-}
-
-
-/* =========================
-   RESPONSIVE
-   ========================= */
-
-
-   
-@media (max-width: 900px) {
-  body {
-    padding-top: 68px;
-  }
-
-  .navbar {
-    height: 68px;
-    padding: 0 24px;
-  }
-
-  .logo img {
-    height: 32px;
-  }
-
-  .brand-name {
-    font-size: 15px;
-  }
-
-  .brand-sub {
-    font-size: 10px;
-    letter-spacing: 2px;
-  }
-
-  nav a {
-    margin-left: 16px;
-    font-size: 13px;
-  }
-
-  .intro {
-    padding: 70px 10%;
-  }
-}
-
-
 
 /* =========================
    RESPONSIVE MEDIA QUERIES
+   Desktop First Approach
 ========================= */
 
+/* 
+
+Default = Desktop (above 1200px)
+
+@media (max-width: 1200px) → Small desktop
+@media (max-width: 992px)  → Tablet
+@media (max-width: 768px)  → Large Mobile
+@media (max-width: 480px)  → Small Mobile
+*/
 
 
-Desktop First (default styles)
-
-@media (max-width: 1200px)  → Small desktop / Large laptop
-@media (max-width: 992px)   → Tablet
-@media (max-width: 768px)   → Large mobile
-@media (max-width: 480px)   → Small mobile
-
-
-
+/* =========================================
+   SMALL DESKTOP / LARGE LAPTOP
+========================================= */
 @media (max-width: 1200px) {
 
   .navbar {
@@ -1181,9 +1049,9 @@ Desktop First (default styles)
 }
 
 
-
-
-
+/* =========================================
+   TABLET
+========================================= */
 @media (max-width: 992px) {
 
   body {
@@ -1234,13 +1102,18 @@ Desktop First (default styles)
 }
 
 
-
-
-
+/* =========================================
+   LARGE MOBILE
+========================================= */
 @media (max-width: 768px) {
 
-  /* NAVBAR */
+    /* Prevent horizontal shift */
+  html, body {
+    overflow-x: hidden;
+  }
 
+
+  /* NAVBAR */
   .navbar {
     height: 70px;
     padding: 0 16px;
@@ -1254,29 +1127,31 @@ Desktop First (default styles)
     font-size: 14px;
   }
 
-@media (max-width: 768px) {
-
-  nav {
+  /* NAV PANEL */
+  .nav-links {
     position: fixed;
     top: 0;
     right: -100%;
     width: 260px;
     height: 100vh;
     background: #ffffff;
+    display: flex;
     flex-direction: column;
-    padding: 120px 30px;
-    transition: 0.4s ease;
-    box-shadow: -20px 0 60px rgba(0,0,0,0.15);
+    padding: 120px 40px;
+    gap: 30px;
+    transition: right 0.4s ease;
+    box-shadow: -10px 0 40px rgba(0,0,0,0.1);
+    z-index: 1000;
   }
 
-  nav.active {
+  .nav-links.active {
     right: 0;
   }
 
-}
 
+
+  
   /* HERO */
-
   .hero-video {
     aspect-ratio: 16 / 10;
   }
@@ -1295,13 +1170,11 @@ Desktop First (default styles)
   }
 
   /* INTRO */
-
   .intro {
     padding: 40px 6%;
   }
 
-  /* ULTRA FLAGSHIP */
-
+  /* ULTRA */
   .ultra-flagship {
     padding: 100px 6%;
   }
@@ -1324,32 +1197,39 @@ Desktop First (default styles)
   }
 
   /* CLIENT LOGOS */
-
   .client-logo {
     height: 80px;
   }
 
   /* IMPACT */
-
   .impact-container {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
 
   .impact-number {
     font-size: 36px;
   }
 
-  /* FOOTER */
+  .impact-item {
+    padding: 30px 20px;
+  }
 
+  .impact-label {
+    font-size: 12px;
+    letter-spacing: 2px;
+  }
+
+  /* FOOTER */
   .footer-tagline {
     font-size: 24px;
   }
 }
 
 
-
-
-
+/* =========================================
+   SMALL MOBILE
+========================================= */
 @media (max-width: 480px) {
 
   .hero-title {
@@ -1374,18 +1254,23 @@ Desktop First (default styles)
 }
 
 
-
-/* =========================
+/* =========================================
    HAMBURGER MENU SYSTEM
-========================= */
-
-/* Hide toggle on desktop */
+========================================= */
 .menu-toggle {
   display: none;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
-/* Mobile styles */
 @media (max-width: 768px) {
+
+
+  nav {
+    display: none; /* hide normal nav */
+  }
+
 
   /* Show hamburger */
   .menu-toggle {
@@ -1419,41 +1304,6 @@ Desktop First (default styles)
     transform: translateY(-9px) rotate(-45deg);
   }
 
-  /* NAV PANEL */
-  .nav-links {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 260px;
-    height: 100vh;
-
-    background: #ffffff;
-
-    display: flex;
-    flex-direction: column;
-    padding: 120px 40px;
-    gap: 30px;
-
-    transition: right 0.4s ease;
-    box-shadow: -10px 0 40px rgba(0,0,0,0.1);
-
-    z-index: 1000;
-  }
-
-  .nav-links.active {
-    right: 0;
-  }
-
-  .nav-links a {
-    font-size: 18px;
-    text-decoration: none;
-    color: #000;
-  }
-
-  .nav-links a:hover {
-    color: #f2c400;
-  }
-
   /* Overlay */
   .menu-overlay {
     position: fixed;
@@ -1470,44 +1320,15 @@ Desktop First (default styles)
     visibility: visible;
   }
 
-  /* Lock body scroll */
   body.menu-open {
     overflow: hidden;
   }
-
 }
 
-
-/* =========================
-   IMPACT STATS RESPONSIVE
-========================= */
-
-@media (max-width: 768px) {
-
-  .impact-container {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns */
-    gap: 20px;
-  }
-
-  .impact-item {
-    padding: 30px 20px;
-  }
-
-  .impact-number {
-    font-size: 36px;
-  }
-
-  .impact-label {
-    font-size: 12px;
-    letter-spacing: 2px;
-  }
-
-}
 
 /* =========================================
    IMPACT STATS – POP ANIMATION
 ========================================= */
-
 
 .impact-item {
   opacity: 0;
