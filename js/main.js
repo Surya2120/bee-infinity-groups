@@ -66,6 +66,7 @@ if (filterButtons.length && portfolioItems.length) {
 }
 
 
+
 /* =========================
    CLIENT LOGO AUTO SCROLL
 ========================= */
@@ -73,12 +74,14 @@ if (filterButtons.length && portfolioItems.length) {
 const track = document.getElementById("logoTrack");
 
 if (track) {
+
   track.innerHTML += track.innerHTML;
 
   let position = 0;
-  let speed = 0.5;
+  const speed = 0.5;
 
   function animateLogos() {
+
     position -= speed;
 
     if (Math.abs(position) >= track.scrollWidth / 2) {
@@ -86,11 +89,15 @@ if (track) {
     }
 
     track.style.transform = `translateX(${position}px)`;
+
     requestAnimationFrame(animateLogos);
   }
 
-  animateLogos();
+  requestAnimationFrame(animateLogos);
 }
+
+
+
 
 
 

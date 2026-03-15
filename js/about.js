@@ -48,6 +48,74 @@ dynamicWord.classList.add("show");
 setInterval(rotateWord, changeSpeed);
 
 
+/* =========================
+   WHO IMAGES ROTATION
+========================= */
+
+const whoImages = document.querySelectorAll(".who-images img");
+
+const imageSets = [
+  [
+    "assets/images/dance/dance (9).JPG",
+    "assets/images/dance/dance (13).jpg",
+    "assets/images/dance/dance (6).jpg",
+    "assets/images/events/events (4).jpg",
+    "assets/images/events/events (8).jpg"
+  ],
+  [
+    "assets/images/dance/dance (1).jpg",
+    "assets/images/dance/dance (2).jpg",
+    "assets/images/dance/dance (3).jpg",
+    "assets/images/events/events (1).jpg",
+    "assets/images/events/events (2).jpg"
+  ],
+  [
+    "assets/images/dance/dance (4).jpg",
+    "assets/images/dance/dance (5).jpg",
+    "assets/images/dance/dance (7).jpg",
+    "assets/images/events/events (3).jpg",
+    "assets/images/events/events (5).jpg"
+  ],
+  [
+    "assets/images/dance/dance (8).jpg",
+    "assets/images/dance/dance (10).jpg",
+    "assets/images/dance/dance (11).jpg",
+    "assets/images/events/events (6).jpg",
+    "assets/images/events/events (7).jpg"
+  ]
+];
+
+let currentSet = 0;
+
+function changeImages() {
+
+  // fade out
+  whoImages.forEach(img => {
+    img.style.opacity = "0";
+  });
+
+  setTimeout(() => {
+
+    currentSet++;
+    if (currentSet >= imageSets.length) currentSet = 0;
+
+    whoImages.forEach((img, index) => {
+      img.src = imageSets[currentSet][index];
+    });
+
+    // fade in
+    whoImages.forEach(img => {
+      img.style.opacity = "1";
+    });
+
+  }, 600);
+
+}
+
+setInterval(changeImages, 5000);
+
+
+
 
 /* ---------- JOURNEY ---------- */
 document.addEventListener("DOMContentLoaded", function () {
@@ -236,6 +304,31 @@ function animateLogos() {
 }
 
 animateLogos();
+
+
+
+
+/* =========================
+  VISION & MISSION  SCROLL ANIMATION
+========================= */
+
+const futureCards = document.querySelectorAll(".future-card");
+
+const observer = new IntersectionObserver(entries => {
+
+  entries.forEach(entry => {
+
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+    }
+
+  });
+
+},{threshold:0.2});
+
+futureCards.forEach(card => {
+  observer.observe(card);
+});
 
 
 

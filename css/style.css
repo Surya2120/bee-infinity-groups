@@ -237,62 +237,102 @@ nav a.active {
 
 /* HERO TEXT */
 .hero-content {
+    pointer-events: none;
   position: relative;
   z-index: 3;
   text-align: center;
   color: #ffffff;
-
   padding: 0 20px;
+
+  animation: fadeHero 7s forwards;
 }
 
+/* TITLE */
 .hero-title {
   font-size: 56px;
   font-weight: 800;
   letter-spacing: 2px;
   margin-bottom: 10px;
-
   text-shadow: 0 10px 40px rgba(0,0,0,0.6);
 }
 
+/* TAGLINE */
 .tagline {
   font-size: 18px;
   letter-spacing: 3px;
   opacity: 0.9;
 }
 
+/* FADE ANIMATION */
+@keyframes fadeHero {
+  0% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 /* =========================
    VIDEO CONTROL BUTTON
 ========================= */
 
 .video-controls {
   position: absolute;
-  bottom: 40px;
-  right: 60px;
+  bottom: 35px;
+  right: 50px;
   z-index: 4;
 }
 
+/* BUTTON */
 .video-btn {
-  background: rgba(0,0,0,0.6);
+
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 16px;
   color: #fff;
-  border: 1px solid rgba(255,255,255,0.3);
 
-  padding: 10px 14px;
   border-radius: 50%;
-
-  font-size: 18px;
   cursor: pointer;
 
-  transition: all 0.3s ease;
+  /* Premium glass */
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(8px);
+
+  border: 1px solid rgba(255,255,255,0.25);
+
+  /* soft shadow */
+  box-shadow: 
+    0 4px 20px rgba(0,0,0,0.6),
+    inset 0 0 8px rgba(255,255,255,0.15);
+
+  transition: all 0.35s ease;
 }
 
+/* HOVER */
 .video-btn:hover {
-  background: #f2c400;
+
+  background: linear-gradient(135deg,#f2c400,#ffdf5e);
   color: #000;
 
-  transform: scale(1.08);
+  transform: scale(1.12);
+
+  box-shadow:
+    0 0 18px rgba(242,196,0,0.9),
+    0 0 35px rgba(242,196,0,0.5);
 }
 
-
+/* CLICK */
+.video-btn:active {
+  transform: scale(0.92);
+}
 /* =========================================
    INTRO (COMPACT)
 ========================================= */
@@ -866,6 +906,7 @@ nav a.active {
 }
 
 .client-logo {
+    cursor: pointer;
   flex-shrink: 0;
   height: 150px;
 }
@@ -880,14 +921,19 @@ nav a.active {
   transition: transform 0.4s ease, filter 0.4s ease, opacity 0.4s ease;
 }
 
+
+
 /* Hover effect */
-.client-logo img:hover {
+.client-logo:hover img{
   filter: grayscale(0%);
   opacity: 1;
   transform: scale(1.08);
+  box-shadow: 0 0 20px rgba(242,196,0,0.5);
 }
 
+
 /* Scroll animation */
+/*
 @keyframes clientScroll {
   0% {
     transform: translateX(0);
@@ -895,9 +941,8 @@ nav a.active {
   100% {
     transform: translateX(-50%);
   }
-}
-
-
+}  
+*/
 
 /* =========================
       WHY CHOOSE US
@@ -1288,8 +1333,13 @@ Default = Desktop (above 1200px)
 
   
   /* HERO */
+  .hero-section {
+    height: 60vh; /* reduce hero height on mobile */
+  }
+
   .hero-video {
-    aspect-ratio: 16 / 10;
+    height: 100%;
+    object-fit: cover;
   }
 
   .hero-frame {
@@ -1315,22 +1365,28 @@ Default = Desktop (above 1200px)
     padding: 100px 6%;
   }
 
-  .ultra-card {
-    height: 360px;
-  }
+.ultra-card {
+  height: 220px;
+}
+
+  .ultra-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
 
   .ultra-content {
     padding: 30px;
     text-align: left;
   }
 
-  .ultra-title {
-    font-size: 28px;
-  }
+.ultra-title{
+  font-size:22px;
+}
 
-  .ultra-desc {
-    font-size: 14px;
-  }
+  .ultra-desc{
+  font-size:13px;
+    }
 
   /* CLIENT LOGOS */
   .client-logo {
@@ -1338,10 +1394,15 @@ Default = Desktop (above 1200px)
   }
 
   /* IMPACT */
+
+  .impact {
+  padding:60px 6%;
+}
   .impact-container {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
 
   .impact-number {
     font-size: 36px;
@@ -1355,6 +1416,29 @@ Default = Desktop (above 1200px)
     font-size: 12px;
     letter-spacing: 2px;
   }
+
+
+  /* WHY CHOOSE US - MOBILE 2x2 GRID */
+.division-grid {
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Reduce card padding for mobile */
+.division-card {
+  padding: 28px 20px;
+}
+
+/* Adjust text sizes */
+.division-card h3 {
+  font-size: 16px;
+}
+
+.division-card p {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
 
   /* FOOTER */
   .footer-tagline {

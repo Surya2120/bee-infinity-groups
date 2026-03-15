@@ -218,14 +218,15 @@ nav a.active {
 }
 
 .who-images img {
-  height: auto;
   width: 100%;
-  object-fit: contain;
+  height: 260px;      /* fixed height prevents layout shift */
+  object-fit: cover;  /* fills the box without white space */
+
   border-radius: 0%;
   flex-shrink: 0;
 
+  transition: opacity 0.6s ease;
 }
-
 
 
 
@@ -719,207 +720,658 @@ box-shadow: 0 0 20px rgba(242,196,0,0.4);
 }
 
 
-
 /* =========================================
-   VISION & MISSION – FINAL CORRECT VERSION
+   VISION & MISSION SECTION
 ========================================= */
 
-.vision-mission {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* equal width */
-  gap: 60px;
-  padding: 80px 10%;
-  background: #1a3f8b;
+.vision-mission{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+
+  padding:100px 10%;
+  background:#ffffff;
 }
 
-/* Card */
 .vision-item,
-.mission-item {
-  background: rgba(255, 255, 255, 0.90);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 16px;
-  padding: 60px 50px;
-  text-align: center;
-  h2 {
-    color: #f2c400;
-  }
-  color: #000000;
-  transition: 0.4s ease;
+.mission-item{
+  background:#ffffff;
+
+  padding:50px 45px;
+
+  border:1px solid rgba(0,0,0,0.06);
+  border-radius:6px;
+
+  transition:transform .35s ease, box-shadow .35s ease;
 }
-
-
 
 .vision-item:hover,
-.mission-item:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+.mission-item:hover{
+  transform:translateY(-6px);
+  box-shadow:0 18px 45px rgba(0,0,0,0.08);
 }
 
-/* Titles */
 .vision-title,
-.mission-title {
-  font-size: 30px;
-  margin-bottom: 20px;
+.mission-title{
+  font-size:28px;
+  margin-bottom:20px;
+  color:var(--primary-blue);
 }
 
-/* Text */
+.vision-title::after,
+.mission-title::after{
+  content:"";
+  display:block;
+  width:60px;
+  height:3px;
+  background:#f2c400;
+  margin-top:12px;
+}
+
 .vision-text,
-.mission-text {
-  font-size: 16px;
-  line-height: 1.8;
-   h2 {
-    color: #f2c400;
+.mission-text{
+  font-size:15px;
+  line-height:1.8;
+  color:var(--text-muted);
+  margin-bottom:16px;
+}
+
+
+
+/* =========================================
+   OUR FUTURE SECTION
+========================================= */
+
+.our-future{
+  padding:120px 10%;
+  background:#f8fafc;
+  text-align:center;
+}
+
+.future-title{
+  font-size:34px;
+  color:var(--primary-blue);
+  margin-bottom:20px;
+}
+
+.future-title::after{
+  content:"";
+  display:block;
+  width:70px;
+  height:3px;
+  background:#f2c400;
+  margin:12px auto 0;
+}
+
+.future-intro{
+  max-width:720px;
+  margin:auto;
+  font-size:15px;
+  color:var(--text-muted);
+  line-height:1.8;
+  margin-bottom:70px;
+}
+
+
+
+/* =========================================
+   FUTURE GRID
+========================================= */
+
+.future-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:40px;
+}
+
+/* CARD */
+
+.future-card{
+  background:#ffffff;
+
+  padding:45px 35px;
+
+  border-radius:6px;
+  border:1px solid rgba(0,0,0,0.06);
+
+  text-align:left;
+
+  transition:transform .35s ease, box-shadow .35s ease;
+
+  opacity:0;
+  transform:translateY(40px);
+}
+
+/* Scroll animation active */
+
+.future-card.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.future-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 18px 45px rgba(0,0,0,0.08);
+}
+
+
+/* ICON */
+
+.future-icon{
+  font-size:32px;
+  margin-bottom:15px;
+  color:#f2c400;
+}
+
+/* TEXT */
+
+.future-card h3{
+  font-size:20px;
+  color:var(--primary-blue);
+  margin-bottom:14px;
+}
+
+.future-card p{
+  font-size:14px;
+  line-height:1.7;
+  color:var(--text-muted);
+}
+
+
+
+/* =========================================
+   MOBILE RESPONSIVE
+========================================= */
+
+@media (max-width:768px){
+
+  .vision-mission{
+    grid-template-columns:1fr;
+    gap:40px;
+    padding:70px 6%;
   }
-  opacity: 0.9;
+
+  .vision-item,
+  .mission-item{
+    padding:35px 28px;
+  }
+
+  .vision-title,
+  .mission-title{
+    font-size:24px;
+  }
+
+  .future-title{
+    font-size:26px;
+  }
+
+  .future-grid{
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+  }
+
+  .future-card{
+    padding:25px 20px;
+  }
+
 }
 
 
-/* =========================
+
+
+/* =========================================
    LEADERSHIP SECTION
-========================= */
+========================================= */
 
+.leadership-section{
+  position:relative;
+  padding:120px 10%;
+  text-align:center;
 
-.leadership-section {
-  position: relative;
-  padding: 120px 8%;
-  text-align: center;
-  background: url("../assets/images/contact-bg.jpg") center/cover no-repeat;
-  background: linear-gradient(to bottom, var(--primary-blue), rgba(255, 255, 255, 0.5)), url("../assets/images/contact-bg.jpg") center/cover no-repeat;
-  
-  overflow: hidden;
-}
+  background-image:
+  linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+  url("../assets/images/others/founderbg.png");
 
-/* TITLE */
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
 
-.leadership-title {
-  font-size: 40px;
-  margin-bottom: 80px;
-  font-weight: 700;
-  color: var(--accent-yellow)
-}
-
-/* LEADER CARDS */
-
-.leaders-container {
-  display: flex;
-  justify-content: center;
-  gap: 80px;
-  flex-wrap: wrap;
-}
-
-.leader-card {
-  width: 260px;
-  padding: 40px;
-  border-radius: 20px;
-  background: white;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.08);
-  transition: transform 0.4s ease;
-}
-
-.leader-card:hover {
-  transform: translateY(-10px);
-}
-
-.leader-card img {
-  width: 120px;
-  height: 120px;
-  object-fit:  cover  ;
-  border-radius: 50%;
-  margin-bottom: 20px;
-}
-
-.leader-card h3 {
-  font-size: 18px;
-  margin-bottom: 6px;
-}
-
-.leader-card p {
-  font-size: 14px;
-  opacity: 0.7;
+  overflow:hidden;
 }
 
 
-/* =========================
-   FLOWING GOLD LINE
-========================= */
 
-.gold-line {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(
-    90deg,
+/* =========================================
+   GOLD LIGHT SWEEP
+========================================= */
+
+.leadership-section::after{
+  content:"";
+  position:absolute;
+
+  top:0;
+  left:-40%;
+  width:40%;
+  height:100%;
+
+  background:linear-gradient(
+    120deg,
     transparent,
-    #f2c400,
-    #ffd84a,
+    rgba(242,196,0,0.15),
     transparent
   );
-  background-size: 200% 100%;
-  animation: flowLine 8s linear infinite;
+
+  transform:skewX(-20deg);
+
+  animation:goldSweep 8s linear infinite;
+  pointer-events:none;
 }
 
-.top-line {
-  top: 40px;
-}
-
-.bottom-line {
-  bottom: 40px;
-}
-
-@keyframes flowLine {
-  0% {
-    background-position: 0% 50%;
+@keyframes goldSweep{
+  0%{
+    left:-40%;
   }
-  100% {
-    background-position: 200% 50%;
+  100%{
+    left:140%;
   }
 }
-/* WHY US */
-.why-us {
-  padding: 120px 10%;
-  text-align: center;
-  background: var(--bg-main);
+
+
+
+
+/* =========================================
+   GOLD PARTICLE BACKGROUND
+========================================= */
+
+.leadership-section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background-image:
+    radial-gradient(circle, rgba(242,196,0,0.4) 1px, transparent 1px),
+    radial-gradient(circle, rgba(242,196,0,0.25) 1px, transparent 1px);
+
+  background-size:120px 120px, 180px 180px;
+
+  animation:particleFloat 35s linear infinite;
+
+  opacity:0.25;
+  pointer-events:none;
 }
 
-.why-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  margin-top: 50px;
+@keyframes particleFloat{
+  from{
+    transform:translateY(0);
+  }
+  to{
+    transform:translateY(-200px);
+  }
 }
 
-.why-grid div {
-  padding: 30px;
-  border: 1px solid var(--border-soft);
-  text-align: center;
+
+/* =========================================
+   TITLE
+========================================= */
+
+.leadership-title{
+  font-size:36px;
+  margin-bottom:80px;
+  color:#ffffff;
+  position:relative;
+  z-index:2;
+  letter-spacing:1px;
 }
 
-/* =========================
+
+/* GOLD DIVIDER LINES */
+
+.gold-line{
+  width:120px;
+  height:2px;
+  background:#f2c400;
+  margin:50px auto;
+  position:relative;
+  z-index:2;
+}
+
+
+/* =========================================
+   GRID LAYOUT
+========================================= */
+
+.leaders-container{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:120px;
+  align-items:center;
+  position:relative;
+  z-index:2;
+}
+
+
+/* STAGGER EFFECT */
+
+.leader-card:nth-child(2){
+  transform:translateY(80px);
+}
+
+
+/* =========================================
+   LEADER CARD
+========================================= */
+
+.leader-card{
+  max-width:360px;
+  margin:auto;
+  text-align:center;
+
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(12px);
+
+  padding:40px;
+  border-radius:14px;
+
+  transition:transform .35s ease, box-shadow .35s ease;
+}
+
+.leader-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 25px 50px rgba(0,0,0,0.45);
+}
+
+
+/* =========================================
+   PHOTO WITH GOLD HALO
+========================================= */
+
+.leader-photo{
+  position:relative;
+  width:220px;
+  height:220px;
+  margin:auto;
+  margin-bottom:22px;
+}
+
+/* GOLD GLOW */
+
+.leader-photo::before{
+  content:"";
+  position:absolute;
+  inset:-12px;
+
+  background:radial-gradient(circle, rgba(242,196,0,0.7), transparent 70%);
+  filter:blur(25px);
+  opacity:0.7;
+
+  z-index:0;
+}
+
+/* IMAGE */
+
+.leader-photo img{
+  position:relative;
+  z-index:1;
+
+  width:100%;
+  height:100%;
+  object-fit:cover;
+
+  border-radius:12px;
+
+  box-shadow:0 18px 40px rgba(0,0,0,0.4);
+
+  transition:transform .4s ease;
+}
+
+.leader-card:hover img{
+  transform:scale(1.06);
+}
+
+
+/* =========================================
+   TEXT
+========================================= */
+
+.leader-name{
+  font-size:22px;
+  font-weight:700;
+  margin-bottom:6px;
+  color:#ffffff;
+}
+
+.leader-role{
+  font-size:13px;
+  color:#f2c400;
+  margin-bottom:14px;
+  letter-spacing:1px;
+}
+
+.leader-summary{
+  font-size:14px;
+  line-height:1.7;
+  color:#e4e4e4;
+}
+
+
+/* =========================================
+   MOBILE RESPONSIVE
+========================================= */
+
+@media(max-width:768px){
+
+  .leaders-container{
+    grid-template-columns:1fr;
+    gap:60px;
+  }
+
+  .leader-card:nth-child(2){
+    transform:none;
+  }
+
+  .leader-photo{
+    width:180px;
+    height:180px;
+  }
+
+  .leadership-title{
+    font-size:28px;
+  }
+
+}
+
+/* =========================================
+   WHY CHOOSE US
+========================================= */
+
+.why-us{
+  padding:120px 10%;
+  text-align:center;
+  background:#ffffff;
+}
+
+.why-us h2{
+  font-size:34px;
+  color:#0a3d91;
+  margin-bottom:50px;
+}
+
+
+/* GRID */
+
+.why-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:30px;
+}
+
+
+/* CARD */
+
+.why-grid div{
+
+  padding:35px;
+
+  border:1px solid #e6e9ef;
+
+  border-radius:8px;
+
+  background:#ffffff;
+
+  font-size:15px;
+
+  color:#333;
+
+  transition:all .35s ease;
+
+  position:relative;
+}
+
+
+/* GOLD LINE */
+
+.why-grid div::after{
+
+  content:"";
+
+  position:absolute;
+
+  bottom:0;
+
+  left:50%;
+
+  width:0;
+
+  height:3px;
+
+  background:#f2c400;
+
+  transform:translateX(-50%);
+
+  transition:width .35s ease;
+}
+
+
+.why-grid div:hover::after{
+  width:60%;
+}
+
+
+/* HOVER */
+
+.why-grid div:hover{
+
+  transform:translateY(-6px);
+
+  box-shadow:0 20px 45px rgba(0,0,0,0.08);
+}
+
+
+
+/* =========================================
    IMPACT STRIP
-   ========================= */
+========================================= */
 
-.impact-strip {
-  padding: 120px 10%;
-  background: #f5f7fa;
+.impact-strip{
+
+  padding:120px 10%;
+
+  background:
+  linear-gradient(
+  135deg,
+  #0a3d91,
+  #062a66
+  );
+
+  color:#ffffff;
 }
 
-.impact-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 40px;
-  text-align: center;
+
+/* GRID */
+
+.impact-grid{
+
+  max-width:1100px;
+
+  margin:0 auto;
+
+  display:grid;
+
+  grid-template-columns:repeat(4,1fr);
+
+  gap:40px;
+
+  text-align:center;
 }
 
-.impact-item h3 {
-  font-size: 50px;
-  color: var(--primary-blue);
+
+/* ITEM */
+
+.impact-item{
+
+  padding:40px 20px;
+
+  border-right:1px solid rgba(255,255,255,0.2);
 }
 
-.impact-item p {
-  margin-top: 10px;
-  color: var(--text-muted);
+.impact-item:last-child{
+  border-right:none;
 }
+
+
+/* NUMBER */
+
+.impact-item h3{
+
+  font-size:48px;
+
+  color:#f2c400;
+
+  font-weight:700;
+
+  margin-bottom:10px;
+}
+
+
+/* LABEL */
+
+.impact-item p{
+
+  font-size:14px;
+
+  letter-spacing:1px;
+
+  color:rgba(255,255,255,0.85);
+}
+
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:768px){
+
+  .why-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .impact-grid{
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+  }
+
+  .impact-item{
+    border-right:none;
+    border-bottom:1px solid rgba(255,255,255,0.2);
+    padding:30px 10px;
+  }
+
+}
+
+
+
+
 
 
 /* =========================
@@ -1015,100 +1467,6 @@ box-shadow: 0 0 20px rgba(242,196,0,0.4);
 .footer-copy {
   font-size: 13px;
   opacity: 0.7;
-}
-
-
-
-/* =========================
-   PREMIUM IMPACT / STATS
-   ========================= */
-
-.impact-stats {
-  padding: 120px 10%;
-  background:
-    linear-gradient(
-      135deg,
-      #0a3d91 0%,
-      #062a66 60%,
-      #0042ac 100%
-    );
-  position: relative;
-  overflow: hidden;
-}
-
-/* Subtle texture glow */
-.impact-stats::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(
-      circle at top right,
-      rgba(242, 196, 0, 0.12),
-      transparent 60%
-    );
-  pointer-events: none;
-}
-
-.impact-container {
-  max-width: 1200px;
-  margin: 0 auto;
-
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 40px;
-
-  position: relative;
-  z-index: 2;
-}
-
-/* STAT CARD */
-.impact-item {
-  padding: 50px 30px;
-  text-align: center;
-
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(8px);
-
-  border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.12);
-
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-.impact-item:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 25px 60px rgba(0,0,0,0.45);
-}
-
-/* NUMBER */
-.impact-number {
-  font-size: 52px;
-  font-weight: 700;
-  margin-bottom: 12px;
-
-  color: #f2c400; /* premium gold */
-  letter-spacing: 1px;
-}
-
-/* LABEL */
-.impact-label {
-  font-size: 13px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-
-  color: rgba(255,255,255,0.85);
-}
-
-/* Optional thin underline */
-.impact-item::after {
-  content: "";
-  display: block;
-  width: 40px;
-  height: 2px;
-  background: #f2c400;
-  margin: 20px auto 0;
-  opacity: 0.6;
 }
 
 
