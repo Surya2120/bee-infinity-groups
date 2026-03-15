@@ -1249,8 +1249,6 @@ nav a.active {
   }
 
 }
-
-
 /* =========================
    RESPONSIVE MEDIA QUERIES
    Desktop First Approach
@@ -1265,6 +1263,7 @@ Default = Desktop (above 1200px)
 @media (max-width: 768px)  → Large Mobile
 @media (max-width: 480px)  → Small Mobile
 */
+
 
 /* =========================================
    SMALL DESKTOP / LARGE LAPTOP
@@ -1290,7 +1289,6 @@ Default = Desktop (above 1200px)
   .impact-container {
     grid-template-columns: repeat(2, 1fr);
   }
-
 }
 
 
@@ -1344,7 +1342,6 @@ Default = Desktop (above 1200px)
   .impact-container {
     grid-template-columns: repeat(2, 1fr);
   }
-
 }
 
 
@@ -1353,9 +1350,11 @@ Default = Desktop (above 1200px)
 ========================================= */
 @media (max-width: 768px) {
 
+    /* Prevent horizontal shift */
   html, body {
     overflow-x: hidden;
   }
+
 
   /* NAVBAR */
   .navbar {
@@ -1379,15 +1378,11 @@ Default = Desktop (above 1200px)
     width: 260px;
     height: 100vh;
     background: #ffffff;
-
     display: flex;
     flex-direction: column;
-
     padding: 120px 40px;
     gap: 30px;
-
     transition: right 0.4s ease;
-
     box-shadow: -10px 0 40px rgba(0,0,0,0.1);
     z-index: 1000;
   }
@@ -1396,8 +1391,10 @@ Default = Desktop (above 1200px)
     right: 0;
   }
 
-  /* HERO */
 
+
+  
+  /* HERO */
   .hero-video {
     aspect-ratio: 16 / 10;
   }
@@ -1415,8 +1412,12 @@ Default = Desktop (above 1200px)
     font-size: 13px;
   }
 
-  /* ULTRA */
+  /* INTRO */
+  .intro {
+    padding: 40px 6%;
+  }
 
+  /* ULTRA */
   .ultra-flagship {
     padding: 100px 6%;
   }
@@ -1439,13 +1440,11 @@ Default = Desktop (above 1200px)
   }
 
   /* CLIENT LOGOS */
-
   .client-logo {
     height: 80px;
   }
 
   /* IMPACT */
-
   .impact-container {
     grid-template-columns: 1fr;
     gap: 20px;
@@ -1465,11 +1464,9 @@ Default = Desktop (above 1200px)
   }
 
   /* FOOTER */
-
   .footer-tagline {
     font-size: 24px;
   }
-
 }
 
 
@@ -1497,14 +1494,12 @@ Default = Desktop (above 1200px)
   .footer-tagline {
     font-size: 20px;
   }
-
 }
 
 
 /* =========================================
    HAMBURGER MENU SYSTEM
 ========================================= */
-
 .menu-toggle {
   display: none;
   align-items: center;
@@ -1514,18 +1509,19 @@ Default = Desktop (above 1200px)
 
 @media (max-width: 768px) {
 
+
   nav {
-    display: none;
+    display: none; /* hide normal nav */
   }
 
+
+  /* Show hamburger */
   .menu-toggle {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
     width: 28px;
     height: 20px;
-
     cursor: pointer;
     z-index: 1100;
   }
@@ -1533,13 +1529,12 @@ Default = Desktop (above 1200px)
   .menu-toggle span {
     height: 2px;
     width: 100%;
-
     background: #0a3d91;
-
     border-radius: 2px;
-    transition: all 0.4s ease;
+    transition: 0.4s ease;
   }
 
+  /* Animate to X */
   .menu-toggle.active span:nth-child(1) {
     transform: translateY(9px) rotate(45deg);
   }
@@ -1553,18 +1548,13 @@ Default = Desktop (above 1200px)
   }
 
   /* Overlay */
-
   .menu-overlay {
     position: fixed;
     inset: 0;
-
     background: rgba(0,0,0,0.5);
-
     opacity: 0;
     visibility: hidden;
-
     transition: 0.4s ease;
-
     z-index: 900;
   }
 
@@ -1576,7 +1566,6 @@ Default = Desktop (above 1200px)
   body.menu-open {
     overflow: hidden;
   }
-
 }
 
 
