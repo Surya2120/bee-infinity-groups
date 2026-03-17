@@ -263,7 +263,7 @@ nav a.active {
   text-align: center;
   margin-bottom: 120px;
   position: relative;
-  z-index: 2;
+  z-index: 2;gi
   opacity: 0;
   transform: translateY(40px);
   transition: all 1s ease;
@@ -276,7 +276,7 @@ nav a.active {
 }
 
 .journey-header p {
-  margin-top: 15px;
+  margin-top: 1px;
   font-size: 16px;
   color: #bbbbbb;
   letter-spacing: 1px;
