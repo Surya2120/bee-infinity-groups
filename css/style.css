@@ -565,13 +565,12 @@ nav a.active {
   position: absolute;
   inset: 0;
 
-  background:
-    linear-gradient(
-      240deg,
-      rgba(0,0,0,0.95) 25%,
-      rgba(0,0,0,0.6) 55%,
-      rgba(0,0,0,0.2) 100%
-    );
+background: linear-gradient(
+  to left,
+  rgba(0,0,0,0.95) 0%,
+  rgba(0,0,0,0.6) 30%,
+  rgba(0,0,0,0.0) 60%
+);
 
   z-index: 1;
 }
