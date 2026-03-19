@@ -158,6 +158,7 @@ nav a.active {
   color: var(--text-muted);
 }
 
+
 /* WHO WE ARE */
 
 .who-we-are {
@@ -168,23 +169,18 @@ nav a.active {
   color: saddlebrown;
 }
 
+/* HEADING */
 .who-we-are h2 {
   display: inline-block;
   font-size: 28px;
   margin-bottom: 60px;
   padding: 14px 36px;
-
   background: linear-gradient(135deg, #f2c400, #ffdf6e);
   color: #000;
-
   border-radius: 50px;
   letter-spacing: 2px;
   text-transform: uppercase;
-
   box-shadow: 0 15px 35px rgba(242, 196, 0, 0.4);
-}
-
-.who-we-are h2 {
   transition: 0.4s ease;
 }
 
@@ -193,34 +189,61 @@ nav a.active {
   color: var(--primary-blue);
 }
 
+/* TEXT */
 .who-we-are p {
   font-size: 15px;
   line-height: 1.8;
   color: var(--text-muted);
 }
 
-.who-images {
+/* 🔥 NEW IMAGE LAYOUT */
+.who-gallery {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
 
-.who-images img:nth-child(2),
-.who-images img:nth-child(4) {
-  transform: translateY(100px);
+/* LEFT STACK */
+.who-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.who-images img {
+/* RIGHT TALL */
+.who-right {
+  height: 100%;
+}
+
+/* COMMON IMAGE STYLE */
+.who-gallery img {
   width: 100%;
-  height: 260px; /* fixed height prevents layout shift */
-  object-fit:   ; /* fills the box without white space */
+  border-radius: 16px;
+  object-fit: cover;
+  display: block;
 
-  border-radius: 0%;
-  flex-shrink: 0;
-
-  transition: opacity 0.6s ease;
+  transition: 
+    transform 0.4s ease, 
+    box-shadow 0.4s ease,
+    opacity 0.5s ease;
 }
 
+/* LEFT IMAGES (LANDSCAPE) */
+.who-left img {
+  aspect-ratio: 16 / 9;
+}
+
+/* RIGHT IMAGE (PORTRAIT 🔥) */
+.who-right img {
+  height: 100%;
+  aspect-ratio: 9 / 16;
+}
+
+/* HOVER EFFECT */
+.who-gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
 /* =========================
    IDENTITY ROTATOR
 ========================= */

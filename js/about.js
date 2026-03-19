@@ -49,70 +49,80 @@ setInterval(rotateWord, changeSpeed);
 
 
 /* =========================
-   WHO IMAGES ROTATION
+   WHO IMAGES ROTATION (FIXED)
 ========================= */
 
-const whoImages = document.querySelectorAll(".who-images img");
+const leftImages = document.querySelectorAll(".who-left img");
+const rightImage = document.querySelector(".who-right img");
 
-const imageSets = [
+/* LEFT SIDE (3 images per set) */
+const leftSets = [
   [
     "assets/images/dance/dance (9).JPG",
     "assets/images/dance/dance (13).jpg",
-    "assets/images/dance/dance (6).jpg",
-    "assets/images/events/events (4).jpg",
-    "assets/images/events/events (8).jpg"
+    "assets/images/dance/dance (6).jpg"
   ],
   [
     "assets/images/dance/dance (1).jpg",
-    "assets/images/dance/dance (2).jpg",
-    "assets/images/dance/dance (3).jpg",
-    "assets/images/events/events (1).jpg",
-    "assets/images/events/events (2).jpg"
+      "assets/images/events/events (1).jpg",
+    "assets/images/dance/dance (3).jpg"
   ],
   [
-    "assets/images/dance/dance (4).jpg",
-    "assets/images/dance/dance (5).jpg",
-    "assets/images/dance/dance (7).jpg",
     "assets/images/events/events (3).jpg",
-    "assets/images/events/events (5).jpg"
+    "assets/images/dance/dance (5).jpg",
+    "assets/images/dance/dance (7).jpg"
   ],
   [
     "assets/images/dance/dance (8).jpg",
     "assets/images/dance/dance (10).jpg",
-    "assets/images/dance/dance (11).jpg",
-    "assets/images/events/events (6).jpg",
-    "assets/images/events/events (7).jpg"
+    "assets/images/dance/dance (11).jpg"
   ]
 ];
 
-let currentSet = 0;
+/* RIGHT SIDE (portrait images) */
+const rightSet = [
+  "assets/images/dance/dance (23).jpg",
+  "assets/images/dance/dance (2).jpg",
+  "assets/images/dance/dance (4).jpg",
+  "assets/images/studio/studio (1).jpg"
+];
+
+let currentIndex = 0;
+
+/* 🔥 Preload */
+[...leftSets.flat(), ...rightSet].forEach(src => {
+  const img = new Image();
+  img.src = src;
+});
 
 function changeImages() {
 
-  // fade out
-  whoImages.forEach(img => {
-    img.style.opacity = "0";
+  currentIndex = (currentIndex + 1) % leftSets.length;
+
+  /* LEFT IMAGES */
+  leftImages.forEach((img, index) => {
+    setTimeout(() => {
+      img.style.opacity = "0";
+
+      setTimeout(() => {
+        img.src = leftSets[currentIndex][index];
+        img.style.opacity = "1";
+      }, 300);
+
+    }, index * 120);
   });
 
+  /* RIGHT IMAGE */
+  rightImage.style.opacity = "0";
+
   setTimeout(() => {
-
-    currentSet++;
-    if (currentSet >= imageSets.length) currentSet = 0;
-
-    whoImages.forEach((img, index) => {
-      img.src = imageSets[currentSet][index];
-    });
-
-    // fade in
-    whoImages.forEach(img => {
-      img.style.opacity = "1";
-    });
-
-  }, 600);
-
+    rightImage.src = rightSet[currentIndex];
+    rightImage.style.opacity = "1";
+  }, 300);
 }
 
-setInterval(changeImages, 5000);
+/* timing */
+setInterval(changeImages, 6000);
 
 
 
