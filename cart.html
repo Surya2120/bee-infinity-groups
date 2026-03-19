@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Cart - Bee Infinity</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/cart.css">
+</head>
+
+<body>
+<!-- LOADING SCREEN -->
+<div id="loader">
+  <div class="loader-content">
+    <div class="spinner"></div>
+  </div>
+</div>
+
+<header class="navbar">
+  <div class="back-btn">
+    <a href="merch.html">← Back to Shop</a>
+  </div>
+
+  <h2>Your Cart 🛒</h2>
+</header>
+
+<section class="cart-page">
+
+  <!-- CART ITEMS -->
+  <div id="cart-container" class="cart-grid"></div>
+
+  <!-- SUMMARY -->
+  <div class="cart-summary">
+
+    <h3>Order Summary</h3>
+
+    <div class="coupon-box">
+      <input type="text" id="coupon" placeholder="Enter Coupon Code">
+      <button onclick="applyCouponUI()">Apply</button>
+    </div>
+
+    <div class="price-details">
+      <p>Subtotal: ₹<span id="subtotal">0</span></p>
+      <p>Discount: ₹<span id="discount">0</span></p>
+      <h3>Total: ₹<span id="total">0</span></h3>
+    </div>
+
+    <button class="checkout-btn" onclick="payNow()">Proceed to Pay</button>
+
+  </div>
+
+</section>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+// ================= LOAD =================
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let discountValue = 0;
+
+// ================= IMAGE MAP =================
+const productImages = {
+  "Bee Infinity Premium Hoodie": "assets/images/products/hoodie.jpg",
+  "Dance Streetwear T-Shirt": "assets/images/products/tshirt.jpg",
+  "Studioz Signature Cap": "assets/images/products/cap.jpg",
+  "Handmade Mandala Wall Art": "assets/images/products/mandala1.jpg",
+  "Mandala Plate Premium Finish": "assets/images/products/mandala2.jpg",
+  "Decorative Mandala Wall Piece": "assets/images/products/mandala3.jpg",
+  "Urban Dance Hoodie Black": "assets/images/products/hoodie.jpg"
+};
+
+// ================= RENDER =================
+function renderCart(){
+
+  let container = document.getElementById("cart-container");
+  container.innerHTML = "";
+
+  if(cart.length === 0){
+    container.innerHTML = "<p>Your cart is empty</p>";
+    updateTotal();
+    return;
+  }
+
+  cart.forEach((item, index)=>{
+
+    let div = document.createElement("div");
+    div.className = "cart-card";
+
+    div.innerHTML = `
+      <img src="${productImages[item.name]}" class="cart-img">
+
+      <div class="cart-info">
+        <h4>${item.name}</h4>
+        <p>${item.size ? "Size: " + item.size : ""}</p>
+        <span>₹${item.price}</span>
+
+        <div class="qty-box">
+          <button onclick="updateQty(${index}, -1)">-</button>
+          <span>${item.qty}</span>
+          <button onclick="updateQty(${index}, 1)">+</button>
+        </div>
+
+        <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+      </div>
+    `;
+
+    container.appendChild(div);
+  });
+
+  updateTotal();
+}
+
+// ================= UPDATE =================
+function updateQty(index, change){
+  cart[index].qty += change;
+  if(cart[index].qty <= 0){
+    cart.splice(index,1);
+  }
+  saveCart();
+  renderCart();
+}
+
+function removeItem(index){
+  cart.splice(index,1);
+  saveCart();
+  renderCart();
+}
+
+function saveCart(){
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+// ================= TOTAL =================
+function updateTotal(){
+
+  let subtotal = 0;
+
+  cart.forEach(item=>{
+    subtotal += item.price * item.qty;
+  });
+
+  let total = subtotal - discountValue;
+
+  document.getElementById("subtotal").innerText = subtotal;
+  document.getElementById("discount").innerText = discountValue;
+  document.getElementById("total").innerText = total;
+}
+
+// ================= COUPON =================
+function applyCouponUI(){
+
+  let code = document.getElementById("coupon").value.trim().toUpperCase();
+
+  let subtotal = cart.reduce((sum,item)=>sum + item.price * item.qty,0);
+
+  if(code === "BIG40" || code === "FLAT40" || code === "BEEINFINITY40"){
+    discountValue = subtotal * 0.4;
+    alert("🔥 40% Discount Applied");
+  } else {
+    discountValue = 0;
+    alert("Invalid Coupon");
+  }
+
+  updateTotal();
+}
+
+// ================= PAYMENT =================
+function payNow(){
+
+  let total = parseInt(document.getElementById("total").innerText);
+
+  if(total <= 0){
+    alert("Cart is empty");
+    return;
+  }
+
+  let options = {
+    key: "YOUR_RAZORPAY_KEY",
+    amount: total * 100,
+    currency: "INR",
+    name: "Bee Infinity Groups",
+    description: "Order Payment",
+    handler: function(){
+      alert("Payment Successful 🎉");
+      localStorage.removeItem("cart");
+      window.location.href = "merch.html";
+    }
+  };
+
+  let rzp = new Razorpay(options);
+  rzp.open();
+}
+
+// INIT
+renderCart();
+</script>
+<script src="js/cart.js"></script>
+</body>
+</html>

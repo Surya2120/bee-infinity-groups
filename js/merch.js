@@ -1,74 +1,156 @@
-const products = [
-  {id:1,name:"Infinity Black Tee",price:999,image:"images/tshirt.jpg"},
-  {id:2,name:"Studio Hoodie",price:1999,image:"images/hoodie.jpg"},
-  {id:3,name:"Creator Mug",price:499,image:"images/mug.jpg"},
-  {id:4,name:"Infinity Bottle",price:799,image:"images/bottle.jpg"},
-  {id:5,name:"Custom Mandala Art",price:1499,image:"images/mandala.jpg"}
-];
-
-let cart = [];
-
-const productList = document.getElementById("product-list");
-
-products.forEach(product=>{
-  productList.innerHTML += `
-    <div class="product">
-      <img src="${product.image}">
-      <h3>${product.name}</h3>
-      <p>₹${product.price}</p>
-      <button onclick="addToCart(${product.id})">Add to Cart</button>
-    </div>
-  `;
+// ================= LOADER =================
+window.addEventListener("load", ()=>{
+  const loader = document.getElementById("loader");
+  if(loader){
+    loader.style.opacity = "0";
+    setTimeout(()=> loader.style.display = "none", 500);
+  }
 });
 
-function addToCart(id){
-  const item = products.find(p=>p.id===id);
-  cart.push(item);
-  updateCart();
-}
+// ================= GLOBAL CART =================
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-function updateCart(){
-  const cartItems = document.getElementById("cart-items");
-  const cartTotal = document.getElementById("cart-total");
-  const cartCount = document.getElementById("cart-count");
+// ================= INIT =================
+document.addEventListener("DOMContentLoaded", () => {
+  initSizeSelection();
+  updateCartCount();
+});
 
-  cartItems.innerHTML="";
-  let total=0;
-
-  cart.forEach((item,index)=>{
-    total+=item.price;
-    cartItems.innerHTML+=`
-      <div class="cart-item">
-        ${item.name} - ₹${item.price}
-        <button onclick="removeItem(${index})">X</button>
-      </div>
-    `;
+// ================= SIZE SELECT =================
+function initSizeSelection(){
+  document.querySelectorAll(".size-select span").forEach(el=>{
+    el.addEventListener("click", function(){
+      const parent = this.parentElement;
+      parent.querySelectorAll("span").forEach(s=>s.classList.remove("active"));
+      this.classList.add("active");
+    });
   });
-
-  cartTotal.innerText=total;
-  cartCount.innerText=cart.length;
 }
 
-function removeItem(index){
-  cart.splice(index,1);
-  updateCart();
+// ================= CART COUNT =================
+function updateCartCount(){
+  const count = cart.reduce((total, item) => total + item.qty, 0);
+  const el = document.getElementById("cart-count");
+  if(el) el.innerText = count;
 }
 
-function toggleCart(){
-  document.getElementById("cart").classList.toggle("active");
+// ================= QUANTITY =================
+function changeQty(btn, change){
+  const qtyEl = btn.parentElement.querySelector(".qty");
+  let qty = parseInt(qtyEl.innerText);
+
+  qty += change;
+  if(qty < 1) qty = 1;
+
+  qtyEl.innerText = qty;
 }
 
-function openCheckout(){
-  document.getElementById("checkout").style.display="flex";
+// ================= ADD TO CART =================
+function addToCartWithOptions(btn, name, price, type){
+
+  const card = btn.closest(".product-card");
+  const qty = parseInt(card.querySelector(".qty").innerText);
+
+  let size = null;
+
+  // SIZE CHECK
+  if(type !== "normal"){
+    const selected = card.querySelector(".size-select .active");
+
+    if(!selected){
+      showToast("⚠️ Please select size");
+      return;
+    }
+
+    size = selected.innerText;
+  }
+
+  // CHECK EXISTING ITEM
+  const existing = cart.find(item =>
+    item.name === name && item.size === size
+  );
+
+  if(existing){
+    existing.qty += qty;
+  } else {
+    cart.push({
+      name,
+      price,
+      qty,
+      size
+    });
+  }
+
+  saveCart();
+  updateCartCount();
+  showToast(`Added: ${name}${size ? " ("+size+")" : ""}`);
 }
 
-function closeCheckout(){
-  document.getElementById("checkout").style.display="none";
+// ================= SAVE =================
+function saveCart(){
+  localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-function placeOrder(){
-  alert("Order placed successfully! We will contact you shortly.");
-  cart=[];
-  updateCart();
-  closeCheckout();
+// ================= TOAST (UPGRADED POPUP) =================
+function showToast(message){
+
+  const toast = document.createElement("div");
+  toast.className = "cart-popup";
+  toast.innerText = message;
+
+  document.body.appendChild(toast);
+
+  setTimeout(()=>{
+    toast.style.opacity = "0";
+  },1500);
+
+  setTimeout(()=>{
+    toast.remove();
+  },2000);
+}
+
+// ================= COUPON =================
+function applyCoupon(code, total){
+
+  code = code.toUpperCase();
+  let discount = 0;
+
+  if(["BIG40","FLAT40","BEEINFINITY40"].includes(code)){
+    discount = total * 0.4;
+  }
+
+  return {
+    discount,
+    finalTotal: total - discount
+  };
+}
+
+// ================= CLEAR CART =================
+function clearCart(){
+  localStorage.removeItem("cart");
+  cart = [];
+  updateCartCount();
+  showToast("Cart cleared");
+}
+
+// ================= GET CART =================
+function getCart(){
+  return cart;
+}
+
+// ================= DEBUG =================
+function logCart(){
+  console.log("Cart:", cart);
+}
+
+
+
+function updateCartCount(){
+  const count = cart.reduce((total, item) => total + item.qty, 0);
+
+  const navCount = document.getElementById("cart-count");
+  const floatingCount = document.getElementById("cart-count-floating");
+
+  if(navCount) navCount.innerText = count;
+  if(floatingCount) floatingCount.innerText = count;
 }
