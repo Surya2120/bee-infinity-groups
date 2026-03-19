@@ -487,7 +487,7 @@ nav a.active {
 .ultra-flagship {
   position: relative; /* REQUIRED for badge positioning */
   padding: 160px 6% 140px;
-  background: #ffffff;
+  background: var(--primary-blue)
 }
 
 /* =========================
@@ -506,7 +506,7 @@ nav a.active {
   text-transform: uppercase;
 
   color: #000;
-  background: linear-gradient(135deg, #f2c400, #ffdf6e);
+  background: linear-gradient(135deg, #f2c400, #ffffff);
   border-radius: 40px;
 
   box-shadow:
@@ -1356,31 +1356,22 @@ Default = Desktop (above 1200px)
 
   /* ULTRA */
   .ultra-flagship {
-    padding: 100px 6%;
+    padding: 70px 5%;
   }
 
-.ultra-card {
-  height: 220px;
-}
-
-  .ultra-card img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-  .ultra-content {
-    padding: 30px;
-    text-align: left;
+  .ultra-card {
+    height: 170px;
   }
 
-.ultra-title{
-  font-size:22px;
+  .ultra-title {
+    font-size: 18px;
+  }
+
+  .ultra-desc {
+    font-size: 13px;
+  }
 }
 
-  .ultra-desc{
-  font-size:13px;
-    }
 
   /* CLIENT LOGOS */
   .client-logo {
