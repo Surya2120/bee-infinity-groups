@@ -1,0 +1,187 @@
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: radial-gradient(circle at top, #141414, #0a0a0a);
+  color: #ffffff;
+  line-height: 1.6;
+}
+
+
+/* ================= BRAND COLORS ================= */
+/*
+Primary: Gold → #ffcc00
+Accent: Orange → #ff8800
+Dark BG: #0a0a0a / #141414
+*/
+
+
+/* ================= HEADINGS ================= */
+
+h1 {
+  font-size: 44px;
+  text-align: center;
+  margin-bottom: 12px;
+  background: linear-gradient(90deg, #ffcc00, #ff8800);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #aaa;
+  margin-bottom: 60px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 15px;
+}
+
+
+/* ================= SECTIONS ================= */
+
+.careers,
+.internship {
+  padding: 90px 8%;
+}
+
+.internship {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  margin-top: 50px;
+}
+
+
+/* ================= GRID ================= */
+
+.jobs-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+
+/* ================= JOB CARD ================= */
+
+.job-card {
+  background: linear-gradient(145deg, #1a1a1a, #111);
+  padding: 26px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 204, 0, 0.05);
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+
+/* subtle glow effect */
+.job-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(255, 204, 0, 0.08), transparent);
+  opacity: 0;
+  transition: 0.4s;
+}
+
+.job-card:hover::before {
+  opacity: 1;
+}
+
+.job-card:hover {
+  transform: translateY(-10px) scale(1.01);
+  border: 1px solid rgba(255, 204, 0, 0.4);
+  box-shadow: 
+    0 10px 40px rgba(255, 204, 0, 0.15),
+    0 0 20px rgba(255, 136, 0, 0.1);
+}
+
+
+/* ================= CARD CONTENT ================= */
+
+.job-card h2 {
+  font-size: 22px;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.exp {
+  font-size: 13px;
+  color: #999;
+  margin-bottom: 15px;
+}
+
+.job-card ul {
+  padding-left: 18px;
+  margin-bottom: 22px;
+}
+
+.job-card ul li {
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #ccc;
+}
+
+
+/* ================= APPLY BUTTON ================= */
+
+.apply-btn {
+  display: inline-block;
+  text-decoration: none;
+  background: linear-gradient(90deg, #ffcc00, #ff8800);
+  color: #000;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.apply-btn:hover {
+  transform: scale(1.07);
+  box-shadow: 
+    0 0 12px rgba(255, 204, 0, 0.6),
+    0 0 20px rgba(255, 136, 0, 0.4);
+}
+
+
+/* ================= INTERNSHIP VARIATION ================= */
+
+.internship .job-card {
+  background: linear-gradient(145deg, #171717, #0f0f0f);
+  border: 1px solid rgba(255, 136, 0, 0.08);
+}
+
+.internship .job-card:hover {
+  border: 1px solid rgba(255, 136, 0, 0.5);
+  box-shadow: 
+    0 10px 35px rgba(255, 136, 0, 0.2),
+    0 0 15px rgba(255, 136, 0, 0.1);
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 600px) {
+
+  h1 {
+    font-size: 30px;
+  }
+
+  .careers,
+  .internship {
+    padding: 60px 5%;
+  }
+
+  .job-card {
+    padding: 20px;
+  }
+
+}
