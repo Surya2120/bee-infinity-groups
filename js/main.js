@@ -28,6 +28,12 @@ if (video && muteBtn) {
 }
 
 
+
+
+
+
+
+
 /* =========================
    PORTFOLIO FILTER
 ========================= */
@@ -236,58 +242,52 @@ window.addEventListener("scroll", () => {
 
 
 
-
 /* =========================
    HAMBURGER MENU SYSTEM
 ========================= */
-
 document.addEventListener("DOMContentLoaded", function () {
 
   const toggle = document.getElementById("menuToggle");
-  const nav = document.querySelector(".nav-links");
+  const nav = document.getElementById("navLinks");
+  const exploreToggle = document.getElementById("exploreToggle");
+  const exploreMenu = document.getElementById("exploreMenu");
 
-  if (!toggle || !nav) return;
-
-  /* Create overlay */
+  // Create overlay
   const overlay = document.createElement("div");
   overlay.classList.add("menu-overlay");
   document.body.appendChild(overlay);
 
   function openMenu() {
-    toggle.classList.add("active");
     nav.classList.add("active");
     overlay.classList.add("active");
-    document.body.classList.add("menu-open");
   }
 
   function closeMenu() {
-    toggle.classList.remove("active");
     nav.classList.remove("active");
     overlay.classList.remove("active");
-    document.body.classList.remove("menu-open");
+    exploreMenu.classList.remove("show");
   }
 
-  function toggleMenu() {
-    if (nav.classList.contains("active")) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
-  }
-
-  toggle.addEventListener("click", toggleMenu);
-  overlay.addEventListener("click", closeMenu);
-
-  /* Close when link clicked */
-  nav.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", closeMenu);
+  toggle.addEventListener("click", () => {
+    nav.classList.toggle("active");
+    overlay.classList.toggle("active");
   });
 
-  /* Close on ESC */
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") closeMenu();
+  overlay.addEventListener("click", closeMenu);
+
+  // EXPLORE DROPDOWN
+  exploreToggle.addEventListener("click", function (e) {
+    e.preventDefault();
+    exploreMenu.classList.toggle("show");
+  });
+
+  // CLOSE MENU ONLY FOR REAL LINKS
+  nav.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", function () {
+      if (!link.classList.contains("no-close")) {
+        closeMenu();
+      }
+    });
   });
 
 });
-
-

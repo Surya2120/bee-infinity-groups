@@ -119,6 +119,49 @@ nav a.active {
   font-weight: 600;
 }
 
+/* DROPDOWN CONTAINER */
+.dropdown {
+  position: relative;
+}
+
+/* DROPDOWN MENU */
+.dropdown-menu {
+  position: absolute;
+  top: 120%;
+  left: 0;
+  background: #111; /* matches dark navbar */
+  min-width: 180px;
+  display: none;
+  flex-direction: column;
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 999;
+}
+
+/* DROPDOWN LINKS */
+.dropdown-menu a {
+  display: block;
+  padding: 10px 15px;
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+/* HOVER EFFECT */
+.dropdown-menu a:hover {
+  background: #222;
+  color: #f5c518; /* your yellow accent */
+}
+
+/* DESKTOP HOVER */
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* MOBILE (JS CONTROL) */
+.dropdown-menu.show {
+  display: block;
+}
 
 /* =========================================
    SHRINKED HEADER (ON SCROLL)
@@ -142,6 +185,8 @@ nav a.active {
     transition: all 0.4s ease-in;
         transition: all 0.4s ease-out;
 }
+
+
 
 /* =========================================
    HERO SECTION – PREMIUM DARK (FIXED)
