@@ -27,16 +27,9 @@ const form = document.getElementById("applicationForm");
 form.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  const file = document.getElementById("resumeFile").files[0];
-
-  // 🔒 Validation
-  if (!file) {
-    alert("Please upload your resume ⚠️");
-    return;
-  }
-
-  if (file.size > 500000) {
-    alert("File too large (Max 500KB) ⚠️");
+  // 🔒 Basic validation
+  if (!form.name.value || !form.email.value || !form.phone.value || !form.resumeLink.value) {
+    alert("Please fill all required fields ⚠️");
     return;
   }
 
@@ -44,50 +37,44 @@ form.addEventListener("submit", function (e) {
   submitBtn.innerText = "Sending...";
   submitBtn.disabled = true;
 
-  const reader = new FileReader();
-
-  reader.onload = function () {
-
-    const data = {
-      jobRole: form.jobRole.value,
-      name: form.name.value,
-      email: form.email.value,
-      phone: form.phone.value,
-      experience: form.experience.value,
-      skills: form.skills.value,
-      portfolio: form.portfolio.value,
-      message: form.message.value,
-      resume: reader.result
-    };
-
-    // 🔥 YOUR SERVICE + TEMPLATE
-    emailjs.send("service_aghcu12", "template_d26sq62", data)
-      .then(() => {
-
-        alert("Application sent successfully ✅");
-
-        form.reset();
-
-        // keep role after reset
-        const params = new URLSearchParams(window.location.search);
-        const role = params.get("role");
-        if (role) form.jobRole.value = role;
-
-      })
-      .catch((error) => {
-
-        console.error("EmailJS Error:", error);
-        alert("Failed to send ❌ Check console");
-
-      })
-      .finally(() => {
-
-        submitBtn.innerText = "Submit Application";
-        submitBtn.disabled = false;
-
-      });
-
+  const data = {
+    jobRole: form.jobRole.value,
+    name: form.name.value,
+    email: form.email.value,
+    phone: form.phone.value,
+    experience: form.experience.value,
+    skills: form.skills.value,
+    portfolio: form.portfolio.value,
+    message: form.message.value,
+    resumeLink: form.resumeLink.value   // ✅ FIXED (no file upload)
   };
 
-  reader.readAsDataURL(file);
+  // ================= SEND EMAIL =================
+
+  emailjs.send("service_aghcu12", "template_d26sq62", data)
+    .then(() => {
+
+      alert("Application sent successfully ✅");
+
+      form.reset();
+
+      // keep role after reset
+      const params = new URLSearchParams(window.location.search);
+      const role = params.get("role");
+      if (role) form.jobRole.value = role;
+
+    })
+    .catch((error) => {
+
+      console.error("EmailJS Error:", error);
+      alert("Failed to send ❌ Check console");
+
+    })
+    .finally(() => {
+
+      submitBtn.innerText = "Submit Application";
+      submitBtn.disabled = false;
+
+    });
+
 });

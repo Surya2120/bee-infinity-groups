@@ -5,9 +5,11 @@
   <title>Apply | Bee Infinity Groups</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- CSS -->
   <link rel="stylesheet" href="css/hiring.css">
   <link rel="stylesheet" href="css/apply.css">
 
+  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 
@@ -16,50 +18,69 @@
 <section class="apply-page">
 
   <h1>Apply Now</h1>
-  <p class="subtitle">Fill the form to join Bee Infinity Groups</p>
+  <p class="subtitle">
+    Fill the form below to join Bee Infinity Groups and be part of our creative journey.
+  </p>
 
   <form id="applicationForm">
 
+    <!-- ROLE -->
     <label>Applying For</label>
     <input type="text" name="jobRole" id="jobRole" readonly>
 
+    <!-- NAME -->
     <label>Full Name</label>
-    <input type="text" name="name" required>
+    <input type="text" name="name" required placeholder="Enter your full name">
 
-    <label>Email</label>
-    <input type="email" name="email" required>
+    <!-- EMAIL -->
+    <label>Email Address</label>
+    <input type="email" name="email" required placeholder="Enter your email">
 
-    <label>Phone</label>
-    <input type="tel" name="phone" required>
+    <!-- PHONE -->
+    <label>Phone Number</label>
+    <input type="tel" name="phone" required placeholder="Enter your phone number">
 
-    <label>Experience</label>
+    <!-- EXPERIENCE -->
+    <label>Experience Level</label>
     <select name="experience" required>
       <option value="">Select</option>
-      <option>Fresher</option>
-      <option>1-3 Years</option>
-      <option>3+ Years</option>
+      <option value="Fresher">Fresher</option>
+      <option value="1-3 Years">1-3 Years</option>
+      <option value="3+ Years">3+ Years</option>
     </select>
 
+    <!-- SKILLS -->
     <label>Skills</label>
-    <input type="text" name="skills">
+    <input type="text" name="skills" placeholder="e.g. Editing, Marketing, Camera">
 
-    <label>Portfolio</label>
-    <input type="text" name="portfolio">
+    <!-- PORTFOLIO -->
+    <label>Portfolio / Work Link</label>
+    <input type="text" name="portfolio" placeholder="Google Drive / YouTube / Website">
 
-    <!-- FILE UPLOAD -->
-    <label>Upload Resume (PDF)</label>
-    <input type="file" id="resumeFile" accept=".pdf" required>
+    <!-- RESUME LINK -->
+    <label>Resume Link (Google Drive PDF)</label>
+    <input 
+      type="text" 
+      name="resumeLink" 
+      required 
+      placeholder="Upload resume to Google Drive and paste link here"
+    >
 
+    <!-- MESSAGE -->
     <label>Why should we hire you?</label>
-    <textarea name="message"></textarea>
+    <textarea name="message" rows="4" placeholder="Tell us about yourself..."></textarea>
 
+    <!-- SUBMIT -->
     <button type="submit">Submit Application</button>
 
   </form>
 
 </section>
 
+<!-- EmailJS -->
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<!-- JS -->
 <script src="js/apply.js"></script>
 
 </body>
