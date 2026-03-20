@@ -138,3 +138,52 @@
   }
 
 }
+
+
+/* POPUP BACKGROUND */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* POPUP BOX */
+.popup-box {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(15px);
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  color: #fff;
+  animation: popIn 0.4s ease;
+  box-shadow: 0 0 25px rgba(255,215,0,0.3);
+}
+
+/* BUTTON */
+.popup-box button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #ffd700, #ffae00);
+  cursor: pointer;
+}
+
+/* ANIMATION */
+@keyframes popIn {
+  from {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

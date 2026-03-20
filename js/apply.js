@@ -13,9 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const roleInput = document.getElementById("jobRole");
     if (roleInput) {
       roleInput.value = decodeURIComponent(role);
-
-      // 🔒 optional: make it readonly
-      roleInput.readOnly = true;
+      roleInput.readOnly = true; // 🔒 optional
     }
   }
 });
@@ -46,14 +44,15 @@ form.addEventListener("submit", function (e) {
     skills: form.skills.value,
     portfolio: form.portfolio.value,
     message: document.getElementById("message").value,
-    resumeLink: form.resumeLink.value   // ✅ FIXED
+    resumeLink: form.resumeLink.value
   };
 
   // ================= SEND EMAIL =================
   emailjs.send("service_aghcu12", "template_d26sq62", data)
     .then(() => {
 
-      alert("Application sent successfully ✅");
+      // 🔥 SHOW POPUP INSTEAD OF ALERT
+      document.getElementById("successPopup").style.display = "flex";
 
       form.reset();
 
@@ -61,6 +60,11 @@ form.addEventListener("submit", function (e) {
       const params = new URLSearchParams(window.location.search);
       const role = params.get("role");
       if (role) form.jobRole.value = decodeURIComponent(role);
+
+      // ⏳ auto close popup after 3 sec (optional)
+      setTimeout(() => {
+        closePopup();
+      }, 3000);
 
     })
     .catch((error) => {
@@ -76,3 +80,9 @@ form.addEventListener("submit", function (e) {
 
     });
 });
+
+
+// ================= CLOSE POPUP =================
+function closePopup() {
+  document.getElementById("successPopup").style.display = "none";
+}

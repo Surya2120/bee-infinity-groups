@@ -231,6 +231,7 @@ nav a.active {
     padding: 10px 0;
   }
 }
+
 /* =========================================
    SHRINKED HEADER (ON SCROLL)
 ========================================= */
@@ -1149,8 +1150,6 @@ nav a.active {
   line-height: 1.7;
 }
 
-
-
 /* =========================
    FINAL BOSS FOOTER
 ========================= */
@@ -1160,12 +1159,7 @@ nav a.active {
   overflow: hidden;
   color: #fff;
 
-  background: linear-gradient(
-    120deg,
-    #0a3d91,
-    #102a5c,
-    #0a3d91
-  );
+  background: linear-gradient(120deg, #0a3d91, #102a5c, #0a3d91);
   background-size: 300% 300%;
 
   animation: gradientMove 12s ease infinite;
@@ -1173,9 +1167,15 @@ nav a.active {
 
 /* 🔥 ANIMATED GRADIENT */
 @keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* 🔥 FLOATING LOGO WATERMARK */
@@ -1198,20 +1198,25 @@ nav a.active {
 }
 
 @keyframes floatLogo {
-  0%,100% { transform: translateY(-50%) translateX(0); }
-  50% { transform: translateY(-50%) translateX(20px); }
+  0%,
+  100% {
+    transform: translateY(-50%) translateX(0);
+  }
+  50% {
+    transform: translateY(-50%) translateX(20px);
+  }
 }
 
 /* 🔥 MOUSE SPOTLIGHT */
 .footer-modern::after {
   content: "";
-    pointer-events: none;
+  pointer-events: none;
   position: absolute;
   inset: 0;
 
   background: radial-gradient(
     circle at var(--x, 50%) var(--y, 50%),
-    rgba(242,196,0,0.25),
+    rgba(242, 196, 0, 0.25),
     transparent 40%
   );
 
@@ -1286,7 +1291,7 @@ nav a.active {
   height: 45px;
 
   border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 
   color: #fff;
   text-decoration: none;
@@ -1297,14 +1302,19 @@ nav a.active {
 }
 
 @keyframes floatIcon {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
 }
 
 .footer-social a:hover {
   background: #f2c400;
   color: #000;
-  box-shadow: 0 0 20px rgba(242,196,0,0.8);
+  box-shadow: 0 0 20px rgba(242, 196, 0, 0.8);
 }
 
 /* =========================
@@ -1315,7 +1325,7 @@ nav a.active {
   display: inline-block;
   padding: 15px 36px;
 
-  background: linear-gradient(135deg,#f2c400,#ffdf6e);
+  background: linear-gradient(135deg, #f2c400, #ffdf6e);
   color: #000;
 
   border-radius: 50px;
@@ -1332,8 +1342,8 @@ nav a.active {
   transform: scale(1.08);
 
   box-shadow:
-    0 0 20px rgba(242,196,0,0.8),
-    0 0 40px rgba(242,196,0,0.6);
+    0 0 20px rgba(242, 196, 0, 0.8),
+    0 0 40px rgba(242, 196, 0, 0.6);
 }
 
 /* SHINE */
@@ -1349,7 +1359,7 @@ nav a.active {
   background: linear-gradient(
     120deg,
     transparent,
-    rgba(255,255,255,0.9),
+    rgba(255, 255, 255, 0.9),
     transparent
   );
 
@@ -1372,7 +1382,7 @@ nav a.active {
 ========================= */
 
 .footer-bottom {
-  background: rgba(0,0,0,0.3);
+  background: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(8px);
 
   display: flex;
@@ -1414,7 +1424,6 @@ nav a.active {
 ========================= */
 
 @media (max-width: 768px) {
-
   .footer-top {
     flex-direction: column;
     text-align: center;
@@ -1431,11 +1440,7 @@ nav a.active {
     flex-direction: column;
     gap: 10px;
   }
-
 }
-
-
-
 
 /* =========================
    RESPONSIVE
@@ -1463,7 +1468,6 @@ nav a.active {
     margin: 0 10px;
   }
 }
-
 
 /* =========================
    RESPONSIVE MEDIA QUERIES
