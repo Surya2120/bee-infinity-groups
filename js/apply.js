@@ -1,12 +1,10 @@
 // ================= EMAILJS INIT =================
-
 (function () {
   emailjs.init("RrB7lYG1wswiJ8sqT");
 })();
 
 
 // ================= GET ROLE FROM URL =================
-
 document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
   const role = params.get("role");
@@ -14,14 +12,16 @@ document.addEventListener("DOMContentLoaded", () => {
   if (role) {
     const roleInput = document.getElementById("jobRole");
     if (roleInput) {
-      roleInput.value = role;
+      roleInput.value = decodeURIComponent(role);
+
+      // 🔒 optional: make it readonly
+      roleInput.readOnly = true;
     }
   }
 });
 
 
 // ================= FORM SUBMIT =================
-
 const form = document.getElementById("applicationForm");
 
 form.addEventListener("submit", function (e) {
@@ -45,12 +45,11 @@ form.addEventListener("submit", function (e) {
     experience: form.experience.value,
     skills: form.skills.value,
     portfolio: form.portfolio.value,
-    message: document.getElementById("message").value
-    resumeLink: form.resumeLink.value   // ✅ FIXED (no file upload)
+    message: document.getElementById("message").value,
+    resumeLink: form.resumeLink.value   // ✅ FIXED
   };
 
   // ================= SEND EMAIL =================
-
   emailjs.send("service_aghcu12", "template_d26sq62", data)
     .then(() => {
 
@@ -61,7 +60,7 @@ form.addEventListener("submit", function (e) {
       // keep role after reset
       const params = new URLSearchParams(window.location.search);
       const role = params.get("role");
-      if (role) form.jobRole.value = role;
+      if (role) form.jobRole.value = decodeURIComponent(role);
 
     })
     .catch((error) => {
@@ -76,5 +75,4 @@ form.addEventListener("submit", function (e) {
       submitBtn.disabled = false;
 
     });
-
 });
