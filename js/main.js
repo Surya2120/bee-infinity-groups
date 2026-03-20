@@ -13,6 +13,35 @@ window.addEventListener("scroll", function () {
 });
 
 
+
+
+/* =========================
+   DROP DOWN MENU
+========================= */
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const exploreToggle = document.getElementById("exploreToggle");
+  const dropdown = exploreToggle.parentElement;
+
+  exploreToggle.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    // toggle open class
+    dropdown.classList.toggle("open");
+  });
+
+  // close when clicking outside
+  document.addEventListener("click", function (e) {
+    if (!dropdown.contains(e.target)) {
+      dropdown.classList.remove("open");
+    }
+  });
+
+});
+
+
 /* =========================
    HERO VIDEO MUTE BUTTON
 ========================= */
@@ -137,9 +166,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-
 /* =========================================
-   IMPACT STATS – POP + COUNT UP
+   IMPACT STATS – CINEMATIC SYSTEM
 ========================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -152,65 +180,88 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let hasAnimated = false;
 
+  /* ================= COUNT + EFFECT ================= */
+
   function animateNumbers() {
 
     numbers.forEach(number => {
 
       const targetText = number.textContent.trim();
-      const target = parseInt(targetText.replace("+", ""));
-      const suffix = targetText.includes("+") ? "+" : "";
+      const target = parseInt(targetText.replace(/[^0-9]/g, "")) || 0;
+      const suffix = targetText.replace(/[0-9]/g, "");
 
-      let current = 0;
-      const duration = 1500;
-      const frameRate = 60;
-      const totalFrames = duration / (1000 / frameRate);
-      const increment = target / totalFrames;
+      const duration = 1600;
+      const startTime = performance.now();
 
-      function updateCount() {
+      function updateCount(now) {
 
-        current += increment;
+        const progress = Math.min((now - startTime) / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
 
-        if (current < target) {
-          number.textContent = Math.floor(current) + suffix;
+        const current = Math.floor(target * ease);
+        number.textContent = current + suffix;
+
+        if (progress < 1) {
           requestAnimationFrame(updateCount);
         } else {
           number.textContent = target + suffix;
-        }
 
+          number.classList.add("bounce", "glow");
+
+          setTimeout(() => number.classList.remove("bounce"), 400);
+          setTimeout(() => number.classList.remove("glow"), 800);
+        }
       }
 
-      updateCount();
-
+      requestAnimationFrame(updateCount);
     });
-
   }
+
+  /* ================= REVEAL ================= */
 
   function revealImpact() {
 
     const rect = section.getBoundingClientRect();
-    const triggerPoint = window.innerHeight * 0.8;
 
-    if (rect.top < triggerPoint && !hasAnimated) {
+    if (rect.top <= window.innerHeight * 0.8 && !hasAnimated) {
 
       impactItems.forEach((item, index) => {
-
         setTimeout(() => {
           item.classList.add("show");
-        }, index * 200);
-
+        }, index * 150);
       });
 
       animateNumbers();
       hasAnimated = true;
-    }
 
+      window.removeEventListener("scroll", revealImpact);
+    }
   }
 
-  window.addEventListener("scroll", revealImpact);
-
+  window.addEventListener("scroll", revealImpact, { passive: true });
   revealImpact();
 
+  /* ================= PARALLAX ================= */
+
+  window.addEventListener("scroll", () => {
+    const scrollY = window.scrollY;
+    section.style.backgroundPosition = `center ${scrollY * 0.2}px`;
+  });
+
+  /* ================= MOUSE GLOW ================= */
+
+  section.addEventListener("mousemove", (e) => {
+
+    const rect = section.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    section.style.setProperty("--mouse-x", `${x}px`);
+    section.style.setProperty("--mouse-y", `${y}px`);
+  });
+
 });
+
 
 
 
@@ -240,11 +291,29 @@ window.addEventListener("scroll", () => {
 });
 
 
+/* =========================
+   FOOTER
+========================= */
+
+
+const footer = document.querySelector(".footer-modern");
+
+footer.addEventListener("mousemove", (e) => {
+  const rect = footer.getBoundingClientRect();
+
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+
+  footer.style.setProperty("--x", x + "px");
+  footer.style.setProperty("--y", y + "px");
+});
 
 
 /* =========================
    HAMBURGER MENU SYSTEM
 ========================= */
+
+
 document.addEventListener("DOMContentLoaded", function () {
 
   const toggle = document.getElementById("menuToggle");
@@ -291,3 +360,4 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 });
+
