@@ -45,7 +45,7 @@ form.addEventListener("submit", function (e) {
     experience: form.experience.value,
     skills: form.skills.value,
     portfolio: form.portfolio.value,
-    message: form.message.value,
+    message: document.getElementById("message").value
     resumeLink: form.resumeLink.value   // ✅ FIXED (no file upload)
   };
 
