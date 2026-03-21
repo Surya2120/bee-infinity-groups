@@ -15,6 +15,9 @@ window.addEventListener("scroll", () => {
 
 
 
+
+
+
 /* SCROLL REVEAL */
 
 function revealSections(){

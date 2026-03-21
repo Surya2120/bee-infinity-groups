@@ -14,6 +14,35 @@ window.addEventListener("scroll", () => {
 });
 
 
+
+
+/* =========================
+   DROP DOWN MENU
+========================= */
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const exploreToggle = document.getElementById("exploreToggle");
+  const dropdown = exploreToggle.parentElement;
+
+  exploreToggle.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    // toggle open class
+    dropdown.classList.toggle("open");
+  });
+
+  // close when clicking outside
+  document.addEventListener("click", function (e) {
+    if (!dropdown.contains(e.target)) {
+      dropdown.classList.remove("open");
+    }
+  });
+
+});
+
+
 /* =========================
     ROTATER
    ========================= */
