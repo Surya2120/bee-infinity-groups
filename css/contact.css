@@ -111,6 +111,128 @@ nav a.active {
   font-weight: 600;
 }
 
+/* DROPDOWN CONTAINER */
+.dropdown {
+  position: relative;
+}
+
+/* ARROW ANIMATION */
+.arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+/* ROTATE WHEN OPEN */
+.dropdown.open .arrow {
+  transform: rotate(180deg);
+}
+
+/* DROPDOWN MENU */
+.dropdown-menu {
+  position: absolute;
+  top: 120%;
+  left: 0;
+
+  background: #fff; /* WHITE DROPDOWN */
+  min-width: 200px;
+
+  border-radius: 10px;
+  overflow: hidden;
+
+  /* ANIMATION CORE */
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-10px);
+
+  transition:
+    max-height 0.4s ease,
+    opacity 0.3s ease,
+    transform 0.3s ease;
+
+  z-index: 999;
+}
+
+/* LINKS */
+.dropdown-menu a {
+  display: block;
+  padding: 12px 16px;
+  color: #111;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+/* HOVER */
+.dropdown-menu a:hover {
+  background: var(--primary-blue);
+  color: white;
+}
+
+/* SHOW STATE */
+.dropdown.open .dropdown-menu {
+  max-height: 300px; /* enough for items */
+  opacity: 100;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  /* NAV CENTER */
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .nav-links a {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* DROPDOWN */
+  .dropdown {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .dropdown a {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* 🔥 KEY FIX: REMOVE FLOATING */
+  .dropdown-menu {
+    position: static; /* IMPORTANT */
+    width: 100%;
+    background: #fff;
+
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+
+    transition:
+      max-height 0.4s ease,
+      opacity 0.3s ease;
+  }
+
+  /* 🔥 OPEN STATE */
+  .dropdown.open .dropdown-menu {
+    max-height: 500px; /* increase so it never cuts */
+    opacity: 1;
+  }
+
+  /* CENTER SUB ITEMS */
+  .dropdown-menu a {
+    width: auto;
+    text-align: center;
+    padding: 10px 0;
+  }
+}
+
+
 /* =========================================
    SHRINKED HEADER (ON SCROLL)
 ========================================= */

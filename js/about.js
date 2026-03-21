@@ -373,6 +373,27 @@ futureCards.forEach(card => {
 
 
 /* =========================
+   FOOTER
+========================= */
+
+
+const footer = document.querySelector(".footer-modern");
+
+footer.addEventListener("mousemove", (e) => {
+  const rect = footer.getBoundingClientRect();
+
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+
+  footer.style.setProperty("--x", x + "px");
+  footer.style.setProperty("--y", y + "px");
+});
+
+
+
+
+
+/* =========================
    HAMBURGER MENU SYSTEM
 ========================= */
 

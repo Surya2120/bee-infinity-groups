@@ -15,6 +15,32 @@ window.addEventListener("scroll", () => {
 
 
 
+/* =========================
+   DROP DOWN MENU
+========================= */
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const exploreToggle = document.getElementById("exploreToggle");
+  const dropdown = exploreToggle.parentElement;
+
+  exploreToggle.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    // toggle open class
+    dropdown.classList.toggle("open");
+  });
+
+  // close when clicking outside
+  document.addEventListener("click", function (e) {
+    if (!dropdown.contains(e.target)) {
+      dropdown.classList.remove("open");
+    }
+  });
+
+});
+
 
 
 
@@ -103,6 +129,24 @@ window.open(url);
 
 
 
+
+
+/* =========================
+   FOOTER
+========================= */
+
+
+const footer = document.querySelector(".footer-modern");
+
+footer.addEventListener("mousemove", (e) => {
+  const rect = footer.getBoundingClientRect();
+
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+
+  footer.style.setProperty("--x", x + "px");
+  footer.style.setProperty("--y", y + "px");
+});
 
 
 

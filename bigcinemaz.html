@@ -5,79 +5,243 @@
   <title>B.I.G Cinemaz | Bee Infinity Groups</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/bigcinemaz.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
 
 <body>
 
+
+<div class="cinema-loader">
+
+  <div class="loader-bg"></div>
+
+  <!-- FLASH EFFECT -->
+  <div class="flash"></div>
+
+  <div class="loader-content">
+
+    <img src="assets/images/logo/Bee.png" class="loader-logo glitch" alt="Bee Logo">
+
+    <h1 class="loader-title glitch-text">B.I.G CINEMAZ</h1>
+    <p class="loader-sub">Bee Infinity Groups</p>
+
+    <!-- 🔥 TAP TO ENTER (IMPORTANT FOR SOUND) -->
+    <div class="tap-enter">Tap to Enter</div>
+
+  </div>
+
+  <!-- 🔊 SOUND (FIXED PATH) -->
+  <audio id="introSound" preload="auto">
+    <source src="assets/sounds/intro.mp3" type="audio/mpeg">
+  </audio>
+
+</div>
+
+
 <!-- HERO -->
 <section class="cinemaz-hero">
+
+  <a href="index.html" class="back-btn">
+    <span class="material-symbols-outlined">arrow_back</span>
+    Back to Home
+  </a>
+
   <div class="hero-overlay"></div>
+
   <div class="hero-content">
     <h1>B.I.G CINEMAZ</h1>
-    <p>Acquisition • Production • Post Studio</p>
+    <p>Short Film Production • Acquisition • Post Studio</p>
   </div>
 </section>
 
-<!-- STATS -->
-<section class="cinemaz-stats">
-  <div class="stat">
-    <h2>1+</h2>
-    <p>Short Films Acquired</p>
-  </div>
-  <div class="stat">
-    <h2>1+</h2>
-    <p>Feature Post Productions Completed</p>
-  </div>
-  <div class="stat">
-    <h2>10+</h2>
-    <p>Commercial Projects Executed</p>
-  </div>
-  <div class="stat">
-    <h2>6+</h2>
-    <p>Years Creative Experience</p>
-  </div>
+<!-- INTRO -->
+<section class="cinemaz-intro">
+  <h2>About B.I.G Cinemaz</h2>
+  <p>
+    B.I.G Cinemaz is the film division of Bee Infinity Groups,
+    focused on building a platform for filmmakers while delivering
+    high-quality production and post-production services.
+  </p>
+
+  <p>
+    We are currently in an early growth phase, actively collaborating
+    with creators and expanding our creative ecosystem.
+  </p>
 </section>
 
-<!-- SERVICES -->
-<section class="cinemaz-services">
+<!-- OPEN FOR SUBMISSIONS -->
+<section class="cinemaz-open">
+  <h2>Now Open for Submissions</h2>
 
-  <div class="service">
-    <h2>Film Acquisition</h2>
-    <p>
-      We acquire high-potential short films and independent projects
-      that demonstrate strong storytelling and cinematic value.
-      Selected films receive structured distribution and promotional
-      support under the B.I.G Cinemaz banner.
-    </p>
+  <p>
+    We are actively looking for short films and web series to be
+    featured and distributed through our platform.
+  </p>
+
+  <ul>
+    <li>Short Films</li>
+    <li>Web Series</li>
+    <li>Experimental Content</li>
+  </ul>
+
+  <p>
+    Early creators get better visibility, priority support,
+    and long-term collaboration opportunities.
+  </p>
+
+  <a href="contact.html" class="cta-btn">Submit Your Work</a>
+</section>
+
+<!-- ACQUISITION -->
+<section class="cinemaz-acquisition">
+
+  <h2>Content Acquisition</h2>
+
+  <p>
+    We acquire selected projects and present them through B.I.G Cinemaz
+    with proper branding and audience reach.
+  </p>
+
+  <div class="acq-benefits">
+    <h3>Creator Benefits</h3>
+    <ul>
+      <li>Digital release on our platform</li>
+      <li>Branding and presentation</li>
+      <li>Team credits and visibility</li>
+      <li>Future collaboration opportunities</li>
+    </ul>
   </div>
 
-  <div class="service">
-    <h2>Original Production</h2>
+  <div class="acq-submit">
     <p>
-      We produce selected short films with disciplined planning,
-      cinematic standards, and strong creative supervision.
-      Projects are carefully evaluated based on concept strength
-      and execution feasibility.
+      Submit your project link along with synopsis, duration,
+      and team details.
     </p>
+
+    <a href="contact.html" class="cta-btn">Submit Project</a>
   </div>
 
-  <div class="service">
-    <h2>Post Production Studio</h2>
-    <p>
-      Complete post-production solutions including editing,
-      color grading (DI), sound design, dubbing, subtitles,
-      motion graphics, and final mastering for films,
-      advertisements, and music videos.
-    </p>
+</section>
+
+<!-- PRODUCTION -->
+<section class="cinemaz-production">
+
+  <h2>Short Film Production</h2>
+
+  <p>
+    We produce selected short films with a focus on storytelling,
+    cinematic visuals, and structured execution.
+  </p>
+
+  <div class="production-stages">
+
+    <div class="stage">
+      <h3>Pre-Production</h3>
+      <p>
+        Script planning, casting, locations, and scheduling to
+        ensure a strong foundation.
+      </p>
+    </div>
+
+    <div class="stage">
+      <h3>Production</h3>
+      <p>
+        Professional shooting with proper direction, lighting,
+        and cinematography.
+      </p>
+    </div>
+
+    <div class="stage">
+      <h3>Post-Production</h3>
+      <p>
+        Editing, color grading, sound, and finishing to deliver
+        a cinematic output.
+      </p>
+    </div>
+
   </div>
 
-  <div class="service">
-    <h2>Commercial Projects</h2>
-    <p>
-      Execution of advertisements, brand films, music videos,
-      and digital campaigns with cinematic precision and
-      professional workflow management.
-    </p>
+</section>
+
+<!-- POST PRODUCTION -->
+<section class="cinemaz-post">
+
+  <h2>Post Production Studio</h2>
+
+  <p>
+    Complete post-production services for films, short films,
+    music videos, and documentaries.
+  </p>
+
+  <div class="post-services">
+    <div class="post-item">Editing</div>
+    <div class="post-item">DI (Color Grading)</div>
+    <div class="post-item">Dubbing</div>
+    <div class="post-item">Music</div>
+    <div class="post-item">Poster & Title Design</div>
+    <div class="post-item">SFX</div>
+    <div class="post-item">VFX</div>
+    <div class="post-item">Subtitles</div>
+  </div>
+
+</section>
+
+<!-- 🎥 BTS SECTION -->
+<section class="cinemaz-bts">
+
+  <h2>Behind The Scenes</h2>
+
+  <p>
+    A glimpse into our real work process — from shooting to editing.
+  </p>
+
+  <div class="bts-gallery">
+    <img src="assets/images/Studio/IMG_20240305_182352.jpg" alt="">
+    <img src="assets/images/Studio/studio (1).jpg" alt="">
+    <img src="assets/images/Studio/IMG_20240303_205005.jpg" alt="">
+    <img src="assets/images/Studio/IMG-20240317-WA0048.jpg" alt="">
+  </div>
+
+  <p class="bts-note">
+    Every frame here reflects our real work and creative process.
+  </p>
+
+</section>
+
+<!-- 🎙️ DUBBING SECTION -->
+<section class="cinemaz-dubbing">
+
+  <h2>Dubbing & Sound Studio</h2>
+
+  <p>
+    We provide clean and professional dubbing with clarity,
+    precision, and emotional sync.
+  </p>
+
+  <div class="dubbing-gallery">
+    <img src="assets/images/Studio/IMG-20240317-WA0048.jpg" alt="">
+    <img src="assets/images/Studio/IMG_20240305_182352.jpg" alt="">
+    <img src="assets/images/Studio/IMG_20250217_193754.jpg" alt="">
+  </div>
+
+</section>
+
+<!-- COMMERCIAL -->
+<section class="cinemaz-commercial">
+
+  <h2>Commercial Projects</h2>
+
+  <p>
+    Advertisements, brand films, and music videos executed with
+    cinematic storytelling and professional workflow.
+  </p>
+
+  <div class="commercial-list">
+    <div>Advertisements</div>
+    <div>Brand Films</div>
+    <div>Music Videos</div>
+    <div>Digital Campaigns</div>
   </div>
 
 </section>
@@ -85,8 +249,60 @@
 <!-- CTA -->
 <section class="cinemaz-cta">
   <h2>Have a Story to Tell?</h2>
-  <a href="contact.html" class="cta-btn">Submit Your Project</a>
+  <p>Let’s bring your vision to life.</p>
+  <a href="contact.html" class="cta-btn">Get Started</a>
 </section>
+
+<!-- FOOTER -->
+<footer class="footer-modern">
+
+  <div class="footer-top">
+
+    <div class="footer-left">
+      <h2 class="footer-brand">Bee Infinity Groups</h2>
+
+      <p class="footer-desc">
+        The greatest and most creative multi-vertical production house —
+        delivering cinematic experiences in film, events, and dance.
+      </p>
+    </div>
+
+    <div class="footer-right">
+
+      <h4 class="footer-heading">Get in Touch</h4>
+
+      <p class="footer-text">
+        For enquiries, collaborations, or general questions,
+        get in touch with our team.
+      </p>
+
+      <a href="contact.html" class="footer-btn">Contact Us</a>
+
+      <p class="footer-note">
+        Uniting creativity across industries.
+      </p>
+
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+
+    <div class="footer-bottom-left">
+      © 2026 Bee Infinity Groups
+    </div>
+
+    <div class="footer-bottom-right">
+      <a href="#">Terms & Conditions</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Contact</a>
+    </div>
+
+  </div>
+
+</footer>
+
+<script src="js/bigcinemaz.js"></script>
 
 </body>
 </html>
