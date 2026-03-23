@@ -1,39 +1,30 @@
 /* =========================
    HEADER SCROLL EFFECT
 ========================= */
-
-window.addEventListener("scroll", function () {
+window.addEventListener("scroll", () => {
   const navbar = document.querySelector(".navbar");
+  if (!navbar) return;
 
-  if (window.scrollY > 50) {
-    navbar.classList.add("scrolled");
-  } else {
-    navbar.classList.remove("scrolled");
-  }
+  navbar.classList.toggle("scrolled", window.scrollY > 50);
 });
 
 
-
-
 /* =========================
-   DROP DOWN MENU
+   DROPDOWN MENU
 ========================= */
-
-
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
 
   const exploreToggle = document.getElementById("exploreToggle");
+  if (!exploreToggle) return;
+
   const dropdown = exploreToggle.parentElement;
 
-  exploreToggle.addEventListener("click", function (e) {
+  exploreToggle.addEventListener("click", (e) => {
     e.preventDefault();
-
-    // toggle open class
     dropdown.classList.toggle("open");
   });
 
-  // close when clicking outside
-  document.addEventListener("click", function (e) {
+  document.addEventListener("click", (e) => {
     if (!dropdown.contains(e.target)) {
       dropdown.classList.remove("open");
     }
@@ -43,30 +34,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 /* =========================
-   HERO VIDEO MUTE BUTTON
+   HERO VIDEO MUTE
 ========================= */
-
-const video = document.getElementById("heroVideo");
+const heroVideo = document.getElementById("heroVideo");
 const muteBtn = document.getElementById("muteToggle");
 
-if (video && muteBtn) {
+if (heroVideo && muteBtn) {
   muteBtn.addEventListener("click", () => {
-    video.muted = !video.muted;
-    muteBtn.textContent = video.muted ? "🔇" : "🔊";
+    heroVideo.muted = !heroVideo.muted;
+    muteBtn.textContent = heroVideo.muted ? "🔇" : "🔊";
   });
 }
 
 
-
-
-
-
-
-
 /* =========================
    PORTFOLIO FILTER
-========================= */
-
+========================= 
 const filterButtons = document.querySelectorAll(".filter-btn");
 const portfolioItems = document.querySelectorAll(".portfolio-item");
 
@@ -74,290 +57,365 @@ if (filterButtons.length && portfolioItems.length) {
   filterButtons.forEach(button => {
     button.addEventListener("click", () => {
 
-      const activeBtn = document.querySelector(".filter-btn.active");
-      if (activeBtn) activeBtn.classList.remove("active");
-
+      document.querySelector(".filter-btn.active")?.classList.remove("active");
       button.classList.add("active");
 
-      const filter = button.getAttribute("data-filter");
-      let visibleCount = 0;
+      const filter = button.dataset.filter;
+      let visible = 0;
 
       portfolioItems.forEach(item => {
-        const category = item.getAttribute("data-category");
+        const category = item.dataset.category;
 
         if (filter === "all") {
-          if (visibleCount < 4) {
-            item.style.display = "block";
-            visibleCount++;
-          } else {
-            item.style.display = "none";
-          }
+          item.style.display = visible < 4 ? "block" : "none";
+          visible++;
         } else {
           item.style.display = category === filter ? "block" : "none";
         }
       });
+
     });
   });
 }
 
+*/
 
 
 /* =========================
-   CLIENT LOGO AUTO SCROLL
+   WHAT WE DO REVEAL
 ========================= */
+document.addEventListener("DOMContentLoaded", () => {
 
-const track = document.getElementById("logoTrack");
+  const items = document.querySelectorAll(".what-item");
+  if (!items.length) return;
 
-if (track) {
+  function reveal() {
+    const trigger = window.innerHeight * 0.85;
 
-  track.innerHTML += track.innerHTML;
-
-  let position = 0;
-  const speed = 0.5;
-
-  function animateLogos() {
-
-    position -= speed;
-
-    if (Math.abs(position) >= track.scrollWidth / 2) {
-      position = 0;
-    }
-
-    track.style.transform = `translateX(${position}px)`;
-
-    requestAnimationFrame(animateLogos);
-  }
-
-  requestAnimationFrame(animateLogos);
-}
-
-
-
-
-
-
-/* =========================================
-   WHAT WE DO – SLIDE REVEAL
-========================================= */
-
-document.addEventListener("DOMContentLoaded", function () {
-
-  const whatItems = document.querySelectorAll(".what-item");
-
-  function revealWhat() {
-    const triggerPoint = window.innerHeight * 0.85;
-
-    whatItems.forEach((item, index) => {
-      const rect = item.getBoundingClientRect();
-
-      if (rect.top < triggerPoint) {
-
-        // Stagger effect
-        setTimeout(() => {
-          item.classList.add("show");
-        }, index * 150);
-
+    items.forEach((item, i) => {
+      if (item.getBoundingClientRect().top < trigger) {
+        setTimeout(() => item.classList.add("show"), i * 150);
       }
     });
   }
 
-  window.addEventListener("scroll", revealWhat);
-  revealWhat(); // run once on load
+  window.addEventListener("scroll", reveal);
+  reveal();
 
 });
 
-/* =========================================
-   IMPACT STATS – CINEMATIC SYSTEM
-========================================= */
 
-document.addEventListener("DOMContentLoaded", function () {
+
+/* =========================
+   ULTRA SECTION
+========================= */
+document.addEventListener("DOMContentLoaded", () => {
+
+  const ultra = document.querySelector(".ultra-card");
+  const badge = document.querySelector(".ultra-badge");
+
+  if (!ultra || !badge) return;
+
+  window.addEventListener("scroll", () => {
+    const trigger = window.innerHeight * 0.85;
+    const top = ultra.getBoundingClientRect().top;
+
+    if (top < trigger) {
+      ultra.classList.add("show");
+      badge.classList.add("show");
+    }
+  });
+
+});
+
+
+/* =========================
+   IMPACT STATS
+========================= */
+document.addEventListener("DOMContentLoaded", () => {
 
   const section = document.querySelector(".impact-stats");
-  const impactItems = document.querySelectorAll(".impact-item");
-  const numbers = document.querySelectorAll(".impact-number");
-
   if (!section) return;
 
-  let hasAnimated = false;
+  const items = document.querySelectorAll(".impact-item");
+  const numbers = document.querySelectorAll(".impact-number");
 
-  /* ================= COUNT + EFFECT ================= */
+  let animated = false;
 
   function animateNumbers() {
+    numbers.forEach(el => {
 
-    numbers.forEach(number => {
+      const text = el.textContent.trim();
+      const target = parseInt(text.replace(/\D/g, "")) || 0;
+      const suffix = text.replace(/[0-9]/g, "");
 
-      const targetText = number.textContent.trim();
-      const target = parseInt(targetText.replace(/[^0-9]/g, "")) || 0;
-      const suffix = targetText.replace(/[0-9]/g, "");
+      const start = performance.now();
 
-      const duration = 1600;
-      const startTime = performance.now();
-
-      function updateCount(now) {
-
-        const progress = Math.min((now - startTime) / duration, 1);
+      function update(now) {
+        const progress = Math.min((now - start) / 1600, 1);
         const ease = 1 - Math.pow(1 - progress, 3);
 
-        const current = Math.floor(target * ease);
-        number.textContent = current + suffix;
+        el.textContent = Math.floor(target * ease) + suffix;
 
-        if (progress < 1) {
-          requestAnimationFrame(updateCount);
-        } else {
-          number.textContent = target + suffix;
-
-          number.classList.add("bounce", "glow");
-
-          setTimeout(() => number.classList.remove("bounce"), 400);
-          setTimeout(() => number.classList.remove("glow"), 800);
-        }
+        if (progress < 1) requestAnimationFrame(update);
       }
 
-      requestAnimationFrame(updateCount);
+      requestAnimationFrame(update);
     });
   }
 
-  /* ================= REVEAL ================= */
+  function reveal() {
+    if (animated) return;
 
-  function revealImpact() {
+    if (section.getBoundingClientRect().top < window.innerHeight * 0.8) {
 
-    const rect = section.getBoundingClientRect();
-
-    if (rect.top <= window.innerHeight * 0.8 && !hasAnimated) {
-
-      impactItems.forEach((item, index) => {
-        setTimeout(() => {
-          item.classList.add("show");
-        }, index * 150);
+      items.forEach((item, i) => {
+        setTimeout(() => item.classList.add("show"), i * 150);
       });
 
       animateNumbers();
-      hasAnimated = true;
-
-      window.removeEventListener("scroll", revealImpact);
+      animated = true;
     }
   }
 
-  window.addEventListener("scroll", revealImpact, { passive: true });
-  revealImpact();
-
-  /* ================= PARALLAX ================= */
-
-  window.addEventListener("scroll", () => {
-    const scrollY = window.scrollY;
-    section.style.backgroundPosition = `center ${scrollY * 0.2}px`;
-  });
-
-  /* ================= MOUSE GLOW ================= */
-
-  section.addEventListener("mousemove", (e) => {
-
-    const rect = section.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    section.style.setProperty("--mouse-x", `${x}px`);
-    section.style.setProperty("--mouse-y", `${y}px`);
-  });
+  window.addEventListener("scroll", reveal);
+  reveal();
 
 });
 
 
 
+/* =========================
+   CLIENT LOGO SCROLL
+========================= */
+const logoTrack = document.getElementById("logoTrack");
 
-/* =========================================
-   ULTRA FLAGSHIP – SLIDE IN REVEAL
-========================================= */
+if (logoTrack) {
 
-document.addEventListener("DOMContentLoaded", function () {
+  logoTrack.innerHTML += logoTrack.innerHTML;
 
-const ultra = document.querySelector(".ultra-card");
-const badge = document.querySelector(".ultra-badge");
+  let position = 0;
 
-window.addEventListener("scroll", () => {
+  function animate() {
+    position -= 0.5;
 
-  const trigger = window.innerHeight * 0.85;
-  const top = ultra.getBoundingClientRect().top;
+    if (Math.abs(position) >= logoTrack.scrollWidth / 2) {
+      position = 0;
+    }
 
-  if (top < trigger) {
-    ultra.classList.add("show");
-    badge.classList.add("show");
+    logoTrack.style.transform = `translateX(${position}px)`;
+    requestAnimationFrame(animate);
   }
 
-});
+  animate();
+}
 
-  observer.observe(ultraCard);
+
+
+/* =========================
+   VIDEO TESTIMONIALS (CENTER FIXED)
+========================= */
+document.addEventListener("DOMContentLoaded", () => {
+
+  const videoTrack = document.querySelector(".track");
+  const viewport = document.querySelector(".viewport");
+  if (!videoTrack || !viewport) return;
+
+  let cards = Array.from(videoTrack.querySelectorAll(".card"));
+  const prev = document.querySelector(".carousel .prev");
+  const next = document.querySelector(".carousel .next");
+
+  if (cards.length < 3) return;
+
+  let index = 2; // 🔥 start from real center
+
+  // CLONES
+  const startClones = cards.slice(-2).map(c => c.cloneNode(true));
+  const endClones = cards.slice(0, 2).map(c => c.cloneNode(true));
+
+  startClones.forEach(c => videoTrack.prepend(c));
+  endClones.forEach(c => videoTrack.append(c));
+
+  cards = Array.from(videoTrack.querySelectorAll(".card"));
+
+  function update(animate = true) {
+
+    const cardWidth = cards[0].offsetWidth + 20; // gap
+    const viewportWidth = viewport.offsetWidth;
+
+    // 🔥 CENTER CALCULATION
+    const offset = (viewportWidth / 2) - (cards[0].offsetWidth / 2);
+    const translate = (index * cardWidth) - offset;
+
+    videoTrack.style.transition = animate ? "transform 0.5s ease" : "none";
+    videoTrack.style.transform = `translateX(-${translate}px)`;
+
+    // pause all
+    cards.forEach(card => {
+      card.classList.remove("active");
+      const v = card.querySelector("video");
+      if (v) {
+        v.pause();
+        v.currentTime = 0;
+      }
+    });
+
+    // 🔥 CORRECT CENTER
+    const active = cards[index];
+    if (active) {
+      active.classList.add("active");
+      active.querySelector("video")?.play().catch(()=>{});
+    }
+  }
+
+  function nextSlide() { index++; update(); }
+  function prevSlide() { index--; update(); }
+
+  next?.addEventListener("click", nextSlide);
+  prev?.addEventListener("click", prevSlide);
+
+  videoTrack.addEventListener("transitionend", () => {
+
+    if (index >= cards.length - 3) {
+      index = 2;
+      update(false);
+    }
+
+    if (index <= 1) {
+      index = cards.length - 5;
+      update(false);
+    }
+
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") nextSlide();
+    if (e.key === "ArrowLeft") prevSlide();
+  });
+
+  window.addEventListener("load", () => update(false));
 
 });
 
 
 /* =========================
-   FOOTER
+   WRITTEN TESTIMONIALS (CENTER FIXED)
 ========================= */
+document.addEventListener("DOMContentLoaded", () => {
+
+  const reviewTrack = document.querySelector(".reviews-track");
+  const wrapper = document.querySelector(".reviews-wrapper");
+  if (!reviewTrack || !wrapper) return;
+
+  let cards = Array.from(reviewTrack.querySelectorAll(".review-card"));
+  const nextBtn = document.querySelector(".review-btn.next");
+  const prevBtn = document.querySelector(".review-btn.prev");
+
+  const visible = 3;
+  let index = visible;
+
+  const start = cards.slice(0, visible).map(c => c.cloneNode(true));
+  const end = cards.slice(-visible).map(c => c.cloneNode(true));
+
+  end.forEach(c => reviewTrack.prepend(c));
+  start.forEach(c => reviewTrack.append(c));
+
+  cards = Array.from(reviewTrack.querySelectorAll(".review-card"));
+
+  function update(animate = true) {
+
+    const cardWidth = cards[0].offsetWidth + 20;
+    const wrapperWidth = wrapper.offsetWidth;
+
+    // 🔥 CENTER CALCULATION
+    const offset = (wrapperWidth / 2) - (cards[0].offsetWidth / 2);
+    const translate = (index * cardWidth) - offset;
+
+    reviewTrack.style.transition = animate ? "transform 0.5s ease" : "none";
+    reviewTrack.style.transform = `translateX(-${translate}px)`;
+
+    cards.forEach(c => c.classList.remove("active"));
+
+    // 🔥 CORRECT CENTER
+    cards[index]?.classList.add("active");
+  }
+
+  nextBtn?.addEventListener("click", () => { index++; update(); });
+  prevBtn?.addEventListener("click", () => { index--; update(); });
+
+  reviewTrack.addEventListener("transitionend", () => {
+
+    if (index >= cards.length - visible) {
+      index = visible;
+      update(false);
+    }
+
+    if (index <= 0) {
+      index = cards.length - visible * 2;
+      update(false);
+    }
+
+  });
+
+  window.addEventListener("load", () => update(false));
+
+});
 
 
+
+/* =========================
+   FOOTER EFFECT
+========================= */
 const footer = document.querySelector(".footer-modern");
 
-footer.addEventListener("mousemove", (e) => {
-  const rect = footer.getBoundingClientRect();
+if (footer) {
+  footer.addEventListener("mousemove", (e) => {
+    const rect = footer.getBoundingClientRect();
 
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
-
-  footer.style.setProperty("--x", x + "px");
-  footer.style.setProperty("--y", y + "px");
-});
+    footer.style.setProperty("--x", `${e.clientX - rect.left}px`);
+    footer.style.setProperty("--y", `${e.clientY - rect.top}px`);
+  });
+}
 
 
 /* =========================
-   HAMBURGER MENU SYSTEM
+   MOBILE MENU
 ========================= */
-
-
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
 
   const toggle = document.getElementById("menuToggle");
   const nav = document.getElementById("navLinks");
   const exploreToggle = document.getElementById("exploreToggle");
   const exploreMenu = document.getElementById("exploreMenu");
 
-  // Create overlay
+  if (!toggle || !nav) return;
+
   const overlay = document.createElement("div");
   overlay.classList.add("menu-overlay");
   document.body.appendChild(overlay);
 
-  function openMenu() {
-    nav.classList.add("active");
-    overlay.classList.add("active");
-  }
-
-  function closeMenu() {
+  const close = () => {
     nav.classList.remove("active");
     overlay.classList.remove("active");
-    exploreMenu.classList.remove("show");
-  }
+    exploreMenu?.classList.remove("show");
+  };
 
   toggle.addEventListener("click", () => {
     nav.classList.toggle("active");
     overlay.classList.toggle("active");
   });
 
-  overlay.addEventListener("click", closeMenu);
+  overlay.addEventListener("click", close);
 
-  // EXPLORE DROPDOWN
-  exploreToggle.addEventListener("click", function (e) {
+  exploreToggle?.addEventListener("click", (e) => {
     e.preventDefault();
-    exploreMenu.classList.toggle("show");
+    exploreMenu?.classList.toggle("show");
   });
 
-  // CLOSE MENU ONLY FOR REAL LINKS
   nav.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", function () {
-      if (!link.classList.contains("no-close")) {
-        closeMenu();
-      }
+    link.addEventListener("click", () => {
+      if (!link.classList.contains("no-close")) close();
     });
   });
 
 });
-

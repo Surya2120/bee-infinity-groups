@@ -298,93 +298,73 @@ India’s premier dance platform by Bee Infinity Groups — where talent begins 
 
 
 <!--Testimonial Section - VIDEO-->
-
+<!-- =========================
+   VIDEO TESTIMONIALS
+========================= -->
 <section class="video-testimonials">
 
   <h2 class="section-title">Client Experiences</h2>
 
-  <div class="video-carousel">
+  <div class="carousel">
 
-    <!-- PREV BUTTON -->
-    <button class="nav-btn prev">‹</button>
+    <button class="nav prev">‹</button>
 
-    <!-- TRACK -->
-    <div class="video-track">
+    <div class="viewport">
+      <div class="track">
 
-      <!-- VIDEO 1 -->
-      <div class="video-card active">
-        <video src="assets/videos/delete1.mp4" controls></video>
-        <p class="client-name">Client 01</p>
+        <!-- 10 VIDEOS -->
+        <!-- Repeat same video -->
+
+        <div class="card"><video src="assets/videos/delete1.mp4"controls muted playsinline></video></div>
+        <div class="card"><video src="assets/videos/delete1.mp4"controls muted playsinline></video></div>
+        <div class="card"><video src="assets/videos/delete1.mp4"controls muted playsinline></video></div>
+        <div class="card"><video src="assets/videos/delete1.mp4"controls muted playsinline></video></div>
+        <div class="card"><video src="assets/videos/delete1.mp4"controls muted playsinline></video></div>
+        <div class="card"><video src="assets/videos/delete1.mp4"controls muted playsinline></video></div>
+        <div class="card"><video src="assets/videos/delete1.mp4"controls muted playsinline></video></div>
+        <div class="card"><video src="assets/videos/delete1.mp4"controls muted playsinline></video></div>
+        <div class="card"><video src="assets/videos/delete1.mp4"controls muted playsinline></video></div>
+        <div class="card"><video src="assets/videos/delete1.mp4"controls muted playsinline></video></div>
+
       </div>
-
-      <!-- VIDEO 2 -->
-      <div class="video-card">
-        <video src="assets/videos/delete1.mp4" controls></video>
-        <p class="client-name">Client 02</p>
-      </div>
-
-      <!-- VIDEO 3 -->
-      <div class="video-card">
-        <video src="assets/videos/test3.mp4" controls></video>
-        <p class="client-name">Client 03</p>
-      </div>
-
-      <!-- VIDEO 4 -->
-      <div class="video-card">
-        <video src="assets/videos/test4.mp4" controls></video>
-        <p class="client-name">Client 04</p>
-      </div>
-
-      <!-- VIDEO 5 -->
-      <div class="video-card">
-        <video src="assets/videos/test5.mp4" controls></video>
-        <p class="client-name">Client 05</p>
-      </div>
-
     </div>
 
-    <!-- NEXT BUTTON -->
-    <button class="nav-btn next">›</button>
+    <button class="nav next">›</button>
 
   </div>
 
 </section>
+<!--WRITTEN REVIEWS-->
 
-
-<!--Testimonial Section - WRITTEN-->
 <section class="client-reviews">
 
   <h2 class="section-title">What Clients Say</h2>
 
-  <div class="reviews-grid">
+  <div class="reviews-wrapper">
 
-    <div class="review-card">
-      <p>
-        "Bee Infinity Groups delivered beyond expectations.
-        The quality and professionalism were outstanding."
-      </p>
-      <h4>— Event Client</h4>
+    <button class="review-btn prev">‹</button>
+
+    <div class="reviews-track">
+
+      <!-- duplicate first few for smooth loop -->
+      <div class="review-card"> <p>"Amazing execution."</p><h4>— Client 1</h4> </div>
+      <div class="review-card"> <p>"Top quality work."</p><h4>— Client 2</h4> </div>
+      <div class="review-card"> <p>"Highly professional."</p><h4>— Client 3</h4> </div>
+      <div class="review-card"> <p>"Creative excellence."</p><h4>— Client 4</h4> </div>
+      <div class="review-card"> <p>"Loved the output."</p><h4>— Client 5</h4> </div>
+      <div class="review-card"> <p>"Smooth workflow."</p><h4>— Client 6</h4> </div>
+      <div class="review-card"> <p>"Great team."</p><h4>— Client 7</h4> </div>
+      <div class="review-card"> <p>"Delivered on time."</p><h4>— Client 8</h4> </div>
+      <div class="review-card"> <p>"Very creative."</p><h4>— Client 9</h4> </div>
+      <div class="review-card"> <p>"Will work again."</p><h4>— Client 10</h4> </div>
+
     </div>
 
-    <div class="review-card">
-      <p>
-        "Their creativity and execution are next level.
-        Highly recommended for any production work."
-      </p>
-      <h4>— Production Partner</h4>
-    </div>
-
-    <div class="review-card">
-      <p>
-        "From concept to delivery, everything was smooth and powerful."
-      </p>
-      <h4>— Dance Client</h4>
-    </div>
+    <button class="review-btn next">›</button>
 
   </div>
 
 </section>
-
 
 <!-- WHY CHOOSE US -->
 <section class="divisions">
@@ -417,67 +397,55 @@ India’s premier dance platform by Bee Infinity Groups — where talent begins 
 
 
 
-<!-- =========================
-     MODERN SPLIT FOOTER (UPGRADED)
-========================= -->
-
 <footer class="footer-modern">
 
-  <div class="footer-top">
+  <!-- BACKGROUND IMAGE -->
+  <div class="footer-bg"></div>
 
-    <!-- LEFT SIDE -->
+  <div class="footer-overlay"></div>
+
+  <!-- CONTENT -->
+  <div class="footer-container">
+
+    <!-- LEFT SIDE (BIG BRAND) -->
     <div class="footer-left">
 
-      <!-- LOGO -->
-      <div class="footer-logo">
-        <img src="assets/images/logo/studiozlogo.png" alt="Bee Infinity Groups Logo">
-        <h2 class="footer-brand">Bee Infinity Groups</h2>
-      </div>
+      <h1 class="footer-big-title">
+        Bee <span>Infinity</span> Groups
+      </h1>
 
-      <p class="footer-desc">
-        The greatest and most creative multi-vertical production house —
-        delivering cinematic experiences in film, events, and dance.
+      <p class="footer-tagline">
+        CINEMATIC EXPERIENCES • EVENTS • DANCE
       </p>
 
     </div>
 
 
-    <!-- RIGHT SIDE -->
+    <!-- RIGHT SIDE (CTA) -->
     <div class="footer-right">
 
       <h4 class="footer-heading">GET IN TOUCH</h4>
 
       <p class="footer-text">
         For enquiries, collaborations, or general questions,
-        get in touch with our team.
+        connect with our team.
       </p>
 
-      <a href="contact.html" class="footer-btn">
-        Contact Us
-      </a>
-
-      <p class="footer-note">
-        UNITING CREATIVITY ACROSS INDUSTRIES.
-      </p>
+      <a href="contact.html" class="footer-btn">Start Project</a>
 
     </div>
 
   </div>
 
 
-  <!-- RED BRAND BAR -->
+  <!-- BOTTOM STRIP -->
   <div class="footer-bottom">
 
-    <!-- LEFT -->
-    <div class="footer-bottom-left">
-      <img src="assets/images/logo/studiozlogo.png" alt="logo" class="footer-mini-logo">
-      <span>© 2026 Bee Infinity Groups</span>
-    </div>
+    <span>© 2026 Bee Infinity Groups</span>
 
-    <!-- RIGHT -->
-    <div class="footer-bottom-right">
-      <a href="#">Terms & Conditions</a>
-      <a href="#">Privacy Policy</a>
+    <div class="footer-links">
+      <a href="#">Terms</a>
+      <a href="#">Privacy</a>
       <a href="#">Contact</a>
     </div>
 
