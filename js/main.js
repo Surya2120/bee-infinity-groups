@@ -219,26 +219,30 @@ if (logoTrack) {
 }
 
 
-
 /* =========================
-   VIDEO TESTIMONIALS (CENTER FIXED)
+   VIDEO TESTIMONIALS – FINAL
 ========================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
+  const section = document.querySelector(".video-testimonials");
   const track = document.querySelector(".track");
   const viewport = document.querySelector(".viewport");
-  if (!track || !viewport) return;
-
-  let cards = Array.from(track.querySelectorAll(".card"));
   const prev = document.querySelector(".carousel .prev");
   const next = document.querySelector(".carousel .next");
 
+  if (!track || !viewport) return;
+
+  let cards = Array.from(track.querySelectorAll(".card"));
   if (cards.length < 3) return;
 
   let index = 2;
+  let isVisible = false;
 
-  // 🔁 CREATE CLONES
+  /* =========================
+     CLONE FOR INFINITE LOOP
+  ========================= */
+
   const startClones = cards.slice(-2).map(c => c.cloneNode(true));
   const endClones = cards.slice(0, 2).map(c => c.cloneNode(true));
 
@@ -247,9 +251,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   cards = Array.from(track.querySelectorAll(".card"));
 
+  /* =========================
+     UPDATE FUNCTION
+  ========================= */
+
   function update(animate = true) {
 
-    // REMOVE ACTIVE
     cards.forEach(card => card.classList.remove("active"));
 
     const active = cards[index];
@@ -257,34 +264,177 @@ document.addEventListener("DOMContentLoaded", () => {
 
     active.classList.add("active");
 
-    const gap = 20;
-    const viewportWidth = viewport.offsetWidth;
+    const activeRect = active.getBoundingClientRect();
+    const viewportRect = viewport.getBoundingClientRect();
 
-    let translate = 0;
+    const activeCenter = activeRect.left + activeRect.width / 2;
+    const viewportCenter = viewportRect.left + viewportRect.width / 2;
 
-    // 🔥 CALCULATE POSITION
-    for (let i = 0; i < index; i++) {
-      translate += cards[i].offsetWidth + gap;
-    }
+    const shift = activeCenter - viewportCenter;
 
-    const activeWidth = active.offsetWidth;
-
-    // 🔥 CENTER FIX
-    translate -= (viewportWidth / 2 - activeWidth / 2);
+    const style = window.getComputedStyle(track);
+    const matrix = new DOMMatrixReadOnly(style.transform);
+    const currentX = matrix.m41;
 
     track.style.transition = animate ? "transform 0.5s ease" : "none";
-    track.style.transform = `translateX(-${translate}px)`;
+    track.style.transform = `translateX(${currentX - shift}px)`;
 
-    // 🎬 VIDEO CONTROL
+    /* VIDEO CONTROL */
+
     cards.forEach(card => {
       const v = card.querySelector("video");
       if (v) {
         v.pause();
         v.currentTime = 0;
+        v.muted = true;
       }
     });
 
-    active.querySelector("video")?.play().catch(() => {});
+    if (isVisible) {
+      const video = active.querySelector("video");
+      if (video) {
+        video.muted = false;
+        video.play().catch(() => {});
+      }
+    }
+  }
+
+  /* NAVIGATION */
+
+  function nextSlide() {
+    index++;
+    update();
+  }
+
+  function prevSlide() {
+    index--;
+    update();
+  }
+
+  next?.addEventListener("click", nextSlide);
+  prev?.addEventListener("click", prevSlide);
+
+  /* LOOP FIX */
+
+  track.addEventListener("transitionend", () => {
+
+    if (index >= cards.length - 2) {
+      index = 2;
+      update(false);
+    }
+
+    if (index <= 1) {
+      index = cards.length - 4;
+      update(false);
+    }
+
+  });
+
+  /* SWIPE */
+
+  let startX = 0;
+
+  track.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
+  });
+
+  track.addEventListener("touchend", e => {
+    const endX = e.changedTouches[0].clientX;
+
+    if (startX - endX > 50) nextSlide();
+    if (endX - startX > 50) prevSlide();
+  });
+
+  /* SCROLL-AWARE PLAY */
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+
+      if (entry.isIntersecting && entry.intersectionRatio > 0.6) {
+        isVisible = true;
+
+        const activeVideo = section.querySelector(".card.active video");
+        if (activeVideo) {
+          activeVideo.muted = false;
+          activeVideo.play().catch(() => {});
+        }
+
+      } else {
+        isVisible = false;
+
+        section.querySelectorAll("video").forEach(v => v.pause());
+      }
+
+    });
+  }, { threshold: [0.3, 0.6, 0.8] });
+
+  if (section) observer.observe(section);
+
+  /* INIT */
+
+  window.addEventListener("load", () => {
+    update(false);
+    setTimeout(() => update(false), 100);
+    setTimeout(() => update(false), 300);
+  });
+
+  window.addEventListener("resize", () => {
+    setTimeout(() => update(false), 100);
+  });
+
+});
+
+
+
+/* =======================
+WRITTING TESTIMONIAL
+=========================*/
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const track = document.querySelector(".reviews-track");
+  const wrapper = document.querySelector(".reviews-wrapper");
+  const prev = document.querySelector(".review-btn.prev");
+  const next = document.querySelector(".review-btn.next");
+
+  if (!track || !wrapper) return;
+
+  let cards = Array.from(track.querySelectorAll(".review-card"));
+  if (cards.length < 3) return;
+
+  let index = 2;
+
+  const startClones = cards.slice(-2).map(c => c.cloneNode(true));
+  const endClones = cards.slice(0, 2).map(c => c.cloneNode(true));
+
+  startClones.forEach(c => track.prepend(c));
+  endClones.forEach(c => track.append(c));
+
+  cards = Array.from(track.querySelectorAll(".review-card"));
+
+  function update(animate = true) {
+
+    cards.forEach(card => card.classList.remove("active"));
+
+    const active = cards[index];
+    if (!active) return;
+
+    active.classList.add("active");
+
+    const activeRect = active.getBoundingClientRect();
+    const wrapperRect = wrapper.getBoundingClientRect();
+
+    const activeCenter = activeRect.left + activeRect.width / 2;
+    const wrapperCenter = wrapperRect.left + wrapperRect.width / 2;
+
+    const shift = activeCenter - wrapperCenter;
+
+    const style = window.getComputedStyle(track);
+    const matrix = new DOMMatrixReadOnly(style.transform);
+    const currentX = matrix.m41;
+
+    track.style.transition = animate ? "transform 0.5s ease" : "none";
+    track.style.transform = `translateX(${currentX - shift}px)`;
   }
 
   function nextSlide() {
@@ -300,7 +450,6 @@ document.addEventListener("DOMContentLoaded", () => {
   next?.addEventListener("click", nextSlide);
   prev?.addEventListener("click", prevSlide);
 
-  // 🔁 LOOP FIX
   track.addEventListener("transitionend", () => {
 
     if (index >= cards.length - 2) {
@@ -315,27 +464,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
   });
 
-  // ⌨️ KEYBOARD
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowRight") nextSlide();
-    if (e.key === "ArrowLeft") prevSlide();
+  let startX = 0;
+
+  track.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
   });
 
-  // 🔥 PERFECT INITIAL LOAD FIX
+  track.addEventListener("touchend", e => {
+    const endX = e.changedTouches[0].clientX;
+
+    if (startX - endX > 50) nextSlide();
+    if (endX - startX > 50) prevSlide();
+  });
+
   window.addEventListener("load", () => {
-
-    // first render
     update(false);
-
-    // second correction (layout settle)
     setTimeout(() => update(false), 100);
-
-    // final correction (mobile fix)
-    setTimeout(() => update(false), 300);
-
   });
 
-  // 🔥 RESPONSIVE FIX
   window.addEventListener("resize", () => {
     setTimeout(() => update(false), 100);
   });
@@ -343,6 +489,42 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+/* =========================
+   GLOBAL KEYBOARD NAVIGATION (FIXED)
+========================= */
+
+document.addEventListener("keydown", (e) => {
+
+  const videoSection = document.querySelector(".video-testimonials");
+  const reviewSection = document.querySelector(".client-reviews");
+
+  const videoVisible =
+    videoSection && videoSection.getBoundingClientRect().top < window.innerHeight / 2;
+
+  const reviewVisible =
+    reviewSection && reviewSection.getBoundingClientRect().top < window.innerHeight / 2;
+
+  if (e.key === "ArrowRight") {
+
+    if (videoVisible) {
+      document.querySelector(".carousel .next")?.click();
+    } else if (reviewVisible) {
+      document.querySelector(".review-btn.next")?.click();
+    }
+
+  }
+
+  if (e.key === "ArrowLeft") {
+
+    if (videoVisible) {
+      document.querySelector(".carousel .prev")?.click();
+    } else if (reviewVisible) {
+      document.querySelector(".review-btn.prev")?.click();
+    }
+
+  }
+
+});
 
 /* =========================
    FOOTER EFFECT
