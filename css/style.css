@@ -1,9 +1,6 @@
 /* =========================
     BEE INFINITY – BRAND COLORS
     ========================= */
-
-
-
     
 :root {
   --bg-main: #f5f7fa;
@@ -1086,10 +1083,6 @@ nav a.active {
 
   color: #fff;
 
-  transform: translateY(30px);
-  opacity: 0;
-
-  transition: all 0.4s ease;
 }
 
 .overlay h3 {
@@ -1326,7 +1319,9 @@ nav a.active {
   }
 }  
 */
-
+/* =========================
+   VIDEO TESTIMONIAL SECTION
+========================= */
 /* =========================
    VIDEO TESTIMONIAL SECTION
 ========================= */
@@ -1335,7 +1330,6 @@ nav a.active {
   padding: 100px 20px;
   text-align: center;
   color: #fff;
-
   background: radial-gradient(circle at center, #0a0f1c, #05070d);
 }
 
@@ -1361,14 +1355,15 @@ nav a.active {
   display: flex;
   gap: 20px;
   transition: transform 0.5s ease;
+  align-items: center;
 }
 
 /* CARD */
 .card {
   flex: 0 0 calc(100% / 3 - 14px);
   opacity: 0.4;
-  transform: scale(0.8);
-  transition: 0.4s ease;
+  transform: scale(0.85);
+  transition: all 0.4s ease;
 }
 
 .card video {
@@ -1376,10 +1371,11 @@ nav a.active {
   border-radius: 14px;
 }
 
-/* ACTIVE CENTER */
+/* ACTIVE */
 .card.active {
   transform: scale(1.1);
   opacity: 1;
+  z-index: 2;
 }
 
 /* NAV */
@@ -1396,13 +1392,89 @@ nav a.active {
   z-index: 10;
 }
 
-.prev {
-  left: -50px;
-}
-.next {
-  right: -50px;
+.prev { left: -50px; }
+.next { right: -50px; }
+
+/* =========================
+   TABLET
+========================= */
+@media (max-width: 992px) {
+
+  .card {
+    flex: 0 0 calc(100% / 2 - 10px);
+  }
+
+  .section-title {
+    font-size: 28px;
+  }
+
+  .nav {
+    font-size: 24px;
+    padding: 8px 12px;
+  }
+
+  .prev { left: -30px; }
+  .next { right: -30px; }
 }
 
+/* =========================
+   MOBILE (FINAL PERFECT)
+========================= */
+@media (max-width: 600px) {
+
+  .video-testimonials {
+    padding: 60px 10px;
+  }
+
+  .section-title {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  /* 🔥 FULL WIDTH FIX */
+  .carousel {
+    max-width: 100%;
+  }
+
+  .viewport {
+    overflow: hidden;
+  }
+
+  .track {
+    gap: 14px;
+  }
+
+  /* 🔥 SIDE CARDS */
+  .card {
+    flex: 0 0 80%;
+    opacity: 0.2;
+    transform: scale(0.85);
+  }
+
+  /* 🔥 CENTER BIG CARD */
+  .card.active {
+    transform: scale(1.28);
+    opacity: 1;
+    z-index: 5;
+  }
+
+
+  
+  /* 🔥 OPTIONAL PREMIUM LOOK */
+  .card:not(.active) {
+    filter: blur(1.5px);
+  }
+
+  /* NAV INSIDE */
+  .nav {
+    font-size: 18px;
+    padding: 6px 10px;
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .prev { left: 5px; }
+  .next { right: 5px; }
+}
 /* =========================
    WRITTEN SECTION
 ========================= */
@@ -1515,6 +1587,8 @@ nav a.active {
 .review-btn:hover {
   background: rgba(255, 255, 255, 0.3);
 }
+
+
 
 /* =========================
       WHY CHOOSE US

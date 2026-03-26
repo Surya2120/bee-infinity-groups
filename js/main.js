@@ -157,7 +157,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
         el.textContent = Math.floor(target * ease) + suffix;
 
-        if (progress < 1) requestAnimationFrame(update);
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        } else {
+          // 🔥 ADD BOUNCE WHEN COUNT FINISHES
+          el.classList.add("bounce");
+
+          setTimeout(() => {
+            el.classList.remove("bounce");
+          }, 400);
+        }
       }
 
       requestAnimationFrame(update);
@@ -182,7 +191,6 @@ document.addEventListener("DOMContentLoaded", () => {
   reveal();
 
 });
-
 
 
 /* =========================
@@ -215,44 +223,60 @@ if (logoTrack) {
 /* =========================
    VIDEO TESTIMONIALS (CENTER FIXED)
 ========================= */
+
 document.addEventListener("DOMContentLoaded", () => {
 
-  const videoTrack = document.querySelector(".track");
+  const track = document.querySelector(".track");
   const viewport = document.querySelector(".viewport");
-  if (!videoTrack || !viewport) return;
+  if (!track || !viewport) return;
 
-  let cards = Array.from(videoTrack.querySelectorAll(".card"));
+  let cards = Array.from(track.querySelectorAll(".card"));
   const prev = document.querySelector(".carousel .prev");
   const next = document.querySelector(".carousel .next");
 
   if (cards.length < 3) return;
 
-  let index = 2; // 🔥 start from real center
+  let index = 2;
 
-  // CLONES
+  // 🔁 CREATE CLONES
   const startClones = cards.slice(-2).map(c => c.cloneNode(true));
   const endClones = cards.slice(0, 2).map(c => c.cloneNode(true));
 
-  startClones.forEach(c => videoTrack.prepend(c));
-  endClones.forEach(c => videoTrack.append(c));
+  startClones.forEach(c => track.prepend(c));
+  endClones.forEach(c => track.append(c));
 
-  cards = Array.from(videoTrack.querySelectorAll(".card"));
+  cards = Array.from(track.querySelectorAll(".card"));
 
   function update(animate = true) {
 
-    const cardWidth = cards[0].offsetWidth + 20; // gap
+    // REMOVE ACTIVE
+    cards.forEach(card => card.classList.remove("active"));
+
+    const active = cards[index];
+    if (!active) return;
+
+    active.classList.add("active");
+
+    const gap = 20;
     const viewportWidth = viewport.offsetWidth;
 
-    // 🔥 CENTER CALCULATION
-    const offset = (viewportWidth / 2) - (cards[0].offsetWidth / 2);
-    const translate = (index * cardWidth) - offset;
+    let translate = 0;
 
-    videoTrack.style.transition = animate ? "transform 0.5s ease" : "none";
-    videoTrack.style.transform = `translateX(-${translate}px)`;
+    // 🔥 CALCULATE POSITION
+    for (let i = 0; i < index; i++) {
+      translate += cards[i].offsetWidth + gap;
+    }
 
-    // pause all
+    const activeWidth = active.offsetWidth;
+
+    // 🔥 CENTER FIX
+    translate -= (viewportWidth / 2 - activeWidth / 2);
+
+    track.style.transition = animate ? "transform 0.5s ease" : "none";
+    track.style.transform = `translateX(-${translate}px)`;
+
+    // 🎬 VIDEO CONTROL
     cards.forEach(card => {
-      card.classList.remove("active");
       const v = card.querySelector("video");
       if (v) {
         v.pause();
@@ -260,104 +284,61 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // 🔥 CORRECT CENTER
-    const active = cards[index];
-    if (active) {
-      active.classList.add("active");
-      active.querySelector("video")?.play().catch(()=>{});
-    }
+    active.querySelector("video")?.play().catch(() => {});
   }
 
-  function nextSlide() { index++; update(); }
-  function prevSlide() { index--; update(); }
+  function nextSlide() {
+    index++;
+    update();
+  }
+
+  function prevSlide() {
+    index--;
+    update();
+  }
 
   next?.addEventListener("click", nextSlide);
   prev?.addEventListener("click", prevSlide);
 
-  videoTrack.addEventListener("transitionend", () => {
+  // 🔁 LOOP FIX
+  track.addEventListener("transitionend", () => {
 
-    if (index >= cards.length - 3) {
+    if (index >= cards.length - 2) {
       index = 2;
       update(false);
     }
 
     if (index <= 1) {
-      index = cards.length - 5;
+      index = cards.length - 4;
       update(false);
     }
 
   });
 
+  // ⌨️ KEYBOARD
   document.addEventListener("keydown", (e) => {
     if (e.key === "ArrowRight") nextSlide();
     if (e.key === "ArrowLeft") prevSlide();
   });
 
-  window.addEventListener("load", () => update(false));
+  // 🔥 PERFECT INITIAL LOAD FIX
+  window.addEventListener("load", () => {
 
-});
+    // first render
+    update(false);
 
+    // second correction (layout settle)
+    setTimeout(() => update(false), 100);
 
-/* =========================
-   WRITTEN TESTIMONIALS (CENTER FIXED)
-========================= */
-document.addEventListener("DOMContentLoaded", () => {
-
-  const reviewTrack = document.querySelector(".reviews-track");
-  const wrapper = document.querySelector(".reviews-wrapper");
-  if (!reviewTrack || !wrapper) return;
-
-  let cards = Array.from(reviewTrack.querySelectorAll(".review-card"));
-  const nextBtn = document.querySelector(".review-btn.next");
-  const prevBtn = document.querySelector(".review-btn.prev");
-
-  const visible = 3;
-  let index = visible;
-
-  const start = cards.slice(0, visible).map(c => c.cloneNode(true));
-  const end = cards.slice(-visible).map(c => c.cloneNode(true));
-
-  end.forEach(c => reviewTrack.prepend(c));
-  start.forEach(c => reviewTrack.append(c));
-
-  cards = Array.from(reviewTrack.querySelectorAll(".review-card"));
-
-  function update(animate = true) {
-
-    const cardWidth = cards[0].offsetWidth + 20;
-    const wrapperWidth = wrapper.offsetWidth;
-
-    // 🔥 CENTER CALCULATION
-    const offset = (wrapperWidth / 2) - (cards[0].offsetWidth / 2);
-    const translate = (index * cardWidth) - offset;
-
-    reviewTrack.style.transition = animate ? "transform 0.5s ease" : "none";
-    reviewTrack.style.transform = `translateX(-${translate}px)`;
-
-    cards.forEach(c => c.classList.remove("active"));
-
-    // 🔥 CORRECT CENTER
-    cards[index]?.classList.add("active");
-  }
-
-  nextBtn?.addEventListener("click", () => { index++; update(); });
-  prevBtn?.addEventListener("click", () => { index--; update(); });
-
-  reviewTrack.addEventListener("transitionend", () => {
-
-    if (index >= cards.length - visible) {
-      index = visible;
-      update(false);
-    }
-
-    if (index <= 0) {
-      index = cards.length - visible * 2;
-      update(false);
-    }
+    // final correction (mobile fix)
+    setTimeout(() => update(false), 300);
 
   });
 
-  window.addEventListener("load", () => update(false));
+  // 🔥 RESPONSIVE FIX
+  window.addEventListener("resize", () => {
+    setTimeout(() => update(false), 100);
+  });
 
 });
 
