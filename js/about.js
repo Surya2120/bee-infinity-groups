@@ -93,16 +93,16 @@ const leftSets = [
   ],
   [
     "assets/images/dance/dance (1).jpg",
-      "assets/images/events/events (1).jpg",
+      "assets/images/events/events (9).jpg",
     "assets/images/dance/dance (3).jpg"
   ],
   [
     "assets/images/events/events (3).jpg",
     "assets/images/dance/dance (5).jpg",
-    "assets/images/dance/dance (7).jpg"
+    "assets/images/dance/dance (17).jpg"
   ],
   [
-    "assets/images/dance/dance (8).jpg",
+    "assets/images/events/events (14).jpg",
     "assets/images/dance/dance (10).jpg",
     "assets/images/dance/dance (11).jpg"
   ]
@@ -373,21 +373,18 @@ futureCards.forEach(card => {
 
 
 /* =========================
-   FOOTER
+   FOOTER EFFECT
 ========================= */
-
-
 const footer = document.querySelector(".footer-modern");
 
-footer.addEventListener("mousemove", (e) => {
-  const rect = footer.getBoundingClientRect();
+if (footer) {
+  footer.addEventListener("mousemove", (e) => {
+    const rect = footer.getBoundingClientRect();
 
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
-
-  footer.style.setProperty("--x", x + "px");
-  footer.style.setProperty("--y", y + "px");
-});
+    footer.style.setProperty("--x", `${e.clientX - rect.left}px`);
+    footer.style.setProperty("--y", `${e.clientY - rect.top}px`);
+  });
+}
 
 
 
