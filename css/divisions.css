@@ -424,129 +424,51 @@ nav a.active {
    CTA
    ========================= */
 .division-cta {
-flex-wrap: nowrap;
-  gap: 300px;           /* 🔥 space between buttons */
-  width: auto;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 40px;
   margin-top: 40px;
 }
 
 .division-cta {
-  font-size: 18px;
+  position: relative;
+  font-size: 14px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--primary-blue);
   font-weight: bold;
-  border-bottom: 2px solid var(--accent-yellow);
-  padding-bottom: 6px;
+
+  color: var(--primary-blue);
+  padding: 12px 28px;
+  border-radius: 30px;
+
+  border: 2px solid var(--accent-yellow);
   text-decoration: none;
-  transition: 0.3s ease;
+  overflow: hidden;
+  transition: 0.4s ease;
 }
 
-.division-cta a:hover {
-  color: var(--accent-yellow);
-  letter-spacing: 3px;
+.division-cta::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0%;
+  background: var(--accent-yellow);
+  z-index: -1;
+  transition: height 0.4s ease;
 }
 
-/* =========================
-   FLAGSHIP CONNECTION
-   ========================= */
-.flagship-connection {
-  padding: 140px 10%;
-  background: #111;
-  color: #fff;
-  text-align: center;
+
+.division-cta:hover::after {
+  height: 100%;
 }
 
-.flagship-connection h2 {
-  font-size: 42px;
-  margin-bottom: 20px;
+.division-cta:hover {
+  color: #000;
+  transform: translateY(-3px);
 }
 
-.flagship-connection p {
-  max-width: 900px;
-  margin: 0 auto 30px;
-  opacity: 0.9;
-}
-
-.flagship-link {
-  color: var(--accent-yellow);
-  text-decoration: none;
-  font-size: 14px;
-  letter-spacing: 4px;
-}
-
-/* =========================
-   PROCESS SECTION
-   ========================= */
-.process-section {
-  padding: 140px 10%;
-  background: var(--bg-white);
-}
-
-.process-section h2 {
-  text-align: center;
-  margin-bottom: 80px;
-  color: var(--primary-blue);
-}
-
-.process-steps {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 30px;
-}
-
-.process-step {
-  padding: 30px;
-  background: #f9fafc;
-  border-radius: 14px;
-  border: 1px solid var(--border-soft);
-}
-
-.process-step h3 {
-  font-size: 16px;
-  margin-bottom: 10px;
-}
-
-/* =========================
-   PROJECT TYPES
-   ========================= */
-.project-types {
-  padding: 140px 10%;
-  background: linear-gradient(135deg, #f5f7fa, #eaf0ff);
-}
-
-.project-types h2 {
-  text-align: center;
-  margin-bottom: 70px;
-  color: var(--primary-blue);
-}
-
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
-}
-
-.project-column {
-  padding: 40px;
-  background: #fff;
-  border-radius: 18px;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.08);
-}
-
-.project-column h3 {
-  margin-bottom: 18px;
-  color: var(--primary-blue);
-}
-
-.project-column ul {
-  list-style: none;
-}
-
-.project-column li {
-  margin-bottom: 10px;
-  font-size: 14px;
-}
 
 /* =========================
    CONTACT + FOOTER
@@ -579,43 +501,6 @@ flex-wrap: nowrap;
   }
 }
 
-
-
-/* =========================
-   ANIMATED BORDER
-========================= */
-
-.ultra-flagship-frame::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  padding: var(--hero-border-size);
-  border-radius: var(--hero-border-radius);
-
-  background: linear-gradient(
-    120deg,
-    transparent,
-    #f2c400,
-    #ffd84a,
-    transparent
-  );
-
-  background-size: 300% 300%;
-  animation: borderMove 4s linear infinite;
-
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-
-  pointer-events: none;
-}
-
-@keyframes borderMove {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 300% 50%; }
-}
 
 /* DARK OVERLAY */
 .hero-overlay {
@@ -681,209 +566,163 @@ flex-wrap: nowrap;
 
 
 /* =========================
-   ULTRA FLAGSHIP – Animated Luxury Background
+   ULTRA FLAGSHIP – BOTD
 ========================= */
 
 .ultra-flagship {
   position: relative;
-  padding: 50px 6%;
-  overflow: hidden;
-
-  background: linear-gradient(
-    120deg,
-    #ffffff,
-    #f5f7fa,
-    #fff8e6,
-    #ffffff
-  );
-
-  background-size: 300% 300%;
-  animation: ultraGradient 18s ease infinite;
-}
-
-/* Smooth slow animation */
-@keyframes ultraGradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  padding: 160px 6% 140px;
+  background: var(--primary-blue);
 }
 
 /* =========================
-   ULTRA FLAGSHIP – Animated Luxury Background
+   BADGE
 ========================= */
-
-.ultra-flagship {
-  position: relative;
-  padding: 50px 6%;
-  overflow: hidden;
-  background-color: white;
-/*
-  background: linear-gradient(
-    120deg,
-    #ff0000,
-    #0c6dff,
-    #00e5ff,
-    #a2ff00
-  ); 
-
-
-  background-size: 300% 300%;
-  animation: ultraGradient 18s ease infinite; */ 
-}
- 
-
-/* Smooth slow animation */
-@keyframes ultraGradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-/* =========================
-   FLAGSHIP BADGE
-   ========================= */
 
 .ultra-badge {
   position: absolute;
-  top: 80px;
+  top: 90px;
   left: 8%;
-  z-index: 10;
+  z-index: 5;
 
-  padding: 12px 26px;
+  padding: 12px 22px;
   font-size: 11px;
   letter-spacing: 5px;
   text-transform: uppercase;
 
   color: #000;
-  /*background: linear-gradient(135deg, #f2c400, #ffdf6e);
-  border-radius: 40px;*/
+  background: linear-gradient(135deg, #f2c400, #ffffff);
+  border-radius: 40px;
 
   box-shadow:
-    0 20px 50px rgba(242,196,0,0.7),
-    inset 0 0 0 1px rgba(0,0,0,0.25);
+    0 20px 50px rgba(242, 196, 0, 0.8),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.25);
+
+  transform: translateX(-120px);
+  opacity: 0;
+
+  transition: 1.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
-
-
-/* =========================================
-   ULTRA FRAME CONTAINER
-========================================= */
-
-.ultra-flagship-frame {
-  position: relative;
-  max-width: 1300px;
-  margin: 0 auto;
-  padding: 25px; /* distance between card & frame */
-  border-radius: 28px;
-}
-
-/* Animated Gold Frame */
-.ultra-flagship-frame::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 28px;
-  padding: 3px; /* border thickness */
-
-  background: linear-gradient(
-    120deg,
-    transparent,
-    #f2c400,
-    #ffd84a,
-    transparent
-  );
-
-  background-size: 300% 300%;
-  animation: borderMove 4s linear infinite;
-
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-
-  pointer-events: none;
-}
-
-.ultra-flagship-frame {
-  box-shadow:
-    0 0 80px rgba(242,196,0,0.15),
-    0 60px 120px rgba(10, 17, 54, 0.8);
-}
-
 
 /* =========================
-   MAIN CARD
-   ========================= */
+   CARD
+========================= */
 
 .ultra-card {
   position: relative;
   height: 520px;
   display: block;
-  border-radius: 24px;
+  border-radius: 22px;
   overflow: hidden;
   text-decoration: none;
-  color: #ffffff;
+  color: #fff;
 
   isolation: isolate;
 
   box-shadow:
-    0 80px 160px rgba(0,0,0,0.85),
-    inset 0 0 0 1px rgba(242,196,0,0.35);
+    0 80px 160px rgba(0, 0, 0, 0.85),
+    inset 0 0 0 1px rgba(242, 196, 0, 0.35);
 
-  transition: transform 0.6s ease;
+  transform: translateX(120px);
+  opacity: 0;
+
+  transition:
+    transform 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 1s ease;
 }
 
 /* =========================
-   BACKGROUND IMAGE
-   ========================= */
+   BACKGROUND
+========================= */
 
 .ultra-bg {
   position: absolute;
   inset: 0;
+
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
-  transform: scale(1);
-  transition: transform 1.8s ease;
+
+  transform: scale(1); /* 🔥 only scale here */
+  transition: transform 1.2s ease;
+
+  filter: contrast(1.1) saturate(1.2);
+
   z-index: 0;
 }
 
 /* =========================
-   DARK OVERLAY
-   ========================= */
+   OVERLAY
+========================= */
 
 .ultra-overlay {
   position: absolute;
   inset: 0;
+
   background: linear-gradient(
-    240deg,
-    rgba(0,0,0,0.95) 25%,
-    rgba(0,0,0,0.6) 55%,
-    rgba(0,0,0,0.2) 100%
+    to left,
+    rgba(0, 0, 0, 0.85),
+    /* 🔥 reduced */ rgba(0, 0, 0, 0.5),
+    transparent
   );
+
   z-index: 1;
+  pointer-events: none; /* 🔥 important */
+}
+
+/* =========================
+   SPOTLIGHT
+========================= */
+
+.ultra-card::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  filter: blur(2px);
+
+  background: linear-gradient(
+    60deg,
+    transparent 35%,
+    rgba(242, 196, 0, 0.45) 50%,
+    transparent 65%
+  );
+
+  animation: spotlightSweep 4s linear infinite;
+
+  z-index: 4; /* 🔥 ABOVE overlay */
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* =========================
+   AURA
+========================= */
+
+.ultra-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+
+  box-shadow:
+    0 0 80px rgba(242, 196, 0, 0.35),
+    inset 0 0 60px rgba(242, 196, 0, 0.15);
+
+  opacity: 0.6;
+  animation: auraPulse 3.5s ease-in-out infinite;
+
+  z-index: 0;
 }
 
 /* =========================
    CONTENT
-   ========================= */
+========================= */
 
 .ultra-content {
   position: relative;
-  z-index: 2;
+  z-index: 3;
+
   height: 100%;
-  max-width: 600px;
+  max-width: 620px;
 
   display: flex;
   flex-direction: column;
@@ -891,64 +730,98 @@ flex-wrap: nowrap;
 
   margin-left: auto;
   padding: 90px;
+
   text-align: right;
 }
 
 /* =========================
-   TITLE
-   ========================= */
+   TEXT
+========================= */
 
 .ultra-title {
-  font-size: 54px;
+  font-size: 58px;
   font-weight: 900;
-  margin-bottom: 24px;
+  margin-bottom: 26px;
+
   letter-spacing: 2px;
   text-transform: uppercase;
 
-  text-shadow: 0 14px 60px rgba(0,0,0,0.9);
+  text-shadow: 0 14px 70px rgba(0, 0, 0, 0.95);
 }
-
-/* =========================
-   DESCRIPTION
-   ========================= */
 
 .ultra-desc {
   font-size: 17px;
   line-height: 1.9;
   opacity: 0.9;
-  margin-bottom: 40px;
+  margin-bottom: 44px;
 }
 
-/* =========================
-   CTA
-   ========================= */
-
 .ultra-action {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
   font-size: 14px;
   letter-spacing: 4px;
   text-transform: uppercase;
+
   color: #f2c400;
 
-  border-bottom: 2px solid rgba(242,196,0,0.8);
   padding-bottom: 6px;
+  border-bottom: 2px solid rgba(242, 196, 0, 0.8);
+
+  margin-left: auto;
 
   transition: all 0.4s ease;
 }
 
 /* =========================
-   HOVER EFFECTS
-   ========================= */
+   HOVER (NOW WORKS 🔥)
+========================= */
 
 .ultra-card:hover .ultra-bg {
-  transform: scale(1.12);
+  transform: scale(1.15);
 }
 
 .ultra-card:hover .ultra-action {
   letter-spacing: 6px;
 }
 
+/* =========================
+   REVEAL
+========================= */
 
+.ultra-card.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.ultra-badge.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes spotlightSweep {
+  0% {
+    transform: translateX(-120%) rotate(10deg);
+  }
+  100% {
+    transform: translateX(120%) rotate(10deg);
+  }
+}
+@keyframes auraPulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
 
 
 /* =========================

@@ -1,0 +1,8 @@
+/* =========================
+   DISABLE IMAGE DRAG ONLY
+========================= */
+
+img {
+  -webkit-user-drag: none; /* Chrome / Safari */
+  user-drag: none;
+}

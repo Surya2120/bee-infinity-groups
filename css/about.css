@@ -922,6 +922,7 @@ nav a.active {
   text-align: center;
   box-shadow: 0 0 20px rgba(242, 196, 0, 0.4);
   background: linear-gradient(90deg, #fff200, var(--primary-blue), #fff200);
+
   background-size: 300% 100%;
   animation: gradientMove 6s ease-in-out infinite;
 }
@@ -937,12 +938,12 @@ nav a.active {
   font-size: 28px;
   font-weight: 600;
   letter-spacing: 2px;
-  color: #fff;
+  color: rgb(255, 255, 255);
 }
 
 
 /* =========================
-   DIVISION ROW
+   DIVISION ROW (ZIG-ZAG LAYOUT)
    ========================= */
 
 .division-row {
@@ -959,20 +960,20 @@ nav a.active {
 
 
 /* =========================
-   TEXT BLOCK
+   DIVISION TEXT BLOCK
    ========================= */
 
 .division-block {
   width: 50%;
   padding: 60px 70px;
-  background: #000;
-  color: #fff;
+  background: #000000;
+  color: #ffffff;
   border-radius: 8px;
 }
 
 .division-block.alt {
   background: var(--bg-section);
-  color: #000;
+  color: #000000;
 }
 
 .division-block h2 {
@@ -997,17 +998,18 @@ nav a.active {
 
 
 /* =========================
-   MEDIA (UPDATED FOR MANUAL + AUTO)
+   DIVISION MEDIA (UPDATED)
    ========================= */
 
 .division-media {
   width: 50%;
-  overflow-x: auto; /* 🔥 enables manual scroll */
+  overflow-x: auto;
   overflow-y: hidden;
   position: relative;
 
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+
   cursor: grab;
 }
 
@@ -1017,7 +1019,9 @@ nav a.active {
 }
 
 
-/* TRACK */
+/* =========================
+   MEDIA TRACK
+   ========================= */
 
 .media-track {
   display: flex;
@@ -1028,14 +1032,14 @@ nav a.active {
   will-change: transform;
 }
 
-/* images */
-
 .media-track img {
   height: 280px;
   width: auto;
   object-fit: contain;
   border-radius: 6px;
   flex-shrink: 0;
+
+  pointer-events: none; /* 🔥 smoother drag */
 }
 
 
@@ -1052,35 +1056,30 @@ nav a.active {
   }
 }
 
-/* default direction */
 .division-row .media-track {
   animation-direction: normal;
 }
 
-/* reverse direction */
 .division-row.reverse .media-track {
   animation-direction: reverse;
 }
 
 
 /* =========================
-   INTERACTION (KEY PART 🔥)
+   DRAG INTERACTION (NEW 🔥)
    ========================= */
 
-/* pause when user interacts */
-.division-media:hover .media-track,
-.division-media:active .media-track {
-  animation-play-state: paused;
+.division-media.dragging {
+  cursor: grabbing;
 }
 
-/* grab effect */
-.division-media:active {
-  cursor: grabbing;
+.division-media.dragging .media-track {
+  animation-play-state: paused; /* stop auto when dragging */
 }
 
 
 /* =========================
-   MOBILE IMPROVEMENT
+   MOBILE
    ========================= */
 
 @media (max-width: 768px) {

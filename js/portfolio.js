@@ -1,60 +1,61 @@
 /* =========================
-   HEADER SCROLL EFFECT
+   GLOBAL INIT
 ========================= */
 
-const navbar = document.querySelector(".navbar");
+document.addEventListener("DOMContentLoaded", () => {
 
-if (navbar) {
+  initNavbarScroll();
+  initDropdown();
+  initPortfolio();
+  initHamburgerMenu();
+
+});
+
+
+/* =========================
+   HEADER SCROLL
+========================= */
+
+function initNavbarScroll() {
+  const navbar = document.querySelector(".navbar");
+
+  if (!navbar) return;
+
   window.addEventListener("scroll", () => {
-    if (window.scrollY > 50) {
-      navbar.classList.add("scrolled");
-    } else {
-      navbar.classList.remove("scrolled");
+    navbar.classList.toggle("scrolled", window.scrollY > 50);
+  });
+}
+
+
+/* =========================
+   DROPDOWN MENU
+========================= */
+
+function initDropdown() {
+  const exploreToggle = document.getElementById("exploreToggle");
+
+  if (!exploreToggle) return;
+
+  const dropdown = exploreToggle.parentElement;
+
+  exploreToggle.addEventListener("click", (e) => {
+    e.preventDefault();
+    dropdown.classList.toggle("open");
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!dropdown.contains(e.target)) {
+      dropdown.classList.remove("open");
     }
   });
 }
 
 
-
-
-
-
-
 /* =========================
-   DROP DOWN MENU
+   PORTFOLIO + LIGHTBOX
 ========================= */
 
-
-document.addEventListener("DOMContentLoaded", function () {
-
-  const exploreToggle = document.getElementById("exploreToggle");
-  const dropdown = exploreToggle.parentElement;
-
-  exploreToggle.addEventListener("click", function (e) {
-    e.preventDefault();
-
-    // toggle open class
-    dropdown.classList.toggle("open");
-  });
-
-  // close when clicking outside
-  document.addEventListener("click", function (e) {
-    if (!dropdown.contains(e.target)) {
-      dropdown.classList.remove("open");
-    }
-  });
-
-});
-
-
-/*========================= */
-
-
-
-
-
-
-document.addEventListener("DOMContentLoaded", function () {
+function initPortfolio() {
 
   const tabs = document.querySelectorAll(".tab");
   const items = document.querySelectorAll(".portfolio-item");
@@ -65,12 +66,16 @@ document.addEventListener("DOMContentLoaded", function () {
   const prevBtn = document.querySelector(".prev");
   const counter = document.querySelector(".counter");
 
+  if (!lightbox) return;
+
   let currentIndex = 0;
   let filteredImages = [];
 
-  /* ======================
-     FILTER TABS
-  ====================== */
+  // 🔥 ensure hidden on load
+  lightbox.style.display = "none";
+
+
+  /* FILTER TABS */
   tabs.forEach(tab => {
     tab.addEventListener("click", function () {
 
@@ -80,43 +85,42 @@ document.addEventListener("DOMContentLoaded", function () {
       const category = this.dataset.category;
 
       items.forEach(item => {
-        if (category === "all" || item.dataset.category === category) {
-          item.style.display = "block";
-        } else {
-          item.style.display = "none";
-        }
+        item.style.display =
+          (category === "all" || item.dataset.category === category)
+            ? "block"
+            : "none";
       });
 
     });
   });
 
-  /* ======================
-     UPDATE IMAGE LIST
-  ====================== */
+
+  /* UPDATE IMAGE LIST */
   function updateFilteredImages() {
-    filteredImages = Array.from(
-      document.querySelectorAll(".portfolio-item")
-    ).filter(item => item.style.display !== "none")
-     .map(item => item.querySelector("img"));
+    filteredImages = Array.from(items)
+      .filter(item => item.style.display !== "none")
+      .map(item => item.querySelector("img"));
   }
 
-  /* ======================
-     OPEN LIGHTBOX
-  ====================== */
+
+  /* OPEN LIGHTBOX */
   function openLightbox(index) {
     updateFilteredImages();
 
-    if (filteredImages.length === 0) return;
+    if (!filteredImages.length) return;
 
     currentIndex = index;
     lightboxImg.src = filteredImages[currentIndex].src;
+
     lightbox.style.display = "flex";
     updateCounter();
   }
 
+
   function updateCounter() {
-    counter.textContent = (currentIndex + 1) + " / " + filteredImages.length;
+    counter.textContent = `${currentIndex + 1} / ${filteredImages.length}`;
   }
+
 
   function showNext() {
     currentIndex = (currentIndex + 1) % filteredImages.length;
@@ -124,48 +128,49 @@ document.addEventListener("DOMContentLoaded", function () {
     updateCounter();
   }
 
+
   function showPrev() {
-    currentIndex = (currentIndex - 1 + filteredImages.length) % filteredImages.length;
+    currentIndex =
+      (currentIndex - 1 + filteredImages.length) % filteredImages.length;
+
     lightboxImg.src = filteredImages[currentIndex].src;
     updateCounter();
   }
+
 
   function closeLightbox() {
     lightbox.style.display = "none";
   }
 
-  /* ======================
-     IMAGE CLICK
-  ====================== */
-  items.forEach((item, index) => {
+
+  /* IMAGE CLICK */
+  items.forEach(item => {
     const img = item.querySelector("img");
 
+    if (!img) return;
+
     img.addEventListener("click", function () {
-
       updateFilteredImages();
-
-      const clickedIndex = filteredImages.indexOf(this);
-      openLightbox(clickedIndex);
-
+      const index = filteredImages.indexOf(this);
+      openLightbox(index);
     });
   });
 
-  /* ======================
-     BUTTON EVENTS
-  ====================== */
-  nextBtn.addEventListener("click", showNext);
-  prevBtn.addEventListener("click", showPrev);
-  closeBtn.addEventListener("click", closeLightbox);
 
-  /* CLICK OUTSIDE IMAGE CLOSE */
-  lightbox.addEventListener("click", function (e) {
-    if (e.target === lightbox) {
-      closeLightbox();
-    }
+  /* BUTTONS */
+  nextBtn?.addEventListener("click", showNext);
+  prevBtn?.addEventListener("click", showPrev);
+  closeBtn?.addEventListener("click", closeLightbox);
+
+
+  /* CLICK OUTSIDE */
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) closeLightbox();
   });
 
-  /* KEYBOARD CONTROLS */
-  document.addEventListener("keydown", function (e) {
+
+  /* KEYBOARD */
+  document.addEventListener("keydown", (e) => {
     if (lightbox.style.display === "flex") {
       if (e.key === "ArrowRight") showNext();
       if (e.key === "ArrowLeft") showPrev();
@@ -173,16 +178,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-});
-
-
-
-
+}
 
 
 /* =========================
-   FOOTER
+   FOOTER EFFECT
 ========================= */
+
 const footer = document.querySelector(".footer-modern");
 
 if (footer) {
@@ -195,19 +197,17 @@ if (footer) {
 }
 
 
-
 /* =========================
-   HAMBURGER MENU SYSTEM
+   HAMBURGER MENU
 ========================= */
 
-document.addEventListener("DOMContentLoaded", function () {
+function initHamburgerMenu() {
 
   const toggle = document.getElementById("menuToggle");
   const nav = document.querySelector(".nav-links");
 
   if (!toggle || !nav) return;
 
-  /* Create overlay */
   const overlay = document.createElement("div");
   overlay.classList.add("menu-overlay");
   document.body.appendChild(overlay);
@@ -226,25 +226,18 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.classList.remove("menu-open");
   }
 
-  function toggleMenu() {
-    if (nav.classList.contains("active")) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
-  }
+  toggle.addEventListener("click", () => {
+    nav.classList.contains("active") ? closeMenu() : openMenu();
+  });
 
-  toggle.addEventListener("click", toggleMenu);
   overlay.addEventListener("click", closeMenu);
 
-  /* Close when link clicked */
   nav.querySelectorAll("a").forEach(link => {
     link.addEventListener("click", closeMenu);
   });
 
-  /* Close on ESC */
-  document.addEventListener("keydown", function (e) {
+  document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeMenu();
   });
 
-});
+}
