@@ -508,15 +508,21 @@ nav a.active {
    JOURNEY HEADER
 ================================ */
 
+
+
+
+/* ===============================
+   JOURNEY HEADER
+================================ */
+
 .journey {
   margin: 0;
-  padding: 10px 10% 60px; /* 🔥 reduced top space */
-  background: #05070d; /* use dark bg like your screenshot */
+  padding: 30px 10% 40px; /* FIXED */
+  background: #05070d;
 }
 
-
 .journey-header {
-  margin: 0 0 30px; /* clean single margin */
+  margin: 0 0 30px;
   text-align: center;
   position: relative;
   z-index: 2;
@@ -527,7 +533,7 @@ nav a.active {
 }
 
 .journey-header h2 {
-  margin: 0; /* 🔥 removes top gap */
+  margin: 0;
   font-size: 40px;
   color: #ffffff;
   letter-spacing: 2px;
@@ -545,12 +551,13 @@ nav a.active {
   transform: translateY(0);
 }
 
+
 /* ===============================
    FOUNDER QUOTE
 ================================ */
 
 .journey-quote {
-  margin: 40px auto; /* 🔥 FIXED */
+  margin: 30px auto;
   text-align: center;
   max-width: 800px;
 
@@ -558,6 +565,7 @@ nav a.active {
   transform: translateY(60px);
   transition: all 1s ease;
 }
+
 .journey-quote blockquote {
   font-size: 24px;
   line-height: 1.7;
@@ -578,12 +586,13 @@ nav a.active {
   transform: translateY(0);
 }
 
+
 /* ===============================
    NEXT CHAPTER
 ================================ */
 
 .next-chapter {
-  margin-top: 30px; /* tighter */
+  margin-top: 20px;
   text-align: center;
 
   opacity: 0;
@@ -605,7 +614,7 @@ nav a.active {
 
 
 /* =========================================
-   ORIGIN STORY – CINEMATIC PREMIUM
+   ORIGIN STORY
 ========================================= */
 
 .origin-story {
@@ -618,10 +627,6 @@ nav a.active {
 
   align-items: center;
 }
-
-/* =========================
-   TEXT
-========================= */
 
 .origin-content {
   max-width: 620px;
@@ -652,7 +657,6 @@ nav a.active {
   margin-bottom: 22px;
 }
 
-/* Signature */
 .origin-sign {
   margin-top: 40px;
   font-size: 15px;
@@ -668,9 +672,8 @@ nav a.active {
   margin-top: 4px;
 }
 
-/* =========================
-   IMAGE
-========================= */
+
+/* IMAGE */
 
 .origin-image {
   position: relative;
@@ -691,7 +694,6 @@ nav a.active {
   transform: scale(1.05);
 }
 
-/* glow */
 .origin-image::before {
   content: "";
   position: absolute;
@@ -701,9 +703,10 @@ nav a.active {
   filter: blur(10px);
 }
 
-/* =========================
+
+/* ===============================
    SCROLL REVEAL
-========================= */
+================================ */
 
 .reveal {
   opacity: 0;
@@ -763,7 +766,7 @@ nav a.active {
 
 .journey-section {
   position: relative;
-  padding: 200px 0;
+  padding: 60px 0 100px; /* FIXED GAP */
   background: #0b0b12;
   overflow: hidden;
 }
@@ -784,13 +787,10 @@ nav a.active {
 }
 
 @keyframes bgMove {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(10%, 10%);
-  }
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(10%, 10%); }
 }
+
 
 /* SVG Line */
 .journey-line {
@@ -897,6 +897,8 @@ nav a.active {
   transform: translateY(0);
 }
 
+
+
 /* =========================
    SECTIONS (DIVISIONS / CLIENTS / TESTIMONIALS)
    ========================= */
@@ -909,6 +911,199 @@ nav a.active {
   margin-bottom: 70px;
   color: var(--primary-blue);
 }
+
+
+/* =========================
+   DIVIDER
+   ========================= */
+
+.about-divider {
+  padding: 1px 1%;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(242, 196, 0, 0.4);
+  background: linear-gradient(90deg, #fff200, var(--primary-blue), #fff200);
+  background-size: 300% 100%;
+  animation: gradientMove 6s ease-in-out infinite;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.about-divider h3 {
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #fff;
+}
+
+
+/* =========================
+   DIVISION ROW
+   ========================= */
+
+.division-row {
+  display: flex;
+  align-items: center;
+  gap: 0px;
+  max-width: 1400px;
+  margin: 140px auto;
+}
+
+.division-row:nth-of-type(even) {
+  flex-direction: row-reverse;
+}
+
+
+/* =========================
+   TEXT BLOCK
+   ========================= */
+
+.division-block {
+  width: 50%;
+  padding: 60px 70px;
+  background: #000;
+  color: #fff;
+  border-radius: 8px;
+}
+
+.division-block.alt {
+  background: var(--bg-section);
+  color: #000;
+}
+
+.division-block h2 {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.division-tag {
+  display: inline-block;
+  margin-bottom: 18px;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent-yellow);
+}
+
+.division-block p {
+  font-size: 15px;
+  line-height: 1.8;
+  max-width: 650px;
+}
+
+
+/* =========================
+   MEDIA (UPDATED FOR MANUAL + AUTO)
+   ========================= */
+
+.division-media {
+  width: 50%;
+  overflow-x: auto; /* 🔥 enables manual scroll */
+  overflow-y: hidden;
+  position: relative;
+
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  cursor: grab;
+}
+
+/* hide scrollbar */
+.division-media::-webkit-scrollbar {
+  display: none;
+}
+
+
+/* TRACK */
+
+.media-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+
+  animation: mediaScroll 70s linear infinite;
+  will-change: transform;
+}
+
+/* images */
+
+.media-track img {
+  height: 280px;
+  width: auto;
+  object-fit: contain;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+
+/* =========================
+   AUTO SCROLL
+   ========================= */
+
+@keyframes mediaScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* default direction */
+.division-row .media-track {
+  animation-direction: normal;
+}
+
+/* reverse direction */
+.division-row.reverse .media-track {
+  animation-direction: reverse;
+}
+
+
+/* =========================
+   INTERACTION (KEY PART 🔥)
+   ========================= */
+
+/* pause when user interacts */
+.division-media:hover .media-track,
+.division-media:active .media-track {
+  animation-play-state: paused;
+}
+
+/* grab effect */
+.division-media:active {
+  cursor: grabbing;
+}
+
+
+/* =========================
+   MOBILE IMPROVEMENT
+   ========================= */
+
+@media (max-width: 768px) {
+  .division-row {
+    flex-direction: column;
+    margin: 80px auto;
+  }
+
+  .division-block,
+  .division-media {
+    width: 100%;
+  }
+
+  .division-block {
+    padding: 40px 20px;
+  }
+
+  .media-track img {
+    height: 220px;
+  }
+}
+
+
 
 /* =========================
    CLIENT LOGOS – AUTO SCROLL
@@ -956,144 +1151,6 @@ nav a.active {
   }
 }
 
-/* =========================
-   DIVIDER
-   ========================= */
-
-.about-divider {
-  padding: 1px 1%;
-  text-align: center;
-  box-shadow: 0 0 20px rgba(242, 196, 0, 0.4);
-  background: linear-gradient(90deg, #fff200, var(--primary-blue), #fff200);
-
-  background-size: 300% 100%;
-  animation: gradientMove 6s ease-in-out infinite;
-}
-
-@keyframes gradientMove {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-.about-divider h3 {
-  font-family: "Segoe UI", Arial, sans-serif;
-  font-size: 28px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  color: rgb(255, 255, 255);
-}
-
-/* =========================
-   DIVISION ROW (ZIG-ZAG LAYOUT)
-   ========================= */
-
-.division-row {
-  display: flex;
-  align-items: center;
-  gap: 0px;
-  max-width: 1400px;
-  margin: 140px auto;
-}
-
-/* Reverse layout for zig-zag */
-.division-row:nth-of-type(even) {
-  flex-direction: row-reverse;
-}
-
-/* =========================
-   DIVISION TEXT BLOCK
-   ========================= */
-
-.division-block {
-  width: 50%;
-  padding: 60px 70px;
-  background: #000000;
-  color: #ffffff;
-  border-radius: 8px;
-}
-
-/* Light version */
-.division-block.alt {
-  background: var(--bg-section);
-  color: #000000;
-}
-
-/* Title */
-.division-block h2 {
-  font-size: 32px;
-  margin-bottom: 12px;
-}
-
-/* Tag */
-.division-tag {
-  display: inline-block;
-  margin-bottom: 18px;
-  font-size: 12px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--accent-yellow);
-}
-
-/* Paragraph */
-.division-block p {
-  font-size: 15px;
-  line-height: 1.8;
-  max-width: 650px;
-}
-
-/* =========================
-   DIVISION MEDIA SLIDER
-   ========================= */
-
-.division-media {
-  width: 50%;
-  overflow: hidden;
-  position: relative;
-}
-
-/* Track that moves */
-.media-track {
-  display: flex;
-  gap: 20px;
-  width: max-content;
-  animation: mediaScroll 70s linear infinite;
-  will-change: transform;
-}
-
-.media-track img {
-  height: 280px;
-  width: auto;
-  object-fit: contain;
-  border-radius: 6px;
-  flex-shrink: 0;
-}
-
-/* Auto scroll animation */
-
-@keyframes mediaScroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-/* DEFAULT → Right to Left */
-.division-row .media-track {
-  animation-direction: normal;
-}
-
-/* LEFT to RIGHT */
-.division-row.reverse .media-track {
-  animation-direction: reverse;
-}
 
 /* =========================================
    VISION & MISSION SECTION

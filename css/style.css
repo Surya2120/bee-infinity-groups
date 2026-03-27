@@ -1122,19 +1122,13 @@ nav a.active {
   position: relative;
   overflow: hidden;
 
-  /* 🔥 Cinematic background + mouse glow */
   background:
     radial-gradient(
       circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-      rgba(242, 196, 0, 0.15),
-      transparent 40%
+      rgba(242, 196, 0, 0.12),
+      transparent 45%
     ),
-    linear-gradient(135deg, #000000 0%, #000000 100%);
-}
-
-.impact p {
-  font-size: 13px;
-  line-height: 1.4;
+    linear-gradient(135deg, #000000 0%, #050505 100%);
 }
 
 /* Subtle glow layer */
@@ -1144,7 +1138,7 @@ nav a.active {
   inset: 0;
   background: radial-gradient(
     circle at top right,
-    rgba(242, 196, 0, 0.12),
+    rgba(242, 196, 0, 0.08),
     transparent 60%
   );
   pointer-events: none;
@@ -1152,7 +1146,6 @@ nav a.active {
 
 /* ================= GRID ================= */
 
-/* DESKTOP (1 x 4) */
 .impact-container {
   width: 100%;
   max-width: 1400px;
@@ -1160,96 +1153,143 @@ nav a.active {
   padding: 0 20px;
 
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 40px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
 }
 
 /* ================= STAT CARD ================= */
-.impact-item {
-  width: 100%;
-  min-width: 0;
 
-  padding: 50px 30px;
+.impact-item {
+  padding: 55px 30px;
   text-align: center;
 
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(10px);
 
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 
-  /* 🎬 Cinematic entry */
   opacity: 0;
-  transform: translateY(60px) scale(0.95);
+  transform: translateY(60px) scale(0.96);
 
-  transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-
-  will-change: transform;
+  transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-/* SHOW ANIMATION */
+/* SHOW */
 .impact-item.show {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
 
-/* HOVER EFFECT */
+/* 🔥 PREMIUM HOVER */
 .impact-item:hover {
-  transform: translateY(-12px) scale(1.02);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+  transform: translateY(-10px) scale(1.02);
+  border-color: rgba(242, 196, 0, 0.4);
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    0 0 30px rgba(242, 196, 0, 0.15);
 }
 
 /* ================= NUMBER ================= */
+
 .impact-number {
-  font-size: 52px;
+  font-size: 54px;
   font-weight: 700;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 
   color: #f2c400;
   letter-spacing: 1px;
 
-  text-shadow: 0 0 20px rgba(242, 196, 0, 0.2);
+  text-shadow: 0 0 25px rgba(242, 196, 0, 0.25);
+
+  transition: transform 0.3s ease;
+}
+
+/* number pop on hover */
+.impact-item:hover .impact-number {
+  transform: scale(1.08);
 }
 
 /* ================= LABEL ================= */
+
 .impact-label {
   font-size: 13px;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   text-transform: uppercase;
+
   color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
 }
 
-/* UNDERLINE */
+/* ================= UNDERLINE ================= */
+
 .impact-item::after {
   content: "";
   display: block;
-  width: 40px;
+  width: 0;
   height: 2px;
   background: #f2c400;
   margin: 20px auto 0;
-  opacity: 0.6;
+
+  transition: width 0.4s ease;
 }
 
-/* ================= BOUNCE EFFECT ================= */
+.impact-item:hover::after {
+  width: 60px;
+}
+
+/* ================= BOUNCE ================= */
+
 @keyframes bounceEffect {
-  0% {
-    transform: scale(1);
-  }
-  30% {
-    transform: scale(1.25);
-  }
-  60% {
-    transform: scale(0.95);
-  }
-  100% {
-    transform: scale(1);
-  }
+  0% { transform: scale(1); }
+  30% { transform: scale(1.25); }
+  60% { transform: scale(0.95); }
+  100% { transform: scale(1); }
 }
 
 .bounce {
   animation: bounceEffect 0.4s ease;
 }
 
+/* ================= RESPONSIVE ================= */
+
+/* TABLET */
+@media (max-width: 1024px) {
+  .impact-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+
+  .impact-number {
+    font-size: 44px;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .impact-stats {
+    padding: 80px 6%;
+  }
+
+  .impact-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .impact-item {
+    padding: 40px 20px;
+  }
+
+  .impact-number {
+    font-size: 38px;
+  }
+
+  .impact-label {
+    font-size: 12px;
+    letter-spacing: 1.5px;
+  }
+}
 /* =========================
    CLIENT LOGOS – AUTO SCROLL
 ========================= */
