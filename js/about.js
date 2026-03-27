@@ -78,81 +78,99 @@ setInterval(rotateWord, changeSpeed);
 
 
 /* =========================
-   WHO IMAGES ROTATION (FIXED)
+   WHO IMAGES – CINEMATIC FADE
 ========================= */
 
 const leftImages = document.querySelectorAll(".who-left img");
 const rightImage = document.querySelector(".who-right img");
 
-/* LEFT SIDE (3 images per set) */
-const leftSets = [
-  [
-    "assets/images/dance/dance (9).JPG",
-    "assets/images/dance/dance (13).jpg",
-    "assets/images/dance/dance (6).jpg"
-  ],
-  [
-    "assets/images/dance/dance (1).jpg",
+if (!leftImages.length || !rightImage) {
+  console.warn("Images not found");
+} else {
+
+  const leftSets = [
+    [
+      "assets/images/dance/dance (9).JPG",
+      "assets/images/dance/dance (13).jpg",
+      "assets/images/dance/dance (6).jpg"
+    ],
+    [
+      "assets/images/dance/dance (1).jpg",
       "assets/images/events/events (9).jpg",
-    "assets/images/dance/dance (3).jpg"
-  ],
-  [
-    "assets/images/events/events (3).jpg",
-    "assets/images/dance/dance (5).jpg",
-    "assets/images/dance/dance (17).jpg"
-  ],
-  [
-    "assets/images/events/events (14).jpg",
-    "assets/images/dance/dance (10).jpg",
-    "assets/images/dance/dance (11).jpg"
-  ]
-];
+      "assets/images/dance/dance (3).jpg"
+    ],
+    [
+      "assets/images/events/events (3).jpg",
+      "assets/images/dance/dance (5).jpg",
+      "assets/images/dance/dance (17).jpg"
+    ],
+    [
+      "assets/images/events/events (14).jpg",
+      "assets/images/dance/dance (10).jpg",
+      "assets/images/dance/dance (11).jpg"
+    ]
+  ];
 
-/* RIGHT SIDE (portrait images) */
-const rightSet = [
-  "assets/images/dance/dance (23).jpg",
-  "assets/images/dance/dance (2).jpg",
-  "assets/images/dance/dance (4).jpg",
-  "assets/images/studio/studio (1).jpg"
-];
+  const rightSet = [
+    "assets/images/dance/dance (23).jpg",
+    "assets/images/dance/dance (2).jpg",
+    "assets/images/dance/dance (4).jpg",
+    "assets/images/studio/studio (1).jpg"
+  ];
 
-let currentIndex = 0;
+  let currentIndex = 0;
+  let isAnimating = false;
 
-/* 🔥 Preload */
-[...leftSets.flat(), ...rightSet].forEach(src => {
-  const img = new Image();
-  img.src = src;
-});
-
-function changeImages() {
-
-  currentIndex = (currentIndex + 1) % leftSets.length;
-
-  /* LEFT IMAGES */
-  leftImages.forEach((img, index) => {
-    setTimeout(() => {
-      img.style.opacity = "0";
-
-      setTimeout(() => {
-        img.src = leftSets[currentIndex][index];
-        img.style.opacity = "1";
-      }, 300);
-
-    }, index * 120);
+  /* preload */
+  [...leftSets.flat(), ...rightSet].forEach(src => {
+    const img = new Image();
+    img.src = src;
   });
 
-  /* RIGHT IMAGE */
-  rightImage.style.opacity = "0";
+  function changeImages() {
 
-  setTimeout(() => {
-    rightImage.src = rightSet[currentIndex];
-    rightImage.style.opacity = "1";
-  }, 300);
+    if (isAnimating) return;
+    isAnimating = true;
+
+    currentIndex = (currentIndex + 1) % leftSets.length;
+
+    /* LEFT SIDE */
+    leftImages.forEach((img, i) => {
+
+      img.classList.add("fade-out");
+
+      setTimeout(() => {
+        img.src = leftSets[currentIndex][i];
+        img.classList.remove("fade-out");
+        img.classList.add("fade-in");
+
+        setTimeout(() => {
+          img.classList.remove("fade-in");
+        }, 800);
+
+      }, 300);
+
+    });
+
+    /* RIGHT SIDE */
+    rightImage.classList.add("fade-out");
+
+    setTimeout(() => {
+      rightImage.src = rightSet[currentIndex];
+      rightImage.classList.remove("fade-out");
+      rightImage.classList.add("fade-in");
+
+      setTimeout(() => {
+        rightImage.classList.remove("fade-in");
+        isAnimating = false;
+      }, 800);
+
+    }, 300);
+
+  }
+
+  setInterval(changeImages, 6000);
 }
-
-/* timing */
-setInterval(changeImages, 6000);
-
 
 
 
@@ -299,6 +317,28 @@ document.addEventListener("DOMContentLoaded", function () {
   revealExtras(); // run once on load
 
 });
+
+
+/* orgin story */
+
+const reveals = document.querySelectorAll('.reveal');
+
+function revealOnScroll() {
+  const windowHeight = window.innerHeight;
+
+  reveals.forEach(el => {
+    const elementTop = el.getBoundingClientRect().top;
+
+    if (elementTop < windowHeight - 100) {
+      el.classList.add('active');
+    }
+  });
+}
+
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('load', revealOnScroll);
+
+
 
 /* =========================
    CLIENT LOGOS – AUTO SCROLL

@@ -260,7 +260,6 @@ nav a.active {
 
 .about-hero {
   padding: 40px 10px;
-
   background: url("../assets/images/dance/dance\ \(8\).JPG") center/cover
     no-repeat;
   display: flex;
@@ -271,38 +270,49 @@ nav a.active {
 
 .about-hero h1 {
   font-size: 48px;
-  color: var(--primary-blue);
+  color: white;
+  background: radial-gradient 0 (#ffcc00);
+
 }
 
 .about-hero p {
   margin-top: 10px;
   letter-spacing: 3px;
-  color: var(--text-muted);
+  color: var(--accent-yellow);
 }
 
 
-/* WHO WE ARE */
+/* =========================================
+   WHO WE ARE – PREMIUM SECTION
+========================================= */
 
 .who-we-are {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
   gap: 80px;
-  padding: 100px 10% 50px;
-  color: saddlebrown;
+  padding: 100px 10% 60px;
+
+  background: linear-gradient(135deg, #ffffff, #f8faff);
 }
 
-/* HEADING */
+/* =========================
+   HEADING
+========================= */
+
 .who-we-are h2 {
   display: inline-block;
-  font-size: 28px;
-  margin-bottom: 60px;
+  font-size: 30px;
+  margin-bottom: 50px;
   padding: 14px 36px;
+
   background: linear-gradient(135deg, #f2c400, #ffdf6e);
   color: #000;
+
   border-radius: 50px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  box-shadow: 0 15px 35px rgba(242, 196, 0, 0.4);
+
+  box-shadow: 0 15px 35px rgba(242, 196, 0, 0.35);
   transition: 0.4s ease;
 }
 
@@ -311,25 +321,38 @@ nav a.active {
   color: var(--primary-blue);
 }
 
-/* TEXT */
-.who-we-are p {
-  font-size: 15px;
-  line-height: 1.8;
-  color: var(--text-muted);
+/* =========================
+   TEXT
+========================= */
+
+.who-text {
+  max-width: 600px;
 }
 
-/* 🔥 NEW IMAGE LAYOUT */
+.who-we-are p {
+  font-size: 15.5px;
+  line-height: 1.9;
+  max-width: 520px;
+  color: var(--text-muted);
+
+  margin-bottom: 20px;
+}
+
+/* =========================
+   IMAGE GRID
+========================= */
+
 .who-gallery {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 22px;
 }
 
 /* LEFT STACK */
 .who-left {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 22px;
 }
 
 /* RIGHT TALL */
@@ -337,67 +360,145 @@ nav a.active {
   height: 100%;
 }
 
-/* COMMON IMAGE STYLE */
+/* =========================
+   IMAGE STYLE
+========================= */
+
 .who-gallery img {
   width: 100%;
-  border-radius: 16px;
+  border-radius: 18px;
   object-fit: cover;
   display: block;
 
+  opacity: 1;
+
+  /* 🔥 THIS IS THE KEY CHANGE */
   transition: 
-    transform 0.4s ease, 
-    box-shadow 0.4s ease,
-    opacity 0.5s ease;
+    opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+
+  will-change: opacity, transform;
 }
 
-/* LEFT IMAGES (LANDSCAPE) */
+/* =========================
+   FADE OUT (EASE OUT)
+========================= */
+
+.fade-out {
+  opacity: 0;
+  transform: scale(0.98); /* slight zoom out */
+  filter: brightness(0.92);
+}
+
+/* =========================
+   IMAGE RATIOS
+========================= */
+
 .who-left img {
   aspect-ratio: 16 / 9;
 }
 
-/* RIGHT IMAGE (PORTRAIT 🔥) */
 .who-right img {
-  height: 100%;
-  aspect-ratio: 9 / 16;
+  height: auto;
+  aspect-ratio: 9 / 17;
 }
 
-/* HOVER EFFECT */
+/* =========================
+   HOVER EFFECT
+========================= */
+
 .who-gallery img:hover {
   transform: scale(1.05);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
 }
 /* =========================
    IDENTITY ROTATOR
 ========================= */
 
 .identity-rotator {
-  margin-top: 70]px;
-  font-size: 48px; /* bigger */
+  margin-top: 10px; /* fixed bug */
+  font-size: 52px;
   font-weight: 700;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
 }
+
 .identity-rotator .static-text {
-  color: #888;
-  margin-right: 10px;
+  color: #999;
+  margin-right: 12px;
 }
 
 .identity-rotator .dynamic-text {
   color: #f2c400;
   display: inline-block;
+
   transition:
     opacity 0.4s ease,
     transform 0.4s ease;
 }
 
 /* animation states */
+
 .dynamic-text.hide {
   opacity: 0;
-  transform: translateY(8px);
+  transform: translateY(10px);
 }
 
 .dynamic-text.show {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* =========================
+   RESPONSIVE (TABLET)
+========================= */
+
+@media (max-width: 900px) {
+
+  .who-we-are {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 60px;
+  }
+
+  .who-text {
+    margin: 0 auto;
+  }
+
+  .who-we-are p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .identity-rotator {
+    font-size: 40px;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+  .who-we-are {
+    padding: 80px 6%;
+  }
+
+  .who-we-are h2 {
+    font-size: 24px;
+    padding: 12px 28px;
+  }
+
+  .who-we-are p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .identity-rotator {
+    font-size: 32px;
+  }
+
 }
 
 
@@ -504,7 +605,7 @@ nav a.active {
 
 
 /* =========================================
-   ORIGIN STORY – PREMIUM SECTION
+   ORIGIN STORY – CINEMATIC PREMIUM
 ========================================= */
 
 .origin-story {
@@ -513,50 +614,62 @@ nav a.active {
   gap: 80px;
 
   padding: 120px 10%;
-  background: #ffffff;
+  background: linear-gradient(135deg, #ffffff, #f8faff);
 
   align-items: center;
 }
 
 /* =========================
-   TEXT CONTENT
+   TEXT
 ========================= */
 
+.origin-content {
+  max-width: 620px;
+}
+
 .origin-content h2 {
-  font-size: 40px;
+  font-size: 42px;
   margin-bottom: 30px;
   color: #0a3d91;
+  letter-spacing: 0.5px;
   position: relative;
 }
 
-/* subtle underline */
 .origin-content h2::after {
   content: "";
-  width: 60px;
-  height: 3px;
-  background: #f2c400;
+  width: 70px;
+  height: 4px;
+  background: linear-gradient(90deg, #f2c400, #ffd84d);
   display: block;
-  margin-top: 12px;
+  margin-top: 14px;
+  border-radius: 2px;
 }
 
 .origin-content p {
   font-size: 16px;
   line-height: 1.9;
-  color: #333;
-  margin-bottom: 20px;
+  color: #444;
+  margin-bottom: 22px;
 }
 
 /* Signature */
 .origin-sign {
-  margin-top: 30px;
-  font-size: 14px;
+  margin-top: 40px;
+  font-size: 15px;
   letter-spacing: 2px;
   color: #0a3d91;
   font-weight: 600;
 }
 
+.origin-sign span {
+  display: block;
+  font-size: 13px;
+  opacity: 0.7;
+  margin-top: 4px;
+}
+
 /* =========================
-   IMAGE SIDE
+   IMAGE
 ========================= */
 
 .origin-image {
@@ -565,72 +678,69 @@ nav a.active {
 
 .origin-image img {
   width: 100%;
-  height: auto;
-  border-radius: 18px;
+  border-radius: 20px;
 
-  box-shadow: 0 30px 80px rgba(0,0,0,0.2);
-  transition: transform 0.6s ease;
+  box-shadow:
+    0 40px 100px rgba(0,0,0,0.25),
+    0 10px 30px rgba(0,0,0,0.1);
+
+  transition: 0.6s ease;
 }
 
-/* subtle hover */
 .origin-image:hover img {
-  transform: scale(1.04);
+  transform: scale(1.05);
 }
 
-/* soft gold glow behind image */
+/* glow */
 .origin-image::before {
   content: "";
   position: absolute;
-  inset: -20px;
-  background: radial-gradient(circle, rgba(242,196,0,0.2), transparent 70%);
+  inset: -25px;
+  background: radial-gradient(circle, rgba(242,196,0,0.25), transparent 70%);
   z-index: -1;
-  border-radius: 20px;
+  filter: blur(10px);
 }
 
 /* =========================
-   RESPONSIVE (TABLET)
+   SCROLL REVEAL
+========================= */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 1s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================
+   RESPONSIVE
 ========================= */
 
 @media (max-width: 900px) {
-
   .origin-story {
     grid-template-columns: 1fr;
-    gap: 50px;
-    padding: 100px 8%;
     text-align: center;
+    gap: 60px;
   }
 
   .origin-content h2::after {
-    margin-left: auto;
-    margin-right: auto;
+    margin: 14px auto;
   }
-
 }
 
-/* =========================
-   MOBILE
-========================= */
-
 @media (max-width: 600px) {
-
-  .origin-story {
-    padding: 80px 6%;
-  }
-
   .origin-content h2 {
-    font-size: 28px;
+    font-size: 30px;
   }
 
   .origin-content p {
     font-size: 14px;
   }
-
-  .origin-image img {
-    border-radius: 14px;
-  }
-
 }
-
 
 /* ===============================
    INFINITY STYLE
@@ -952,7 +1062,7 @@ nav a.active {
   display: flex;
   gap: 20px;
   width: max-content;
-  animation: mediaScroll 120s linear infinite;
+  animation: mediaScroll 70s linear infinite;
   will-change: transform;
 }
 
@@ -1146,35 +1256,58 @@ nav a.active {
 ========================================= */
 
 @media (max-width: 768px) {
+
   .vision-mission {
     grid-template-columns: 1fr;
-    gap: 40px;
-    padding: 70px 6%;
+    gap: 24px;
+    padding: 50px 5%;
   }
 
   .vision-item,
   .mission-item {
-    padding: 35px 28px;
+    padding: 22px 18px;
+    border-radius: 14px;
   }
 
   .vision-title,
   .mission-title {
-    font-size: 24px;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .vision-item p,
+  .mission-item p {
+    font-size: 13.5px;
+    line-height: 1.6;
   }
 
   .future-title {
-    font-size: 26px;
+    font-size: 22px;
+    margin-bottom: 20px;
   }
 
   .future-grid {
     grid-template-columns: 1fr 1fr;
-    gap: 18px;
+    gap: 12px;
   }
 
   .future-card {
-    padding: 25px 20px;
+    padding: 16px 12px;
+    border-radius: 12px;
+  }
+
+  .future-card h3 {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+
+  .future-card p {
+    font-size: 12.5px;
+    line-height: 1.5;
   }
 }
+
+
 
 /* =========================================
    LEADERSHIP SECTION
@@ -1426,83 +1559,86 @@ nav a.active {
   }
 }
 
-/* =========================================
-   WHY CHOOSE US
-========================================= */
+  /* =========================================
+    WHY CHOOSE US
+  ========================================= */
 
-.why-us {
-  padding: 120px 10%;
-  text-align: center;
-  background: #ffffff;
-}
+  .why-us {
+    padding: 120px 10%;
+    text-align: center;
+    background: #ffffff;
+  }
 
-.why-us h2 {
-  font-size: 34px;
-  color: #0a3d91;
-  margin-bottom: 50px;
-}
+  .why-us h2 {
+    font-size: 34px;
+    color: #0a3d91;
+    margin-bottom: 50px;
+  }
 
-/* GRID */
+  /* GRID */
 
-.why-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-}
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
 
-/* CARD */
+  /* CARD */
 
-.why-grid div {
-  padding: 35px;
+  .why-grid div {
+    padding: 35px;
 
-  border: 1px solid #e6e9ef;
+    border: 1px solid #e6e9ef;
 
-  border-radius: 8px;
+    border-radius: 8px;
 
-  background: #ffffff;
+    background: #ffffff;
 
-  font-size: 15px;
+    font-size: 15px;
 
-  color: #333;
+    color: #333;
 
-  transition: all 0.35s ease;
+    transition: all 0.35s ease;
 
-  position: relative;
-}
+    position: relative;
+  }
 
-/* GOLD LINE */
+  /* GOLD LINE */
 
-.why-grid div::after {
-  content: "";
+  .why-grid div::after {
+    content: "";
 
-  position: absolute;
+    position: absolute;
 
-  bottom: 0;
+    bottom: 0;
 
-  left: 50%;
+    left: 50%;
 
-  width: 0;
+    width: 0;
 
-  height: 3px;
+    height: 3px;
 
-  background: #f2c400;
+    background: #f2c400;
 
-  transform: translateX(-50%);
+    transform: translateX(-50%);
 
-  transition: width 0.35s ease;
-}
+    transition: width 0.35s ease;
+  }
 
-.why-grid div:hover::after {
-  width: 60%;
-}
+  .why-grid div:hover::after {
+    width: 60%;
+  }
 
-/* HOVER */
+  /* HOVER */
 
-.why-grid div:hover {
-  transform: translateY(-6px);
+  .why-grid div:hover {
+    transform: translateY(-6px);
 
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
-}
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+  }
+
+
+
 
 /* =========================================
    IMPACT STRIP
@@ -1571,9 +1707,6 @@ nav a.active {
 ========================================= */
 
 @media (max-width: 768px) {
-  .why-grid {
-    grid-template-columns: 1fr 1fr;
-  }
 
   .impact-grid {
     grid-template-columns: 1fr 1fr;
