@@ -413,6 +413,86 @@ futureCards.forEach(card => {
 
 
 /* =========================
+   WHY US ANIATIONS
+========================= */
+const whyCards = document.querySelectorAll(".why-grid div");
+
+function revealWhy() {
+  const trigger = window.innerHeight - 80;
+
+  whyCards.forEach((card, index) => {
+    const top = card.getBoundingClientRect().top;
+
+    if (top < trigger && !card.classList.contains("show")) {
+
+      setTimeout(() => {
+        card.classList.add("show");
+      }, index * 120); // stagger effect
+    }
+  });
+}
+
+window.addEventListener("scroll", revealWhy);
+window.addEventListener("load", revealWhy);
+
+
+
+
+/* =========================
+   SATS ANIATIONS
+========================= */
+
+
+const impactItems = document.querySelectorAll(".impact-item");
+
+function animateImpact() {
+  const trigger = window.innerHeight - 100;
+
+  impactItems.forEach((item, index) => {
+    const top = item.getBoundingClientRect().top;
+
+    if (top < trigger && !item.classList.contains("show")) {
+
+      // reveal animation with delay
+      setTimeout(() => {
+        item.classList.add("show");
+        startCount(item);
+      }, index * 150);
+    }
+  });
+}
+
+/* COUNT-UP FUNCTION */
+function startCount(item) {
+  const numberEl = item.querySelector("h3");
+  const text = numberEl.innerText.replace("+", "");
+  const target = parseInt(text);
+
+  let count = 0;
+  const speed = target / 40;
+
+  function update() {
+    count += speed;
+
+    if (count < target) {
+      numberEl.innerText = Math.floor(count) + "+";
+      requestAnimationFrame(update);
+    } else {
+      numberEl.innerText = target + "+";
+    }
+  }
+
+  update();
+}
+
+/* EVENTS */
+window.addEventListener("scroll", animateImpact);
+window.addEventListener("load", animateImpact);
+
+
+
+
+/* =========================
    FOOTER EFFECT
 ========================= */
 const footer = document.querySelector(".footer-modern");

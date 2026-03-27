@@ -1559,85 +1559,149 @@ nav a.active {
   }
 }
 
-  /* =========================================
-    WHY CHOOSE US
-  ========================================= */
+/* =========================================
+   WHY CHOOSE US
+========================================= */
+
+.why-us {
+  padding: 120px 10%;
+  text-align: center;
+  background: #ffffff;
+}
+
+.why-us h2 {
+  font-size: 34px;
+  color: #0a3d91;
+  margin-bottom: 50px;
+}
+
+/* =========================
+   GRID (DESKTOP)
+========================= */
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.why-grid div {
+  padding: 35px;
+  border: 1px solid #e6e9ef;
+  border-radius: 10px;
+  background: #ffffff;
+  font-size: 15px;
+  color: #333;
+  opacity: 0;
+  transform: translateX(60px); /* default right */
+  transition: 
+    opacity 0.8s ease,
+    transform 0.8s ease;
+  position: relative;
+}
+/* LEFT SIDE ITEMS */
+.why-grid div:nth-child(odd) {
+  transform: translateX(-60px);
+}
+
+/* ACTIVE STATE */
+.why-grid div.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* GOLD LINE */
+
+.why-grid div::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background: #f2c400;
+  transform: translateX(-50%);
+  transition: width 0.35s ease;
+}
+
+.why-grid div:hover::after {
+  width: 60%;
+}
+
+/* HOVER */
+
+.why-grid div:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================
+   TABLET (2 x 3)
+========================= */
+
+@media (max-width: 1024px) {
 
   .why-us {
-    padding: 120px 10%;
-    text-align: center;
-    background: #ffffff;
+    padding: 80px 6%;
   }
 
   .why-us h2 {
-    font-size: 34px;
-    color: #0a3d91;
-    margin-bottom: 50px;
+    font-size: 28px;
+    margin-bottom: 40px;
   }
-
-  /* GRID */
 
   .why-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
-
-  /* CARD */
 
   .why-grid div {
-    padding: 35px;
+    padding: 24px 20px;
+    font-size: 14px;
+  }
+}
 
-    border: 1px solid #e6e9ef;
+/* =========================
+   MOBILE (COMPACT 2 x 3)
+========================= */
 
-    border-radius: 8px;
+@media (max-width: 600px) {
 
-    background: #ffffff;
-
-    font-size: 15px;
-
-    color: #333;
-
-    transition: all 0.35s ease;
-
-    position: relative;
+  .why-us {
+    padding: 60px 5%;
   }
 
-  /* GOLD LINE */
+  .why-us h2 {
+    font-size: 24px;
+    margin-bottom: 28px;
+  }
+
+  .why-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px;
+  }
+
+  .why-grid div {
+    padding: 16px 10px;
+    font-size: 12.5px;
+    line-height: 1.4;
+  }
+
+  /* disable hover on mobile */
+  .why-grid div:hover {
+    transform: none;
+    box-shadow: none;
+  }
 
   .why-grid div::after {
-    content: "";
-
-    position: absolute;
-
-    bottom: 0;
-
-    left: 50%;
-
-    width: 0;
-
-    height: 3px;
-
-    background: #f2c400;
-
-    transform: translateX(-50%);
-
-    transition: width 0.35s ease;
+    height: 2px;
   }
-
-  .why-grid div:hover::after {
-    width: 60%;
-  }
-
-  /* HOVER */
-
-  .why-grid div:hover {
-    transform: translateY(-6px);
-
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
-  }
-
-
+}
 
 
 /* =========================================
@@ -1702,24 +1766,52 @@ nav a.active {
   color: rgba(255, 255, 255, 0.85);
 }
 
-/* =========================================
-   MOBILE
-========================================= */
+
+/* =========================
+   REVEAL ANIMATION
+========================= */
+
+.impact-item {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+.impact-item.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
 @media (max-width: 768px) {
 
   .impact-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 20px !important;
   }
 
   .impact-item {
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 30px 10px;
-  }
-}
+    padding: 25px 10px;
 
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+
+  /* remove last row border */
+  .impact-item:nth-last-child(-n+2) {
+    border-bottom: none;
+  }
+
+  .impact-item h3 {
+    font-size: 32px;
+  }
+
+  .impact-item p {
+    font-size: 12.5px;
+  }
+
+}
 /* =========================
    FOUNDER MESSAGE SECTION
    ========================= */
