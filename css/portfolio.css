@@ -332,12 +332,11 @@ nav a.active {
 }
 
 /* =========================
-   GRID LAYOUT
+   MASONRY GRID (NO GAPS)
 ========================= */
 .portfolio-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 40px;
+  column-count: 4;
+  column-gap: 40px;
   padding: 40px 10% 120px;
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
@@ -351,15 +350,17 @@ nav a.active {
    IMAGE CARD
 ========================= */
 .image-wrapper {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 40px;
+
   position: relative;
   border-radius: 20px;
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.4s ease;
-}
 
-/* GOLD FRAME (REAL PHOTO FRAME STYLE) */
-.image-wrapper {
+  /* GOLD FRAME */
   border: 2px solid #f2c400;
   box-shadow:
     0 0 0 2px rgba(242,196,0,0.2),
@@ -390,25 +391,25 @@ nav a.active {
   height: 45px;
   border: 2px solid #f2c400;
   pointer-events: none;
+  opacity: 0;
   transition: 0.2s ease;
+  z-index: 2;
 }
 
-/* Top left */
+/* Top-left */
 .image-wrapper::before {
   top: 10px;
   left: 10px;
   border-right: none;
   border-bottom: none;
-  opacity: 0;
 }
 
-/* Bottom right */
+/* Bottom-right */
 .image-wrapper::after {
   bottom: 10px;
   right: 10px;
   border-left: none;
   border-top: none;
-  opacity: 0;
 }
 
 /* Animate */
@@ -424,26 +425,22 @@ nav a.active {
 }
 
 /* =========================
-   NETFLIX STYLE TITLE
+   OVERLAY GRADIENT
 ========================= */
 .image-wrapper::after {
-  pointer-events: none;
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+  z-index: 1;
 }
 
-.image-wrapper::after,
-.image-wrapper::before {
-  z-index: 2;
-}
-
-.image-wrapper::after {
-  background: none;
-}
-
-.image-wrapper::before {
-  background: none;
-}
-
-/* Gradient fade */
+/* =========================
+   TITLE
+========================= */
 .image-wrapper .image-title {
   position: absolute;
   bottom: 15px;
@@ -456,18 +453,6 @@ nav a.active {
   transition: 0.3s ease;
 }
 
-.image-wrapper::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 100%;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
-  z-index: 1;
-}
-
-/* Hover title glow */
 .image-wrapper:hover .image-title {
   color: #ffd000;
   transform: translateY(-6px);
@@ -545,8 +530,26 @@ nav a.active {
   to { transform: scale(1); opacity: 1; }
 }
 
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 1200px) {
+  .portfolio-grid {
+    column-count: 3;
+  }
+}
 
+@media (max-width: 768px) {
+  .portfolio-grid {
+    column-count: 2;
+  }
+}
 
+@media (max-width: 480px) {
+  .portfolio-grid {
+    column-count: 1;
+  }
+}
 /* =========================
    FOOTER BASE
 ========================= */
