@@ -1,0 +1,795 @@
+/* =========================
+    BEE INFINITY – BRAND COLORS
+    ========================= */
+:root {
+  --bg-main: #f5f7fa;
+  --bg-section: #ffffff;
+  --bg-card: #ffffff;
+
+  --primary-blue: #0a3d91;
+  --accent-yellow: #f2c400;
+
+  --text-main: #000000;
+  --text-muted: #000000;
+
+  --border-soft: #e1e6ee;
+}
+
+
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+      font-family: "Segoe UI", Arial, sans-serif;
+  background: radial-gradient(circle at top, #141414, #0a0a0a);
+  color: #ffffff;
+  line-height: 1.7;
+  padding-top: 110px; /* navbar height */
+}
+
+
+
+
+/* =========================
+   HEADER / NAVBAR
+   ========================= */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 110px;
+  padding: 0 60px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: #ffffff;
+  border-bottom: 1px solid var(--border-soft);
+  z-index: 1000;
+}
+
+/* =========================
+   LOGO
+   ========================= */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.logo img {
+  height: 90px;
+  width: auto;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.brand-name {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--primary-blue);
+}
+
+.brand-sub {
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--text-muted);
+}
+
+/* =========================
+   NAV LINKS
+   ========================= */
+nav {
+  display: flex;
+  align-items: center;
+}
+
+nav a {
+  margin-left: 28px;
+  font-size: 14px;
+  text-decoration: none;
+  color: var(--text-main);
+}
+
+nav a:hover {
+  color: var(--primary-blue);
+}
+nav a.active {
+  color: var(--accent-yellow);
+  font-weight: 600;
+}
+
+/* DROPDOWN CONTAINER */
+.dropdown {
+  position: relative;
+}
+
+/* ARROW ANIMATION */
+.arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+/* ROTATE WHEN OPEN */
+.dropdown.open .arrow {
+  transform: rotate(180deg);
+}
+
+/* DROPDOWN MENU */
+.dropdown-menu {
+  position: absolute;
+  top: 120%;
+  left: 0;
+
+  background: #fff; /* WHITE DROPDOWN */
+  min-width: 200px;
+
+  border-radius: 10px;
+  overflow: hidden;
+
+  /* ANIMATION CORE */
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-10px);
+
+  transition:
+    max-height 0.4s ease,
+    opacity 0.3s ease,
+    transform 0.3s ease;
+
+  z-index: 999;
+}
+
+/* LINKS */
+.dropdown-menu a {
+  display: block;
+  padding: 12px 16px;
+  color: #111;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+/* HOVER */
+.dropdown-menu a:hover {
+  background: var(--primary-blue);
+  color: white;
+}
+
+/* SHOW STATE */
+.dropdown.open .dropdown-menu {
+  max-height: 300px; /* enough for items */
+  opacity: 100;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  /* NAV CENTER */
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .nav-links a {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* DROPDOWN */
+  .dropdown {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .dropdown a {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* 🔥 KEY FIX: REMOVE FLOATING */
+  .dropdown-menu {
+    position: static; /* IMPORTANT */
+    width: 100%;
+    background: #fff;
+
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+
+    transition:
+      max-height 0.4s ease,
+      opacity 0.3s ease;
+  }
+
+  /* 🔥 OPEN STATE */
+  .dropdown.open .dropdown-menu {
+    max-height: 500px; /* increase so it never cuts */
+    opacity: 1;
+  }
+
+  /* CENTER SUB ITEMS */
+  .dropdown-menu a {
+    width: auto;
+    text-align: center;
+    padding: 10px 0;
+  }
+}
+
+/* =========================================
+   SHRINKED HEADER (ON SCROLL)
+========================================= */
+
+.navbar.scrolled {
+  height: 70px;
+  padding: 10px 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease;
+}
+
+.navbar.scrolled .logo img {
+  height: 50px;
+  transition: all 0.4s ease-in;
+}
+
+.navbar.scrolled nav a {
+  font-size: 12px;
+  margin-left: 20px;
+  transition: all 0.4s ease-in;
+  transition: all 0.4s ease-out;
+}
+
+
+
+
+/* ================= BRAND COLORS ================= */
+/*
+Primary: Gold → #ffcc00
+Accent: Orange → #ff8800
+Dark BG: #0a0a0a / #141414
+*/
+
+/* ================= HERO ================= */
+.careers h1,
+.internship h1 {
+  font-size: 64px;
+  margin-bottom: 15px;
+  padding-left: 8%;
+  text-align: left;
+  background: linear-gradient(90deg, #ffcc00, #ff5500);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  padding-left: 8%;
+  max-width: 600px;
+  color: #777;
+  margin-bottom: 80px;
+  font-size: 17px;
+}
+
+/* ================= SECTION ================= */
+.careers,
+.internship {
+  padding: 120px 0;
+}
+
+/* ================= LAYOUT (NEW STACK STYLE) ================= */
+.jobs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  padding: 0 8%;
+}
+
+/* ================= JOB CARD (COMPLETELY NEW STYLE) ================= */
+.job-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, rgba(255,255,255,0.03), transparent);
+  border-left: 4px solid #ffcc00;
+  padding: 40px;
+  border-radius: 12px;
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+/* glow strip */
+.job-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(255,204,0,0.1), transparent);
+  opacity: 0;
+  transition: 0.4s;
+  pointer-events: none;
+}
+
+.job-card:hover::before {
+  opacity: 1;
+}
+
+.job-card:hover {
+  transform: translateX(10px);
+  background: linear-gradient(90deg, rgba(255,204,0,0.08), transparent);
+}
+
+/* ================= TEXT ================= */
+.job-card h2 {
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+
+.exp {
+  font-size: 13px;
+  color: #aaa;
+  margin-bottom: 10px;
+}
+
+.job-card ul {
+  padding-left: 18px;
+}
+
+.job-card ul li {
+  font-size: 14px;
+  color: #bbb;
+}
+
+/* ================= BUTTON ================= */
+.apply-btn {
+  background: transparent;
+  border: 1px solid #ffcc00;
+  color: #ffcc00;
+  padding: 12px 26px;
+  border-radius: 40px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.apply-btn:hover {
+  background: #ffcc00;
+  color: #000;
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #ffcc00;
+}
+
+/* ================= INTERNSHIP STYLE ================= */
+.internship .job-card {
+  border-left: 4px solid #ff5500;
+}
+
+.internship .apply-btn {
+  border: 1px solid #ff5500;
+  color: #ff5500;
+}
+
+.internship .apply-btn:hover {
+  background: #ff5500;
+  color: #000;
+}
+
+/* ================= ANIMATION ================= */
+.job-card {
+  animation: fadeUp 0.8s ease;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   FOOTER BASE
+========================= */
+
+.footer-modern {
+  position: relative;
+  color: #fff;
+  overflow: hidden;
+  font-family: "Poppins", sans-serif;
+}
+
+/* =========================
+   BACKGROUND IMAGE
+========================= */
+
+.footer-bg {
+  position: absolute;
+  inset: 0;
+  background: url("https://images.unsplash.com/photo-1497032628192-86f99bcd76bc")
+    center/cover no-repeat;
+  z-index: 0;
+  filter: brightness(0.35);
+}
+
+/* =========================
+   BLUE OVERLAY (BRAND)
+========================= */
+
+.footer-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0, 40, 120, 0.85),
+    rgba(0, 0, 0, 0.7)
+  );
+  z-index: 1;
+}
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.footer-container {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 100px 60px;
+  gap: 50px;
+}
+
+/* =========================
+   LEFT SIDE
+========================= */
+
+.footer-left {
+  max-width: 600px;
+}
+
+.footer-big-title {
+  font-size: 52px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.footer-big-title span {
+  color: var(--accent-yellow);
+  text-shadow: 0 0 20px var(--primary-blue) (255, 255, 255, 0.7);
+}
+
+.footer-tagline {
+  margin-top: 12px;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: #ddd;
+}
+
+/* =========================
+   RIGHT SIDE
+========================= */
+
+.footer-right {
+  max-width: 380px;
+}
+
+.footer-heading {
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+  color: #ddd;
+}
+
+.footer-text {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: #ccc;
+}
+
+/* =========================
+   BUTTON (BLUE GLOW)
+========================= */
+
+.footer-btn {
+  display: inline-block;
+  background: var(--primary-blue);
+  color: #fff;
+  padding: 14px 28px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 13px;
+
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+  transition: all 0.3s ease;
+}
+
+.footer-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 35px rgba(0, 120, 255, 0.9);
+}
+
+/* =========================
+   BOTTOM STRIP
+========================= */
+
+.footer-bottom {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 20px 60px;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+/* LEFT TEXT */
+
+.footer-bottom span {
+  font-size: 12px;
+  color: #bbb;
+}
+
+/* LINKS */
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-links a {
+  color: #bbb;
+  text-decoration: none;
+  font-size: 12px;
+  transition: 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #fff;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 1024px) {
+  .footer-container {
+    padding: 80px 30px;
+    gap: 30px;
+  }
+
+  .footer-big-title {
+    font-size: 38px;
+  }
+
+  .footer-right {
+    max-width: 300px;
+  }
+}
+
+/* =========================
+   MOBILE (KEEP SIDE BY SIDE)
+========================= */
+
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: row !important; /* 🔥 FORCE SIDE BY SIDE */
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 60px 20px;
+    gap: 20px;
+  }
+
+  .footer-left {
+    max-width: 55%;
+  }
+
+  .footer-right {
+    max-width: 45%;
+  }
+
+  .footer-big-title {
+    font-size: 26px;
+  }
+
+  .footer-tagline {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .footer-text {
+    font-size: 12px;
+  }
+
+  .footer-btn {
+    padding: 10px 18px;
+    font-size: 11px;
+  }
+
+  /* bottom stays inline */
+  .footer-bottom {
+    flex-direction: row !important;
+    justify-content: space-between;
+    padding: 15px 20px;
+  }
+
+  .footer-links {
+    gap: 10px;
+  }
+}
+
+/* =========================
+   SMALL MOBILE (TIGHT SCALE)
+========================= */
+
+@media (max-width: 480px) {
+  .footer-container {
+    gap: 12px;
+  }
+
+  .footer-left {
+    max-width: 52%;
+  }
+
+  .footer-right {
+    max-width: 48%;
+  }
+
+  .footer-big-title {
+    font-size: 20px;
+  }
+
+  .footer-text {
+    font-size: 11px;
+  }
+
+  .footer-btn {
+    padding: 8px 14px;
+    font-size: 10px;
+  }
+
+  .footer-links a {
+    font-size: 10px;
+  }
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+
+  .careers h1,
+  .internship h1 {
+    font-size: 36px;
+    padding-left: 5%;
+  }
+
+  .subtitle {
+    padding-left: 5%;
+  }
+
+  .jobs-container {
+    padding: 0 5%;
+  }
+
+  .job-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+}
+
+/* ================= MENU ================= */
+.menu-toggle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    width: 28px;
+    height: 20px;
+  }
+
+  .menu-toggle span {
+    height: 2px;
+    background: #0a3d91;
+  }
+}
+
+
+/* =========================================
+   HAMBURGER MENU SYSTEM
+========================================= */
+.menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  nav {
+    display: none; /* hide normal nav */
+  }
+
+  /* Show hamburger */
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 1100;
+  }
+
+  .menu-toggle span {
+    height: 2px;
+    width: 100%;
+    background: #0a3d91;
+    border-radius: 2px;
+    transition: 0.4s ease;
+  }
+
+  /* Animate to X */
+  .menu-toggle.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+
+  /* Overlay */
+  .menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.4s ease;
+    z-index: 900;
+  }
+
+  .menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  body.menu-open {
+    overflow: hidden;
+  }
+}
+
+
+
+
