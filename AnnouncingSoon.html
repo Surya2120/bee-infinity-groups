@@ -18,6 +18,40 @@ body{
   overflow:hidden;
 }
 
+/* 🔥 ENTER SCREEN */
+#enter-screen{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:#000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+  cursor:pointer;
+}
+
+.enter-text{
+  color:#fff;
+  font-size:22px;
+  letter-spacing:4px;
+  border:1px solid #fff;
+  padding:15px 30px;
+  transition:0.3s;
+}
+
+.enter-text:hover{
+  background:#fff;
+  color:#000;
+}
+
+@media(max-width:768px){
+  .enter-text{
+    font-size:16px;
+    padding:12px 20px;
+  }
+}
+
 /* BACK BUTTON */
 .back-btn{
   position:absolute;
@@ -43,7 +77,7 @@ body{
   width:100%;
   display:flex;
   align-items:center;
-  justify-content:center; /* CENTER FIX */
+  justify-content:center;
   text-align:center;
   position:relative;
   overflow:hidden;
@@ -58,7 +92,7 @@ video{
   z-index:-2;
 }
 
-/* OVERLAY (center fade instead of left) */
+/* OVERLAY */
 .hero::after{
   content:"";
   position:absolute;
@@ -79,11 +113,27 @@ video{
   padding:0 20px;
 }
 
+/* LOGO */
+.logo{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  margin-bottom:-10px;
+}
+
+.logo img{
+  width:500px;
+  max-width:90%;
+  opacity:0.95;
+  filter: drop-shadow(0 0 25px rgba(255,255,255,0.15));
+}
+
 /* TITLE */
 .hero h1{
   font-size:60px;
   font-weight:900;
-  margin-bottom:20px;
+  margin-top:0;
+  margin-bottom:15px;
   opacity:0;
   transform:translateY(40px);
   transition:1s;
@@ -108,30 +158,17 @@ video{
   text-decoration:none;
   transition:0.4s;
 }
-
 .btn:hover{
   background:#fff;
   color:#000;
 }
 
-/* QUESTION */
-.question{
-  position:absolute;
-  right:5%;
-  font-size:180px;
-  opacity:0.05;
-}
-
 /* COUNTDOWN */
 .countdown{
   display:flex;
-  justify-content:center; /* CENTER FIX */
+  justify-content:center;
   gap:25px;
   margin-top:30px;
-}
-
-.time-box{
-  text-align:center;
 }
 
 .time-box span{
@@ -158,71 +195,138 @@ video{
   font-size:12px;
 }
 
-/* ================= RESPONSIVE ================= */
 
-@media(max-width:768px){
+/* ================= MOBILE RESPONSIVE ================= */
+@media (max-width:768px){
 
+  /* BACK BUTTON */
+  .back-btn{
+    top:15px;
+    left:15px;
+    padding:8px 14px;
+    font-size:10px;
+  }
+
+  /* HERO CONTENT SPACING */
+  .hero-content{
+    padding:0 15px;
+  }
+
+  /* LOGO */
+  .logo img{
+    width:240px; /* smaller logo */
+  }
+
+  /* TITLE */
   .hero h1{
-    font-size:36px;
+    font-size:34px;
+    margin-bottom:10px;
   }
 
+  /* DESCRIPTION */
   .hero p{
-    font-size:15px;
+    font-size:14px;
+    margin-bottom:20px;
   }
 
-  .question{
-    font-size:100px;
-    right:10px;
+  /* BUTTON */
+  .btn{
+    padding:10px 20px;
+    font-size:12px;
   }
 
+  /* COUNTDOWN */
   .countdown{
-    gap:15px;
+    gap:12px;
+    flex-wrap:wrap; /* 🔥 important for small screens */
   }
 
   .time-box span{
-    font-size:22px;
+    font-size:20px;
+  }
+
+  .time-box{
+    font-size:12px;
+  }
+
+  /* FOOTER */
+  .footer{
+    font-size:10px;
+    bottom:15px;
+  }
+}
+
+/* ================= EXTRA SMALL DEVICES ================= */
+@media (max-width:400px){
+
+  .logo img{
+    width:180px;
+  }
+
+  .hero h1{
+    font-size:26px;
+  }
+
+  .hero p{
+    font-size:12px;
+  }
+
+  .countdown{
+    gap:8px;
+  }
+
+  .time-box span{
+    font-size:16px;
   }
 
 }
+
 
 </style>
 </head>
 
 <body>
 
-<!-- BACK BUTTON -->
+<!-- 🔥 TAP TO ENTER -->
+<div id="enter-screen">
+  <div class="enter-text">TAP TO ENTER</div>
+</div>
+
+<!-- 🔥 BACKGROUND MUSIC -->
+<audio id="bg-music" loop playsinline>
+  <source src="assets/sounds/botd_bg-music.mp3" type="audio/mpeg">
+</audio>
+
 <a href="index.html" class="back-btn">← HOME</a>
 
 <section class="hero">
 
-  <!-- VIDEO -->
   <video autoplay muted loop>
-    <source src="https://cdn.coverr.co/videos/coverr-dancing-people-1573/1080p.mp4" type="video/mp4">
+    <source src="https://cdn.coverr.co/videos/coverr-dancing-people-1573/1080p.mp4">
   </video>
 
-  <!-- PARTICLES -->
   <canvas id="particles"></canvas>
 
   <div class="hero-content">
+
+    <div class="logo">
+      <img src="assets/images/botd/Final_BOTD_Logo.png">
+    </div>
+
     <h1 class="reveal">ANNOUNCING SOON</h1>
 
-    <p class="reveal">
-     ———— India’s premier dance platform by Bee Infinity Groups —————
-      where talent begins its journey to something bigger.
-    </p>
+    <p class="reveal">India’s premier dance platform by Bee Infinity Groups.</p>
 
     <a href="#" class="btn reveal">Stay Tuned</a>
 
-    <!-- COUNTDOWN -->
     <div class="countdown reveal">
       <div class="time-box"><span id="days">00</span>Days</div>
       <div class="time-box"><span id="hours">00</span>Hours</div>
       <div class="time-box"><span id="minutes">00</span>Min</div>
       <div class="time-box"><span id="seconds">00</span>Sec</div>
     </div>
-  </div>
 
-  <div class="question">?</div>
+  </div>
 
 </section>
 
@@ -231,30 +335,31 @@ video{
 <script>
 
 /* REVEAL */
-function reveal(){
+window.addEventListener("load", ()=>{
   document.querySelectorAll('.reveal').forEach(el=>{
     el.style.opacity=1;
     el.style.transform="translateY(0)";
   });
-}
-window.addEventListener("load", reveal);
+});
 
 /* COUNTDOWN */
-const targetDate = new Date("April 03, 2026 00:00:00").getTime();
+const targetDate = new Date().getTime() + (3*24*60*60*1000);
 
 setInterval(()=>{
-  const now = new Date().getTime();
-  const gap = targetDate - now;
+  const gap = targetDate - new Date().getTime();
 
-  const d = Math.floor(gap/(1000*60*60*24));
-  const h = Math.floor((gap%(1000*60*60*24))/(1000*60*60));
-  const m = Math.floor((gap%(1000*60*60))/(1000*60));
-  const s = Math.floor((gap%(1000*60))/1000);
+  if(gap <= 0){
+    document.getElementById("days").innerText="00";
+    document.getElementById("hours").innerText="00";
+    document.getElementById("minutes").innerText="00";
+    document.getElementById("seconds").innerText="00";
+    return;
+  }
 
-  document.getElementById("days").innerText=d;
-  document.getElementById("hours").innerText=h;
-  document.getElementById("minutes").innerText=m;
-  document.getElementById("seconds").innerText=s;
+  document.getElementById("days").innerText=Math.floor(gap/(1000*60*60*24));
+  document.getElementById("hours").innerText=Math.floor((gap%(1000*60*60*24))/(1000*60*60));
+  document.getElementById("minutes").innerText=Math.floor((gap%(1000*60*60))/(1000*60));
+  document.getElementById("seconds").innerText=Math.floor((gap%(1000*60))/1000);
 },1000);
 
 /* PARTICLES */
@@ -265,7 +370,6 @@ canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
 
 let particles=[];
-
 for(let i=0;i<80;i++){
   particles.push({
     x:Math.random()*canvas.width,
@@ -278,20 +382,45 @@ for(let i=0;i<80;i++){
 
 function animate(){
   ctx.clearRect(0,0,canvas.width,canvas.height);
-
   particles.forEach(p=>{
     p.x+=p.dx;
     p.y+=p.dy;
-
     ctx.beginPath();
     ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
     ctx.fillStyle="white";
     ctx.fill();
   });
-
   requestAnimationFrame(animate);
 }
 animate();
+
+/* 🔥 TAP TO ENTER MUSIC */
+const music = document.getElementById("bg-music");
+const enterScreen = document.getElementById("enter-screen");
+
+enterScreen.addEventListener("click", () => {
+
+  music.volume = 0;
+  music.play();
+
+  let vol = 0;
+  const fade = setInterval(()=>{
+    if(vol < 0.6){
+      vol += 0.05;
+      music.volume = vol;
+    } else {
+      clearInterval(fade);
+    }
+  },150);
+
+  enterScreen.style.opacity = "0";
+  enterScreen.style.pointerEvents = "none";
+
+  setTimeout(()=>{
+    enterScreen.style.display = "none";
+  },500);
+
+});
 
 </script>
 

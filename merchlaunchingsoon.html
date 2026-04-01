@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Merch Launching Soon</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: radial-gradient(circle at center, #0a0f1c, #05070d);
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* BACK BUTTON */
+.back-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 14px;
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 8px 14px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+/* HERO */
+.hero {
+  padding: 120px 20px;
+}
+
+.hero h1 {
+  font-size: 48px;
+  letter-spacing: 3px;
+}
+
+.hero p {
+  color: #aaa;
+}
+
+/* FLOATING ICONS */
+.floating-icons span {
+  position: absolute;
+  font-size: 30px;
+  opacity: 0.2;
+  animation: float 8s infinite ease-in-out;
+}
+
+.icon1 { top: 10%; left: 15%; }
+.icon2 { top: 20%; right: 10%; }
+.icon3 { bottom: 20%; left: 20%; }
+.icon4 { bottom: 15%; right: 15%; }
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-25px); }
+}
+
+/* FORM */
+input {
+  padding: 12px;
+  width: 220px;
+  border-radius: 25px;
+  border: none;
+}
+
+button {
+  padding: 12px 20px;
+  border-radius: 25px;
+  border: none;
+  background: #f2c400;
+  cursor: pointer;
+}
+
+.message {
+  margin-top: 15px;
+}
+</style>
+
+</head>
+
+<body>
+
+<a href="index.html" class="back-btn">← Home</a>
+
+<div class="floating-icons">
+  <span class="icon1">👕</span>
+  <span class="icon2">🧢</span>
+  <span class="icon3">🎒</span>
+  <span class="icon4">👟</span>
+</div>
+
+<div class="hero">
+
+  <h1>MERCH LAUNCHING SOON</h1>
+  <p>Something exclusive is coming from Bee Infinity Groups</p>
+
+  <h3>Stay Connected</h3>
+
+  <input type="text" id="phone" placeholder="Enter Mobile Number">
+  <button onclick="sendNumber()">Notify Me</button>
+
+  <div class="message" id="msg"></div>
+
+</div>
+
+<script>
+function sendNumber() {
+  let phone = document.getElementById("phone").value;
+  const msg = document.getElementById("msg");
+
+  if (!phone) {
+    msg.innerText = "Enter mobile number";
+    msg.style.color = "red";
+    return;
+  }
+
+  // AUTO ADD +91
+  if (!phone.startsWith("+")) {
+    phone = "+91" + phone;
+  }
+
+  fetch("http://localhost:3000/send", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ phone })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
+      msg.innerText = "You’ll be notified 🚀";
+      msg.style.color = "#0f0";
+    } else {
+      msg.innerText = "Something went wrong";
+      msg.style.color = "red";
+    }
+  })
+  .catch(() => {
+    msg.innerText = "Server not running";
+    msg.style.color = "red";
+  });
+}
+</script>
+
+</body>
+</html>

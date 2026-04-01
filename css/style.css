@@ -1735,6 +1735,52 @@ nav a.active {
   background: rgba(255, 255, 255, 0.3);
 }
 
+
+/* =========================
+   HEADER / TAGLINE (NEW)
+========================= */
+
+.reviews-header {
+  margin-bottom: 40px;
+}
+
+.reviews-tagline {
+  color: #aaa;
+  font-size: 14px;
+  letter-spacing: 2px;
+  margin-top: -30px;
+}
+
+.reviews-tagline span {
+  display: inline-block;
+  margin-top: 8px;
+
+  font-size: 13px;
+  color: #f2c400; /* 🔥 brand gold */
+
+  letter-spacing: 3px;
+  text-transform: uppercase;
+
+  position: relative;
+}
+
+/* subtle underline glow */
+.reviews-tagline span::after {
+  content: "";
+  display: block;
+  width: 40%;
+  height: 1px;
+  margin: 6px auto 0;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #f2c400,
+    transparent
+  );
+
+  opacity: 0.6;
+}
 /* =========================
    HOVER (DESKTOP)
 ========================= */
