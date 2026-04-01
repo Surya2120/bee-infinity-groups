@@ -43,17 +43,19 @@ body {
 
 
 
+
+
 /* =========================================
-   HERO SECTION – IMAGE SLIDER (FINAL PRO)
+   HERO SECTION – IMAGES (FIXED)
 ========================================= */
 
-/* HERO SLIDER (FIXED 16:9) */
+
+/* HERO SLIDER */
 .hero-slider {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 8; /* 🔥 always wide */
+  height: 100vh;
   overflow: hidden;
-  background: #000;
 }
 
 /* SLIDES */
@@ -76,30 +78,39 @@ body {
   z-index: 1;
 }
 
-/* IMAGE */
+/* IMAGE STYLE (16:9 + ZOOM EFFECT) */
 .slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
-  transition: transform 6s ease-out;
+
+  /* CINEMATIC ZOOM */
+  transform: scale(1);
+  animation: slowZoom 10s ease-in-out forwards;
 }
 
-/* ZOOM ONLY ACTIVE */
+/* Apply zoom only when active */
 .slide.active img {
-  transform: scale(1.1);
+  animation: slowZoom 10s ease-in-out forwards;
 }
 
 @keyframes slowZoom {
-  from { transform: scale(1); }
-  to { transform: scale(1.1); }
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
 }
 
 /* OVERLAY */
 .hero-overlay {
   position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.45);
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  top: 0;
+  left: 0;
   z-index: 2;
 }
 
@@ -109,108 +120,370 @@ body {
   z-index: 3;
   text-align: center;
   color: #fff;
-
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
-  width: 90%;
-  max-width: 900px;
-
-  /* fade after load */
-  animation: fadeOutHero 3s ease forwards;
 }
 
-/* TITLE */
 .hero-title {
   font-size: 48px;
   letter-spacing: 2px;
-  font-weight: 700;
 }
 
-/* TAGLINE */
 .tagline {
   font-size: 16px;
   margin-top: 10px;
   letter-spacing: 2px;
 }
 
-/* FADE */
-@keyframes fadeOutHero {
+
+
+
+
+
+/* =========================================
+   HERO SECTION – VIDEO (FIXED)
+========================================= */
+
+:root {
+  --hero-border-size: 8px;
+  --hero-border-radius: 14px;
+}
+
+/* HERO CONTAINER */
+.hero-video {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 6;
+  margin: 0 auto;
+  background: #ffffff;
+
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+/* VIDEO FRAME */
+.hero-frame {
+  position: absolute;
+  inset: 20px;
+  border-radius: var(--hero-border-radius);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* VIDEO */
+.hero-video-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--hero-border-radius);
+  display: block;
+
+  /* smoother rendering */
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* =========================
+   ANIMATED BORDER
+========================= */
+
+.hero-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: var(--hero-border-size);
+  border-radius: var(--hero-border-radius);
+
+  background: linear-gradient(
+    120deg,
+    transparent,
+    #f2c400,
+    #ffd84a,
+    transparent
+  );
+
+  background-size: 300% 300%;
+  animation: borderMove 4s linear infinite;
+
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  pointer-events: none;
+
+  will-change: background-position;
+}
+
+@keyframes borderMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 300% 50%;
+  }
+}
+
+/* DARK OVERLAY */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1;
+}
+
+/* HERO TEXT */
+.hero-content {
+  pointer-events: none;
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  color: #ffffff;
+  padding: 0 20px;
+
+  animation: fadeHero 7s forwards;
+}
+
+/* TITLE */
+.hero-title {
+  font-size: 56px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  text-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* TAGLINE */
+.tagline {
+  font-size: 18px;
+  letter-spacing: 3px;
+  opacity: 0.9;
+}
+
+/* FADE ANIMATION */
+@keyframes fadeHero {
   0% {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
   }
-  70% {
+  80% {
     opacity: 1;
   }
   100% {
     opacity: 0;
-    transform: translate(-50%, -60%) scale(1.05);
   }
 }
+/* =========================
+   VIDEO CONTROL BUTTON
+========================= */
 
+.video-controls {
+  position: absolute;
+  bottom: 35px;
+  right: 50px;
+  z-index: 4;
+}
+
+/* BUTTON */
+.video-btn {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 16px;
+  color: #fff;
+
+  border-radius: 50%;
+  cursor: pointer;
+
+  /* Premium glass */
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  /* soft shadow */
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.6),
+    inset 0 0 8px rgba(255, 255, 255, 0.15);
+
+  transition: all 0.35s ease;
+}
+
+/* HOVER */
+.video-btn:hover {
+  background: linear-gradient(135deg, #f2c400, #ffdf5e);
+  color: #000;
+
+  transform: scale(1.12);
+
+  box-shadow:
+    0 0 18px rgba(242, 196, 0, 0.9),
+    0 0 35px rgba(242, 196, 0, 0.5);
+}
+
+/* CLICK */
+.video-btn:active {
+  transform: scale(0.92);
+}
 /* =========================================
-   RESPONSIVE
+   INTRO (COMPACT)
 ========================================= */
 
-/* LARGE SCREENS */
-@media (min-width: 1600px) {
-  .hero-title {
-    font-size: 64px;
-  }
-
-  .tagline {
-    font-size: 20px;
-  }
+.intro {
+  padding: 30px 10% 40px;
+  background: var(--bg-section);
+  text-align: center;
 }
 
-/* LAPTOP */
-@media (max-width: 1200px) {
-  .hero-title {
-    font-size: 42px;
-  }
-
-  .tagline {
-    font-size: 15px;
-  }
+.intro p {
+  font-size: 15px;
+  color: var(--text-muted);
 }
 
-/* TABLET */
-@media (max-width: 768px) {
-  .hero-title {
-    font-size: 32px;
-    letter-spacing: 1px;
-  }
+/* =========================
+   SHOWREEL SECTION
+========================= */
 
-  .tagline {
-    font-size: 14px;
-    letter-spacing: 1.5px;
-  }
-
-  .hero-content {
-    width: 92%;
-  }
+.showreel {
+  padding: 100px 20px;
+  background: #05070d;
+  text-align: center;
 }
 
-/* MOBILE */
-@media (max-width: 480px) {
-  .hero-title {
-    font-size: 24px;
-    line-height: 1.3;
-  }
-
-  .tagline {
-    font-size: 12px;
-    margin-top: 8px;
-  }
-
-  .hero-content {
-    top: 45%; /* better framing */
-    width: 95%;
-  }
+.showreel .section-title {
+  font-size: 32px;
+  margin-bottom: 50px;
+  color: #fff;
+  letter-spacing: 1px;
 }
 
+/* =========================
+   FRAME
+========================= */
+
+.showreel-frame {
+  position: relative;
+  max-width: 900px;
+  margin: auto;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+
+  /* glass + depth */
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+/* IMAGE */
+
+.showreel-frame img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+
+  transition:
+    transform 0.6s ease,
+    filter 0.6s ease;
+}
+
+/* DARK OVERLAY */
+
+.showreel-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.2));
+}
+
+/* =========================
+   PLAY BUTTON
+========================= */
+
+.play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 28px;
+  color: #fff;
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  transition: all 0.4s ease;
+}
+
+/* GLOW EFFECT */
+
+.play-btn::before {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
+  opacity: 0;
+  transition: 0.4s;
+}
+
+/* =========================
+   TEXT
+========================= */
+
+.showreel-text {
+  position: absolute;
+  bottom: 25px;
+  left: 25px;
+  color: #fff;
+  text-align: left;
+  z-index: 2;
+}
+
+.showreel-text h3 {
+  font-size: 22px;
+  margin-bottom: 5px;
+}
+
+.showreel-text p {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* =========================
+   HOVER EFFECTS
+========================= */
+
+.showreel-frame:hover img {
+  transform: scale(1.08);
+  filter: brightness(0.7);
+}
+
+.showreel-frame:hover .play-btn {
+  transform: translate(-50%, -50%) scale(1.15);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.showreel-frame:hover .play-btn::before {
+  opacity: 1;
+}
 
 /* =========================================
    WHAT WE DO – LUXURY DARK (FINAL CLEAN)

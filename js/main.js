@@ -1,8 +1,35 @@
 
+/* =========================
+   HERO IMAGE SLIDER
+=========================*/
+
+
+const slides = document.querySelectorAll('.slide');
+let current = 0;
+
+// show first slide initially
+slides[current].classList.add('active');
+
+function showNextSlide() {
+  // remove current
+  slides[current].classList.remove('active');
+
+  // move to next
+  current = (current + 1) % slides.length;
+
+  // add active to next
+  slides[current].classList.add('active');
+}
+
+// 🔥 timing synced with your CSS animation
+setInterval(showNextSlide, 5000);
+
+
+
 
 /* =========================
    HERO VIDEO MUTE
-========================= */
+=========================
 const heroVideo = document.getElementById("heroVideo");
 const muteBtn = document.getElementById("muteToggle");
 
