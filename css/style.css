@@ -461,7 +461,7 @@ body {
 .ultra-flagship {
   position: relative;
   padding: 160px 6% 140px;
-  background: var(--primary-blue);
+  background: white;
 }
 
 /* =========================
@@ -1014,6 +1014,7 @@ body {
 
 .clients {
   padding: 40px 0%;
+  background-color: white;
 }
 
 .clients h2 {
@@ -1083,227 +1084,7 @@ body {
 }  
 */
 
-/* =========================
-   VIDEO TESTIMONIAL SECTION
-========================= */
 
-.video-testimonials {
-  padding: 100px 20px;
-  text-align: center;
-  color: #fff;
-  background: radial-gradient(circle at center, #0a0f1c, #05070d);
-}
-
-.video-testimonials .section-title {
-  font-size: 34px;
-  margin-bottom: 50px;
-}
-
-/* =========================
-   CAROUSEL
-========================= */
-
-.video-testimonials .carousel {
-  position: relative;
-  max-width: 1400px;
-  margin: auto;
-}
-
-.video-testimonials .viewport {
-  overflow: hidden;
-  padding: 20px 0;
-}
-
-/* =========================
-   TRACK
-========================= */
-
-.video-testimonials .track {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  transition: transform 0.5s ease;
-  perspective: 1000px;
-  transform-style: preserve-3d;
-}
-
-/* =========================
-   CARD BASE
-========================= */
-
-.video-testimonials .card {
-  flex: 0 0 calc(100% / 3 - 14px);
-  opacity: 0.3;
-  transform: scale(0.75) rotateY(12deg);
-  transition: all 0.4s ease;
-  filter: blur(3px);
-  position: relative;
-  backface-visibility: hidden;
-}
-
-/* VIDEO */
-.video-testimonials .card video {
-  width: 100%;
-  border-radius: 14px;
-  display: block;
-}
-
-/* =========================
-   ACTIVE (CENTER)
-========================= */
-
-.video-testimonials .card.active {
-  transform: scale(1.08) rotateY(0deg);
-  opacity: 1;
-  filter: blur(0);
-  z-index: 5;
-  box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.9),
-    0 0 40px rgba(242, 196, 0, 0.3);
-}
-
-/* =========================
-   NAV
-========================= */
-
-.video-testimonials .nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 26px;
-  background: rgba(255, 255, 255, 0.15);
-  border: none;
-  color: #fff;
-  padding: 8px 12px;
-  cursor: pointer;
-  z-index: 10;
-  border-radius: 8px;
-}
-
-.video-testimonials .prev {
-  left: 10px;
-}
-.video-testimonials .next {
-  right: 10px;
-}
-
-/* =========================
-   HOVER (DESKTOP ONLY)
-========================= */
-
-/* =========================
-   HOVER (DESKTOP ONLY)
-========================= */
-
-@media (hover: hover) {
-  /* ONLY NON-ACTIVE CARDS */
-  .video-testimonials .card:not(.active):hover {
-    transform: scale(0.85) rotateY(10deg);
-    opacity: 0.7;
-    filter: blur(1px);
-  }
-
-  /* ACTIVE CARD (NEVER BLUR) */
-  .video-testimonials .card.active:hover {
-    transform: scale(1.12) rotateY(0deg);
-    opacity: 1;
-    filter: blur(0) !important; /* 🔥 KEY FIX */
-  }
-}
-
-/* =========================
-   TABLET (2 CARDS)
-========================= */
-
-@media (max-width: 1024px) {
-  .video-testimonials .card {
-    flex: 0 0 calc(100% / 2 - 10px);
-    transform: scale(0.8) rotateY(10deg);
-  }
-
-  .video-testimonials .card.active {
-    transform: scale(1.05) rotateY(0deg);
-  }
-
-  .video-testimonials .section-title {
-    font-size: 28px;
-  }
-}
-
-/* =========================
-   MOBILE (3 CARD PREVIEW)
-========================= */
-
-@media (max-width: 768px) {
-  .video-testimonials {
-    padding: 80px 10px;
-  }
-
-  .video-testimonials .section-title {
-    font-size: 22px;
-    margin-bottom: 30px;
-  }
-
-  .video-testimonials .viewport {
-    padding: 0 20px; /* side preview */
-  }
-
-  .video-testimonials .track {
-    gap: 12px;
-  }
-
-  .video-testimonials .card {
-    flex: 0 0 calc(100% / 3 - 8px);
-    transform: scale(0.75) rotateY(8deg);
-    opacity: 0.35;
-    filter: blur(2px);
-  }
-
-  /* 🔥 IMPORTANT: keep scale moderate to avoid center shift */
-  .video-testimonials .card.active {
-    transform: scale(1.03) rotateY(0deg);
-    opacity: 1;
-    filter: blur(0);
-  }
-
-  .video-testimonials .nav {
-    font-size: 18px;
-    padding: 6px 10px;
-  }
-
-  .video-testimonials .prev {
-    left: 5px;
-  }
-  .video-testimonials .next {
-    right: 5px;
-  }
-}
-
-/* =========================
-   SMALL MOBILE (FOCUSED VIEW)
-========================= */
-
-@media (max-width: 480px) {
-  .video-testimonials .viewport {
-    padding: 0 10px;
-  }
-
-  .video-testimonials .card {
-    flex: 0 0 80%;
-    transform: scale(0.9);
-    opacity: 0.6;
-    filter: none;
-  }
-
-  .video-testimonials .card.active {
-    transform: scale(1);
-    opacity: 1;
-  }
-
-  .video-testimonials .track {
-    gap: 10px;
-  }
-}
 
 /* =========================
    WRITTEN SECTION
@@ -1349,7 +1130,7 @@ body {
 ========================= */
 
 .review-card {
-  min-width: calc(100% / 2.3 - 16px);
+  min-width: 420px;
 
   padding: 25px;
   border-radius: 18px;
@@ -1455,7 +1236,7 @@ body {
   background: rgba(255, 255, 255, 0.3);
 }
 
-<<<<<<< HEAD
+
 
 /* =========================
    HEADER / TAGLINE (NEW)
@@ -1498,57 +1279,98 @@ body {
   opacity: 0.6;
 }
 
-@media (hover: hover) {
-  .review-card:hover {
-    transform: scale(0.9) rotateY(8deg);
-    opacity: 100%;
-    filter: blur(0px);
-  }
-
-  .review-card.active:hover {
-    transform: scale(1.05);
-  }
+/* Hide scrollbar */
+.reviews-wrapper::-webkit-scrollbar {
+  display: none;
 }
 
-/* =========================
-   TABLET
-========================= */
+.reviews-wrapper {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+/* =========================================
+   RESPONSIVE – KEEP DESKTOP LOOK
+========================================= */
 
-@media (max-width: 1024px) {
+/* 💻 LARGE SCREENS */
+@media (min-width: 1600px) {
+  .reviews-wrapper {
+    max-width: 1400px;
+  }
+
   .review-card {
-    min-width: calc(100% / 2 - 12px);
-    transform: scale(0.85) rotateY(8deg);
+    min-width: 450px;
   }
 }
 
-/* =========================
-   MOBILE (WIDER CENTER)
-========================= */
+/* 💻 LAPTOP */
+@media (max-width: 1200px) {
+  .reviews-wrapper {
+    padding: 0 40px;
+  }
+}
 
+/* 📱 TABLET + SMALL LAPTOP */
+@media (max-width: 1024px) {
+
+  .reviews-wrapper {
+    overflow-x: auto;   /* 🔥 enable scroll */
+    padding: 0 30px;
+    scroll-behavior: smooth;
+  }
+
+  .reviews-track {
+    flex-wrap: nowrap; /* 🔥 keep same layout */
+  }
+
+  .review-card {
+    min-width: 420px; /* 🔥 same as desktop */
+  }
+
+}
+
+/* 📱 TABLET */
 @media (max-width: 768px) {
+
   .client-reviews {
-    padding: 80px 10px;
+    padding: 90px 16px;
+  }
+
+  .reviews-wrapper {
+    padding: 0 25px;
+  }
+
+  .review-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+}
+
+/* 📲 MOBILE */
+@media (max-width: 480px) {
+
+  .client-reviews {
+    padding: 70px 12px;
   }
 
   .reviews-wrapper {
     padding: 0 20px;
   }
 
-  .reviews-track {
-    gap: 12px;
-  }
-
   .review-card {
-    min-width: 100%; /* 🔥 wider cards */
-    transform: scale(0.85);
-    opacity: 0.5;
-    filter: blur(1.5px);
+    min-width: 400px; /* 🔥 almost same look */
+    padding: 22px;
   }
 
-  .review-card.active {
-    transform: scale(1.15); /* 🔥 bigger center */
-    opacity: 1;
-    filter: blur(0);
+  .review-card p {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .review-card h4 {
+    font-size: 11px;
   }
 
   .review-btn {
@@ -1556,30 +1378,44 @@ body {
     height: 36px;
     font-size: 16px;
   }
+
+  .reviews-tagline {
+    font-size: 12px;
+  }
+
+  .reviews-tagline span {
+    font-size: 11px;
+  }
+
 }
 
-/* =========================
-   SMALL MOBILE
-========================= */
+/* 📉 SMALL MOBILE */
+@media (max-width: 360px) {
 
-@media (max-width: 480px) {
   .review-card {
-    min-width: 85%;
-    transform: scale(0.9);
-    opacity: 0.6;
-    filter: none;
+    min-width: 360px;
+    padding: 20px;
   }
 
-  .review-card.active {
-    transform: scale(1);
+  .review-card p {
+    font-size: 12px;
   }
+
+  .review-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+
 }
+
 
 /* =========================
       WHY CHOOSE US
    ========================= */
 .divisions {
   padding: 50px 10%;
+  background-color: #ffffff;
 }
 
 .divisions h2 {
@@ -2252,137 +2088,6 @@ Default = Desktop (above 1200px)
     letter-spacing: 1.5px;
   }
 
-  /* =========================
-   MOBILE – KEEP DESKTOP STYLE
-========================= */
-
-  .video-testimonials {
-    padding: 80px 10px;
-  }
-
-  .section-title {
-    font-size: 22px;
-    margin-bottom: 30px;
-  }
-
-  .carousel {
-    max-width: 100%;
-  }
-
-  /* IMPORTANT: allow side preview */
-  .viewport {
-    overflow: hidden;
-    padding: 0 20px;
-  }
-
-  /* TRACK */
-  .track {
-    gap: 12px;
-  }
-
-  /* KEEP 3 CARDS */
-  .card {
-    flex: 0 0 calc(100% / 3 - 8px);
-
-    transform: scale(0.75);
-    opacity: 0.4;
-  }
-
-  /* CENTER CARD */
-  .card.active {
-    transform: scale(0.95);
-    opacity: 1;
-  }
-
-  /* VIDEO */
-  .card video {
-    border-radius: 10px;
-  }
-
-  /* NAV BUTTONS */
-  .nav {
-    font-size: 20px;
-    padding: 6px 10px;
-  }
-
-  .prev {
-    left: 0;
-  }
-  .next {
-    right: 0;
-  }
-
-  /* =========================
-     WRITTEN REVIEWS (SAME STYLE)
-  ========================= */
-
-  .client-reviews {
-    padding: 80px 10px;
-  }
-
-  .reviews-wrapper {
-    padding: 0 20px;
-  }
-
-  .reviews-track {
-    gap: 12px;
-  }
-
-  .review-card {
-    min-width: calc(100% / 3 - 8px);
-
-    padding: 18px;
-
-    transform: scale(0.85);
-    opacity: 0.5;
-  }
-
-  .review-card.active {
-    transform: scale(1);
-    opacity: 1;
-  }
-
-  .review-card p {
-    font-size: 12px;
-  }
-
-  .review-card h4 {
-    font-size: 10px;
-  }
-
-  .review-btn {
-    width: 36px;
-    height: 36px;
-    font-size: 16px;
-  }
-
-  .review-btn.prev {
-    left: 0;
-  }
-  .review-btn.next {
-    right: 0;
-  }
-
-  /* WHY CHOOSE US - MOBILE 2x2 GRID */
-  .division-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-
-  /* Reduce card padding for mobile */
-  .division-card {
-    padding: 28px 20px;
-  }
-
-  /* Adjust text sizes */
-  .division-card h3 {
-    font-size: 16px;
-  }
-
-  .division-card p {
-    font-size: 13px;
-    line-height: 1.5;
-  }
 }
 
 /* =========================================
@@ -2409,6 +2114,12 @@ Default = Desktop (above 1200px)
     font-size: 20px;
   }
 }
+
+
+
+
+
+
 
 /* =========================================
    HAMBURGER MENU SYSTEM
