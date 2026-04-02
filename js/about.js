@@ -33,20 +33,23 @@ function rotateWord() {
 dynamicWord.classList.add("show");
 setInterval(rotateWord, changeSpeed);
 
-
 /* =========================
    WHO IMAGES – CINEMATIC FADE
 ========================= */
 
-const leftImages = document.querySelectorAll(".who-left img");
-const rightImage = document.querySelector(".who-right img");
+document.addEventListener("DOMContentLoaded", () => {
 
-if (!leftImages.length || !rightImage) {
-  console.warn("Images not found");
-} else {
+  const leftImages = document.querySelectorAll(".who-left img");
+  const rightImage = document.querySelector(".who-right img");
+
+  if (!leftImages.length || !rightImage) {
+    console.warn("Images not found");
+    return;
+  }
 
   const leftSets = [
-    [
+
+    [ // ✅ FIXED (comma added)
       "assets/images/dance/dance (9).JPG",
       "assets/images/dance/dance (13).jpg",
       "assets/images/dance/dance (6).jpg"
@@ -78,7 +81,7 @@ if (!leftImages.length || !rightImage) {
   let currentIndex = 0;
   let isAnimating = false;
 
-  /* preload */
+  /* PRELOAD IMAGES */
   [...leftSets.flat(), ...rightSet].forEach(src => {
     const img = new Image();
     img.src = src;
@@ -98,12 +101,13 @@ if (!leftImages.length || !rightImage) {
 
       setTimeout(() => {
         img.src = leftSets[currentIndex][i];
+
         img.classList.remove("fade-out");
         img.classList.add("fade-in");
 
         setTimeout(() => {
           img.classList.remove("fade-in");
-        }, 800);
+        }, 800); // ⏱ animation duration
 
       }, 300);
 
@@ -114,21 +118,23 @@ if (!leftImages.length || !rightImage) {
 
     setTimeout(() => {
       rightImage.src = rightSet[currentIndex];
+
       rightImage.classList.remove("fade-out");
       rightImage.classList.add("fade-in");
 
       setTimeout(() => {
         rightImage.classList.remove("fade-in");
         isAnimating = false;
-      }, 800);
+      }, 800); // ⏱ animation duration
 
     }, 300);
 
   }
 
-  setInterval(changeImages, 6000);
-}
+  /* 🔥 CHANGE SLIDE TIMING HERE */
+  setInterval(changeImages, 3000); // 👈 6000ms = 6 seconds
 
+});
 
 
 /* ---------- JOURNEY ---------- */
@@ -471,56 +477,73 @@ window.addEventListener("load", revealWhy);
 
 
 
-
 /* =========================
-   SATS ANIATIONS
+   STATS ANIMATIONS (FIXED)
 ========================= */
 
+document.addEventListener("DOMContentLoaded", () => {
 
-const impactItems = document.querySelectorAll(".impact-item");
+  const impactItems = document.querySelectorAll(".impact-item");
 
-function animateImpact() {
-  const trigger = window.innerHeight - 100;
+  function animateImpact() {
+    const trigger = window.innerHeight - 100;
 
-  impactItems.forEach((item, index) => {
-    const top = item.getBoundingClientRect().top;
+    impactItems.forEach((item, index) => {
+      const top = item.getBoundingClientRect().top;
 
-    if (top < trigger && !item.classList.contains("show")) {
+      if (top < trigger && !item.classList.contains("show")) {
 
-      // reveal animation with delay
-      setTimeout(() => {
         item.classList.add("show");
-        startCount(item);
-      }, index * 150);
-    }
-  });
-}
 
-/* COUNT-UP FUNCTION */
-function startCount(item) {
-  const numberEl = item.querySelector("h3");
-  const text = numberEl.innerText.replace("+", "");
-  const target = parseInt(text);
-
-  let count = 0;
-  const speed = target / 40;
-
-  function update() {
-    count += speed;
-
-    if (count < target) {
-      numberEl.innerText = Math.floor(count) + "+";
-      requestAnimationFrame(update);
-    } else {
-      numberEl.innerText = target + "+";
-    }
+        // delay for stagger effect
+        setTimeout(() => {
+          startCount(item);
+        }, index * 150);
+      }
+    });
   }
 
-  update();
-}
+  /* =========================
+     COUNT-UP FUNCTION
+  ========================= */
 
-/* EVENTS */
-window.addEventListener("scroll", animateImpact);
-window.addEventListener("load", animateImpact);
+  function startCount(item) {
 
+    const numberEl = item.querySelector(".impact-number");
+
+    // prevent multiple runs
+    if (numberEl.classList.contains("counted")) return;
+    numberEl.classList.add("counted");
+
+    const text = numberEl.innerText.replace("+", "").trim();
+    const target = parseInt(text);
+
+    if (isNaN(target)) return;
+
+    let count = 0;
+    const duration = 1000; // ⏱ total animation time
+    const increment = target / (duration / 16);
+
+    function update() {
+      count += increment;
+
+      if (count < target) {
+        numberEl.innerText = Math.floor(count) + "+";
+        requestAnimationFrame(update);
+      } else {
+        numberEl.innerText = target + "+";
+      }
+    }
+
+    update();
+  }
+
+  /* =========================
+     EVENTS
+  ========================= */
+
+  window.addEventListener("scroll", animateImpact);
+  window.addEventListener("load", animateImpact);
+
+});
 

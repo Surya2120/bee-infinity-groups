@@ -92,3 +92,52 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+
+
+
+
+/* =========================
+   GLOBAL SCROLL TO TOP BUTTON
+========================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const btn = document.getElementById("scrollTopBtn");
+
+  // safety check
+  if (!btn) return;
+
+  /* =========================
+     SHOW / HIDE BUTTON
+  ========================= */
+
+  window.addEventListener("scroll", () => {
+
+    if (window.scrollY > 300) {
+      btn.classList.add("show");
+    } else {
+      btn.classList.remove("show");
+    }
+
+  });
+
+  /* =========================
+     SCROLL TO TOP CLICK
+  ========================= */
+
+  btn.addEventListener("click", () => {
+
+    // smooth scroll
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth"
+    });
+
+    // fallback (for safety)
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+
+  });
+
+});
