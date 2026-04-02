@@ -286,7 +286,7 @@ if (logoTrack) {
 
 /* =========================
    VIDEO TESTIMONIALS – FINAL
-========================= */
+========================= 
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -306,7 +306,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================
      CLONE FOR INFINITE LOOP
-  ========================= */
+  ========================= 
 
   const startClones = cards.slice(-2).map(c => c.cloneNode(true));
   const endClones = cards.slice(0, 2).map(c => c.cloneNode(true));
@@ -318,7 +318,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================
      UPDATE FUNCTION
-  ========================= */
+  ========================= 
 
   function update(animate = true) {
 
@@ -344,7 +344,7 @@ document.addEventListener("DOMContentLoaded", () => {
     track.style.transition = animate ? "transform 0.5s ease" : "none";
     track.style.transform = `translateX(${currentX - shift}px)`;
 
-    /* VIDEO CONTROL */
+    /* VIDEO CONTROL 
 
     cards.forEach(card => {
       const v = card.querySelector("video");
@@ -364,7 +364,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  /* NAVIGATION */
+  /* NAVIGATION 
 
   function nextSlide() {
     index++;
@@ -379,7 +379,7 @@ document.addEventListener("DOMContentLoaded", () => {
   next?.addEventListener("click", nextSlide);
   prev?.addEventListener("click", prevSlide);
 
-  /* LOOP FIX */
+  /* LOOP FIX 
 
   track.addEventListener("transitionend", () => {
 
@@ -395,7 +395,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   });
 
-  /* SWIPE */
+  /* SWIPE 
 
   let startX = 0;
 
@@ -410,7 +410,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (endX - startX > 50) prevSlide();
   });
 
-  /* SCROLL-AWARE PLAY */
+  /* SCROLL-AWARE PLAY 
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -435,7 +435,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (section) observer.observe(section);
 
-  /* INIT */
+  /* INIT 
 
   window.addEventListener("load", () => {
     update(false);
@@ -448,6 +448,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+
+
+*/
+
+
+
 
 
 
@@ -469,6 +475,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let index = 2;
 
+  // CLONES
   const startClones = cards.slice(-2).map(c => c.cloneNode(true));
   const endClones = cards.slice(0, 2).map(c => c.cloneNode(true));
 
@@ -512,9 +519,11 @@ document.addEventListener("DOMContentLoaded", () => {
     update();
   }
 
+  // ✅ BUTTON CONTROLS ONLY
   next?.addEventListener("click", nextSlide);
   prev?.addEventListener("click", prevSlide);
 
+  // LOOP FIX
   track.addEventListener("transitionend", () => {
 
     if (index >= cards.length - 2) {
@@ -529,19 +538,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   });
 
-  let startX = 0;
-
-  track.addEventListener("touchstart", e => {
-    startX = e.touches[0].clientX;
-  });
-
-  track.addEventListener("touchend", e => {
-    const endX = e.changedTouches[0].clientX;
-
-    if (startX - endX > 50) nextSlide();
-    if (endX - startX > 50) prevSlide();
-  });
-
+  // INITIAL POSITION
   window.addEventListener("load", () => {
     update(false);
     setTimeout(() => update(false), 100);
@@ -555,39 +552,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* =========================
-   GLOBAL KEYBOARD NAVIGATION (FIXED)
+   GLOBAL KEYBOARD NAVIGATION
 ========================= */
 
 document.addEventListener("keydown", (e) => {
 
-  const videoSection = document.querySelector(".video-testimonials");
   const reviewSection = document.querySelector(".client-reviews");
 
-  const videoVisible =
-    videoSection && videoSection.getBoundingClientRect().top < window.innerHeight / 2;
-
   const reviewVisible =
-    reviewSection && reviewSection.getBoundingClientRect().top < window.innerHeight / 2;
+    reviewSection &&
+    reviewSection.getBoundingClientRect().top < window.innerHeight / 2;
+
+  if (!reviewVisible) return;
 
   if (e.key === "ArrowRight") {
-
-    if (videoVisible) {
-      document.querySelector(".carousel .next")?.click();
-    } else if (reviewVisible) {
-      document.querySelector(".review-btn.next")?.click();
-    }
-
+    document.querySelector(".review-btn.next")?.click();
   }
 
   if (e.key === "ArrowLeft") {
-
-    if (videoVisible) {
-      document.querySelector(".carousel .prev")?.click();
-    } else if (reviewVisible) {
-      document.querySelector(".review-btn.prev")?.click();
-    }
-
+    document.querySelector(".review-btn.prev")?.click();
   }
 
 });
-

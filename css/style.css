@@ -1084,8 +1084,6 @@ body {
 }  
 */
 
-
-
 /* =========================
    WRITTEN SECTION
 ========================= */
@@ -1119,6 +1117,7 @@ body {
 
 .reviews-track {
   display: flex;
+   will-change: transform;
   gap: 20px;
   transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   perspective: 1000px;
@@ -1137,6 +1136,7 @@ body {
 
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* ✅ fix */
 
   color: #fff;
   text-align: left;
@@ -1147,7 +1147,7 @@ body {
     filter 0.4s ease,
     box-shadow 0.5s ease;
 
-  transform: scale(0.8) rotateY(10deg);
+  transform: scale(0.8) rotateY(10deg) translateZ(0);
   opacity: 0.35;
   filter: blur(2px);
 
@@ -1155,6 +1155,8 @@ body {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
 
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden; /* ✅ fix */
+  will-change: transform, opacity;     /* ✅ fix */
 }
 
 /* =========================
@@ -1162,17 +1164,22 @@ body {
 ========================= */
 
 .review-card.active {
-  transform: scale(1) rotateY(0deg);
+  transform: scale(1) rotateY(0deg) translateZ(0.1px);
   opacity: 1;
-  filter: blur(0);
 
   background: rgba(255, 255, 255, 0.08);
 
+  filter: none !important; /* ✅ blur fix */
+
   box-shadow:
     0 25px 70px rgba(0, 0, 0, 0.8),
-    0 0 20px rgba(242, 196, 0, 0.15); /* 🔥 reduced glow */
+    0 0 20px rgba(242, 196, 0, 0.15);
 
   z-index: 5;
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform;
 }
 
 /* SUBTLE GLOW */
@@ -1182,10 +1189,10 @@ body {
   inset: -10px;
 
   background: radial-gradient(circle, rgba(242, 196, 0, 0.12), transparent 75%);
+  filter: blur(10px);
+  opacity: 0.5;
 
-  filter: blur(20px);
   z-index: -1;
-  opacity: 0.6;
 }
 
 /* =========================
@@ -1210,7 +1217,7 @@ body {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 5;
+  z-index: 20;
 
   width: 45px;
   height: 45px;
@@ -1221,7 +1228,7 @@ body {
   background: rgba(255, 255, 255, 0.1);
   color: #fff;
   font-size: 20px;
-
+ pointer-events: auto;
   cursor: pointer;
 }
 
@@ -1236,10 +1243,8 @@ body {
   background: rgba(255, 255, 255, 0.3);
 }
 
-
-
 /* =========================
-   HEADER / TAGLINE (NEW)
+   HEADER / TAGLINE
 ========================= */
 
 .reviews-header {
@@ -1258,7 +1263,7 @@ body {
   margin-top: 8px;
 
   font-size: 13px;
-  color: #f2c400; /* 🔥 brand gold */
+  color: #f2c400;
 
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -1266,7 +1271,6 @@ body {
   position: relative;
 }
 
-/* subtle underline glow */
 .reviews-tagline span::after {
   content: "";
   display: block;
@@ -1275,7 +1279,6 @@ body {
   margin: 6px auto 0;
 
   background: linear-gradient(90deg, transparent, #f2c400, transparent);
-
   opacity: 0.6;
 }
 
@@ -1288,11 +1291,12 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
 /* =========================================
-   RESPONSIVE – KEEP DESKTOP LOOK
+   RESPONSIVE
 ========================================= */
 
-/* 💻 LARGE SCREENS */
+/* LARGE SCREENS */
 @media (min-width: 1600px) {
   .reviews-wrapper {
     max-width: 1400px;
@@ -1303,37 +1307,38 @@ body {
   }
 }
 
-/* 💻 LAPTOP */
+/* LAPTOP */
 @media (max-width: 1200px) {
   .reviews-wrapper {
     padding: 0 40px;
   }
 }
 
-/* 📱 TABLET + SMALL LAPTOP */
+/* TABLET */
 @media (max-width: 1024px) {
 
   .reviews-wrapper {
-    overflow-x: auto;   /* 🔥 enable scroll */
+    overflow-x: hidden;
     padding: 0 30px;
     scroll-behavior: smooth;
   }
 
   .reviews-track {
-    flex-wrap: nowrap; /* 🔥 keep same layout */
+      touch-action: pan-y;
+    flex-wrap: nowrap;
   }
 
   .review-card {
-    min-width: 420px; /* 🔥 same as desktop */
+    min-width: 420px;
   }
 
 }
 
-/* 📱 TABLET */
+/* MOBILE */
 @media (max-width: 768px) {
 
   .client-reviews {
-    padding: 90px 16px;
+    padding: 0 10px;
   }
 
   .reviews-wrapper {
@@ -1346,9 +1351,18 @@ body {
     font-size: 18px;
   }
 
+  .review-card {
+    min-width: 260px;
+    padding: 18px;
+  }
+
+  .review-card p {
+    font-size: 13px;
+  }
+
 }
 
-/* 📲 MOBILE */
+/* SMALL MOBILE */
 @media (max-width: 480px) {
 
   .client-reviews {
@@ -1360,8 +1374,8 @@ body {
   }
 
   .review-card {
-    min-width: 400px; /* 🔥 almost same look */
-    padding: 22px;
+    min-width: 300px;
+    padding: 16px;
   }
 
   .review-card p {
@@ -1389,11 +1403,11 @@ body {
 
 }
 
-/* 📉 SMALL MOBILE */
+/* EXTRA SMALL MOBILE */
 @media (max-width: 360px) {
 
   .review-card {
-    min-width: 360px;
+    min-width: 260px; /* ✅ FIXED (was breaking layout) */
     padding: 20px;
   }
 
@@ -1408,8 +1422,6 @@ body {
   }
 
 }
-
-
 /* =========================
       WHY CHOOSE US
    ========================= */
