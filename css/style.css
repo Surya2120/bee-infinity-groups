@@ -36,44 +36,118 @@ body {
   padding-top: 110px; /* navbar height */
 }
 
+/* =========================================
+   GLOBAL
+========================================= */
+:root {
+  --hero-width: 100%;
+  --hero-max-width: 1200px;
+  --hero-radius: 16px;
+}
 
-
-
-
-
-
+body {
+  margin: 0;
+  background: #000;
+  overflow-x: hidden;
+}
 
 /* =========================================
-   HERO SECTION – IMAGE SLIDER (FINAL PRO)
+   WRAPPER (GAP + CENTER)
 ========================================= */
-
-/* HERO SLIDER (FIXED 16:9) */
-.hero-slider {
+.hero-wrapper {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   width: 100%;
-  aspect-ratio: 16 / 8; /* 🔥 always wide */
-  overflow: hidden;
+  padding: 80px 20px;
+
+  box-sizing: border-box;
   background: #000;
 }
 
-/* SLIDES */
-.slider {
-  width: 100%;
-  height: 100%;
+/* =========================================
+   HERO FRAME
+========================================= */
+.hero-slider {
   position: relative;
+  width: var(--hero-width);
+  max-width: var(--hero-max-width);
+
+  aspect-ratio: 16 / 8;
+  height: auto;
+
+  border-radius: var(--hero-radius);
+  overflow: hidden;
+  background: #000;
+
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+
+  /* 🔥 SWIPE IMPROVEMENT */
+  touch-action: pan-y;
+  cursor: grab;
+  user-select: none;
 }
 
+.hero-slider:active {
+  cursor: grabbing;
+}
+
+/* 🟡 GOLD BORDER */
+.hero-slider::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+
+  border-radius: var(--hero-radius);
+
+  background: linear-gradient(
+    120deg,
+    #ffd700,
+    #ffb300,
+    #fff2a8,
+    #cfaf2e,
+    #ffd700
+  );
+
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* 🎬 INNER SHADOW */
+.hero-slider::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--hero-radius);
+  pointer-events: none;
+  z-index: 3;
+
+  box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.8);
+}
+
+/* =========================================
+   SLIDES
+========================================= */
 .slide {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   opacity: 0;
-  transition: opacity 1.5s ease-in-out;
+  transition: opacity 1.2s ease-in-out;
+  z-index: 1;
 }
 
 .slide.active {
   opacity: 1;
-  z-index: 1;
+  z-index: 2;
 }
 
 /* IMAGE */
@@ -81,32 +155,33 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+
   transition: transform 6s ease-out;
+  will-change: transform;
 }
 
-/* ZOOM ONLY ACTIVE */
+/* ZOOM */
 .slide.active img {
   transform: scale(1.1);
 }
 
-@keyframes slowZoom {
-  from { transform: scale(1); }
-  to { transform: scale(1.1); }
-}
-
-/* OVERLAY */
+/* =========================================
+   OVERLAY + CONTENT
+========================================= */
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.45);
+  background: rgba(0, 0, 0, 0.45);
+
   z-index: 2;
+
+  /* 🔥 IMPORTANT (fix swipe blocking) */
+  pointer-events: none;
 }
 
-/* CONTENT */
 .hero-content {
   position: absolute;
-  z-index: 3;
+  z-index: 5;
   text-align: center;
   color: #fff;
 
@@ -117,36 +192,35 @@ body {
   width: 90%;
   max-width: 900px;
 
-  /* fade after load */
-  animation: fadeOutHero 3s ease forwards;
+  animation: fadeHero 7s forwards;
 }
 
-/* TITLE */
+/* TEXT */
 .hero-title {
   font-size: 48px;
   letter-spacing: 2px;
   font-weight: 700;
+
+  text-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
 }
 
-/* TAGLINE */
 .tagline {
   font-size: 16px;
   margin-top: 10px;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
+  opacity: 0.9;
 }
 
-/* FADE */
-@keyframes fadeOutHero {
+/* FADE TEXT */
+@keyframes fadeHero {
   0% {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
   }
-  70% {
+  80% {
     opacity: 1;
   }
   100% {
     opacity: 0;
-    transform: translate(-50%, -60%) scale(1.05);
   }
 }
 
@@ -154,63 +228,88 @@ body {
    RESPONSIVE
 ========================================= */
 
-/* LARGE SCREENS */
+/* LARGE */
 @media (min-width: 1600px) {
-  .hero-title {
-    font-size: 64px;
-  }
-
-  .tagline {
-    font-size: 20px;
+  :root {
+    --hero-max-width: 1400px;
   }
 }
 
 /* LAPTOP */
 @media (max-width: 1200px) {
-  .hero-title {
-    font-size: 42px;
+  :root {
+    --hero-max-width: 1000px;
   }
 
-  .tagline {
-    font-size: 15px;
+  .hero-title {
+    font-size: 40px;
   }
 }
 
 /* TABLET */
 @media (max-width: 768px) {
+  :root {
+    --hero-radius: 12px;
+  }
+
+  .hero-wrapper {
+    padding: 60px 16px;
+    align-items: flex-start;
+  }
+
   .hero-title {
-    font-size: 32px;
+    font-size: 30px;
     letter-spacing: 1px;
   }
 
   .tagline {
     font-size: 14px;
-    letter-spacing: 1.5px;
   }
 
-  .hero-content {
-    width: 92%;
+  .hero-slider::before {
+    padding: 1.5px;
   }
 }
 
 /* MOBILE */
 @media (max-width: 480px) {
+  :root {
+    --hero-radius: 10px;
+  }
+
+  .hero-wrapper {
+    padding: 50px 12px;
+  }
+
   .hero-title {
-    font-size: 24px;
+    font-size: 22px;
     line-height: 1.3;
   }
 
   .tagline {
     font-size: 12px;
-    margin-top: 8px;
+    margin-top: 6px;
   }
 
   .hero-content {
-    top: 45%; /* better framing */
     width: 95%;
+  }
+
+  .hero-slider::before {
+    padding: 1px;
   }
 }
 
+/* SMALL MOBILE */
+@media (max-width: 360px) {
+  .hero-title {
+    font-size: 18px;
+  }
+
+  .tagline {
+    font-size: 11px;
+  }
+}
 
 /* =========================================
    WHAT WE DO – LUXURY DARK (FINAL CLEAN)

@@ -2,29 +2,100 @@
 /* =========================
    HERO IMAGE SLIDER
 =========================*/
+document.addEventListener("DOMContentLoaded", () => {
 
+  const slider = document.querySelector(".hero-slider");
+  const slides = document.querySelectorAll(".hero-slider .slide");
 
-const slides = document.querySelectorAll('.slide');
-let current = 0;
+  console.log("Slides found:", slides.length);
 
-// show first slide initially
-slides[current].classList.add('active');
+  if (!slider || slides.length === 0) return;
 
-function showNextSlide() {
-  // remove current
-  slides[current].classList.remove('active');
+  let index = 0;
+  let interval;
 
-  // move to next
-  current = (current + 1) % slides.length;
+  /* =====================
+     SHOW SLIDE
+  ===================== */
+  function showSlide(i) {
+    slides.forEach(slide => slide.classList.remove("active"));
+    slides[i].classList.add("active");
+  }
 
-  // add active to next
-  slides[current].classList.add('active');
-}
+  function nextSlide() {
+    index = (index + 1) % slides.length;
+    showSlide(index);
+  }
 
-// 🔥 timing synced with your CSS animation
-setInterval(showNextSlide, 5000);
+  function prevSlide() {
+    index = (index - 1 + slides.length) % slides.length;
+    showSlide(index);
+  }
 
+  /* =====================
+     AUTO SLIDE
+  ===================== */
+  function startSlider() {
+    interval = setInterval(nextSlide, 4000);
+  }
 
+  function stopSlider() {
+    clearInterval(interval);
+  }
+
+  showSlide(index);
+  startSlider();
+
+  /* =====================
+     SWIPE + DRAG
+  ===================== */
+  let startX = 0;
+  let isDragging = false;
+
+  /* TOUCH (mobile) */
+  slider.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+    stopSlider();
+  });
+
+  slider.addEventListener("touchend", (e) => {
+    const endX = e.changedTouches[0].clientX;
+    handleSwipe(startX, endX);
+    startSlider();
+  });
+
+  /* MOUSE (desktop) */
+  slider.addEventListener("mousedown", (e) => {
+    isDragging = true;
+    startX = e.clientX;
+    stopSlider();
+  });
+
+  slider.addEventListener("mouseup", (e) => {
+    if (!isDragging) return;
+    isDragging = false;
+
+    const endX = e.clientX;
+    handleSwipe(startX, endX);
+    startSlider();
+  });
+
+  /* =====================
+     SWIPE LOGIC
+  ===================== */
+  function handleSwipe(start, end) {
+    const diff = start - end;
+
+    if (Math.abs(diff) > 70) {
+      if (diff > 0) {
+        nextSlide(); // swipe left
+      } else {
+        prevSlide(); // swipe right
+      }
+    }
+  }
+
+});
 
 
 /* =========================
