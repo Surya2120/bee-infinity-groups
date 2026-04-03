@@ -312,6 +312,300 @@ body {
 }
 
 /* =========================================
+   SHORT ABOUT US
+========================================= */
+
+.about-short {
+  padding: 80px 10%;
+  background: #0b0f18;
+  color: #fff;
+}
+
+.about-short-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.about-text {
+  flex: 1;
+  min-width: 300px;
+}
+
+.about-text h2 {
+  font-size: 32px;
+  margin-bottom: 15px;
+  background: linear-gradient(90deg, #ffcc70, var(--accent-yellow));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.about-text p {
+  color: #ccc;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.about-btn {
+  padding: 5px 15px;
+  border: none;
+  border-radius: 20px;
+  background: var(--accent-yellow);
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.about-highlights {
+  flex: 1;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.highlight {
+  background: rgba(255,255,255,0.05);
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.highlight:hover {
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-3px);
+}
+
+/* =========================
+   ABOUT ANIMATIONS
+========================= */
+
+/* INITIAL STATE */
+.about-text,
+.highlight {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+/* ACTIVE STATE */
+.about-text.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.highlight.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* STAGGER EFFECT */
+.highlight:nth-child(1) {
+  transition-delay: 0.2s;
+}
+.highlight:nth-child(2) {
+  transition-delay: 0.4s;
+}
+.highlight:nth-child(3) {
+  transition-delay: 0.6s;
+}
+
+/* HOVER GLOW (CINEMATIC TOUCH) */
+.highlight:hover {
+  box-shadow: 0 0 20px rgba(255, 123, 0, 0.4);
+  transform: translateY(-5px) scale(1.03);
+}
+
+.glow-text {
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.6),
+               0 0 20px rgba(0, 0, 0, 0.4);
+  animation: glowPulse 1s infinite alternate;
+}
+
+@keyframes glowPulse {
+  from {
+    text-shadow: 0 0 5px rgba(255, 204, 112, 0.4);
+  }
+  to {
+    text-shadow: 0 0 20px rgba(255, 123, 0, 0.8);
+  }
+}
+
+/* =========================================
+   SHORT ABOUT US (COMPACT RESPONSIVE)
+========================================= */
+
+.about-short {
+  padding: 60px 6%;
+  background: #0b0f18;
+  color: #fff;
+}
+
+.about-short-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+/* LEFT */
+.about-text {
+  flex: 1;
+  min-width: 260px;
+}
+
+.about-text h2 {
+  font-size: clamp(22px, 3vw, 30px);
+  margin-bottom: 10px;
+  line-height: 1.3;
+  background: linear-gradient(90deg, #ffcc70, var(--accent-yellow));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.about-text p {
+  font-size: clamp(13px, 1.5vw, 15px);
+  color: #ccc;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+/* BUTTON */
+.about-btn {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 18px;
+  background: var(--accent-yellow);
+  color: #000;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.about-btn:hover {
+  transform: scale(1.05);
+}
+
+/* RIGHT */
+.about-highlights {
+  flex: 1;
+  min-width: 240px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* CARD */
+.highlight {
+  background: rgba(255,255,255,0.05);
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  text-align: center;
+  transition: 0.3s ease;
+}
+
+/* HOVER */
+.highlight:hover {
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 0 12px rgba(255, 123, 0, 0.3);
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+.about-text,
+.highlight {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.about-text.show,
+.highlight.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* STAGGER */
+.highlight:nth-child(1) { transition-delay: 0.15s; }
+.highlight:nth-child(2) { transition-delay: 0.3s; }
+.highlight:nth-child(3) { transition-delay: 0.45s; }
+
+/* =========================
+   GLOW TEXT
+========================= */
+
+.glow-text {
+  color: #fff;
+  animation: glowPulse 1.5s infinite alternate;
+}
+
+@keyframes glowPulse {
+  from {
+    text-shadow: 0 0 5px rgba(255, 204, 112, 0.3);
+  }
+  to {
+    text-shadow: 0 0 15px rgba(255, 123, 0, 0.7);
+  }
+}
+
+/* =========================
+   MOBILE (<=768px)
+========================= */
+
+@media (max-width: 768px) {
+
+  .about-short {
+    padding: 50px 5%;
+  }
+
+  .about-short-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .about-highlights {
+    width: 100%;
+  }
+
+  .highlight {
+    font-size: 12.5px;
+    padding: 10px;
+  }
+}
+
+/* =========================
+   SMALL MOBILE (<=480px)
+========================= */
+
+@media (max-width: 480px) {
+
+  .about-text h2 {
+    font-size: 20px;
+  }
+
+  .about-text p {
+    font-size: 12.5px;
+  }
+
+  .about-btn {
+    font-size: 12px;
+    padding: 6px 14px;
+  }
+}
+
+
+/* =========================================
    WHAT WE DO – LUXURY DARK (FINAL CLEAN)
 ========================================= */
 
@@ -1117,7 +1411,7 @@ body {
 
 .reviews-track {
   display: flex;
-   will-change: transform;
+  will-change: transform;
   gap: 20px;
   transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   perspective: 1000px;
@@ -1156,7 +1450,7 @@ body {
 
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden; /* ✅ fix */
-  will-change: transform, opacity;     /* ✅ fix */
+  will-change: transform, opacity; /* ✅ fix */
 }
 
 /* =========================
@@ -1228,7 +1522,7 @@ body {
   background: rgba(255, 255, 255, 0.1);
   color: #fff;
   font-size: 20px;
- pointer-events: auto;
+  pointer-events: auto;
   cursor: pointer;
 }
 
@@ -1316,7 +1610,6 @@ body {
 
 /* TABLET */
 @media (max-width: 1024px) {
-
   .reviews-wrapper {
     overflow-x: hidden;
     padding: 0 30px;
@@ -1324,19 +1617,17 @@ body {
   }
 
   .reviews-track {
-      touch-action: pan-y;
+    touch-action: pan-y;
     flex-wrap: nowrap;
   }
 
   .review-card {
     min-width: 420px;
   }
-
 }
 
 /* MOBILE */
 @media (max-width: 768px) {
-
   .client-reviews {
     padding: 0 10px;
   }
@@ -1359,12 +1650,10 @@ body {
   .review-card p {
     font-size: 13px;
   }
-
 }
 
 /* SMALL MOBILE */
 @media (max-width: 480px) {
-
   .client-reviews {
     padding: 70px 12px;
   }
@@ -1400,12 +1689,10 @@ body {
   .reviews-tagline span {
     font-size: 11px;
   }
-
 }
 
 /* EXTRA SMALL MOBILE */
 @media (max-width: 360px) {
-
   .review-card {
     min-width: 260px; /* ✅ FIXED (was breaking layout) */
     padding: 20px;
@@ -1420,7 +1707,6 @@ body {
     height: 32px;
     font-size: 14px;
   }
-
 }
 /* =========================
       WHY CHOOSE US
@@ -2099,7 +2385,6 @@ Default = Desktop (above 1200px)
     font-size: 11px;
     letter-spacing: 1.5px;
   }
-
 }
 
 /* =========================================
@@ -2126,12 +2411,6 @@ Default = Desktop (above 1200px)
     font-size: 20px;
   }
 }
-
-
-
-
-
-
 
 /* =========================================
    HAMBURGER MENU SYSTEM

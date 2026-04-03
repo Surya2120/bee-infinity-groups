@@ -144,8 +144,43 @@ if (filterButtons.length && portfolioItems.length) {
 }
 
 */
+/* =========================
+  short about us
+========================= */
+// =========================
+// ABOUT SECTION ANIMATION
+// =========================
 
+document.addEventListener("DOMContentLoaded", () => {
 
+  const aboutText = document.querySelector(".about-text");
+  const highlights = document.querySelectorAll(".highlight");
+
+  function revealAbout() {
+    const triggerBottom = window.innerHeight - 100;
+
+    // TEXT
+    if (aboutText) {
+      const top = aboutText.getBoundingClientRect().top;
+      if (top < triggerBottom) {
+        aboutText.classList.add("show");
+      }
+    }
+
+    // HIGHLIGHTS
+    highlights.forEach((item) => {
+      const top = item.getBoundingClientRect().top;
+
+      if (top < triggerBottom) {
+        item.classList.add("show");
+      }
+    });
+  }
+
+  window.addEventListener("scroll", revealAbout);
+  window.addEventListener("load", revealAbout);
+
+});
 /* =========================
    WHAT WE DO REVEAL
 ========================= */
