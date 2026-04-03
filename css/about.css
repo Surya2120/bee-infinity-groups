@@ -340,9 +340,18 @@ section {
 ================================ */
 
 .journey {
-  padding: 20px 5% 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* vertical center */
+  align-items: center;       /* horizontal center */
+
+  text-align: center;
   background: #05070d;
+
+  padding: 0 5%;             /* remove top/bottom padding */
+  min-height: 260px;         /* gives space to center */
 }
+
 
 /* HEADER */
 
@@ -370,6 +379,11 @@ section {
   transform: translateY(0);
 }
 
+.journey-header,
+.journey-quote,
+.next-chapter {
+  margin: 6px 0;
+}
 
 /* QUOTE */
 
@@ -452,6 +466,7 @@ section {
 .origin-content h2::after {
   content: "";
   width: 45px;
+  position: absolute;
   height: 3px;
   background: #f2c400;
   display: block;
@@ -491,6 +506,111 @@ section {
   transform: scale(1.03);
 }
 
+.origin-image {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+/* SWEEP LIGHT */
+
+.origin-image::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 215, 0, 0.4),
+    transparent
+  );
+
+  transform: skewX(-20deg);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* ACTIVE TRIGGER */
+
+.origin-image.active::before {
+  animation: sweepGlow 2s ease forwards;
+}
+
+/* ANIMATION */
+
+@keyframes sweepGlow {
+  0% {
+    left: -120%;
+  }
+  100% {
+    left: 130%;
+  }
+}
+/* IMAGE */
+
+.origin-image img {
+  width: 100%;
+  display: block;
+  border-radius: 16px;
+}
+
+/* DARK GRADIENT OVERLAY */
+
+.origin-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.1),
+    transparent
+  );
+
+  z-index: 1;
+}
+
+/* TEXT OVERLAY */
+
+.image-overlay {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+
+  z-index: 2;
+  color: #fff;
+}
+
+/* NAME */
+
+.image-overlay h4 {
+  font-size: clamp(30px, 2vw, 18px);
+  font-weight: 600;
+  margin-bottom: 4px;
+  letter-spacing: 1px;
+}
+
+/* SUBTEXT */
+
+.image-overlay p {
+  font-size: clamp(11px, 1.5vw, 13px);
+  opacity: 0.8;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* OPTIONAL HOVER ZOOM */
+
+.origin-image:hover img {
+  transform: scale(1.05);
+  transition: 0.5s ease;
+}
 
 /* ===============================
    SCROLL REVEAL
@@ -554,6 +674,58 @@ section {
   .origin-content p {
     font-size: 12.5px;
   }
+    .origin-content h2 {
+    text-align: center;
+  }
+
+  .origin-content h2::after {
+    left: 30%;
+    transform: translateX(-50%);
+  }
+  /* OVERLAY POSITION */
+
+.image-overlay {
+  position: absolute;
+  bottom: clamp(10px, 2vw, 20px);
+  left: clamp(10px, 2vw, 20px);
+  right: clamp(10px, 2vw, 20px);
+  z-index: 2;
+  color: #fff;
+}
+
+/* NAME */
+
+.image-overlay h4 {
+  font-size: clamp(14px, 2.2vw, 20px); /* responsive scaling */
+  font-weight: 600;
+  margin-bottom: clamp(2px, 0.5vw, 6px);
+  letter-spacing: 0.8px;
+  line-height: 1.2;
+}
+
+/* SUBTEXT */
+
+.image-overlay p {
+  font-size: clamp(10px, 1.5vw, 13px);
+  opacity: 0.75;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+/* IMAGE */
+
+.origin-image img {
+  width: 100%;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+/* HOVER */
+
+.origin-image:hover img {
+  transform: scale(1.04);
+}
 }
 /* ===============================
    INFINITY STYLE
@@ -576,7 +748,7 @@ section {
 
 .journey-section {
   position: relative;
-  padding: 60px 0 100px; /* FIXED GAP */
+  padding: 10px 0 100px; /* FIXED GAP */
   background: #0b0b12;
   overflow: hidden;
 }
@@ -817,10 +989,10 @@ section {
   overflow-y: hidden;
   position: relative;
 
-  scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
 
   cursor: grab;
+  user-select: none; /* 🔥 prevents text selection */
 }
 
 /* hide scrollbar */
@@ -828,6 +1000,9 @@ section {
   display: none;
 }
 
+.division-media.dragging {
+  cursor: grabbing;
+}
 
 /* =========================
    MEDIA TRACK

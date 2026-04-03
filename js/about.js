@@ -137,6 +137,32 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+
+/* =========================
+SWEEP LINE ANIMATION
+========================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const target = document.querySelector(".origin-image");
+
+  function triggerGlow() {
+    const rect = target.getBoundingClientRect();
+    const triggerPoint = window.innerHeight * 0.8;
+
+    if (rect.top < triggerPoint) {
+      target.classList.add("active");
+      window.removeEventListener("scroll", triggerGlow);
+    }
+  }
+
+  window.addEventListener("scroll", triggerGlow);
+  triggerGlow(); // run once
+});
+
+
+
+
+
+
 /* ---------- JOURNEY ---------- */
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -303,82 +329,123 @@ window.addEventListener('load', revealOnScroll);
 
 
 
+/* =========================
+   DIVISION DRAG SCROLL (SMOOTH)
+========================= */
 
-  /* =====================
-     DIVISION ANIMATION
-  ===================== */
+document.addEventListener("DOMContentLoaded", () => {
 
+  const sliders = document.querySelectorAll(".division-media");
 
+  sliders.forEach((slider) => {
 
-const sliders = document.querySelectorAll(".division-media");
+    let isDown = false;
+    let startX = 0;
+    let scrollStart = 0;
+    let velocity = 0;
+    let lastX = 0;
+    let momentumID;
 
-sliders.forEach(slider => {
-  let isDown = false;
-  let startX;
-  let scrollLeft;
+    /* =========================
+       STOP MOMENTUM
+    ========================= */
+    function stopMomentum() {
+      cancelAnimationFrame(momentumID);
+    }
 
-  // MOUSE DOWN
-  slider.addEventListener("mousedown", (e) => {
-    isDown = true;
-    slider.classList.add("dragging");
+    /* =========================
+       MOMENTUM EFFECT (INERTIA)
+    ========================= */
+    function momentumScroll() {
+      slider.scrollLeft -= velocity;
+      velocity *= 0.95; // friction
 
-    startX = e.pageX - slider.offsetLeft;
-    scrollLeft = slider.scrollLeft;
+      if (Math.abs(velocity) > 0.5) {
+        momentumID = requestAnimationFrame(momentumScroll);
+      }
+    }
+
+    /* =========================
+       MOUSE DOWN
+    ========================= */
+    slider.addEventListener("mousedown", (e) => {
+      isDown = true;
+      slider.classList.add("dragging");
+
+      startX = e.clientX;
+      scrollStart = slider.scrollLeft;
+      lastX = e.clientX;
+
+      stopMomentum();
+    });
+
+    /* =========================
+       MOUSE MOVE
+    ========================= */
+    slider.addEventListener("mousemove", (e) => {
+      if (!isDown) return;
+
+      e.preventDefault();
+
+      const dx = e.clientX - startX;
+      slider.scrollLeft = scrollStart - dx * 1.4;
+
+      velocity = e.clientX - lastX;
+      lastX = e.clientX;
+    });
+
+    /* =========================
+       MOUSE UP / LEAVE
+    ========================= */
+    function stopDrag() {
+      if (!isDown) return;
+
+      isDown = false;
+      slider.classList.remove("dragging");
+
+      momentumScroll(); // 🔥 continue smooth scroll
+    }
+
+    slider.addEventListener("mouseup", stopDrag);
+    slider.addEventListener("mouseleave", stopDrag);
+
+    /* =========================
+       TOUCH START
+    ========================= */
+    slider.addEventListener("touchstart", (e) => {
+      isDown = true;
+      slider.classList.add("dragging");
+
+      startX = e.touches[0].clientX;
+      scrollStart = slider.scrollLeft;
+      lastX = e.touches[0].clientX;
+
+      stopMomentum();
+    }, { passive: true });
+
+    /* =========================
+       TOUCH MOVE
+    ========================= */
+    slider.addEventListener("touchmove", (e) => {
+      if (!isDown) return;
+
+      const x = e.touches[0].clientX;
+      const dx = x - startX;
+
+      slider.scrollLeft = scrollStart - dx * 1.2;
+
+      velocity = x - lastX;
+      lastX = x;
+    }, { passive: true });
+
+    /* =========================
+       TOUCH END
+    ========================= */
+    slider.addEventListener("touchend", stopDrag);
+
   });
 
-  // MOUSE LEAVE
-  slider.addEventListener("mouseleave", () => {
-    isDown = false;
-    slider.classList.remove("dragging");
-  });
-
-  // MOUSE UP
-  slider.addEventListener("mouseup", () => {
-    isDown = false;
-    slider.classList.remove("dragging");
-  });
-
-  // MOUSE MOVE
-  slider.addEventListener("mousemove", (e) => {
-    if (!isDown) return;
-
-    e.preventDefault();
-    const x = e.pageX - slider.offsetLeft;
-    const walk = (x - startX) * 2; // 🔥 speed control
-
-    slider.scrollLeft = scrollLeft - walk;
-  });
-
-  /* =====================
-     TOUCH SUPPORT
-  ===================== */
-
-  slider.addEventListener("touchstart", (e) => {
-    isDown = true;
-    slider.classList.add("dragging");
-
-    startX = e.touches[0].pageX - slider.offsetLeft;
-    scrollLeft = slider.scrollLeft;
-  });
-
-  slider.addEventListener("touchend", () => {
-    isDown = false;
-    slider.classList.remove("dragging");
-  });
-
-  slider.addEventListener("touchmove", (e) => {
-    if (!isDown) return;
-
-    const x = e.touches[0].pageX - slider.offsetLeft;
-    const walk = (x - startX) * 1.5;
-
-    slider.scrollLeft = scrollLeft - walk;
-  });
 });
-
-
-
-
 
 /* =========================
    CLIENT LOGOS – AUTO SCROLL
