@@ -1,17 +1,33 @@
 /* =========================
-   HEADER SCROLL EFFECT
+   HEADER SCROLL EFFECT (FIXED)
 ========================= */
-window.addEventListener("scroll", () => {
+
+document.addEventListener("DOMContentLoaded", () => {
+
   const navbar = document.querySelector(".navbar");
   if (!navbar) return;
 
-  navbar.classList.toggle("scrolled", window.scrollY > 50);
+  function updateNavbar() {
+    if (window.scrollY > 80) {
+      navbar.classList.add("scrolled");
+    } else {
+      navbar.classList.remove("scrolled");
+    }
+  }
+
+  // Run after full load (prevents auto shrink)
+  window.addEventListener("load", updateNavbar);
+
+  // Scroll listener
+  window.addEventListener("scroll", updateNavbar);
+
 });
 
 
 /* =========================
    DROPDOWN MENU
 ========================= */
+
 document.addEventListener("DOMContentLoaded", () => {
 
   const exploreToggle = document.getElementById("exploreToggle");
@@ -33,27 +49,30 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-
-
-
 /* =========================
    FOOTER EFFECT
 ========================= */
-const footer = document.querySelector(".footer-modern");
 
-if (footer) {
+document.addEventListener("DOMContentLoaded", () => {
+
+  const footer = document.querySelector(".footer-modern");
+
+  if (!footer) return;
+
   footer.addEventListener("mousemove", (e) => {
     const rect = footer.getBoundingClientRect();
 
     footer.style.setProperty("--x", `${e.clientX - rect.left}px`);
     footer.style.setProperty("--y", `${e.clientY - rect.top}px`);
   });
-}
+
+});
 
 
 /* =========================
    MOBILE MENU
 ========================= */
+
 document.addEventListener("DOMContentLoaded", () => {
 
   const toggle = document.getElementById("menuToggle");
@@ -94,50 +113,71 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-
-
 /* =========================
-   GLOBAL SCROLL TO TOP BUTTON
+   SCROLL TO TOP (NO JUMP)
 ========================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
   const btn = document.getElementById("scrollTopBtn");
-
-  // safety check
   if (!btn) return;
 
-  /* =========================
-     SHOW / HIDE BUTTON
-  ========================= */
+  function handleScroll() {
 
-  window.addEventListener("scroll", () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.body.scrollHeight - window.innerHeight;
+    const scrollPercent = docHeight > 0 ? scrollTop / docHeight : 0;
 
-    if (window.scrollY > 300) {
+    /* SHOW / HIDE */
+    if (scrollTop > 300) {
       btn.classList.add("show");
     } else {
       btn.classList.remove("show");
     }
 
+    /* COLOR SHIFT */
+    if (scrollPercent < 0.33) {
+      btn.style.background = "rgba(255,255,255,0.08)";
+      btn.style.color = "#ffcc70";
+    }
+    else if (scrollPercent < 0.66) {
+      btn.style.background = "rgba(255,123,0,0.15)";
+      btn.style.color = "#ff7b00";
+    }
+    else {
+      btn.style.background = "rgba(10,61,145,0.2)";
+      btn.style.color = "#0a3d91";
+    }
+  }
+
+  window.addEventListener("scroll", handleScroll);
+
+  /* SMOOTH SCROLL ENGINE */
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const start = window.scrollY;
+    const duration = 700;
+    let startTime = null;
+
+    function scrollStep(timestamp) {
+      if (!startTime) startTime = timestamp;
+
+      const progress = timestamp - startTime;
+      const percent = Math.min(progress / duration, 1);
+
+      const ease = 1 - Math.pow(1 - percent, 3);
+
+      window.scrollTo(0, start * (1 - ease));
+
+      if (progress < duration) {
+        requestAnimationFrame(scrollStep);
+      }
+    }
+
+    requestAnimationFrame(scrollStep);
   });
 
-  /* =========================
-     SCROLL TO TOP CLICK
-  ========================= */
-
-  btn.addEventListener("click", () => {
-
-    // smooth scroll
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "smooth"
-    });
-
-    // fallback (for safety)
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-
-  });
+  handleScroll();
 
 });

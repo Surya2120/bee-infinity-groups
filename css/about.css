@@ -289,38 +289,80 @@ body {
 
 
 /* ===============================
-   JOURNEY HEADER
+   GLOBAL RESET (REMOVE GAPS)
+================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  line-height: 1.4;
+  overflow-x: hidden;
+}
+
+section {
+  padding: 40px 5%;
+}
+
+
+/* ===============================
+   HERO / ABOUT TOP SECTION FIX
+================================ */
+
+.hero,
+.about-hero,
+.banner {
+  padding: 50px 5% 40px;   /* reduced height */
+  height: auto !important;
+  min-height: auto !important;
+}
+
+/* HERO TEXT */
+
+.hero h1,
+.about-hero h1 {
+  font-size: clamp(28px, 5vw, 48px);
+  margin-bottom: 10px;
+}
+
+.hero p,
+.about-hero p {
+  font-size: clamp(14px, 2vw, 18px);
+  margin-bottom: 10px;
+}
+
+
+/* ===============================
+   JOURNEY (ULTRA COMPACT)
 ================================ */
 
 .journey {
-  margin: 0;
-  padding: 30px 10% 40px; /* FIXED */
+  padding: 20px 5% 25px;
   background: #05070d;
 }
 
+/* HEADER */
+
 .journey-header {
-  margin: 0 0 30px;
+  margin-bottom: 12px;
   text-align: center;
-  position: relative;
-  z-index: 2;
 
   opacity: 0;
-  transform: translateY(40px);
-  transition: all 1s ease;
+  transform: translateY(20px);
+  transition: 0.6s ease;
 }
 
 .journey-header h2 {
-  margin: 0;
-  font-size: 40px;
-  color: #ffffff;
-  letter-spacing: 2px;
+  font-size: clamp(22px, 3.5vw, 30px);
+  color: #fff;
 }
 
 .journey-header p {
-  margin-top: 8px;
-  font-size: 16px;
-  color: #bbbbbb;
-  letter-spacing: 1px;
+  font-size: clamp(12px, 2vw, 14px);
+  color: #aaa;
 }
 
 .journey-header.active {
@@ -329,33 +371,28 @@ body {
 }
 
 
-/* ===============================
-   FOUNDER QUOTE
-================================ */
+/* QUOTE */
 
 .journey-quote {
-  margin: 30px auto;
+  margin: 10px auto;
+  max-width: 600px;
   text-align: center;
-  max-width: 800px;
 
   opacity: 0;
-  transform: translateY(60px);
-  transition: all 1s ease;
+  transform: translateY(25px);
+  transition: 0.6s ease;
 }
 
 .journey-quote blockquote {
-  font-size: 24px;
-  line-height: 1.7;
-  color: #ffffff;
-  font-weight: 300;
+  font-size: clamp(14px, 2.3vw, 18px);
+  line-height: 1.5;
+  color: #fff;
 }
 
 .quote-author {
-  display: block;
-  margin-top: 16px;
+  margin-top: 6px;
+  font-size: 11px;
   color: #ffcc00;
-  letter-spacing: 2px;
-  font-size: 14px;
 }
 
 .journey-quote.active {
@@ -364,24 +401,20 @@ body {
 }
 
 
-/* ===============================
-   NEXT CHAPTER
-================================ */
+/* NEXT CHAPTER */
 
 .next-chapter {
-  margin-top: 20px;
+  margin-top: 8px;
   text-align: center;
 
   opacity: 0;
-  transform: translateY(40px);
-  transition: all 1.2s ease;
+  transform: translateY(20px);
+  transition: 0.7s ease;
 }
 
 .next-chapter h3 {
-  font-size: 32px;
-  font-weight: 600;
-  letter-spacing: 3px;
-  color: #ffffff;
+  font-size: clamp(16px, 2.5vw, 22px);
+  color: #fff;
 }
 
 .next-chapter.active {
@@ -390,94 +423,72 @@ body {
 }
 
 
-/* =========================================
-   ORIGIN STORY
-========================================= */
+/* ===============================
+   ORIGIN STORY (COMPACT GRID)
+================================ */
 
 .origin-story {
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 80px;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
 
-  padding: 120px 10%;
-  background: linear-gradient(135deg, #ffffff, #f8faff);
-
+  padding: 50px 5%;
+  background: linear-gradient(135deg, #fff, #f8faff);
   align-items: center;
 }
 
+/* TEXT */
+
 .origin-content {
-  max-width: 620px;
+  max-width: 520px;
 }
 
 .origin-content h2 {
-  font-size: 42px;
-  margin-bottom: 30px;
+  font-size: clamp(22px, 3.5vw, 32px);
+  margin-bottom: 12px;
   color: #0a3d91;
-  letter-spacing: 0.5px;
-  position: relative;
 }
 
 .origin-content h2::after {
   content: "";
-  width: 70px;
-  height: 4px;
-  background: linear-gradient(90deg, #f2c400, #ffd84d);
+  width: 45px;
+  height: 3px;
+  background: #f2c400;
   display: block;
-  margin-top: 14px;
-  border-radius: 2px;
+  margin-top: 6px;
 }
 
 .origin-content p {
-  font-size: 16px;
-  line-height: 1.9;
+  font-size: 13px;
+  line-height: 1.6;
   color: #444;
-  margin-bottom: 22px;
+  margin-bottom: 10px;
 }
 
 .origin-sign {
-  margin-top: 40px;
-  font-size: 15px;
-  letter-spacing: 2px;
+  margin-top: 12px;
+  font-size: 12px;
   color: #0a3d91;
-  font-weight: 600;
 }
 
 .origin-sign span {
   display: block;
-  font-size: 13px;
+  font-size: 11px;
   opacity: 0.7;
-  margin-top: 4px;
 }
 
 
 /* IMAGE */
 
-.origin-image {
-  position: relative;
-}
-
 .origin-image img {
   width: 100%;
-  border-radius: 20px;
-
-  box-shadow:
-    0 40px 100px rgba(0,0,0,0.25),
-    0 10px 30px rgba(0,0,0,0.1);
-
-  transition: 0.6s ease;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+  transition: 0.4s ease;
 }
 
 .origin-image:hover img {
-  transform: scale(1.05);
-}
-
-.origin-image::before {
-  content: "";
-  position: absolute;
-  inset: -25px;
-  background: radial-gradient(circle, rgba(242,196,0,0.25), transparent 70%);
-  z-index: -1;
-  filter: blur(10px);
+  transform: scale(1.03);
 }
 
 
@@ -487,8 +498,8 @@ body {
 
 .reveal {
   opacity: 0;
-  transform: translateY(60px);
-  transition: all 1s ease;
+  transform: translateY(25px);
+  transition: 0.6s ease;
 }
 
 .reveal.active {
@@ -496,32 +507,54 @@ body {
   transform: translateY(0);
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+
+/* ===============================
+   TABLET
+================================ */
 
 @media (max-width: 900px) {
+
   .origin-story {
     grid-template-columns: 1fr;
+    gap: 25px;
     text-align: center;
-    gap: 60px;
   }
 
-  .origin-content h2::after {
-    margin: 14px auto;
+  .origin-image {
+    max-width: 400px;
+    margin: auto;
   }
 }
 
-@media (max-width: 600px) {
-  .origin-content h2 {
-    font-size: 30px;
+
+/* ===============================
+   MOBILE
+================================ */
+
+@media (max-width: 500px) {
+
+  section {
+    padding: 30px 4%;
+  }
+
+  .hero,
+  .about-hero {
+    padding: 40px 4%;
+  }
+
+  .journey {
+    padding: 15px 4% 20px;
+  }
+
+  .origin-story {
+    padding: 40px 4%;
+    gap: 20px;
   }
 
   .origin-content p {
-    font-size: 14px;
+    font-size: 12.5px;
   }
 }
-
 /* ===============================
    INFINITY STYLE
 ================================ */
