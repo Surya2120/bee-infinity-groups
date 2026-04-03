@@ -142,24 +142,27 @@ document.addEventListener("DOMContentLoaded", () => {
 SWEEP LINE ANIMATION
 ========================= */
 document.addEventListener("DOMContentLoaded", () => {
-  const target = document.querySelector(".origin-image");
 
-  function triggerGlow() {
+  const target = document.querySelector(".origin-image");
+  if (!target) return;
+
+  function handleScroll() {
     const rect = target.getBoundingClientRect();
     const triggerPoint = window.innerHeight * 0.8;
 
-    if (rect.top < triggerPoint) {
+    if (rect.top < triggerPoint && rect.bottom > 0) {
+      // in viewport → keep animation running
       target.classList.add("active");
-      window.removeEventListener("scroll", triggerGlow);
+    } else {
+      // out of view → reset animation
+      target.classList.remove("active");
     }
   }
 
-  window.addEventListener("scroll", triggerGlow);
-  triggerGlow(); // run once
+  window.addEventListener("scroll", handleScroll);
+  handleScroll(); // initial check
+
 });
-
-
-
 
 
 
@@ -447,6 +450,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+
+
+
+/** =========================
+    OUR FUTURE
+========================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const cards = document.querySelectorAll(".future-card");
+
+  function revealCards() {
+    const trigger = window.innerHeight * 0.85;
+
+    cards.forEach(card => {
+      const top = card.getBoundingClientRect().top;
+
+      if (top < trigger) {
+        card.classList.add("show");
+      }
+    });
+  }
+
+  window.addEventListener("scroll", revealCards);
+  revealCards();
+
+});
+
+
+
 /* =========================
    CLIENT LOGOS – AUTO SCROLL
 ========================= */
@@ -614,3 +647,57 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+
+
+
+
+
+
+
+
+
+
+
+/* =========================
+   ABOUT PAGE INTRO (WORKING)
+========================= */
+
+window.addEventListener("load", () => {
+
+  const brand = document.getElementById("brandStart");
+  if (!brand) return;
+
+  // STEP 1: center brand section (no calculation issues)
+  brand.scrollIntoView({
+    block: "center",
+    behavior: "auto"
+  });
+
+  // STEP 2: after 3 sec → smooth scroll to top
+  setTimeout(() => {
+
+    const start = window.scrollY;
+    const duration = 4000;
+    let startTime = null;
+
+    function scrollUp(currentTime) {
+      if (!startTime) startTime = currentTime;
+
+      const time = currentTime - startTime;
+      const progress = Math.min(time / duration, 1);
+
+      // ease-out
+      const ease = 1 - Math.pow(1 - progress, 3);
+
+      window.scrollTo(0, start * (1 - ease));
+
+      if (time < duration) {
+        requestAnimationFrame(scrollUp);
+      }
+    }
+
+    requestAnimationFrame(scrollUp);
+
+  }, 3000);
+
+});
