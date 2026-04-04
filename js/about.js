@@ -333,7 +333,7 @@ window.addEventListener('load', revealOnScroll);
 
 
 /* =========================
-   DIVISION DRAG SCROLL (SMOOTH)
+   DIVISION DRAG SCROLL (INFINITE LOOP + SMOOTH)
 ========================= */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -341,6 +341,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const sliders = document.querySelectorAll(".division-media");
 
   sliders.forEach((slider) => {
+
+    /* =========================
+       DUPLICATE CONTENT (LOOP)
+    ========================= */
+    const content = slider.innerHTML;
+    slider.innerHTML += content;
 
     let isDown = false;
     let startX = 0;
@@ -357,11 +363,28 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* =========================
-       MOMENTUM EFFECT (INERTIA)
+       LOOP HANDLER
+    ========================= */
+    function handleLoop() {
+      const maxScroll = slider.scrollWidth / 2;
+
+      if (slider.scrollLeft >= maxScroll) {
+        slider.scrollLeft -= maxScroll;
+      }
+
+      if (slider.scrollLeft <= 0) {
+        slider.scrollLeft += maxScroll;
+      }
+    }
+
+    /* =========================
+       MOMENTUM EFFECT
     ========================= */
     function momentumScroll() {
       slider.scrollLeft -= velocity;
-      velocity *= 0.95; // friction
+      velocity *= 0.95;
+
+      handleLoop(); // 🔥 keep loop smooth
 
       if (Math.abs(velocity) > 0.5) {
         momentumID = requestAnimationFrame(momentumScroll);
@@ -395,10 +418,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       velocity = e.clientX - lastX;
       lastX = e.clientX;
+
+      handleLoop();
     });
 
     /* =========================
-       MOUSE UP / LEAVE
+       STOP DRAG
     ========================= */
     function stopDrag() {
       if (!isDown) return;
@@ -406,7 +431,7 @@ document.addEventListener("DOMContentLoaded", () => {
       isDown = false;
       slider.classList.remove("dragging");
 
-      momentumScroll(); // 🔥 continue smooth scroll
+      momentumScroll();
     }
 
     slider.addEventListener("mouseup", stopDrag);
@@ -439,6 +464,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       velocity = x - lastX;
       lastX = x;
+
+      handleLoop();
     }, { passive: true });
 
     /* =========================
@@ -449,7 +476,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
-
 
 
 

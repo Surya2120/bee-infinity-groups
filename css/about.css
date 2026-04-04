@@ -965,15 +965,19 @@ section {
 
 .division-media {
   width: 50%;
-  overflow-x: auto;
+  display: flex;
+  overflow-x: scroll;
   overflow-y: hidden;
   position: relative;
-
+  scroll-behavior: auto;
   -webkit-overflow-scrolling: touch;
 
   cursor: grab;
   user-select: none; /* 🔥 prevents text selection */
 }
+
+
+
 
 /* hide scrollbar */
 .division-media::-webkit-scrollbar {
