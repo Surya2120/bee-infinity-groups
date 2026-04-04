@@ -234,33 +234,17 @@ p {
   box-shadow: 0 0 20px rgba(242, 196, 0, 0.3);
 }
 
-/* =========================
-   CTA
-========================= */
 
-.cinemaz-cta {
-  text-align: center;
-}
 
-.cta-btn {
-  display: inline-block;
-  margin-top: 30px;
-  padding: 14px 40px;
 
-  border-radius: 50px;
-  background: linear-gradient(45deg, #f2c400, #ff7b00);
 
-  color: #000;
-  font-weight: 600;
-  text-decoration: none;
 
-  transition: 0.3s ease;
-}
 
-.cta-btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 25px rgba(242, 196, 0, 0.6);
-}
+
+
+
+
+
 
 /* =========================
    FOOTER
@@ -382,12 +366,11 @@ p {
   inset: 0;
   background: radial-gradient(circle at center, #05070d, #000);
   z-index: 99999;
-
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-
+  pointer-events: auto;
   /* 🔥 FIX TOUCH ISSUE */
   user-select: none;
   -webkit-user-select: none;
@@ -411,7 +394,12 @@ p {
   0%,100% { transform: scale(1); opacity: 0.25; }
   50% { transform: scale(1.4); opacity: 0.6; }
 }
-
+/* 🔥 DO NOT BLOCK CLICKS */
+.flash,
+.cursor-glow,
+.loader-bg {
+  pointer-events: none;
+}
 /* =========================
    CONTENT
 ========================= */
@@ -421,6 +409,7 @@ p {
   text-align: center;
   z-index: 2;
   padding: 20px;
+  pointer-events: none;
 }
 
 /* =========================
@@ -522,13 +511,14 @@ p {
   font-size: 13px;
   letter-spacing: 3px;
   opacity: 0.7;
-
+  pointer-events: auto;
   padding: 14px 24px;
   display: inline-block;
-
+  pointer-events: auto;
   cursor: pointer;
   touch-action: manipulation;
-
+  z-index: 10000;
+  position: relative;
   animation: tapBlink 1.5s infinite;
 
   /* 🔥 FIX TEXT SELECT ISSUE */
@@ -540,7 +530,12 @@ p {
   0%,100% { opacity: 0.3; }
   50% { opacity: 1; }
 }
-
+/* 🔥 PREVENT ANY OVERLAY BLOCKING */
+.flash,
+.loader-bg,
+.cursor-glow {
+  pointer-events: none !important;
+}
 /* =========================
    FLASH EFFECT
 ========================= */
@@ -571,6 +566,7 @@ p {
   opacity: 0;
   transform: scale(1.2);
   transition: all 0.3s ease;
+   pointer-events: none;
 }
 
 /* =========================
@@ -640,10 +636,6 @@ p {
 
   .loader-title { font-size: 52px; }
 }
-
-
-
-
 
 
 
@@ -757,39 +749,6 @@ p {
   transform: scale(1.08);
   filter: brightness(1.1);
 }
-
-/* =========================
-   CTA EFFECT
-========================= */
-
-.cta-btn {
-  position: relative;
-  overflow: hidden;
-}
-
-.cta-btn::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -120%;
-  width: 60%;
-  height: 100%;
-
-  background: linear-gradient(
-    120deg,
-    transparent,
-    rgba(255, 255, 255, 0.6),
-    transparent
-  );
-
-  transform: skewX(-25deg);
-  transition: 0.6s;
-}
-
-.cta-btn:hover::after {
-  left: 130%;
-}
-
 /* =========================
    CURSOR GLOW
 ========================= */
@@ -979,3 +938,73 @@ section::after {
   }
 }
 
+
+
+/* =========================
+   CTA BUTTON (FINAL FIXED)
+========================= */
+
+.cta-btn {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 14px 40px;
+
+  border-radius: 50px;
+  background: linear-gradient(45deg, #f2c400, #ff7b00);
+
+  color: #000;
+  font-weight: 600;
+  text-decoration: none;
+
+  position: relative;
+  z-index: 9999; /* 🔥 ensures clickable */
+  overflow: hidden;
+
+  cursor: pointer;
+
+  transition: transform 0.25s ease, box-shadow 0.3s ease;
+  will-change: transform;
+}
+
+/* 🔥 REMOVE SCALE CONFLICT (IMPORTANT) */
+.cta-btn:hover {
+  box-shadow: 0 0 25px rgba(242, 196, 0, 0.6);
+}
+
+/* =========================
+   SHINE EFFECT
+========================= */
+
+.cta-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+
+  transform: skewX(-25deg);
+  transition: 0.6s;
+}
+
+.cta-btn:hover::after {
+  left: 130%;
+}
+
+/* =========================
+   MOBILE FIX
+========================= */
+
+@media (max-width: 768px) {
+  .cta-btn {
+    padding: 12px 30px;
+    font-size: 14px;
+  }
+}
