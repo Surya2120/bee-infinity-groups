@@ -17,6 +17,10 @@ footer.addEventListener("mousemove", (e) => {
 });
 
 
+/* =========================
+   TAP TO ENTER & INTRO SEQUENCE
+========================= */
+
 window.addEventListener("load", () => {
 
   const loader = document.querySelector(".cinema-loader");

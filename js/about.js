@@ -478,9 +478,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-
 /** =========================
-    OUR FUTURE
+    OUR FUTURE (REPEAT ANIMATION)
 ========================= */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -488,13 +487,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const cards = document.querySelectorAll(".future-card");
 
   function revealCards() {
-    const trigger = window.innerHeight * 0.85;
+    const triggerTop = window.innerHeight * 0.85;
+    const triggerBottom = window.innerHeight * 0.1;
 
     cards.forEach(card => {
-      const top = card.getBoundingClientRect().top;
+      const rect = card.getBoundingClientRect();
 
-      if (top < trigger) {
+      // If card is inside viewport → SHOW
+      if (rect.top < triggerTop && rect.bottom > triggerBottom) {
         card.classList.add("show");
+      } 
+      // If card goes out → RESET
+      else {
+        card.classList.remove("show");
       }
     });
   }
@@ -503,8 +508,6 @@ document.addEventListener("DOMContentLoaded", () => {
   revealCards();
 
 });
-
-
 
 /* =========================
    CLIENT LOGOS – AUTO SCROLL
@@ -552,59 +555,77 @@ animateLogos();
 
 
 
-
 /* =========================
-  VISION & MISSION  SCROLL ANIMATION
+  VISION & MISSION SCROLL ANIMATION (REPEAT)
 ========================= */
 
-const futureCards = document.querySelectorAll(".future-card");
+document.addEventListener("DOMContentLoaded", () => {
 
-const observer = new IntersectionObserver(entries => {
+  const futureCards = document.querySelectorAll(".future-card");
 
-  entries.forEach(entry => {
+  const observer = new IntersectionObserver((entries) => {
 
-    if(entry.isIntersecting){
-      entry.target.classList.add("show");
-    }
+    entries.forEach((entry) => {
 
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+      } else {
+        entry.target.classList.remove("show"); // 🔥 reset when out
+      }
+
+    });
+
+  }, {
+    threshold: 0.2
   });
 
-},{threshold:0.2});
+  futureCards.forEach(card => {
+    observer.observe(card);
+  });
 
-futureCards.forEach(card => {
-  observer.observe(card);
 });
 
 
-
-
 /* =========================
-   WHY US ANIATIONS
+   WHY US ANIMATIONS (REPEAT + STAGGER)
 ========================= */
-const whyCards = document.querySelectorAll(".why-grid div");
 
-function revealWhy() {
-  const trigger = window.innerHeight - 80;
+document.addEventListener("DOMContentLoaded", () => {
 
-  whyCards.forEach((card, index) => {
-    const top = card.getBoundingClientRect().top;
+  const whyCards = document.querySelectorAll(".why-grid div");
 
-    if (top < trigger && !card.classList.contains("show")) {
+  function revealWhy() {
+    const triggerTop = window.innerHeight - 80;
+    const triggerBottom = 0;
 
-      setTimeout(() => {
-        card.classList.add("show");
-      }, index * 120); // stagger effect
-    }
-  });
-}
+    whyCards.forEach((card, index) => {
+      const rect = card.getBoundingClientRect();
 
-window.addEventListener("scroll", revealWhy);
-window.addEventListener("load", revealWhy);
+      // SHOW when in view
+      if (rect.top < triggerTop && rect.bottom > triggerBottom) {
 
+        if (!card.classList.contains("show")) {
+          setTimeout(() => {
+            card.classList.add("show");
+          }, index * 120); // stagger 🔥
+        }
+
+      } 
+      // RESET when out of view
+      else {
+        card.classList.remove("show");
+      }
+    });
+  }
+
+  window.addEventListener("scroll", revealWhy);
+  revealWhy();
+
+});
 
 
 /* =========================
-   STATS ANIMATIONS (FIXED)
+   STATS ANIMATIONS (REPEAT + RESET)
 ========================= */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -612,19 +633,34 @@ document.addEventListener("DOMContentLoaded", () => {
   const impactItems = document.querySelectorAll(".impact-item");
 
   function animateImpact() {
-    const trigger = window.innerHeight - 100;
+    const triggerTop = window.innerHeight - 100;
+    const triggerBottom = 0;
 
     impactItems.forEach((item, index) => {
-      const top = item.getBoundingClientRect().top;
+      const rect = item.getBoundingClientRect();
 
-      if (top < trigger && !item.classList.contains("show")) {
+      const numberEl = item.querySelector(".impact-number");
 
-        item.classList.add("show");
+      // 👉 WHEN IN VIEW → SHOW + COUNT
+      if (rect.top < triggerTop && rect.bottom > triggerBottom) {
 
-        // delay for stagger effect
-        setTimeout(() => {
-          startCount(item);
-        }, index * 150);
+        if (!item.classList.contains("show")) {
+          item.classList.add("show");
+
+          setTimeout(() => {
+            startCount(numberEl);
+          }, index * 150);
+        }
+
+      } 
+      // 👉 WHEN OUT OF VIEW → RESET
+      else {
+        item.classList.remove("show");
+
+        if (numberEl) {
+          numberEl.classList.remove("counted");
+          numberEl.innerText = "0+"; // reset number
+        }
       }
     });
   }
@@ -633,21 +669,18 @@ document.addEventListener("DOMContentLoaded", () => {
      COUNT-UP FUNCTION
   ========================= */
 
-  function startCount(item) {
+  function startCount(numberEl) {
 
-    const numberEl = item.querySelector(".impact-number");
-
-    // prevent multiple runs
     if (numberEl.classList.contains("counted")) return;
     numberEl.classList.add("counted");
 
-    const text = numberEl.innerText.replace("+", "").trim();
+    const text = numberEl.getAttribute("data-target"); 
     const target = parseInt(text);
 
     if (isNaN(target)) return;
 
     let count = 0;
-    const duration = 1000; // ⏱ total animation time
+    const duration = 1000;
     const increment = target / (duration / 16);
 
     function update() {
@@ -669,10 +702,9 @@ document.addEventListener("DOMContentLoaded", () => {
   ========================= */
 
   window.addEventListener("scroll", animateImpact);
-  window.addEventListener("load", animateImpact);
+  animateImpact();
 
 });
-
 
 
 

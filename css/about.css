@@ -463,8 +463,9 @@ section {
 }
 
 .origin-sign {
+  font-weight: 700;
   margin-top: 12px;
-  font-size: 12px;
+  font-size: 20px;
   color: #0a3d91;
 }
 
