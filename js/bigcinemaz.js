@@ -17,11 +17,6 @@ footer.addEventListener("mousemove", (e) => {
 });
 
 
-
-// ============================
-// PERFECT CINEMATIC SYNC
-// ============================
-
 window.addEventListener("load", () => {
 
   const loader = document.querySelector(".cinema-loader");
@@ -31,14 +26,13 @@ window.addEventListener("load", () => {
 
   let started = false;
 
-  // 🔥 ADJUST THIS BASED ON YOUR SOUND
-  const IMPACT_TIME = 1600; // milliseconds (1.2 sec)
+  const IMPACT_TIME = 1600;
 
   function startExperience() {
     if (started) return;
     started = true;
 
-    // 🔊 PLAY SOUND
+    // 🔊 SOUND
     if (sound) {
       sound.currentTime = 0;
       sound.volume = 0.6;
@@ -48,54 +42,32 @@ window.addEventListener("load", () => {
     // hide tap
     if (tap) tap.style.display = "none";
 
-    // ============================
-    // 💥 IMPACT MOMENT SYNC
-    // ============================
-// ============================
-// PERFECT EXIT (NO DELAY AFTER FLASH)
-// ============================
-
-setTimeout(() => {
-
-  // ⚡ FLASH + IMPACT
-  if (flash) flash.classList.add("active");
-  document.body.classList.add("shake");
-  document.body.classList.add("impact-glow");
-
-  // 💥 IMMEDIATE EXIT START (KEY FIX)
-  if (loader) loader.classList.add("hide");
-
-  setTimeout(() => {
-    document.body.classList.remove("shake");
-  }, 400);
-
-  // remove loader completely
-  setTimeout(() => {
-    if (loader) loader.style.display = "none";
-  }, 600); // faster removal
-
-}, IMPACT_TIME);
-
-    // ============================
-    // 🎬 EXIT TIMELINE
-    // ============================
-
+    // 💥 IMPACT MOMENT
     setTimeout(() => {
-      loader.classList.add("hide");
+
+      if (flash) flash.classList.add("active");
+      document.body.classList.add("shake");
+      document.body.classList.add("impact-glow");
+
+      if (loader) loader.classList.add("hide");
 
       setTimeout(() => {
-        loader.style.display = "none";
-      }, 1000);
+        document.body.classList.remove("shake");
+      }, 400);
 
-    }, IMPACT_TIME + 800);
+      // remove loader
+      setTimeout(() => {
+        if (loader) loader.style.display = "none";
+      }, 600);
+
+    }, IMPACT_TIME);
   }
 
-  // USER INTERACTION
+  // 👆 CLICK ANYWHERE
   window.addEventListener("click", startExperience);
   window.addEventListener("touchstart", startExperience);
 
 });
-
 
 
 

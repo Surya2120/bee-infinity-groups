@@ -399,9 +399,9 @@ p {
   height: 200%;
 
   background: radial-gradient(
-    circle,
-    #0a3d91(242, 196, 0, 0.15),
-    transparent 60%
+  circle,
+  rgba(242, 196, 0, 0.15),
+  transparent 60%
   );
   animation: bgPulse 5s ease-in-out infinite;
 }
@@ -549,6 +549,9 @@ p {
   opacity: 0.6;
   cursor: pointer;
 
+  padding: 12px 20px; /* 🔥 bigger touch area */
+  display: inline-block;
+
   animation: tapBlink 1.5s infinite;
 }
 
@@ -623,6 +626,83 @@ p {
     transform: translate(0);
   }
 }
+
+
+
+
+
+/* =========================
+   RESPONSIVE FIX
+========================= */
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  .loader-logo {
+    width: 90px;
+    margin-bottom: 20px;
+  }
+
+  .loader-title {
+    font-size: 28px;
+    letter-spacing: 6px;
+  }
+
+  .loader-sub {
+    font-size: 12px;
+    letter-spacing: 2px;
+  }
+
+  .tap-enter {
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-top: 30px;
+  }
+
+}
+
+/* SMALL MOBILE */
+@media (max-width: 480px) {
+
+  .loader-logo {
+    width: 70px;
+  }
+
+  .loader-title {
+    font-size: 22px;
+    letter-spacing: 4px;
+  }
+
+  .loader-sub {
+    font-size: 10px;
+  }
+
+  .tap-enter {
+    font-size: 10px;
+    margin-top: 25px;
+  }
+
+}
+
+/* LARGE SCREENS */
+@media (min-width: 1200px) {
+
+  .loader-logo {
+    width: 160px;
+  }
+
+  .loader-title {
+    font-size: 52px;
+  }
+
+}
+
+
+
+
+
+
+
 
 /* =========================
    IMPACT GLOW
@@ -956,30 +1036,3 @@ section::after {
   }
 }
 
-/* =========================
-   SMALL MOBILE (<480px)
-========================= */
-
-@media (max-width: 480px) {
-  .hero-content h1 {
-    font-size: 28px;
-  }
-
-  .loader-title {
-    font-size: 28px;
-    letter-spacing: 6px;
-  }
-
-  .loader-logo {
-    width: 90px;
-  }
-
-  .tap-enter {
-    font-size: 11px;
-  }
-
-  .cta-btn {
-    padding: 12px 24px;
-    font-size: 14px;
-  }
-}

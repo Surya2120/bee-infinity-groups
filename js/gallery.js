@@ -1,13 +1,13 @@
 /* =========================
-   PORTFOLIO + LIGHTBOX (FINAL SAFE)
+   GALLERY + LIGHTBOX (FINAL SAFE)
 ========================= */
 
 (function () {
 
-  function initPortfolio() {
+  function initGallery() {
 
     const tabs = document.querySelectorAll(".tab");
-    const items = document.querySelectorAll(".portfolio-item");
+    const items = document.querySelectorAll(".gallery-item");
     const lightbox = document.getElementById("lightbox");
     const lightboxImg = document.getElementById("lightbox-img");
 
@@ -23,26 +23,32 @@
     let filteredImages = [];
 
 
-    /* =========================
-       FILTER
-    ========================= */
-    tabs.forEach(tab => {
-      tab.addEventListener("click", function () {
+/* =========================
+   FILTER
+========================= */
+tabs.forEach(tab => {
+  tab.addEventListener("click", function () {
 
-        tabs.forEach(t => t.classList.remove("active"));
-        this.classList.add("active");
+    tabs.forEach(t => t.classList.remove("active"));
+    this.classList.add("active");
 
-        const category = this.dataset.category;
+    const category = this.dataset.category;
 
-        items.forEach(item => {
-          item.style.display =
-            (category === "all" || item.dataset.category === category)
-              ? "block"
-              : "none";
-        });
-
-      });
+    items.forEach(item => {
+      item.style.display =
+        (category === "all" || item.dataset.category === category)
+          ? "block"
+          : "none";
     });
+
+    // 🔥 FORCE SCROLL (THIS WILL WORK)
+setTimeout(() => {
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+}, 50);
+
+  });
+});
 
 
     /* =========================
@@ -157,9 +163,9 @@
      SAFE INIT (NO CONFLICT)
   ========================= */
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initPortfolio);
+    document.addEventListener("DOMContentLoaded", initGallery);
   } else {
-    initPortfolio();
+    initGallery();
   }
 
 })();

@@ -113,12 +113,12 @@ if (heroVideo && muteBtn) {
 
 
 /* =========================
-   PORTFOLIO FILTER
+   GALLERY FILTER
 ========================= 
 const filterButtons = document.querySelectorAll(".filter-btn");
-const portfolioItems = document.querySelectorAll(".portfolio-item");
+const galleryItems = document.querySelectorAll(".gallery-item");
 
-if (filterButtons.length && portfolioItems.length) {
+if (filterButtons.length && galleryItems.length) {
   filterButtons.forEach(button => {
     button.addEventListener("click", () => {
 
@@ -128,7 +128,7 @@ if (filterButtons.length && portfolioItems.length) {
       const filter = button.dataset.filter;
       let visible = 0;
 
-      portfolioItems.forEach(item => {
+      galleryItems.forEach(item => {
         const category = item.dataset.category;
 
         if (filter === "all") {
@@ -205,6 +205,150 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+
+
+
+
+// ==========================
+// SELECT ELEMENTS
+// ==========================
+document.addEventListener("DOMContentLoaded", function () {
+
+  const tabs = document.querySelectorAll(".tab");
+  const items = document.querySelectorAll(".gallery-item");
+
+  // ==========================
+  // FILTER FUNCTION
+  // ==========================
+  function filterCategory(category) {
+
+    // active tab
+    tabs.forEach(t => t.classList.remove("active"));
+
+    const activeTab = document.querySelector(`.tab[data-category="${category}"]`);
+    if (activeTab) activeTab.classList.add("active");
+
+    // filter items
+    items.forEach(item => {
+      item.style.display =
+        (category === "all" || item.dataset.category === category)
+          ? "block"
+          : "none";
+    });
+
+    // smooth scroll
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+
+  // ==========================
+  // TAB CLICK
+  // ==========================
+tabs.forEach(tab => {
+  tab.addEventListener("click", function () {
+
+    const category = this.dataset.category;
+
+    // active tab
+    tabs.forEach(t => t.classList.remove("active"));
+    this.classList.add("active");
+
+    // filter items
+    items.forEach(item => {
+      item.style.display =
+        (category === "all" || item.dataset.category === category)
+          ? "block"
+          : "none";
+    });
+
+    // 🔥 UPDATE URL
+    history.replaceState(null, "", `?category=${category}`);
+
+    // scroll top
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+  });
+});
+
+  // ==========================
+  // AUTO OPEN FROM URL
+  // ==========================
+  const params = new URLSearchParams(window.location.search);
+  const category = params.get("category");
+
+  if (category) {
+    filterCategory(category); // 🔥 DIRECT CALL (no click)
+  } else {
+    filterCategory("all");
+  }
+
+});
+
+// ==========================
+// NAVIGATION FROM CARDS
+// ==========================
+function goToCategory(category) {
+  window.location.href = `gallery.html?category=${category}`;
+}
+
+// ==========================
+// AUTO OPEN CATEGORY FROM URL
+// ==========================
+document.addEventListener("DOMContentLoaded", () => {
+
+  const params = new URLSearchParams(window.location.search);
+  const category = params.get("category");
+
+  if (category) {
+    const targetTab = document.querySelector(`.tab[data-category="${category}"]`);
+
+    if (targetTab) {
+      setTimeout(() => {
+        targetTab.click();
+      }, 100);
+    }
+  }
+
+});
+
+// ==========================
+// NAVIGATE FROM CARDS
+// ==========================
+function goToCategory(category) {
+  window.location.href = `gallery.html?category=${category}`;
+}
+
+// ==========================
+// AUTO OPEN CATEGORY FROM URL
+// ==========================
+document.addEventListener("DOMContentLoaded", () => {
+
+  const params = new URLSearchParams(window.location.search);
+  const category = params.get("category");
+
+  if (category) {
+    const targetTab = document.querySelector(`.tab[data-category="${category}"]`);
+
+    if (targetTab) {
+      setTimeout(() => {
+        targetTab.click();
+      }, 100);
+    }
+  }
+
+});
+
+// ==========================
+// NAVIGATE FROM CARDS
+// ==========================
+function goToCategory(category) {
+  window.location.href = `gallery.html?category=${category}`;
+}
 
 /* =========================
    ULTRA SECTION

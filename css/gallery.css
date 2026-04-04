@@ -40,7 +40,7 @@ body {
 /* =========================
    HERO SECTION
 ========================= */
-.portfolio-hero {
+.gallery-hero {
   padding: 40px 10px;
   text-align: center;
   background: url("../assets/images/dance/Dance (1).jpg") center/cover no-repeat
@@ -48,7 +48,7 @@ body {
   position: relative;
 }
 
-.portfolio-hero::before {
+.gallery-hero::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -59,13 +59,13 @@ body {
   );
 }
 
-.portfolio-hero h1,
-.portfolio-hero p {
+.gallery-hero h1,
+.gallery-hero p {
   position: relative;
   z-index: 2;
 }
 
-.portfolio-hero h1 {
+.gallery-hero h1 {
   font-size: 42px;
   margin-bottom: 8px;
   background: linear-gradient(to right, #f2c400, #ffffff);
@@ -73,7 +73,7 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
-.portfolio-hero p {
+.gallery-hero p {
   font-size: 13px;
   letter-spacing: 2px;
   opacity: 0.85;
@@ -82,7 +82,7 @@ body {
 /* =========================
    CATEGORY TABS
 ========================= */
-.portfolio-tabs {
+.gallery-tabs {
   text-align: center;
   padding: 25px 10% 45px;
 }
@@ -90,7 +90,7 @@ body {
 .tab {
   background: none;
   border: none;
-  color: #777;
+  color: var(--primary-blue)
   font-size: 13px;
   letter-spacing: 3px;
   margin: 0 25px;
@@ -101,7 +101,7 @@ body {
 
 .tab:hover,
 .tab.active {
-  color: #f2c400;
+  color: var(--bg-white)
 }
 
 .tab.active::after {
@@ -119,7 +119,7 @@ body {
    PREMIUM STICKY TABS
 ========================= */
 
-.portfolio-tabs {
+.gallery-tabs {
   position: sticky;
   top: 90px; /* BELOW your navbar */
 
@@ -129,7 +129,7 @@ body {
   padding: 10px 30px;
   border-radius: 40px;
 
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--accent-yellow);
   backdrop-filter: blur(1px);
   -webkit-backdrop-filter: blur(14px);
 
@@ -144,7 +144,7 @@ body {
 }
 
 /* SCROLL EFFECT */
-.portfolio-tabs.scrolled {
+.gallery-tabs.scrolled {
   top: 20px; /* moves up smoothly */
 
   background: rgba(10, 15, 28, 0.85); /* matches your dark bg */
@@ -157,7 +157,7 @@ body {
 /* =========================
    MASONRY GRID (NO GAPS)
 ========================= */
-.portfolio-grid {
+.gallery-grid {
   column-count: 4;
   column-gap: 40px;
   padding: 40px 10% 120px;
@@ -166,7 +166,7 @@ body {
     transform 0.4s ease;
 }
 
-.portfolio-grid.fade {
+.gallery-grid.fade {
   opacity: 0.3;
   transform: scale(0.98);
 }
@@ -179,22 +179,22 @@ body {
 ========================= */
 @media (max-width: 1024px) {
   /* HERO */
-  .portfolio-hero {
+  .gallery-hero {
     padding: 80px 20px 60px;
     background-attachment: scroll;
   }
 
-  .portfolio-hero h1 {
+  .gallery-hero h1 {
     font-size: 32px;
   }
 
-  .portfolio-hero p {
+  .gallery-hero p {
     font-size: 14px;
     letter-spacing: 1.5px;
   }
 
   /* TABS */
-  .portfolio-tabs {
+  .gallery-tabs {
     top: 80px;
     padding: 10px 20px;
   }
@@ -205,7 +205,7 @@ body {
   }
 
   /* GRID */
-  .portfolio-grid {
+  .gallery-grid {
     column-count: 2;
     column-gap: 25px;
     padding: 30px 6% 100px;
@@ -217,52 +217,46 @@ body {
 ========================= */
 @media (max-width: 768px) {
   /* HERO */
-  .portfolio-hero {
+  .gallery-hero {
     padding: 90px 20px 60px;
     background-attachment: scroll;
   }
 
-  .portfolio-hero h1 {
+  .gallery-hero h1 {
     font-size: 26px;
     line-height: 1.3;
   }
 
-  .portfolio-hero p {
+  .gallery-hero p {
     font-size: 13px;
     letter-spacing: 1.5px;
     line-height: 1.6;
   }
 
   /* =========================
-     TABS (FIXED CLEAN)
+  
+   TABS (FIXED CLEAN)
   ========================= */
-  .portfolio-tabs {
-    position: sticky;
-    top: 70px;
+.gallery-tabs {
+  position: sticky;
+  top: 70px;
 
-    display: flex;
-    justify-content: flex-start;
+  overflow-x: auto;
+  white-space: nowrap;
 
-    overflow-x: auto;
-    white-space: nowrap;
+  text-align: center; /* 🔥 key */
 
-    width: 100%;
-    margin: 20px 0;
+  padding: 12px 0;
 
-    padding: 12px 15px;
+  background: var(--accent-yellow);
+}
 
-    background: rgba(10, 15, 28, 0.9);
-    backdrop-filter: blur(14px);
-
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
-
-    scroll-behavior: smooth;
-
-    border-radius: 0;
-  }
-
+.gallery-tabs .tab {
+  display: inline-block; /* 🔥 makes centering work */
+  margin: 0 10px;
+}
   /* Hide scrollbar */
-  .portfolio-tabs::-webkit-scrollbar {
+  .gallery-tabs::-webkit-scrollbar {
     display: none;
   }
 
@@ -285,14 +279,14 @@ body {
 
   /* Active */
   .tab.active {
-    color: #f2c400;
+    color: #ffffff;
     font-weight: 500;
   }
 
   /* =========================
      GRID
   ========================= */
-  .portfolio-grid {
+  .gallery-grid {
     column-count: 1;
     column-gap: 0;
     padding: 20px 5% 80px;
@@ -301,7 +295,7 @@ body {
   /* =========================
      ITEMS
   ========================= */
-  .portfolio-item {
+  .gallery-item {
     margin-bottom: 20px;
     border-radius: 18px;
     overflow: hidden;
@@ -310,11 +304,11 @@ body {
     transition: transform 0.25s ease;
   }
 
-  .portfolio-item:active {
+  .gallery-item:active {
     transform: scale(0.97);
   }
 
-  .portfolio-item img {
+  .gallery-item img {
     width: 100%;
     height: auto;
     display: block;
@@ -330,15 +324,15 @@ body {
    SMALL MOBILE (<= 480px)
 ========================= */
 @media (max-width: 480px) {
-  .portfolio-hero h1 {
+  .gallery-hero h1 {
     font-size: 22px;
   }
 
-  .portfolio-hero p {
+  .gallery-hero p {
     font-size: 12px;
   }
 
-  .portfolio-tabs {
+  .gallery-tabs {
     top: 65px;
     padding: 10px 12px;
   }
@@ -558,19 +552,19 @@ body {
    RESPONSIVE
 ========================= */
 @media (max-width: 1200px) {
-  .portfolio-grid {
+  .gallery-grid {
     column-count: 3;
   }
 }
 
 @media (max-width: 768px) {
-  .portfolio-grid {
+  .gallery-grid {
     column-count: 2;
   }
 }
 
 @media (max-width: 480px) {
-  .portfolio-grid {
+  .gallery-grid {
     column-count: 1;
   }
 }
@@ -848,12 +842,12 @@ body {
 
 
 /* =========================================
-   ULTRA MOBILE RESPONSIVE – PORTFOLIO PAGE
+   ULTRA MOBILE RESPONSIVE – GALLERY PAGE
 ========================================= */
 
 /* Disable background-attachment fixed on mobile (important fix) */
 @media (max-width: 1024px) {
-  .portfolio-hero {
+  .gallery-hero {
     background-attachment: scroll;
     padding: 80px 20px 60px;
   }
@@ -888,16 +882,16 @@ body {
   }
 
   /* Hero */
-  .portfolio-hero h1 {
+  .gallery-hero h1 {
     font-size: 28px;
   }
 
-  .portfolio-hero p {
+  .gallery-hero p {
     font-size: 12px;
   }
 
   /* Tabs */
-  .portfolio-tabs {
+  .gallery-tabs {
     padding: 20px 5% 30px;
   }
 
@@ -907,7 +901,7 @@ body {
   }
 
   /* Grid */
-  .portfolio-grid {
+  .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 25px;
     padding: 30px 6% 80px;
@@ -941,21 +935,21 @@ body {
   }
 
   /* Hero */
-  .portfolio-hero {
+  .gallery-hero {
     padding: 70px 20px 50px;
   }
 
-  .portfolio-hero h1 {
+  .gallery-hero h1 {
     font-size: 22px;
   }
 
-  .portfolio-hero p {
+  .gallery-hero p {
     font-size: 11px;
     letter-spacing: 1px;
   }
 
   /* Tabs → Scrollable instead of wrapping ugly */
-  .portfolio-tabs {
+  .gallery-tabs {
     overflow-x: auto;
     white-space: nowrap;
     padding: 15px 15px 30px;
@@ -968,7 +962,7 @@ body {
   }
 
   /* Grid → Single Column */
-  .portfolio-grid {
+  .gallery-grid {
     grid-template-columns: 1fr;
     gap: 20px;
     padding: 20px 5% 70px;
@@ -1015,7 +1009,7 @@ body {
 ========================================= */
 
 @media (max-width: 400px) {
-  .portfolio-hero h1 {
+  .gallery-hero h1 {
     font-size: 18px;
   }
 
