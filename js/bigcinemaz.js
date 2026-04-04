@@ -1,3 +1,71 @@
+window.addEventListener("load", () => {
+
+  const loader = document.querySelector(".cinema-loader");
+  const flash = document.querySelector(".flash");
+  const sound = document.getElementById("introSound");
+  const tap = document.querySelector(".tap-enter");
+
+  let started = false;
+
+  const IMPACT_TIME = 1600;
+
+  function startExperience() {
+    if (started) return;
+    started = true;
+
+    // 🔊 SOUND
+    if (sound) {
+      sound.currentTime = 0;
+      sound.volume = 0.6;
+      sound.play().catch(()=>{});
+    }
+
+    // hide tap
+    if (tap) tap.style.display = "none";
+
+    // 💥 IMPACT MOMENT
+    setTimeout(() => {
+
+      if (flash) flash.classList.add("active");
+      document.body.classList.add("shake", "impact-glow");
+
+      // stop shake
+      setTimeout(() => {
+        document.body.classList.remove("shake");
+      }, 400);
+
+// fade loader
+if (loader) {
+  loader.classList.add("hide");
+
+  // 🔥 disable blocking immediately
+  loader.style.pointerEvents = "none";
+}
+
+// remove loader completely
+setTimeout(() => {
+  if (loader) loader.remove();
+}, 500);
+
+    }, IMPACT_TIME);
+  }
+
+  // ✅ IMPORTANT: event listeners OUTSIDE
+  if (tap) {
+    tap.addEventListener("click", startExperience);
+    tap.addEventListener("touchstart", startExperience);
+  }
+
+});
+
+
+
+
+
+
+
+
+
 // ============================
 // DOM READY
 // ============================
@@ -12,6 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (footer) {
     footer.addEventListener("mousemove", (e) => {
       const rect = footer.getBoundingClientRect();
+
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
 
@@ -33,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (entry.isIntersecting) {
           entry.target.classList.add("show");
         } else {
-          entry.target.classList.remove("show");
+          entry.target.classList.remove("show"); // 🔁 repeat animation
         }
       });
     },
@@ -60,12 +129,14 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px) scale(1.08)`;
     }
 
+    // Desktop
     btn.addEventListener("mousemove", move);
 
     btn.addEventListener("mouseleave", () => {
       btn.style.transform = "translate(0,0) scale(1)";
     });
 
+    // Mobile
     btn.addEventListener("touchmove", (e) => {
       const touch = e.touches[0];
       move(touch);
@@ -75,10 +146,9 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.style.transform = "translate(0,0) scale(1)";
     });
 
-    // 🔥 IMPORTANT: DO NOT BLOCK LINK
+    // Click bounce
     btn.addEventListener("click", () => {
-      btn.style.transform = "scale(0.95)";
-
+      btn.style.transform = "scale(0.92)";
       setTimeout(() => {
         btn.style.transform = "scale(1)";
       }, 150);
@@ -127,26 +197,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-
-// ============================
-// LOADER / INTRO (FINAL FIX)
-// ============================
-window.addEventListener("load", () => {
-
-  const loader = document.querySelector(".cinema-loader");
-  const tap = document.querySelector(".tap-enter");
-
-  function startExperience() {
-
-    // 🔥 REMOVE LOADER COMPLETELY
-    if (loader) {
-      loader.style.display = "none";
-      loader.remove();
-    }
-  }
-
-  if (tap) {
-    tap.addEventListener("click", startExperience);
-  }
-
-});   

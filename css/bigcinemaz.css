@@ -370,7 +370,9 @@ p {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  pointer-events: auto;
+  pointer-events: none;
+
+    transition: opacity 0.4s ease;
   /* 🔥 FIX TOUCH ISSUE */
   user-select: none;
   -webkit-user-select: none;
@@ -395,10 +397,11 @@ p {
   50% { transform: scale(1.4); opacity: 0.6; }
 }
 /* 🔥 DO NOT BLOCK CLICKS */
+.cinema-loader,
 .flash,
-.cursor-glow,
-.loader-bg {
-  pointer-events: none;
+.loader-bg,
+.cursor-glow {
+  pointer-events: none !important;
 }
 /* =========================
    CONTENT
@@ -513,8 +516,7 @@ p {
   opacity: 0.7;
   pointer-events: auto;
   padding: 14px 24px;
-  display: inline-block;
-  pointer-events: auto;
+  display: inline-block;;
   cursor: pointer;
   touch-action: manipulation;
   z-index: 10000;
@@ -564,9 +566,10 @@ p {
 
 .cinema-loader.hide {
   opacity: 0;
+  z-index: -1;
   transform: scale(1.2);
   transition: all 0.3s ease;
-   pointer-events: none;
+    pointer-events: auto;
 }
 
 /* =========================
@@ -944,6 +947,9 @@ section::after {
    CTA BUTTON (FINAL FIXED)
 ========================= */
 
+.cta-btn,
+a,
+button,
 .cta-btn {
   display: inline-block;
   margin-top: 30px;
@@ -959,7 +965,7 @@ section::after {
   position: relative;
   z-index: 9999; /* 🔥 ensures clickable */
   overflow: hidden;
-
+  pointer-events: auto !important;
   cursor: pointer;
 
   transition: transform 0.25s ease, box-shadow 0.3s ease;
