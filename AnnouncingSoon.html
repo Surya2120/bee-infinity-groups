@@ -18,7 +18,7 @@ body{
   overflow:hidden;
 }
 
-/* 🔥 ENTER SCREEN */
+/* ENTER SCREEN */
 #enter-screen{
   position:fixed;
   width:100%;
@@ -132,7 +132,6 @@ video{
 .hero h1{
   font-size:60px;
   font-weight:900;
-  margin-top:0;
   margin-bottom:15px;
   opacity:0;
   transform:translateY(40px);
@@ -163,20 +162,6 @@ video{
   color:#000;
 }
 
-/* COUNTDOWN */
-.countdown{
-  display:flex;
-  justify-content:center;
-  gap:25px;
-  margin-top:30px;
-}
-
-.time-box span{
-  font-size:32px;
-  font-weight:700;
-  display:block;
-}
-
 /* PARTICLES */
 #particles{
   position:absolute;
@@ -195,11 +180,8 @@ video{
   font-size:12px;
 }
 
-
-/* ================= MOBILE RESPONSIVE ================= */
+/* MOBILE */
 @media (max-width:768px){
-
-  /* BACK BUTTON */
   .back-btn{
     top:15px;
     left:15px;
@@ -207,58 +189,25 @@ video{
     font-size:10px;
   }
 
-  /* HERO CONTENT SPACING */
-  .hero-content{
-    padding:0 15px;
-  }
-
-  /* LOGO */
   .logo img{
-    width:240px; /* smaller logo */
+    width:240px;
   }
 
-  /* TITLE */
   .hero h1{
     font-size:34px;
-    margin-bottom:10px;
   }
 
-  /* DESCRIPTION */
   .hero p{
     font-size:14px;
-    margin-bottom:20px;
   }
 
-  /* BUTTON */
   .btn{
     padding:10px 20px;
     font-size:12px;
   }
-
-  /* COUNTDOWN */
-  .countdown{
-    gap:12px;
-    flex-wrap:wrap; /* 🔥 important for small screens */
-  }
-
-  .time-box span{
-    font-size:20px;
-  }
-
-  .time-box{
-    font-size:12px;
-  }
-
-  /* FOOTER */
-  .footer{
-    font-size:10px;
-    bottom:15px;
-  }
 }
 
-/* ================= EXTRA SMALL DEVICES ================= */
 @media (max-width:400px){
-
   .logo img{
     width:180px;
   }
@@ -270,29 +219,17 @@ video{
   .hero p{
     font-size:12px;
   }
-
-  .countdown{
-    gap:8px;
-  }
-
-  .time-box span{
-    font-size:16px;
-  }
-
 }
-
 
 </style>
 </head>
 
 <body>
 
-<!-- 🔥 TAP TO ENTER -->
 <div id="enter-screen">
   <div class="enter-text">TAP TO ENTER</div>
 </div>
 
-<!-- 🔥 BACKGROUND MUSIC -->
 <audio id="bg-music" loop playsinline>
   <source src="assets/sounds/botd_bg-music.mp3" type="audio/mpeg">
 </audio>
@@ -319,13 +256,6 @@ video{
 
     <a href="#" class="btn reveal">Stay Tuned</a>
 
-    <div class="countdown reveal">
-      <div class="time-box"><span id="days">00</span>Days</div>
-      <div class="time-box"><span id="hours">00</span>Hours</div>
-      <div class="time-box"><span id="minutes">00</span>Min</div>
-      <div class="time-box"><span id="seconds">00</span>Sec</div>
-    </div>
-
   </div>
 
 </section>
@@ -341,26 +271,6 @@ window.addEventListener("load", ()=>{
     el.style.transform="translateY(0)";
   });
 });
-
-/* COUNTDOWN */
-const targetDate = new Date().getTime() + (3*24*60*60*1000);
-
-setInterval(()=>{
-  const gap = targetDate - new Date().getTime();
-
-  if(gap <= 0){
-    document.getElementById("days").innerText="00";
-    document.getElementById("hours").innerText="00";
-    document.getElementById("minutes").innerText="00";
-    document.getElementById("seconds").innerText="00";
-    return;
-  }
-
-  document.getElementById("days").innerText=Math.floor(gap/(1000*60*60*24));
-  document.getElementById("hours").innerText=Math.floor((gap%(1000*60*60*24))/(1000*60*60));
-  document.getElementById("minutes").innerText=Math.floor((gap%(1000*60*60))/(1000*60));
-  document.getElementById("seconds").innerText=Math.floor((gap%(1000*60))/1000);
-},1000);
 
 /* PARTICLES */
 const canvas=document.getElementById("particles");
@@ -394,7 +304,7 @@ function animate(){
 }
 animate();
 
-/* 🔥 TAP TO ENTER MUSIC */
+/* MUSIC */
 const music = document.getElementById("bg-music");
 const enterScreen = document.getElementById("enter-screen");
 
