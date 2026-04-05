@@ -1,43 +1,50 @@
-
 document.addEventListener("DOMContentLoaded", function(){
 
   
-/* =====================================================
-   1️⃣ EMAIL JS
-===================================================== */
-emailjs.init("YOUR_PUBLIC_KEY");
-
 const form = document.getElementById("contact-form");
-const modal = document.getElementById("successModal");
 const submitBtn = document.querySelector(".submit-btn");
+const btnText = document.querySelector(".btn-text");
+const loader = document.querySelector(".loader");
 
-form.addEventListener("submit", function(e){
+form.addEventListener("submit", function(e) {
   e.preventDefault();
 
-  submitBtn.innerHTML = "Sending...";
-  submitBtn.style.opacity = "0.7";
+  // UI loading
+  btnText.style.display = "none";
+  loader.style.display = "inline-block";
+  submitBtn.style.pointerEvents = "none";
 
-  emailjs.sendForm(
-    "YOUR_SERVICE_ID",
-    "YOUR_TEMPLATE_ID",
-    this
-  ).then(function(){
-      modal.classList.add("active");
-      form.reset();
-      submitBtn.innerHTML = "Send Message";
-      submitBtn.style.opacity = "1";
+  const data = {
+    name: form.name.value,
+    email: form.email.value,
+    phone: form.phone.value,
+    message: form.message.value
+  };
 
-      setTimeout(()=>{
-        modal.classList.remove("active");
-      },3000);
+  fetch("https://script.google.com/macros/s/AKfycbzyEpagQaJLVrsJGWFGGcf1P-3CripF7nZcmoKI_YFTTvA-OlowqlXfCCMlBnWmgk5LSg/exec", {
+    method: "POST",
+    body: JSON.stringify(data)
+  })
+  .then(() => {
+    form.reset();
 
-  }, function(){
-      alert("Error sending message.");
-      submitBtn.innerHTML = "Send Message";
-      submitBtn.style.opacity = "1";
+    btnText.innerHTML = "✔ Sent";
+    btnText.style.display = "inline";
+    loader.style.display = "none";
+
+    setTimeout(() => {
+      btnText.innerHTML = "Send Message";
+      submitBtn.style.pointerEvents = "auto";
+    }, 3000);
+  })
+  .catch(() => {
+    alert("Error sending message");
+
+    btnText.style.display = "inline";
+    loader.style.display = "none";
+    submitBtn.style.pointerEvents = "auto";
   });
 });
-
 
 /* =====================================================
    2️⃣ CINEMATIC TYPING EFFECT

@@ -306,7 +306,7 @@ body {
   z-index: 2;
 
   display: flex;
-  justify-content: space-between;
+  justify-content: center; /* 🔥 CHANGED */
   align-items: center;
 
   padding: 20px 60px;
@@ -314,10 +314,10 @@ body {
 }
 
 /* LEFT TEXT */
-
 .footer-bottom span {
   font-size: 12px;
   color: #bbb;
+  text-align: center; /* optional */
 }
 
 /* LINKS */
