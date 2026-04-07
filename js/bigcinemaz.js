@@ -2,7 +2,7 @@
 // LOADER EXPERIENCE (FAST)
 // ============================
 
-const IMPACT_TIME = 1600; // 🔥 adjust to your beat
+const IMPACT_TIME = 1273; // 🔥 adjust to your beat
 
 document.addEventListener("DOMContentLoaded", () => {
 
