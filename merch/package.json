@@ -1,0 +1,16 @@
+{
+  "name": "bee-infinity-merch",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Bee Infinity Groups /merch cinematic 3D store (client + server)",
+  "scripts": {
+    "dev": "concurrently -n SERVER,CLIENT -c \"#d4af37,#ffffff\" \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "build": "npm run build --prefix client",
+    "start": "npm run start --prefix server",
+    "seed": "npm run seed --prefix server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  }
+}
+

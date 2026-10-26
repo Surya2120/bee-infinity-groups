@@ -2770,3 +2770,103 @@ section {
 body.menu-open {
   overflow: hidden;
 }
+
+/* Final About page polish */
+.about-hero {
+  min-height: 460px;
+  padding: 96px 8%;
+  justify-content: flex-start;
+  text-align: left;
+  background-image: linear-gradient(90deg, rgba(3, 21, 52, .92), rgba(3, 21, 52, .42), rgba(3, 21, 52, .12)), url("../assets/images/dance/dance (8).JPG");
+  background-position: center;
+}
+
+.about-hero-inner {
+  width: min(720px, 100%);
+}
+
+.about-hero h1 {
+  margin: 0;
+  font-size: clamp(38px, 6vw, 72px);
+  line-height: 1.05;
+  letter-spacing: -.03em;
+  text-shadow: 0 10px 35px rgba(0,0,0,.35);
+}
+
+.about-hero p {
+  max-width: 600px;
+  margin-top: 22px;
+  color: rgba(255,255,255,.88);
+  font-size: clamp(15px, 1.8vw, 20px);
+  line-height: 1.65;
+  letter-spacing: .04em;
+}
+
+.who-we-are {
+  max-width: 1380px;
+  margin: 0 auto;
+  grid-template-columns: minmax(0, .95fr) minmax(420px, 1.05fr);
+  gap: clamp(42px, 7vw, 100px);
+  padding: clamp(76px, 9vw, 126px) clamp(22px, 6vw, 90px);
+  background: #fff;
+}
+
+.who-we-are h2 {
+  margin-bottom: 28px;
+  padding: 0 0 14px;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+  border-bottom: 4px solid var(--accent-yellow);
+  font-size: clamp(28px, 3vw, 42px);
+  letter-spacing: -.02em;
+  text-transform: none;
+}
+
+.who-we-are p {
+  max-width: 620px;
+  color: #3e4652;
+  font-size: 16px;
+  line-height: 1.85;
+}
+
+.identity-rotator {
+  margin-top: 28px;
+  font-size: clamp(34px, 4.5vw, 60px);
+  line-height: 1;
+}
+
+.who-gallery {
+  min-height: 560px;
+  gap: 16px;
+}
+
+.who-left {
+  gap: 16px;
+}
+
+.who-gallery img {
+  border-radius: 14px;
+}
+
+.who-left img {
+  min-height: 0;
+}
+
+.who-right img {
+  height: 100%;
+}
+
+@media (max-width: 900px) {
+  .about-hero { min-height: 390px; padding: 82px 7%; }
+  .who-we-are { grid-template-columns: 1fr; }
+  .who-text { max-width: 720px; }
+  .who-gallery { min-height: 520px; }
+}
+
+@media (max-width: 600px) {
+  .about-hero { min-height: 360px; padding: 70px 6%; }
+  .about-hero p { letter-spacing: .01em; }
+  .who-we-are { padding: 68px 6%; }
+  .who-gallery { min-height: 420px; }
+}

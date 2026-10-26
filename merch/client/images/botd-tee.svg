@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <defs>
+    <radialGradient id="g" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#d4af37" stop-opacity="0.16"/>
+      <stop offset="60%" stop-color="#d4af37" stop-opacity="0.03"/>
+      <stop offset="100%" stop-color="#060608" stop-opacity="1"/>
+    </radialGradient>
+    <linearGradient id="l" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#fff8db"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="#060608"/>
+  <rect width="1200" height="900" fill="url(#g)"/>
+  <g transform="translate(210 200)">
+    <rect x="0" y="0" width="780" height="500" rx="32" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.12)"/>
+    <path d="M225 120c-55 0-100 45-100 100v92c0 28 10 53 28 72l86 100c14 16 35 26 57 26h264c22 0 43-10 57-26l86-100c18-19 28-44 28-72v-92c0-55-45-100-100-100h-60c-10-46-52-80-102-80H387c-50 0-92 34-102 80h-60z"
+      fill="#0b0b0f" stroke="rgba(212,175,55,0.7)" stroke-width="3" opacity="0.96"/>
+    <text x="390" y="325" text-anchor="middle" font-family="ui-sans-serif, system-ui" font-size="18" fill="rgba(255,255,255,0.70)" letter-spacing="6">B O T D</text>
+    <text x="390" y="370" text-anchor="middle" font-family="ui-sans-serif, system-ui" font-size="40" fill="url(#l)" letter-spacing="4">NOIR EDITION</text>
+  </g>
+</svg>
+

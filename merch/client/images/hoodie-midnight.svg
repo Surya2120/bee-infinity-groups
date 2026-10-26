@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <defs>
+    <radialGradient id="g" cx="48%" cy="30%" r="72%">
+      <stop offset="0%" stop-color="#d4af37" stop-opacity="0.16"/>
+      <stop offset="60%" stop-color="#d4af37" stop-opacity="0.03"/>
+      <stop offset="100%" stop-color="#060608" stop-opacity="1"/>
+    </radialGradient>
+    <linearGradient id="l" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff8db"/>
+      <stop offset="45%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#8d6a14"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="#060608"/>
+  <rect width="1200" height="900" fill="url(#g)"/>
+  <g transform="translate(230 170)">
+    <rect x="0" y="0" width="740" height="560" rx="32" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.12)"/>
+    <path d="M330 120c0-40 32-72 72-72h36c40 0 72 32 72 72v46c0 18-7 35-20 48l-42 42v254c0 40-32 72-72 72H394c-40 0-72-32-72-72V256l-42-42c-13-13-20-30-20-48v-46z"
+      fill="#0b0b0f" stroke="rgba(255,255,255,0.10)"/>
+    <text x="370" y="410" text-anchor="middle" font-family="ui-sans-serif, system-ui" font-size="16" fill="rgba(255,255,255,0.70)" letter-spacing="6">CINEMATIC HOODIE</text>
+    <text x="370" y="455" text-anchor="middle" font-family="ui-sans-serif, system-ui" font-size="36" fill="url(#l)" letter-spacing="3">MIDNIGHT</text>
+  </g>
+</svg>
+

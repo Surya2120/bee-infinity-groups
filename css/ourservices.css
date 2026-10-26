@@ -416,7 +416,7 @@ POPUP
 
 .footer-big-title span {
   color: var(--accent-yellow);
-  text-shadow: 0 0 20px var(--primary-blue) (255, 255, 255, 0.7);
+  text-shadow: 0 0 20px rgba(242, 196, 0, 0.45);
 }
 
 .footer-tagline {
@@ -615,6 +615,95 @@ POPUP
   .footer-links a {
     font-size: 10px;
   }
+}
+
+/* Final Our Services polish */
+.hero {
+  min-height: 430px;
+  padding: 100px 7%;
+  background-image: linear-gradient(135deg, rgba(3,21,52,.88), rgba(10,61,145,.38)), url("../assets/images/ourservices/ourservices.jpg");
+  background-position: center;
+  text-align: center;
+}
+
+.hero h1 {
+  color: #fff;
+  font-size: clamp(42px, 7vw, 78px);
+  letter-spacing: -.04em;
+}
+
+.hero p {
+  padding: 12px 18px;
+  color: #17243a;
+  font-size: clamp(15px, 1.8vw, 20px);
+  line-height: 1.5;
+}
+
+.service-section,
+.poster-section {
+  padding: clamp(74px, 9vw, 128px) 7%;
+}
+
+.service-section:nth-of-type(odd),
+.poster-section:nth-of-type(odd) {
+  background: #fff;
+}
+
+.service-section:nth-of-type(even),
+.poster-section:nth-of-type(even) {
+  background: #f6f8fc;
+}
+
+.container,
+.poster-container {
+  max-width: 1240px;
+  gap: clamp(38px, 7vw, 92px);
+}
+
+.service-text h2,
+.poster-text h2 {
+  font-size: clamp(28px, 3.6vw, 44px);
+  line-height: 1.12;
+}
+
+.service-text p,
+.poster-text p,
+.service-text li {
+  line-height: 1.75;
+}
+
+.service-image img,
+.poster-image img {
+  display: block;
+  max-height: 620px;
+  object-fit: cover;
+}
+
+.spectrum-service {
+  background: linear-gradient(135deg, #fff 0%, #fff8dc 100%) !important;
+  border-top: 4px solid var(--accent);
+}
+
+.spectrum-service .service-image img {
+  height: auto;
+  max-height: 760px;
+  object-fit: contain;
+  background: #fff;
+}
+
+.service-image img,
+.poster-image img {
+  height: auto;
+  max-height: 760px;
+  object-fit: contain;
+  background: #fff;
+}
+
+@media (max-width: 768px) {
+  .hero { min-height: 360px; padding: 82px 6%; }
+  .service-section, .poster-section { padding: 70px 20px; }
+  .container, .poster-container, .container.reverse, .poster-container.reverse { flex-direction: column; gap: 34px; }
+  .service-image, .poster-image, .service-text, .poster-text { width: 100%; }
 }
 /* =====================================
 TABLET

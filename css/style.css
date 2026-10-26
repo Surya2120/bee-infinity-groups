@@ -15,6 +15,85 @@
   --border-soft: #e1e6ee;
 }
 
+/* Spectrum flagship redesign */
+.ultra-flagship {
+  padding: clamp(84px, 10vw, 150px) clamp(20px, 6vw, 88px) clamp(90px, 11vw, 160px);
+  background: linear-gradient(180deg, #f7f9fc 0%, #eef3f8 100%);
+}
+
+.ultra-badge {
+  position: relative;
+  top: auto;
+  left: auto;
+  width: fit-content;
+  margin: 0 auto 24px;
+  padding: 10px 18px;
+  color: #09213d;
+  background: #d9b45a;
+  box-shadow: 0 10px 30px rgba(9, 33, 61, .16);
+  transform: none;
+  opacity: 1;
+}
+
+.ultra-card {
+  max-width: 1240px;
+  height: clamp(460px, 48vw, 620px);
+  margin: 0 auto;
+  border-radius: 26px;
+  box-shadow: 0 28px 70px rgba(9, 33, 61, .24);
+  transform: none;
+  opacity: 1;
+}
+
+.ultra-bg {
+  background-position: center;
+  filter: saturate(1.05) contrast(1.05);
+}
+
+.ultra-overlay {
+  background: linear-gradient(90deg, rgba(5, 20, 38, .94) 0%, rgba(5, 20, 38, .72) 38%, rgba(5, 20, 38, .18) 78%, rgba(5, 20, 38, .08) 100%);
+}
+
+.ultra-card::before { display: none; }
+
+.ultra-content {
+  max-width: 600px;
+  margin: 0;
+  padding: clamp(34px, 7vw, 92px);
+  text-align: left;
+}
+
+.ultra-title {
+  margin: 0 0 20px;
+  color: #fff;
+  font-size: clamp(42px, 7vw, 84px);
+  line-height: .98;
+  letter-spacing: .04em;
+}
+
+.ultra-desc {
+  max-width: 520px;
+  margin-bottom: 30px;
+  color: rgba(255,255,255,.9);
+  font-size: clamp(16px, 1.5vw, 20px);
+  line-height: 1.7;
+}
+
+.ultra-action {
+  margin-left: 0;
+  color: #f2cf78;
+  border-color: #f2cf78;
+}
+
+@media (max-width: 640px) {
+  .ultra-flagship { padding: 68px 16px 78px; }
+  .ultra-card { height: 520px; border-radius: 18px; }
+  .ultra-overlay { background: linear-gradient(180deg, rgba(5,20,38,.28) 0%, rgba(5,20,38,.9) 58%, rgba(5,20,38,.97) 100%); }
+  .ultra-content { justify-content: flex-end; padding: 28px 24px 32px; }
+  .ultra-title { font-size: clamp(42px, 15vw, 68px); }
+  .ultra-desc { font-size: 15px; line-height: 1.55; }
+}
+
 /* =========================
     RESET
     ========================= */
@@ -2590,4 +2669,27 @@ body.menu-open {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Spectrum flagship redesign */
+.ultra-flagship {
+  padding: clamp(84px, 10vw, 150px) clamp(20px, 6vw, 88px) clamp(90px, 11vw, 160px);
+  background: linear-gradient(180deg, #f7f9fc 0%, #eef3f8 100%);
+}
+.ultra-badge { position: relative; top: auto; left: auto; width: fit-content; margin: 0 auto 24px; padding: 10px 18px; color: #09213d; background: #d9b45a; box-shadow: 0 10px 30px rgba(9,33,61,.16); transform: none; opacity: 1; }
+.ultra-card { max-width: 1240px; height: clamp(460px, 48vw, 620px); margin: 0 auto; border-radius: 26px; box-shadow: 0 28px 70px rgba(9,33,61,.24); transform: none; opacity: 1; }
+.ultra-bg { background-position: center; filter: saturate(1.05) contrast(1.05); }
+.ultra-overlay { background: linear-gradient(90deg, rgba(5,20,38,.94) 0%, rgba(5,20,38,.72) 38%, rgba(5,20,38,.18) 78%, rgba(5,20,38,.08) 100%); }
+.ultra-card::before { display: none; }
+.ultra-content { max-width: 600px; margin: 0; padding: clamp(34px, 7vw, 92px); text-align: left; }
+.ultra-title { margin: 0 0 20px; color: #fff; font-size: clamp(42px, 7vw, 84px); line-height: .98; letter-spacing: .04em; }
+.ultra-desc { max-width: 520px; margin-bottom: 30px; color: rgba(255,255,255,.9); font-size: clamp(16px, 1.5vw, 20px); line-height: 1.7; }
+.ultra-action { margin-left: 0; color: #f2cf78; border-color: #f2cf78; }
+@media (max-width: 640px) {
+  .ultra-flagship { padding: 68px 16px 78px; }
+  .ultra-card { height: 520px; border-radius: 18px; }
+  .ultra-overlay { background: linear-gradient(180deg, rgba(5,20,38,.28) 0%, rgba(5,20,38,.9) 58%, rgba(5,20,38,.97) 100%); }
+  .ultra-content { justify-content: flex-end; padding: 28px 24px 32px; }
+  .ultra-title { font-size: clamp(42px, 15vw, 68px); }
+  .ultra-desc { font-size: 15px; line-height: 1.55; }
 }

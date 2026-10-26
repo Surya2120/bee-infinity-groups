@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <defs>
+    <radialGradient id="g" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#d4af37" stop-opacity="0.16"/>
+      <stop offset="55%" stop-color="#d4af37" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#060608" stop-opacity="1"/>
+    </radialGradient>
+    <linearGradient id="l" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8d6a14"/>
+      <stop offset="50%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#fff8db"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="#060608"/>
+  <rect width="1200" height="900" fill="url(#g)"/>
+  <g transform="translate(250 200)">
+    <rect x="0" y="0" width="700" height="480" rx="32" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.12)"/>
+    <path d="M230 290c0-96 78-174 174-174h10c96 0 174 78 174 174v30H230v-30z"
+      fill="#0b0b0f" stroke="rgba(255,255,255,0.10)"/>
+    <path d="M318 342h360c40 0 76 10 108 28-20 30-58 52-104 52H338c-43 0-80-18-104-44 26-20 54-36 84-36z"
+      fill="#0b0b0f" stroke="url(#l)" stroke-width="3" opacity="0.96"/>
+    <text x="350" y="230" font-family="ui-sans-serif, system-ui" font-size="16" fill="rgba(255,255,255,0.70)" letter-spacing="6">GOLDEN HIVE</text>
+    <text x="350" y="270" font-family="ui-sans-serif, system-ui" font-size="34" fill="url(#l)" letter-spacing="3">CAP</text>
+  </g>
+</svg>
+

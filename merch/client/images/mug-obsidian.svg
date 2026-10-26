@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <defs>
+    <radialGradient id="g" cx="55%" cy="35%" r="75%">
+      <stop offset="0%" stop-color="#d4af37" stop-opacity="0.16"/>
+      <stop offset="55%" stop-color="#d4af37" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#060608" stop-opacity="1"/>
+    </radialGradient>
+    <linearGradient id="l" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff8db"/>
+      <stop offset="50%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#8d6a14"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="#060608"/>
+  <rect width="1200" height="900" fill="url(#g)"/>
+  <g transform="translate(350 190)">
+    <rect x="0" y="0" width="500" height="520" rx="32" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.12)"/>
+    <path d="M150 160h200c28 0 50 22 50 50v190c0 44-36 80-80 80H230c-44 0-80-36-80-80V210c0-28 22-50 50-50z"
+      fill="#0b0b0f" stroke="rgba(255,255,255,0.10)"/>
+    <path d="M400 220h35c28 0 50 22 50 50v70c0 28-22 50-50 50h-35"
+      fill="none" stroke="url(#l)" stroke-width="10" stroke-linecap="round"/>
+    <text x="250" y="330" text-anchor="middle" font-family="ui-sans-serif, system-ui" font-size="16" fill="rgba(255,255,255,0.70)" letter-spacing="6">INFINITY MUG</text>
+    <text x="250" y="370" text-anchor="middle" font-family="ui-sans-serif, system-ui" font-size="34" fill="url(#l)" letter-spacing="3">OBSIDIAN</text>
+  </g>
+</svg>
+

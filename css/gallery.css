@@ -568,6 +568,82 @@ body {
     column-count: 1;
   }
 }
+
+/* Final gallery polish */
+.gallery-hero {
+  min-height: 430px;
+  padding: 112px 7% 96px;
+  display: grid;
+  place-content: center;
+  background-image: linear-gradient(135deg, rgba(5, 15, 30, .9), rgba(10, 61, 145, .45)), url("../assets/images/dance/Dance (1).jpg");
+}
+
+.gallery-hero h1 {
+  font-size: clamp(42px, 7vw, 82px);
+  line-height: 1;
+  letter-spacing: -.04em;
+}
+
+.gallery-hero p {
+  max-width: 640px;
+  margin: 20px auto 0;
+  color: rgba(255,255,255,.86);
+  font-size: clamp(15px, 1.6vw, 19px);
+  line-height: 1.6;
+}
+
+.gallery-tabs {
+  top: 92px;
+  gap: 6px;
+  padding: 8px;
+  background: rgba(14, 26, 43, .92);
+  border: 1px solid rgba(242,196,0,.35);
+  box-shadow: 0 14px 34px rgba(0,0,0,.28);
+}
+
+.gallery-tabs .tab,
+.gallery-tabs .tab.active {
+  margin: 0;
+  padding: 10px 16px;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.gallery-tabs .tab.active {
+  background: var(--accent-yellow);
+  color: #0e1a2b;
+}
+
+.gallery-tabs .tab.active::after { display: none; }
+
+.gallery-grid {
+  max-width: 1500px;
+  margin: 0 auto;
+  column-gap: 24px;
+  padding: 42px 5% 120px;
+}
+
+.gallery-item { break-inside: avoid; }
+
+.image-wrapper {
+  margin-bottom: 24px;
+  border: 1px solid rgba(242,196,0,.65);
+  border-radius: 16px;
+  box-shadow: 0 16px 34px rgba(0,0,0,.32);
+}
+
+.image-wrapper img { display: block; }
+
+@media (max-width: 768px) {
+  .gallery-hero { min-height: 360px; padding: 92px 6% 70px; }
+  .gallery-tabs { top: 70px; max-width: calc(100% - 24px); }
+  .gallery-tabs .tab { padding: 9px 12px; }
+  .gallery-grid { padding: 28px 5% 80px; }
+  .image-wrapper { margin-bottom: 18px; }
+}
 /* =========================
    FOOTER BASE
 ========================= */
@@ -1016,6 +1092,30 @@ body {
   .image-wrapper .image-title {
     font-size: 12px;
   }
+}
+
+/* Final gallery overrides */
+.gallery-hero {
+  min-height: 430px;
+  padding: 112px 7% 96px;
+  display: grid;
+  place-content: center;
+  background-image: linear-gradient(135deg, rgba(5,15,30,.9), rgba(10,61,145,.45)), url("../assets/images/dance/Dance (1).jpg");
+}
+.gallery-hero h1 { font-size: clamp(42px, 7vw, 82px); line-height: 1; letter-spacing: -.04em; }
+.gallery-hero p { max-width: 640px; margin: 20px auto 0; color: rgba(255,255,255,.86); font-size: clamp(15px,1.6vw,19px); line-height: 1.6; }
+.gallery-tabs { top: 92px; gap: 6px; padding: 8px; background: rgba(14,26,43,.92); border: 1px solid rgba(242,196,0,.35); box-shadow: 0 14px 34px rgba(0,0,0,.28); }
+.gallery-tabs .tab, .gallery-tabs .tab.active { margin: 0; padding: 10px 16px; border-radius: 999px; color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 2px; }
+.gallery-tabs .tab.active { background: var(--accent-yellow); color: #0e1a2b; }
+.gallery-tabs .tab.active::after { display: none; }
+.gallery-grid { max-width: 1500px; margin: 0 auto; column-gap: 24px; padding: 42px 5% 120px; }
+.gallery-item { break-inside: avoid; }
+.image-wrapper { margin-bottom: 24px; border: 1px solid rgba(242,196,0,.65); border-radius: 16px; box-shadow: 0 16px 34px rgba(0,0,0,.32); }
+@media (max-width: 768px) {
+  .gallery-hero { min-height: 360px; padding: 92px 6% 70px; }
+  .gallery-tabs { top: 70px; max-width: calc(100% - 24px); }
+  .gallery-tabs .tab { padding: 9px 12px; }
+  .gallery-grid { padding: 28px 5% 80px; }
 }
 
 

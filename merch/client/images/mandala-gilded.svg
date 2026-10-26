@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <defs>
+    <radialGradient id="g" cx="50%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#d4af37" stop-opacity="0.20"/>
+      <stop offset="55%" stop-color="#d4af37" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#060608" stop-opacity="1"/>
+    </radialGradient>
+    <linearGradient id="l" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff8db"/>
+      <stop offset="45%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#8d6a14"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="#060608"/>
+  <rect width="1200" height="900" fill="url(#g)"/>
+  <g transform="translate(290 150)">
+    <rect x="0" y="0" width="620" height="600" rx="32" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.12)"/>
+    <g transform="translate(310 310)">
+      <circle r="170" fill="none" stroke="url(#l)" stroke-width="4" opacity="0.9"/>
+      <circle r="120" fill="none" stroke="rgba(212,175,55,0.55)" stroke-width="3"/>
+      <circle r="70" fill="none" stroke="rgba(255,248,219,0.5)" stroke-width="2"/>
+      <g fill="none" stroke="rgba(212,175,55,0.5)" stroke-width="2">
+        <path d="M0-190 L0-105"/>
+        <path d="M0 190 L0 105"/>
+        <path d="-190 0 L-105 0"/>
+        <path d="M190 0 L105 0"/>
+        <path d="M134 -134 L74 -74"/>
+        <path d="-134 134 L-74 74"/>
+        <path d="-134 -134 L-74 -74"/>
+        <path d="M134 134 L74 74"/>
+      </g>
+    </g>
+    <text x="310" y="520" text-anchor="middle" font-family="ui-sans-serif, system-ui" font-size="16" fill="rgba(255,255,255,0.70)" letter-spacing="6">MANDALA ART</text>
+    <text x="310" y="560" text-anchor="middle" font-family="ui-sans-serif, system-ui" font-size="34" fill="url(#l)" letter-spacing="3">GILDED PRINT</text>
+  </g>
+</svg>
+

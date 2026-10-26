@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <defs>
+    <radialGradient id="g" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#d4af37" stop-opacity="0.18"/>
+      <stop offset="55%" stop-color="#d4af37" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#060608" stop-opacity="1"/>
+    </radialGradient>
+    <linearGradient id="l" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff8db" stop-opacity="0.9"/>
+      <stop offset="40%" stop-color="#d4af37" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#8d6a14" stop-opacity="0.95"/>
+    </linearGradient>
+    <filter id="blur">
+      <feGaussianBlur stdDeviation="24"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="900" fill="#060608"/>
+  <rect width="1200" height="900" fill="url(#g)"/>
+  <circle cx="240" cy="180" r="190" fill="#d4af37" opacity="0.10" filter="url(#blur)"/>
+  <circle cx="980" cy="720" r="250" fill="#d4af37" opacity="0.08" filter="url(#blur)"/>
+  <g transform="translate(240 210)">
+    <rect x="0" y="0" width="720" height="460" rx="32" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.12)"/>
+    <path d="M190 120c-46 0-84 38-84 84v76c0 24 9 46 24 63l73 83c12 14 31 22 50 22h214c19 0 38-8 50-22l73-83c15-17 24-39 24-63v-76c0-46-38-84-84-84h-54c-9-40-45-70-88-70h-99c-43 0-79 30-88 70h-55z"
+      fill="#0b0b0f" stroke="url(#l)" stroke-width="4" opacity="0.95"/>
+    <text x="360" y="335" text-anchor="middle" font-family="ui-sans-serif, system-ui" font-size="18" fill="rgba(255,255,255,0.70)" letter-spacing="6">BEE INFINITY OFFICIAL</text>
+    <text x="360" y="375" text-anchor="middle" font-family="ui-sans-serif, system-ui" font-size="36" fill="url(#l)" letter-spacing="4">BLACK GOLD TEE</text>
+  </g>
+</svg>
+

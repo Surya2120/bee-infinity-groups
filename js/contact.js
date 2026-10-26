@@ -6,13 +6,15 @@ const submitBtn = document.querySelector(".submit-btn");
 const btnText = document.querySelector(".btn-text");
 const loader = document.querySelector(".loader");
 
-form.addEventListener("submit", function(e) {
+form.addEventListener("submit", async function(e) {
   e.preventDefault();
+
+  if (submitBtn.disabled) return;
 
   // UI loading
   btnText.style.display = "none";
   loader.style.display = "inline-block";
-  submitBtn.style.pointerEvents = "none";
+  submitBtn.disabled = true;
 
   const data = {
     name: form.name.value,
@@ -21,11 +23,16 @@ form.addEventListener("submit", function(e) {
     message: form.message.value
   };
 
-  fetch("https://script.google.com/macros/s/AKfycbzyEpagQaJLVrsJGWFGGcf1P-3CripF7nZcmoKI_YFTTvA-OlowqlXfCCMlBnWmgk5LSg/exec", {
-    method: "POST",
-    body: JSON.stringify(data)
-  })
-  .then(() => {
+  try {
+    const response = await fetch("https://script.google.com/macros/s/AKfycbzyEpagQaJLVrsJGWFGGcf1P-3CripF7nZcmoKI_YFTTvA-OlowqlXfCCMlBnWmgk5LSg/exec", {
+      method: "POST",
+      body: JSON.stringify(data)
+    });
+
+    if (!response.ok) {
+      throw new Error(`Request failed (${response.status})`);
+    }
+
     form.reset();
 
     btnText.innerHTML = "✔ Sent";
@@ -34,16 +41,16 @@ form.addEventListener("submit", function(e) {
 
     setTimeout(() => {
       btnText.innerHTML = "Send Message";
-      submitBtn.style.pointerEvents = "auto";
+      submitBtn.disabled = false;
     }, 3000);
-  })
-  .catch(() => {
+  } catch (error) {
     alert("Error sending message");
 
+    btnText.innerHTML = "Send Message";
     btnText.style.display = "inline";
     loader.style.display = "none";
-    submitBtn.style.pointerEvents = "auto";
-  });
+    submitBtn.disabled = false;
+  }
 });
 
 /* =====================================================

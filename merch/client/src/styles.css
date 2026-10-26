@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Cinematic defaults */
+html,
+body {
+  height: 100%;
+  background: #060608;
+}
+
+body {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+::selection {
+  background: rgba(212, 175, 55, 0.35);
+}
+
+.cinematic-noise {
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  opacity: 0.55;
+}
+

@@ -1,5 +1,5 @@
 /* =========================
-   HEADER SCROLL EFFECT (FIXED)
+   SHARED HEADER / NAVIGATION
 ========================= */
 
 document.addEventListener("DOMContentLoaded", () => {
