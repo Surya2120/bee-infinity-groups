@@ -6,7 +6,6 @@
   const control = document.getElementById("spectrumMotion");
   const label = document.getElementById("spectrumMotionLabel");
   const counter = document.getElementById("spectrumStepNumber");
-  const footer = document.querySelector(".home-footer");
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
   let paused = false;
   let requested = false;
@@ -32,7 +31,6 @@
     offsets.forEach((offset, i) => { if (visiblePosition >= offset) visible = i; });
     document.body.style.setProperty("--spectrum-progress", String(progress));
     document.body.style.setProperty("--spectrum-card-shift", reducedMotion.matches || paused ? "0" : String(Math.sin(progress * Math.PI * 2)));
-    document.body.classList.toggle("spectrum-at-footer", Boolean(footer && footer.getBoundingClientRect().top < innerHeight * .65));
     document.body.classList.toggle("spectrum-motion-paused", paused || reducedMotion.matches);
     links.forEach((link, i) => {
       if (i === visible) link.setAttribute("aria-current", "location");

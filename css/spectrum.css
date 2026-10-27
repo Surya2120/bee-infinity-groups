@@ -1,4 +1,5 @@
 /* An immersive Spectrum world. Shared site components retain their own styles. */
+html:has(body.spectrum-immersive) { scroll-padding-top:0; }
 .spectrum-immersive { --spectrum-cream:#f8f7f2; --spectrum-ink:#102c4a; --spectrum-gold:#edc34b; --spectrum-progress:0; color:var(--spectrum-ink); background:var(--spectrum-cream); overflow-x:clip; }
 .spectrum-immersive .skip-link { z-index:1100; }
 .spectrum-stage { position:fixed; z-index:0; inset:var(--site-header-height,92px) 0 0; overflow:hidden; pointer-events:none; transition:opacity .5s; }
@@ -12,6 +13,7 @@
 .spectrum-scene-ready .spectrum-scene-fallback { opacity:0; visibility:hidden; }
 .spectrum-story { position:relative; z-index:1; }
 .spectrum-chapter { position:relative; display:flex; align-items:center; min-height:calc(108svh - var(--site-header-height,92px)); padding-block:68px; scroll-margin-top:var(--site-header-height,92px); }
+.spectrum-chapter--start { min-height:calc(100svh - var(--site-header-height,92px)); padding-block:42px 72px; }
 .spectrum-section-inner { position:relative; width:min(1280px,calc(100% - 96px)); margin-inline:auto; }
 .spectrum-section-inner--right { display:flex; justify-content:flex-end; }
 .spectrum-copy { position:relative; width:53%; max-width:680px; }
@@ -19,17 +21,17 @@
 .spectrum-brand-line { display:flex; align-items:center; flex-wrap:wrap; gap:10px 20px; margin-bottom:34px; }
 .spectrum-brand-line > img { width:160px; height:auto; }
 .spectrum-brand-line > span { padding-left:18px; border-left:1px solid #cbd0c9; color:#6d786e; font-size:9px; letter-spacing:.3px; }
-.spectrum-kicker { display:flex; align-items:center; gap:10px; color:#60706d; font-size:10px; font-weight:650; letter-spacing:1.6px; line-height:1.6; text-transform:uppercase; }
+.spectrum-immersive .spectrum-copy > .spectrum-kicker { display:flex; align-items:center; gap:10px; max-width:none; margin:0; color:#60706d; font-size:10px; font-weight:650; letter-spacing:1.6px; line-height:1.6; text-transform:uppercase; }
 .spectrum-kicker > span { width:7px; height:7px; flex-shrink:0; border-radius:50%; background:#ad8b29; box-shadow:0 0 0 4px #ebdca533; }
 .spectrum-copy h1,.spectrum-copy h2 { margin:24px 0 0; color:var(--spectrum-ink); font-size:clamp(48px,5.8vw,82px); font-weight:550; line-height:1.03; letter-spacing:-.055em; text-wrap:balance; }
 .spectrum-copy h1 em,.spectrum-copy h2 em { font-family:Georgia,"Times New Roman",serif; font-weight:400; color:#977626; letter-spacing:-.055em; }
 .spectrum-copy h2 { font-size:clamp(44px,4.9vw,70px); }
-.spectrum-intro { max-width:435px; margin-top:28px; color:#64716f; font-size:15px; line-height:1.9; }
+.spectrum-immersive .spectrum-copy > .spectrum-intro { max-width:435px; margin-top:28px; color:#64716f; font-size:15px; line-height:1.9; }
 .spectrum-button { display:inline-flex; align-items:center; justify-content:space-between; gap:30px; min-height:52px; margin-top:28px; padding:15px 21px; border:1px solid var(--spectrum-ink); border-radius:4px; font-size:12px; font-weight:650; text-decoration:none; transition:transform .25s,box-shadow .25s,background .25s; }
 .spectrum-button > span { font-size:20px; font-weight:400; line-height:1; }
 .spectrum-button--dark { background:var(--spectrum-ink); color:#fff; box-shadow:0 8px 18px #102c4a12; }
 .spectrum-button:hover { transform:translateY(-3px); box-shadow:0 14px 26px #102c4a22; background:#1c486e; }
-.spectrum-scroll-cue { display:flex; align-items:center; gap:13px; width:fit-content; margin-top:30px; font-size:11px; font-weight:600; }
+.spectrum-scroll-cue { display:inline-flex; align-items:center; gap:13px; width:fit-content; margin:28px 0 0 20px; vertical-align:middle; font-size:11px; font-weight:600; }
 .spectrum-scroll-cue small { display:block; margin-top:3px; color:#7b857d; font-size:9px; font-weight:400; letter-spacing:.3px; }
 .spectrum-scroll-circle { display:grid; place-items:center; width:36px; height:46px; border:1px solid #c5cbbf; border-radius:22px; font-size:18px; }
 .spectrum-scroll-cue:hover .spectrum-scroll-circle { color:#fff; background:var(--spectrum-ink); border-color:var(--spectrum-ink); }
@@ -70,11 +72,10 @@
 .spectrum-scroll-progress > span { display:block; width:100%; height:100%; background:linear-gradient(90deg,#af9cdb,#76b5b1,#edc34b,#df8e6e); transform-origin:left; transform:scaleX(var(--spectrum-progress)); }
 .spectrum-immersive .home-footer { position:relative; z-index:2; padding:48px 0 95px; border-top:1px solid #d9dcd5; background:var(--spectrum-cream); }
 .spectrum-immersive .back-top { bottom:82px; }
-.spectrum-at-footer .spectrum-stage { opacity:.15; }
 @media(max-width:1100px) {
  .spectrum-section-inner { width:calc(100% - 64px); }
  .spectrum-copy h1 { font-size:64px; }.spectrum-copy h2 { font-size:54px; }
- .spectrum-intro { max-width:375px; font-size:14px; }
+ .spectrum-immersive .spectrum-copy > .spectrum-intro { max-width:375px; font-size:14px; }
  .spectrum-brand-line { gap:10px; }.spectrum-brand-line > span { padding-left:0; border-left:0; }
  .spectrum-hero-note { max-width:220px; font-size:12px; }.spectrum-gallery { gap:50px 24%; }
 }
@@ -82,17 +83,18 @@
  .spectrum-stage-glow { top:-2%; right:-25%; width:120vw; height:120vw; }
  .spectrum-section-inner { width:calc(100% - 40px); }
  .spectrum-chapter { min-height:auto; padding:310px 0 80px; }
- .spectrum-copy,.spectrum-section-inner--right .spectrum-copy,.spectrum-world-heading { width:100%; max-width:540px; margin-inline:auto; }
+ .spectrum-copy,.spectrum-section-inner--right .spectrum-copy,.spectrum-world-heading { width:100%; max-width:540px; margin-inline:auto; background:#f8f7f2f2; box-shadow:0 -14px 22px #f8f7f2ed; }
  .spectrum-copy h1 { font-size:clamp(46px,8.6vw,64px); }.spectrum-copy h2 { font-size:clamp(43px,8vw,58px); }
- .spectrum-kicker { font-size:8px; letter-spacing:1.2px; }
+ .spectrum-immersive .spectrum-copy > .spectrum-kicker { font-size:8px; letter-spacing:1.2px; }
  .spectrum-brand-line { margin-bottom:24px; gap:6px 16px; }.spectrum-brand-line > img { width:140px; }.spectrum-brand-line > span { font-size:8px; }
- .spectrum-intro { max-width:440px; margin-top:22px; font-size:14px; }
- .spectrum-chapter--start { padding-top:290px; }.spectrum-hero-note { display:none; }.spectrum-scroll-cue { margin-top:24px; }
+ .spectrum-immersive .spectrum-copy > .spectrum-intro { max-width:440px; margin-top:22px; font-size:14px; }
+ .spectrum-chapter--start { padding-top:290px; }.spectrum-hero-note { display:none; }.spectrum-scroll-cue { display:flex; margin:24px 0 0; }
  .spectrum-chapter--spark { padding-top:320px; }.spectrum-bee-signature { margin-top:28px; padding-top:20px; }
  .spectrum-chapter--world { padding-top:320px; padding-bottom:80px; }.spectrum-gallery { padding-top:40px; gap:35px 18px; }
  .spectrum-depth-card { padding:6px 6px 0; border-radius:7px; }.spectrum-depth-card > div { aspect-ratio:1; }.spectrum-depth-card figcaption { padding:12px 3px; gap:7px; font-size:11px; }
  .spectrum-depth-card--two { margin-top:38px; }.spectrum-depth-card--three { width:78%; margin-top:8px; }
  .spectrum-chapter--connect { padding-top:320px; padding-bottom:90px; }.spectrum-scene-fallback { top:150px; left:50%; width:250px; }
+ .spectrum-chapter--connect .spectrum-section-inner::after { content:""; display:block; height:320px; }
  .spectrum-experience-controls { bottom:16px; left:16px; right:16px; }.spectrum-scroll-status { display:none; }
  .spectrum-chapter-nav { gap:3px; padding:4px; }.spectrum-chapter-nav > a { width:27px; height:27px; font-size:8px; }
  .spectrum-motion-control { min-height:36px; padding-inline:11px; font-size:9px; }.spectrum-immersive .home-footer { padding-bottom:88px; }

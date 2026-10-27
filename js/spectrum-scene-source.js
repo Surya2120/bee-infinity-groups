@@ -40,6 +40,8 @@ function bootScene() {
   let mobile = window.innerWidth <= 760;
   let width = 1;
   let height = 1;
+  let availableSceneHeight = 1;
+  let mobileEndingBand = null;
   let progress = 0;
   let targetProgress = 0;
   let reducedMotion = media.matches;
@@ -279,7 +281,6 @@ function bootScene() {
     if (!chapters.length) return;
     const headerHeight = Number.parseFloat(window.getComputedStyle(document.body).getPropertyValue("--site-header-height")) || (window.innerWidth <= 980 ? 80 : 92);
     const first = chapters[0].getBoundingClientRect();
-    const last = chapters[chapters.length - 1].getBoundingClientRect();
     if (!hasProgressSignal) {
       let index = 0;
       chapters.forEach((chapter, i) => { if (chapter.getBoundingClientRect().top <= headerHeight) index = i; });
@@ -289,8 +290,21 @@ function bootScene() {
       targetProgress = clamp((index + local) / Math.max(1, chapters.length - 1), 0, 1);
     }
     const footer = document.querySelector(".home-footer");
-    const atFooter = footer && footer.getBoundingClientRect().top < window.innerHeight * 0.65;
-    visible = last.bottom > headerHeight && first.top < window.innerHeight && !atFooter;
+    const stageTop = canvas.getBoundingClientRect().top;
+    availableSceneHeight = footer ? clamp(footer.getBoundingClientRect().top - stageTop, 0, height) : height;
+    mobileEndingBand = null;
+    if (mobile) {
+      const endingCopy = document.querySelector("#spectrum-connect .spectrum-copy");
+      const endingInner = document.querySelector("#spectrum-connect .spectrum-section-inner");
+      if (endingCopy && endingInner) {
+        const copyRect = endingCopy.getBoundingClientRect();
+        const top = clamp(copyRect.bottom - stageTop, 0, availableSceneHeight);
+        const bottom = clamp(endingInner.getBoundingClientRect().bottom - stageTop, 0, availableSceneHeight);
+        const mix = THREE.MathUtils.smoothstep(stageTop + 320 - copyRect.top, 0, 110);
+        if (bottom > top && mix > 0) mobileEndingBand = { top, bottom, mix };
+      }
+    }
+    visible = first.top < window.innerHeight && availableSceneHeight > 1;
     canvas.style.visibility = visible ? "visible" : "hidden";
   }
 
@@ -314,9 +328,19 @@ function bootScene() {
     camera.lookAt(lookAt.set(0, 0, 0));
     const worldHeight = 2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * (cameraZ - value("z"));
     const screenX = mobile ? 0.5 : value("x");
-    const screenY = mobile ? Math.min(180, height * 0.27) / height : value("y");
+    const baseY = mobile ? Math.min(155, height * 0.23) : value("y") * height;
+    const footerDock = THREE.MathUtils.smoothstep(height - availableSceneHeight, 0, height * 0.3);
+    let centerY = THREE.MathUtils.lerp(baseY, Math.min(baseY, availableSceneHeight / 2), footerDock);
+    const footerFit = Math.min(1, availableSceneHeight / (mobile ? 320 : height * 0.78));
+    let scaleFit = THREE.MathUtils.lerp(1, footerFit, footerDock);
+    if (mobileEndingBand) {
+      const { top, bottom, mix } = mobileEndingBand;
+      centerY = THREE.MathUtils.lerp(centerY, (top + bottom) / 2, mix);
+      scaleFit = THREE.MathUtils.lerp(scaleFit, Math.min(1, (bottom - top) / 320), mix);
+    }
+    const screenY = centerY / height;
     rig.position.set((screenX - 0.5) * worldHeight * camera.aspect, (0.5 - screenY) * worldHeight, value("z"));
-    rig.scale.setScalar(value("scale") * (mobile ? 0.54 : 1));
+    rig.scale.setScalar(value("scale") * (mobile ? 0.48 : 1) * scaleFit);
     rig.rotation.set(pointer.y * 0.035, value("yaw") + pointer.x * 0.1, value("roll"));
     bee.position.y = Math.sin(elapsed * 1.7) * 0.07;
     bee.rotation.y = Math.sin(elapsed * 0.65) * 0.045;

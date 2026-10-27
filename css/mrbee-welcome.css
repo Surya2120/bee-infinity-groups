@@ -1,0 +1,75 @@
+/* Mr. Bee's first greeting is a self-contained, homepage-only component. */
+.mrbee-welcome {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: visible;
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  width: min(640px, calc(100% - 48px));
+  max-width: none;
+  max-height: calc(100dvh - 32px);
+  color: #102c4a;
+  font: 400 14px/1.6 "Segoe UI", Arial, sans-serif;
+  animation: mrbee-greeting-arrive .45s ease both;
+}
+.mrbee-welcome:not([open]) { display: none; }
+.mrbee-welcome::backdrop { background: rgb(5 19 35 / .76); backdrop-filter: blur(7px); -webkit-backdrop-filter: blur(7px); animation: mrbee-backdrop-arrive .35s ease both; }
+html.mrbee-welcome-open { overflow: hidden; }
+.mrbee-welcome *, .mrbee-welcome *::before, .mrbee-welcome *::after { box-sizing: border-box; }
+.mrbee-welcome .mrbee-avatar { position: relative; width: 200px; height: 280px; }
+.mrbee-welcome .mrbee-avatar > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 12px 12px #102c4a18); }
+.mrbee-welcome .mrbee-avatar > canvas { position: relative; display: block; width: 100%; height: 100%; opacity: 0; transition: opacity .25s ease; }
+.mrbee-welcome .mrbee-avatar > canvas.is-ready { opacity: 1; }
+.mrbee-welcome .mrbee-avatar:has(> canvas.is-ready) > img { visibility: hidden; }
+.mrbee-welcome .mrbee-bubble {
+  position: relative;
+  min-width: 0;
+  padding: 36px 34px 32px;
+  border: 1px solid #d4d8cc;
+  border-radius: 22px 22px 22px 6px;
+  background: #fffef9;
+  box-shadow: 0 16px 50px #102c4a21, 0 3px 10px #102c4a08;
+  pointer-events: auto;
+}
+.mrbee-welcome .mrbee-bubble::before { content: ""; position: absolute; left: -8px; bottom: 35px; width: 14px; height: 14px; border: solid #d4d8cc; border-width: 0 0 1px 1px; background: #fffef9; transform: rotate(45deg); }
+.mrbee-welcome .mrbee-close { position: absolute; top: 5px; right: 5px; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%; color: #6b7878; background: transparent; cursor: pointer; }
+.mrbee-welcome .mrbee-close span { font: 300 25px/1 Arial, sans-serif; }
+.mrbee-welcome .mrbee-close:hover { color: #102c4a; background: #eeeede; }
+.mrbee-welcome .mrbee-eyebrow { display: flex; align-items: center; gap: 8px; margin: 0 24px 14px 0; color: #6e765d; font-size: 9px; font-weight: 650; letter-spacing: 1.6px; line-height: 1.5; text-transform: uppercase; }
+.mrbee-welcome .mrbee-eyebrow > span { width: 5px; height: 5px; border-radius: 50%; background: #b59943; }
+.mrbee-welcome h2 { margin: 0; font-size: 34px; font-weight: 600; letter-spacing: -.9px; line-height: 1.15; }
+.mrbee-welcome h2 em { color: #937124; font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
+.mrbee-welcome .mrbee-message { margin: 16px 0 0; color: #62716e; font-size: 14px; line-height: 1.85; }
+.mrbee-welcome .mrbee-continue { display: inline-flex; align-items: center; justify-content: space-between; gap: 30px; min-height: 46px; margin-top: 24px; padding: 12px 18px; border: 1px solid #102c4a; border-radius: 4px; color: white; background: #102c4a; font: 600 12px/1.5 "Segoe UI", Arial, sans-serif; cursor: pointer; }
+.mrbee-welcome .mrbee-continue > span { font-size: 17px; font-weight: 400; line-height: 1; }
+.mrbee-welcome .mrbee-continue:hover { background: #1b4b77; }
+.mrbee-welcome button:focus-visible { outline: 3px solid #1875be; outline-offset: 4px; }
+@keyframes mrbee-greeting-arrive { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes mrbee-backdrop-arrive { from { opacity: 0; } to { opacity: 1; } }
+@media (max-width: 600px) {
+  .mrbee-welcome { width: min(360px, calc(100% - 32px)); grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .mrbee-welcome .mrbee-avatar { width: 144px; height: 178px; margin: 0 auto 8px; }
+  .mrbee-welcome .mrbee-bubble { padding: 30px 22px 26px; border-radius: 18px; text-align: center; }
+  .mrbee-welcome .mrbee-bubble::before { left: calc(50% - 7px); top: -8px; bottom: auto; border-width: 1px 0 0 1px; }
+  .mrbee-welcome h2 { font-size: 29px; }
+  .mrbee-welcome .mrbee-message { font-size: 13px; }
+  .mrbee-welcome .mrbee-eyebrow { justify-content: center; margin-right: 0; font-size: 8px; letter-spacing: 1.2px; }
+  .mrbee-welcome .mrbee-continue { gap: 24px; margin-top: 20px; }
+}
+@media (max-height: 450px) {
+  .mrbee-welcome { width: min(540px, calc(100% - 32px)); grid-template-columns: 120px minmax(0, 1fr); gap: 12px; max-height: calc(100dvh - 24px); }
+  .mrbee-welcome .mrbee-avatar { width: 120px; height: 174px; margin: 0; }
+  .mrbee-welcome .mrbee-bubble { max-height: calc(100dvh - 24px); overflow-y: auto; padding: 22px; text-align: left; }
+  .mrbee-welcome .mrbee-bubble::before { display: none; }
+  .mrbee-welcome .mrbee-eyebrow { display: none; }
+  .mrbee-welcome h2 { font-size: 23px; }
+  .mrbee-welcome .mrbee-message { margin-top: 9px; font-size: 12px; }
+  .mrbee-welcome .mrbee-continue { margin-top: 12px; }
+}
+@media (prefers-reduced-motion: reduce) { .mrbee-welcome, .mrbee-welcome::backdrop { animation: none; }.mrbee-welcome .mrbee-avatar > canvas { transition: none; } }
