@@ -32,7 +32,7 @@ export default function App() {
       <Navbar />
       <CartDrawer />
 
-      <main className="pt-16">
+      <main className="merch-page-content">
         <AnimatePresence mode="wait">
           <motion.div
             key={location.pathname}

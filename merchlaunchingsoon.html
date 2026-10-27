@@ -139,9 +139,39 @@ body {
 }
 
 </style>
+  <link rel="stylesheet" href="css/site-header.css">
+  <link rel="stylesheet" href="css/site-header-pages.css">
+  <script src="js/site-header.js" defer></script>
 </head>
 
-<body>
+<body class="has-site-header site-page--launch">
+  <header class="site-header" id="siteHeader">
+    <div class="site-header__inner">
+      <a class="site-brand" href="index.html" aria-label="Bee Infinity Groups home">
+        <img src="assets/images/logo/favicon.png" alt="" width="144" height="144">
+        <span class="site-brand__wordmark">Bee Infinity Groups<span>STUDIOZ</span></span>
+      </a>
+      <button class="site-header__toggle" id="siteMenuToggle" type="button" aria-expanded="false" aria-controls="siteNavigation" aria-label="Open navigation"><span></span><span></span></button>
+      <nav class="site-nav" id="siteNavigation" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="divisions.html">Divisions</a>
+        <a href="ourservices.html">Services</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="spectrum.html">Spectrum</a>
+        <details class="site-explore" id="siteExplore">
+          <summary>Explore <span aria-hidden="true">+</span></summary>
+          <div class="site-explore__links">
+        <a href="careers.html">Careers</a>
+        <a href="bigcinemaz.html">Big Cinemaz</a>
+        <a href="AnnouncingSoon.html">BOTD</a>
+        <a href="merch/" aria-current="page">Our Merch</a>
+          </div>
+        </details>
+        <a class="site-contact" href="contact.html">Let’s talk <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
 
 <a href="index.html" class="back-btn">← Home</a>
 

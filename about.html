@@ -8,11 +8,15 @@
     <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/about.css">
   <link rel="stylesheet" href="css/team.css">
+  <link rel="stylesheet" href="css/about-polish.css">
   <script src="js/team.js" defer></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/site-header.css">
+  <link rel="stylesheet" href="css/site-header-pages.css">
+  <script src="js/site-header.js" defer></script>
 </head>
 
-<body>
+<body class="about-page has-site-header">
 
   <!-- FAVICON -->
 <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo/favicon.png">
@@ -21,55 +25,39 @@
 
 
   <!-- HEADER (MASTER HEADER - SAME AS HOME) -->
-  <header class="navbar">
-    <div class="logo">
-      <a href="index.html" class="logo-btn">
-        <img src="assets/images/logo/studiozlogo.png" alt="Bee Infinity Groups Logo">
+    <header class="site-header" id="siteHeader">
+    <div class="site-header__inner">
+      <a class="site-brand" href="index.html" aria-label="Bee Infinity Groups home">
+        <img src="assets/images/logo/favicon.png" alt="" width="144" height="144">
+        <span class="site-brand__wordmark">Bee Infinity Groups<span>STUDIOZ</span></span>
       </a>
-      <div class="logo-text">
-        <span class="brand-name">Bee Infinity Groups</span>
-        <span class="brand-sub">STUDIOZ</span>
-      </div>
-    </div>
-
-    
-  <!-- NAV -->
-  <nav class="nav-links" id="navLinks">
-    <a href="index.html">Home</a>
-    <a href="about.html" class="active">About</a>
-    <a href="divisions.html">Divisions</a>
-    <a href="gallery.html">Gallery</a> 
-    <a href="careers.html">Careers</a>
-    <a href="ourservices.html">Our Services</a>
-
-    <!-- DROPDOWN -->
-    <div class="dropdown">
-      <a href="#" id="exploreToggle" class="no-close">Explore ▾</a>
-
-      <div class="dropdown-menu" id="exploreMenu">
-        <a href="merchlaunchingsoon.html">Our Merchen</a>
-        <a href="AnnouncingSoon.html">BOTD</a>
+      <button class="site-header__toggle" id="siteMenuToggle" type="button" aria-expanded="false" aria-controls="siteNavigation" aria-label="Open navigation"><span></span><span></span></button>
+      <nav class="site-nav" id="siteNavigation" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html" aria-current="page">About</a>
+        <a href="divisions.html">Divisions</a>
+        <a href="ourservices.html">Services</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="spectrum.html">Spectrum</a>
+        <details class="site-explore" id="siteExplore">
+          <summary>Explore <span aria-hidden="true">+</span></summary>
+          <div class="site-explore__links">
+        <a href="careers.html">Careers</a>
         <a href="bigcinemaz.html">Big Cinemaz</a>
-      </div>
+        <a href="AnnouncingSoon.html">BOTD</a>
+        <a href="merch/">Our Merch</a>
+          </div>
+        </details>
+        <a class="site-contact" href="contact.html">Let’s talk <span aria-hidden="true">↗</span></a>
+      </nav>
     </div>
-
-    <a href="contact.html">Contact</a>
-  </nav>
-
-  <!-- MENU TOGGLE -->
-  <div class="menu-toggle" id="menuToggle">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-
-</header>
+  </header>
 
 
   <!-- HERO -->
   <section class="about-hero">
     <div class="about-hero-inner">
-      <h1>Built on Vision. Driven by Execution.</h1>
+      <h1>Built on Vision. <em>Driven by Execution.</em></h1>
       <p>The story behind Bee Infinity Groups —
         a unified creative powerhouse across film, events, and dance.</p>
     </div>

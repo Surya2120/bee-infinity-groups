@@ -8,59 +8,89 @@
   <title>Spectrum | School Celebrations | Bee Infinity Groups</title>
   <link rel="icon" href="assets/images/logo/favicon.png">
   <link rel="stylesheet" href="css/home.css">
-  <link rel="stylesheet" href="css/spectrum.css">
-  <script src="js/home.js" defer></script>
+  <link rel="stylesheet" href="css/spectrum.css?v=3d-world">
+  <script src="js/spectrum-scroll.js" defer></script>
+  <script type="module" src="js/spectrum-scene.js"></script>
+  <script src="js/home.js?v=shared-header" defer></script>
+  <link rel="stylesheet" href="css/site-header.css">
+  <link rel="stylesheet" href="css/site-header-pages.css">
+  <script src="js/site-header.js" defer></script>
 </head>
-<body>
+<body class="has-site-header spectrum-immersive">
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="home-header" id="homeHeader">
-    <div class="header-inner">
-      <a class="brand" href="index.html" aria-label="Bee Infinity Groups home">
+    <header class="site-header" id="siteHeader">
+    <div class="site-header__inner">
+      <a class="site-brand" href="index.html" aria-label="Bee Infinity Groups home">
         <img src="assets/images/logo/favicon.png" alt="" width="144" height="144">
-        <span class="brand-wordmark">Bee Infinity Groups<span>STUDIOZ</span></span>
+        <span class="site-brand__wordmark">Bee Infinity Groups<span>STUDIOZ</span></span>
       </a>
-      <button class="menu-toggle" id="homeMenuToggle" type="button" aria-expanded="false" aria-controls="homeNavigation" aria-label="Open navigation"><span></span><span></span></button>
-      <nav class="home-navigation" id="homeNavigation" aria-label="Main navigation">
-        <a href="index.html#expertise">What we do</a>
-        <a href="index.html#work">Our work</a>
+      <button class="site-header__toggle" id="siteMenuToggle" type="button" aria-expanded="false" aria-controls="siteNavigation" aria-label="Open navigation"><span></span><span></span></button>
+      <nav class="site-nav" id="siteNavigation" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="divisions.html">Divisions</a>
+        <a href="ourservices.html">Services</a>
+        <a href="gallery.html">Gallery</a>
         <a href="spectrum.html" aria-current="page">Spectrum</a>
-        <a href="about.html">About us</a>
-        <details class="nav-more" id="homeExplore">
+        <details class="site-explore" id="siteExplore">
           <summary>Explore <span aria-hidden="true">+</span></summary>
-          <div class="explore-links">
-            <a href="divisions.html">Our divisions</a>
-            <a href="ourservices.html">All services</a>
-            <a href="gallery.html">Gallery</a>
-            <a href="careers.html">Careers</a>
-            <a href="bigcinemaz.html">Big Cinemaz</a>
-            <a href="AnnouncingSoon.html">BOTD</a>
-            <a href="merch/">Our Merch</a>
+          <div class="site-explore__links">
+        <a href="careers.html">Careers</a>
+        <a href="bigcinemaz.html">Big Cinemaz</a>
+        <a href="AnnouncingSoon.html">BOTD</a>
+        <a href="merch/">Our Merch</a>
           </div>
         </details>
-        <a class="nav-contact" href="contact.html">Let’s talk <span aria-hidden="true">↗</span></a>
+        <a class="site-contact" href="contact.html">Let’s talk <span aria-hidden="true">↗</span></a>
       </nav>
     </div>
   </header>
-  <main id="main">
-    <section class="spectrum-page-hero page-width" aria-labelledby="spectrum-page-title">
-      <div>
-        <p class="eyebrow">SPECTRUM / By Bee Infinity Groups</p>
+  <div class="spectrum-stage" aria-hidden="true">
+    <div class="spectrum-stage-glow"></div>
+    <div class="spectrum-scene-fallback"><div class="spectrum-fallback-ring"></div><img src="assets/images/logo/Bee.png" alt="" width="156" height="144"></div>
+    <canvas id="spectrumCanvas" aria-hidden="true"></canvas>
+  </div>
+  <main id="main" class="spectrum-story">
+    <section class="spectrum-chapter spectrum-chapter--start" id="spectrum-start" data-spectrum-step="0" aria-labelledby="spectrum-page-title">
+      <div class="spectrum-section-inner"><div class="spectrum-copy">
+        <div class="spectrum-brand-line"><img src="assets/images/spectrum/spectrumlogo.png" alt="Spectrum — Institutional Event Management" width="2172" height="724" fetchpriority="high"><span>A Bee Infinity Groups experience</span></div>
+        <p class="spectrum-kicker"><span></span> A brighter kind of school celebration</p>
         <h1 id="spectrum-page-title">School moments.<br><em>Made memorable.</em></h1>
-        <p class="spectrum-page-intro">Creativity, celebration and moments that bring your school together. SPECTRUM brings the Bee Infinity spirit to school celebrations.</p>
-        <a class="button button-dark" href="contact.html">Enquire about Spectrum <span aria-hidden="true">↗</span></a>
-        <a class="spectrum-page-back" href="index.html">Explore Bee Infinity Groups <span aria-hidden="true">↗</span></a>
-      </div>
-      <figure class="spectrum-page-art"><img src="assets/images/spectrum/spectrumbanner.png" alt="Spectrum — Institutional Event Management" width="1672" height="941" fetchpriority="high" decoding="async"></figure>
+        <p class="spectrum-intro">Creativity, celebration and moments that bring your school together. SPECTRUM brings the Bee Infinity spirit to school celebrations.</p>
+        <a class="spectrum-button spectrum-button--dark" href="contact.html">Enquire about Spectrum <span aria-hidden="true">↗</span></a>
+        <a class="spectrum-scroll-cue" href="#spectrum-spark"><span class="spectrum-scroll-circle" aria-hidden="true">↓</span><span>Follow the spark<small>Scroll to explore</small></span></a>
+      </div></div>
+      <div class="spectrum-hero-note" aria-hidden="true"><span class="spectrum-note-line"></span> A little imagination changes everything.</div>
     </section>
-    <section class="spectrum-page-invitation" aria-labelledby="spectrum-connect-title">
-      <div class="page-width">
-        <p class="eyebrow">Let’s start a conversation</p>
-        <h2 id="spectrum-connect-title">Something in mind<br><em>for your school?</em></h2>
-        <p>Connect with our team to explore what SPECTRUM can bring to your next celebration.</p>
-        <a class="button button-yellow" href="contact.html">Talk to our team <span aria-hidden="true">↗</span></a>
+    <section class="spectrum-chapter spectrum-chapter--spark" id="spectrum-spark" data-spectrum-step="1" aria-labelledby="spectrum-spark-title">
+      <div class="spectrum-section-inner spectrum-section-inner--right"><div class="spectrum-copy">
+        <p class="spectrum-kicker"><span></span> 01 / The spark</p>
+        <h2 id="spectrum-spark-title">Small sparks.<br><em>Big school memories.</em></h2>
+        <p class="spectrum-intro">A stage for student talent. A reason to come together. A moment your school can be proud of.</p>
+        <div class="spectrum-values"><span>Student talent</span><span>School spirit</span><span>Shared joy</span></div>
+        <div class="spectrum-bee-signature"><img src="assets/images/logo/Bee.png" alt="Bee Infinity bee with a clapperboard" width="156" height="144" loading="lazy"><p>A little Bee Infinity spirit.<br><strong>A world of possibility.</strong></p></div>
+      </div></div>
+    </section>
+    <section class="spectrum-chapter spectrum-chapter--world" id="spectrum-world" data-spectrum-step="2" aria-labelledby="spectrum-world-title">
+      <div class="spectrum-section-inner">
+        <div class="spectrum-copy spectrum-world-heading"><p class="spectrum-kicker"><span></span> 02 / A world of celebration</p><h2 id="spectrum-world-title">More colour.<br><em>More connection.</em></h2><p class="spectrum-intro">From cultural celebrations to school milestones, make room for moments that stay with your community.</p></div>
+        <div class="spectrum-gallery" aria-label="A glimpse of the Bee Infinity creative world">
+          <figure class="spectrum-depth-card spectrum-depth-card--one"><div><img src="assets/images/dance/dance (27).jpg" alt="Students celebrating together on a school ground" width="1200" height="800" loading="lazy" decoding="async"></div><figcaption><span>01</span> Together feels different.</figcaption></figure>
+          <figure class="spectrum-depth-card spectrum-depth-card--two"><div><img src="assets/images/dance/dance (45).jpg" alt="A group dance performance on stage" width="1200" height="800" loading="lazy" decoding="async"></div><figcaption><span>02</span> Every talent deserves a stage.</figcaption></figure>
+          <figure class="spectrum-depth-card spectrum-depth-card--three"><div><img src="assets/images/spectrum/spectrumbanner.png" alt="Spectrum’s colourful school celebration world" width="1672" height="941" loading="lazy" decoding="async"></div><figcaption><span>03</span> Your school. In full colour.</figcaption></figure>
+        </div>
       </div>
+    </section>
+    <section class="spectrum-chapter spectrum-chapter--connect" id="spectrum-connect" data-spectrum-step="3" aria-labelledby="spectrum-connect-title">
+      <div class="spectrum-section-inner"><div class="spectrum-copy"><p class="spectrum-kicker"><span></span> 03 / Your next big moment</p><h2 id="spectrum-connect-title">Something in mind<br><em>for your school?</em></h2><p class="spectrum-intro">Connect with our team to explore what SPECTRUM can bring to your next celebration.</p><a class="spectrum-button spectrum-button--dark" href="contact.html">Talk to our team <span aria-hidden="true">↗</span></a><a class="spectrum-page-back" href="index.html">Explore Bee Infinity Groups <span aria-hidden="true">↗</span></a></div></div>
     </section>
   </main>
+  <div class="spectrum-experience-controls">
+    <button class="spectrum-motion-control" id="spectrumMotion" type="button" aria-pressed="false" aria-label="Pause decorative motion"><span class="spectrum-motion-dot" aria-hidden="true"></span><span id="spectrumMotionLabel">Motion on</span></button>
+    <nav class="spectrum-chapter-nav" aria-label="Spectrum chapters"><a href="#spectrum-start" aria-label="Introduction" aria-current="location"><span>01</span></a><a href="#spectrum-spark" aria-label="The spark"><span>02</span></a><a href="#spectrum-world" aria-label="A world of celebration"><span>03</span></a><a href="#spectrum-connect" aria-label="Talk to our team"><span>04</span></a></nav>
+    <span class="spectrum-scroll-status" aria-hidden="true"><span id="spectrumStepNumber">01</span> <span>/ 04</span></span>
+  </div>
+  <div class="spectrum-scroll-progress" aria-hidden="true"><span></span></div>
   <footer class="home-footer page-width"><div class="footer-top"><a class="footer-wordmark" href="index.html">Bee Infinity Groups<span>Elegant creativity. Complete solutions.</span></a><nav aria-label="Footer navigation"><a href="about.html">About</a><a href="ourservices.html">Services</a><a href="gallery.html">Gallery</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a></nav></div><div class="footer-bottom"><span>© <span id="homeYear">2026</span> Bee Infinity Groups</span><span>Film. Events. Dance. All connected.</span></div></footer>
   <button class="back-top" id="homeTop" type="button" aria-label="Back to top" tabindex="-1"><span aria-hidden="true">↑</span></button>
 </body>

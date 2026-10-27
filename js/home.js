@@ -83,6 +83,7 @@
       const sources = Array.from(carousel.querySelectorAll(".carousel-source"))
         .map((source) => source.dataset.image).filter(Boolean);
       if (images.length < 2 || !sources.length) return;
+      document.body.classList.add("nav-ready");
 
       const previous = document.getElementById("heroPrev");
       const next = document.getElementById("heroNext");

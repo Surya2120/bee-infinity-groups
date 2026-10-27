@@ -7,56 +7,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/divisions.css">
+  <link rel="stylesheet" href="css/divisions-polish.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/site-header.css">
+  <link rel="stylesheet" href="css/site-header-pages.css">
+  <script src="js/site-header.js" defer></script>
 </head>
-<body>
+<body class="divisions-page has-site-header">
   <!-- FAVICON -->
 <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo/favicon.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/images/logo/favicon.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/images/logo/favicon.png">
 
 
-<header class="navbar">
-
-  <div class="logo">
-    <a href="index.html" class="logo-btn">
-      <img src="assets/images/logo/studiozlogo.png" alt="Bee Infinity Groups Logo">
-    </a>  
-    <div class="logo-text">
-      <span class="brand-name">Bee Infinity Groups</span>
-      <span class="brand-sub">STUDIOZ</span>
-    </div>
-  </div>
-
-  <!-- NAV -->
-  <nav class="nav-links" id="navLinks">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="divisions.html" class="active">Divisions</a>
-    <a href="gallery.html">Gallery</a>
-      <a href="careers.html">Careers</a>
-    <a href="ourservices.html">Our Services</a>
-
-    <!-- DROPDOWN -->
-    <div class="dropdown">
-      <a href="#" id="exploreToggle" class="no-close">Explore ▾</a>
-
-      <div class="dropdown-menu" id="exploreMenu">
-                <a href="merchlaunchingsoon.html">Our Merchen</a>
-        <a href="AnnouncingSoon.html">BOTD</a>
+  <header class="site-header" id="siteHeader">
+    <div class="site-header__inner">
+      <a class="site-brand" href="index.html" aria-label="Bee Infinity Groups home">
+        <img src="assets/images/logo/favicon.png" alt="" width="144" height="144">
+        <span class="site-brand__wordmark">Bee Infinity Groups<span>STUDIOZ</span></span>
+      </a>
+      <button class="site-header__toggle" id="siteMenuToggle" type="button" aria-expanded="false" aria-controls="siteNavigation" aria-label="Open navigation"><span></span><span></span></button>
+      <nav class="site-nav" id="siteNavigation" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="divisions.html" aria-current="page">Divisions</a>
+        <a href="ourservices.html">Services</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="spectrum.html">Spectrum</a>
+        <details class="site-explore" id="siteExplore">
+          <summary>Explore <span aria-hidden="true">+</span></summary>
+          <div class="site-explore__links">
+        <a href="careers.html">Careers</a>
         <a href="bigcinemaz.html">Big Cinemaz</a>
-      </div>
+        <a href="AnnouncingSoon.html">BOTD</a>
+        <a href="merch/">Our Merch</a>
+          </div>
+        </details>
+        <a class="site-contact" href="contact.html">Let’s talk <span aria-hidden="true">↗</span></a>
+      </nav>
     </div>
-
-    <a href="contact.html">Contact</a>
-  </nav>
-    <!-- MENU TOGGLE -->
-  <div class="menu-toggle" id="menuToggle">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-</header>
+  </header>
 
 
 
@@ -78,7 +68,7 @@
 
 <!-- PAGE HERO -->
 <section class="divisions-hero">
-  <h1>Our Creative Divisions</h1>
+  <h1>Our Creative <em>Divisions</em></h1>
   <p>Distinct verticals. One powerful creative ecosystem.</p>
 </section>
 

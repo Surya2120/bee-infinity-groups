@@ -1,0 +1,39 @@
+/* Keep full-screen introductions and existing back links below the shared header. */
+.has-site-header.site-page--launch > .back-btn,
+.has-site-header.site-page--apply .apply-page > .back-btn,
+.has-site-header.site-page--cinemaz .cinemaz-hero > .back-btn {
+  top: calc(var(--site-header-height, 92px) + 16px);
+}
+.has-site-header.site-page--launch .hero {
+  height: calc(100dvh - var(--site-header-height, 92px));
+}
+.has-site-header.site-page--launch #enter-screen {
+  inset: var(--site-header-height, 92px) 0 0;
+  width: 100%;
+  height: auto;
+  z-index: 900;
+}
+.has-site-header.site-page--cinemaz .cinema-loader {
+  inset: var(--site-header-height, 92px) 0 0;
+  height: auto;
+  z-index: 99999;
+}
+.has-site-header.site-page--cinemaz .site-header { z-index: 100000; }
+.has-site-header.site-page--apply .apply-page > .back-btn { z-index: 200; }
+.has-site-header.site-page--legacy-commerce > #loader {
+  inset: var(--site-header-height, 92px) 0 0;
+  width: auto;
+  height: auto;
+}
+.has-site-header .site-shop-context {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px max(24px, calc((100% - 1160px) / 2));
+  border-bottom: 1px solid #ffffff20;
+  color: #fff;
+}
+.has-site-header .site-shop-context > a { color: #f1cc52; text-decoration: none; font: 500 14px/1.6 "Segoe UI", Arial, sans-serif; }
+.has-site-header .site-shop-context > h2 { margin: 0; font-size: 24px; }

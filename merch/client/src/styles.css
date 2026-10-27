@@ -23,3 +23,71 @@ body {
   opacity: 0.55;
 }
 
+/* Keep the shared company navigation below the existing cart dialog layer. */
+.merch-site-navigation { position: relative; z-index: 40; }
+.shop-utility {
+  position: fixed;
+  top: var(--site-header-height, 92px);
+  left: 0;
+  right: 0;
+  z-index: 1;
+  height: 64px;
+  border-bottom: 1px solid #d9dcd5;
+  color: #102c4a;
+  background: #eeece3;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+.shop-utility__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: min(1340px, calc(100% - 72px));
+  height: 100%;
+  margin-inline: auto;
+}
+.shop-links, .shop-actions { display: flex; align-items: center; gap: 12px; }
+.shop-links { gap: 26px; font-size: 13px; font-weight: 650; }
+.shop-links a { padding-block: 8px; text-decoration: none; border-bottom: 2px solid transparent; }
+.shop-links a.active { border-color: #102c4a; }
+.shop-links a:hover { color: #1d70aa; }
+.shop-account { max-width: 240px; color: #65717a; font-size: 12px; }
+.shop-account > span { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.shop-account strong { color: #102c4a; font-weight: 650; }
+.shop-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 7px 14px;
+  border: 1px solid #102c4a66;
+  border-radius: 3px;
+  color: #102c4a;
+  background: transparent;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 650;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.shop-action--cart { color: white; background: #102c4a; border-color: #102c4a; }
+.shop-action:hover { background: #dfddd2; }
+.shop-action--cart:hover { background: #1b4b77; }
+.shop-cart-count { min-width: 20px; padding: 1px 5px; border-radius: 12px; color: #102c4a; background: #f1cc52; font-size: 11px; text-align: center; }
+.shop-utility :focus-visible { outline: 3px solid #1875be; outline-offset: 3px; }
+.merch-page-content { padding-top: 64px; }
+@media (max-width: 980px) {
+  .shop-utility__inner { width: calc(100% - 48px); }
+}
+@media (max-width: 720px) {
+  .shop-account { display: none; }
+}
+@media (max-width: 600px) {
+  .shop-utility__inner { width: calc(100% - 32px); gap: 12px; }
+  .shop-links { gap: 12px; font-size: 11px; }
+  .shop-actions { gap: 8px; }
+  .shop-action { gap: 5px; padding-inline: 9px; font-size: 11px; }
+}
+
