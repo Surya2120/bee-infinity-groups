@@ -1,0 +1,148 @@
+/* Mr. Bee's curated voice. These are mascot lines, never quotes from the team. */
+export const jokes = [
+  "Surya brings the big ideas. I bring the very small wings. Every team needs balance.",
+  "Surya and Bharathi lead the team. I’m still trying to get ‘Chief Buzz Officer’ onto my name badge.",
+  "I’m ready for the team photo. Just waiting for someone to say, ‘Everybody hover.’",
+  "My dance routine has one move: wing it. The real choreography is best left to our dance team.",
+  "I can’t carry a camera, but I’m excellent at hovering behind one. A very small behind-the-scenes crew.",
+  "Big ideas, tiny wings. That’s my entire presentation. Thank you for your time.",
+  "The team takes care of the details. I take care of looking enthusiastic beside them.",
+  "I was promised a role in the next production. Still hoping it’s more than a fly-by appearance."
+];
+
+export const pages = {
+  home: {
+    title: "A good place to begin.",
+    intro: "Hi, I’m Mr. Bee! Looking for a film, an event, or a little more rhythm? I’ll help you find your way around Bee Infinity Groups.",
+    tips: [
+      "The Divisions page is a good starting point for film, events and dance. Different talents, one creative team.",
+      "The gallery has the pictures. About has the people. I recommend a little of both.",
+      "Planning something for a school? Spectrum brings together our school celebration services. I’ve even dressed up the page for you."
+    ],
+    links: [{ label: "Explore our divisions", href: "divisions.html" }, { label: "Meet the team", href: "about.html#team" }, { label: "Plan a project", href: "contact.html#contact-form" }]
+  },
+  about: {
+    title: "Meet the people behind the possibilities.",
+    intro: "This is the people part of the story: our journey, leadership and team. I bring the wings; they bring the work.",
+    tips: [
+      "Surya Sharavana is our founder, and Bharathi M is our co-founder. Keep exploring to meet more of the people behind Bee Infinity Groups.",
+      "The Meet our team section puts names to the people who help connect us with clients and our community.",
+      "Have something you’d like to create with the team? The contact page is the next stop. I’ll leave the actual conversation to the humans."
+    ],
+    links: [{ label: "Meet our team", href: "about.html#team" }, { label: "Explore our work", href: "gallery.html" }, { label: "Talk to the team", href: "contact.html#contact-form" }]
+  },
+  divisions: {
+    title: "Find your creative direction.",
+    intro: "Film, events, dance and school celebrations. Pick the part of Bee Infinity Groups that fits your idea. I’m a fan of all four. Occupational hazard.",
+    tips: [
+      "Open a division to explore its services and photos. You can take a closer look without leaving this page.",
+      "School celebrations have their own world in Spectrum. For film and media, head to B.I.G Cinemaz.",
+      "Your project can start with a simple idea. Tell the team what you have in mind, and they can discuss the right services with you."
+    ],
+    links: [{ label: "Explore Spectrum", href: "spectrum.html" }, { label: "Film & media", href: "bigcinemaz.html" }, { label: "Discuss an idea", href: "contact.html#contact-form" }]
+  },
+  services: {
+    title: "The right craft for your idea.",
+    intro: "Have a look through the services, then tell the team what you’re planning. A little detail now helps the conversation get off to a flying start.",
+    tips: [
+      "Describe your occasion or project, your location and any timing you have in mind. The team can then discuss what fits.",
+      "If a few different services catch your eye, mention them together in your enquiry. Good ideas don’t always fit into one box.",
+      "Want to see the creative work first? The gallery is just a small buzz away."
+    ],
+    links: [{ label: "See the gallery", href: "gallery.html" }, { label: "Explore divisions", href: "divisions.html" }, { label: "Discuss your project", href: "contact.html#contact-form" }]
+  },
+  gallery: {
+    title: "I’ll let the pictures do the talking.",
+    intro: "A glimpse of the films, performances and celebrations in our creative world. Take your time. I’ll try not to photobomb.",
+    tips: [
+      "Use the gallery categories to find the kind of work you’re interested in, then open a photo for a closer look.",
+      "When a photo is open, the arrows let you browse. Escape brings you back to the gallery.",
+      "See a style or moment that catches your eye? Mention it when you speak with the team about your own project."
+    ],
+    links: [{ label: "Explore services", href: "ourservices.html" }, { label: "Meet the people", href: "about.html#team" }, { label: "Share your idea", href: "contact.html#contact-form" }]
+  },
+  spectrum: {
+    title: "A whole school year of possibility.",
+    intro: "Welcome to my colourful corner of the website. Explore school celebrations, event services, dance classes and the moments worth remembering.",
+    tips: [
+      "The numbered buttons take you through Spectrum’s chapters. Prefer a calmer visit? Use the Motion control at the bottom.",
+      "Annual Day, Sports Day, national celebrations and school milestones can all be part of the conversation. Your proposal is tailored to the agreed services.",
+      "For a school enquiry, share your school name, location, academic year and planned events. The team can discuss a proposal with you.",
+      "Weekly dance classes follow an agreed schedule. Parent testimonial videos need consent and school approval. The team can explain the details."
+    ],
+    links: [{ label: "School celebrations", href: "spectrum.html#spectrum-calendar" }, { label: "Explore the services", href: "spectrum.html#spectrum-stagecraft" }, { label: "Request a proposal", href: "contact.html#contact-form" }]
+  },
+  contact: {
+    title: "Your idea deserves the humans.",
+    intro: "Tell the team what you’re planning using the contact form. I can point the way, but they’re the people who can discuss your project properly.",
+    tips: [
+      "A useful message includes the service you need, your location and any dates you have in mind. A short introduction is a lovely start.",
+      "For Spectrum, include your school name, academic year and the celebrations you’re considering.",
+      "Take your time with the form. I’ll stay quiet while you write. Even a bee can respect a good draft."
+    ],
+    links: [{ label: "Explore services", href: "ourservices.html" }, { label: "School celebrations", href: "spectrum.html" }]
+  },
+  careers: {
+    title: "A place for your kind of creativity.",
+    intro: "Explore the roles and internships listed on this page. If one feels like your kind of work, open its application to see what’s needed.",
+    tips: [
+      "Choose the role that fits your experience and interests, then use its Apply button. I’m cheering for the humans with good ideas.",
+      "When applying, share relevant experience or work samples where the form asks for them. Let your work help introduce you.",
+      "You can explore the About page to meet the company before sending an application. A good introduction works both ways."
+    ],
+    links: [{ label: "About the company", href: "about.html" }, { label: "See our creative work", href: "gallery.html" }, { label: "Contact the team", href: "contact.html#contact-form" }]
+  },
+  apply: {
+    title: "Your application, in your own words.",
+    intro: "Check the role shown in the form, then tell the team about your experience. I’ll leave you plenty of room to concentrate.",
+    tips: [
+      "Check your contact details and the selected job role before sending the application.",
+      "Use the message field for a clear introduction and relevant experience. There’s no need to sound like a bee. That’s my department."
+    ],
+    links: [{ label: "Back to opportunities", href: "careers.html" }, { label: "About Bee Infinity", href: "about.html" }]
+  },
+  cinemaz: {
+    title: "A little room for a big story.",
+    intro: "Welcome to B.I.G Cinemaz. Explore the film, production and post-production work, then talk to the team about your story.",
+    tips: [
+      "This page brings together production, post-production, dubbing and sound. Explore the section that fits your project.",
+      "A film enquiry can begin with your idea, the stage it’s at and the support you’re looking for. Every story starts somewhere.",
+      "If you’re exploring submissions or content acquisition, read the details on this page and contact the team for the next steps."
+    ],
+    links: [{ label: "Explore the gallery", href: "gallery.html" }, { label: "Discuss a film project", href: "contact.html#contact-form" }, { label: "Our divisions", href: "divisions.html" }]
+  },
+  botd: {
+    title: "A little anticipation. A lot of energy.",
+    intro: "You’ve found the BOTD announcement page. I’m keeping my wings ready. Follow the information on this page for what comes next.",
+    tips: [
+      "No spoilers from me. Look out for the announcement and details shared on this page.",
+      "While you’re here, explore the team’s dance and performance work in the gallery."
+    ],
+    links: [{ label: "Explore dance & events", href: "divisions.html" }, { label: "See the gallery", href: "gallery.html" }, { label: "Contact Bee Infinity", href: "contact.html#contact-form" }]
+  },
+  merch: {
+    title: "A little Bee Infinity to take with you.",
+    intro: "Explore the merch and take a closer look at anything you like. I’ll leave the choosing to you. My own wardrobe is mostly stripes.",
+    tips: [
+      "Check the product details and available options before adding something to your cart.",
+      "Review your selection in the cart before continuing. I’m here for directions, not to rush a decision.",
+      "Need to ask the team about a product? The contact page is the best place to start."
+    ],
+    links: [{ label: "Contact the team", href: "contact.html#contact-form" }, { label: "Explore Bee Infinity", href: "index.html" }]
+  },
+  launch: {
+    title: "Some things are worth the anticipation.",
+    intro: "This is the merch announcement page. For availability and updates, use the information and contact options shown here.",
+    tips: ["For current availability, check with the team. I prefer a confirmed answer to an enthusiastic guess."],
+    links: [{ label: "Contact the team", href: "contact.html#contact-form" }, { label: "Back to Bee Infinity", href: "index.html" }]
+  },
+  cart: {
+    title: "A quick check before you continue.",
+    intro: "Review the items and options shown in your cart. I’ll keep quiet while you check the details.",
+    tips: ["Make sure your selected items, options and quantities are right before continuing. The order summary shows the totals."],
+    links: [{ label: "Contact the team", href: "contact.html#contact-form" }, { label: "Back to Bee Infinity", href: "index.html" }]
+  },
+  auth: { title: "Take your time.", intro: "I’ll stay out of the way while you sign in.", tips: [], links: [] },
+  checkout: { title: "Your order, your pace.", intro: "I’ll stay out of the way while you review your order.", tips: [], links: [] },
+  success: { title: "A moment for your order details.", intro: "Please refer to the order information shown on this page.", tips: [], links: [] }
+};

@@ -1,4 +1,4 @@
-/* SPECTRUM's decorative WebGL sculpture. Build with the locally installed esbuild/Three.js. */
+/* SPECTRUM's six-chapter cinematic sculpture. Build with local esbuild/Three.js. */
 import * as THREE from "three";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
 
@@ -28,6 +28,12 @@ function bootScene() {
   const rig = new THREE.Group();
   const bee = new THREE.Group();
   const orbit = new THREE.Group();
+  const worlds = Array.from({ length: 6 }, () => new THREE.Group());
+  const calendarTiles = [];
+  const musicNotes = [];
+  const filmFrames = [];
+  const stageBeams = [];
+  const confetti = [];
   const trinkets = [];
   const wings = [];
   const textures = new Set();
@@ -53,13 +59,14 @@ function bootScene() {
   const pointer = new THREE.Vector2();
   const pointerTarget = new THREE.Vector2();
   const lookAt = new THREE.Vector3();
+  const sceneNames = ["welcome", "calendar", "stagecraft", "extras", "memories", "celebration"];
 
   renderer.setClearColor(0x000000, 0);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.08;
   scene.add(rig);
-  rig.add(orbit, bee);
+  rig.add(orbit, bee, ...worlds);
 
   const gold = new THREE.MeshStandardMaterial({ color: "#ffc632", roughness: 0.3, metalness: 0.12 });
   const honey = new THREE.MeshStandardMaterial({ color: "#e9a51b", roughness: 0.35, metalness: 0.16 });
@@ -73,6 +80,7 @@ function bootScene() {
   const veinMaterial = new THREE.MeshStandardMaterial({ color: "#e1f5ff", roughness: 0.35, transparent: true, opacity: 0.8 });
   const coloredMaterials = palette.map((color) => new THREE.MeshStandardMaterial({ color, roughness: 0.28, metalness: 0.3 }));
   const ballGeometry = new THREE.SphereGeometry(1, 28, 20);
+  const unitBox = new THREE.BoxGeometry(1, 1, 1);
 
   function ball(parent, material, position, scale) {
     const mesh = new THREE.Mesh(ballGeometry, material);
@@ -90,8 +98,9 @@ function bootScene() {
   }
 
   function box(parent, material, position, scale) {
-    const mesh = new THREE.Mesh(new THREE.BoxGeometry(...scale), material);
+    const mesh = new THREE.Mesh(unitBox, material);
     mesh.position.set(...position);
+    mesh.scale.set(...scale);
     parent.add(mesh);
     return mesh;
   }
@@ -149,6 +158,7 @@ function bootScene() {
     const stripe = box(clapperBar, white, [-0.44 + i * 0.176, 0, 0.078], [0.09, 0.155, 0.014]);
     stripe.rotation.z = -0.38;
   }
+  clapper.add(clapperBar);
   bee.add(clapper);
 
   function rainbowRing(radius, thickness, arc) {
@@ -190,12 +200,191 @@ function bootScene() {
     const base = new THREE.Vector3(Math.cos(angle) * radius, Math.sin(angle) * radius * 0.85 + 0.12, Math.sin(i * 1.7) * 0.65);
     mesh.position.copy(base);
     mesh.rotation.set(i * 0.23, i * 0.47, angle);
-    orbit.add(mesh);
+    worlds[0].add(mesh);
     trinkets.push({ mesh, base, phase: i * 0.71 });
   }
   const glass = new THREE.MeshPhysicalMaterial({ color: "#a5d9e9", metalness: 0.08, roughness: 0.12, transparent: true, opacity: 0.7, clearcoat: 1 });
-  ball(orbit, glass, [1.82, 1.17, 0.45], [0.23, 0.23, 0.23]);
-  ball(orbit, coloredMaterials[2], [-1.8, -0.8, 0.2], [0.12, 0.12, 0.12]);
+  ball(worlds[0], glass, [1.82, 1.17, 0.45], [0.23, 0.23, 0.23]);
+  ball(worlds[0], coloredMaterials[2], [-1.8, -0.8, 0.2], [0.12, 0.12, 0.12]);
+
+  /* Physical calendar plaques share one geometry, with locally drawn event labels. */
+  const calendarLabels = ["ANNUAL DAY", "SPORTS DAY", "SCHOOL PRIDE", "TEACHERS' DAY", "CHILDREN'S DAY", "CELEBRATIONS"];
+  const plaqueGeometry = new THREE.BoxGeometry(1.15, 1.26, 0.12);
+  const plaqueFace = new THREE.PlaneGeometry(1.05, 1.16);
+  const calendarWorld = worlds[1];
+  calendarLabels.forEach((label, i) => {
+    const tile = new THREE.Group();
+    const backing = new THREE.Mesh(plaqueGeometry, white);
+    tile.add(backing);
+    box(tile, coloredMaterials[i], [0, 0.39, 0.075], [1.12, 0.35, 0.035]);
+    [-0.3, 0.3].forEach((x) => {
+      const binding = new THREE.Mesh(new THREE.TorusGeometry(0.065, 0.026, 6, 12), ink);
+      binding.position.set(x, 0.61, 0.06);
+      binding.rotation.y = Math.PI / 2;
+      tile.add(binding);
+    });
+    const faceCanvas = document.createElement("canvas");
+    faceCanvas.width = 256;
+    faceCanvas.height = 280;
+    const context = faceCanvas.getContext("2d");
+    if (context) {
+      context.clearRect(0, 0, 256, 280);
+      context.fillStyle = "#16283d";
+      context.textAlign = "center";
+      context.font = "600 16px Arial";
+      context.fillText(label, 128, 123);
+      for (let cell = 0; cell < 12; cell++) {
+        context.beginPath();
+        context.arc(66 + (cell % 4) * 41, 160 + Math.floor(cell / 4) * 33, cell === i + 2 ? 10 : 4, 0, TAU);
+        context.fillStyle = cell === i + 2 ? palette[i] : "#c5d2cf";
+        context.fill();
+      }
+      const texture = new THREE.CanvasTexture(faceCanvas);
+      texture.colorSpace = THREE.SRGBColorSpace;
+      textures.add(texture);
+      const face = new THREE.Mesh(plaqueFace, new THREE.MeshBasicMaterial({ map: texture, transparent: true, depthWrite: false }));
+      face.position.z = 0.069;
+      tile.add(face);
+    }
+    const angle = i * TAU / calendarLabels.length + 0.13;
+    const base = new THREE.Vector3(Math.cos(angle) * 2.05, Math.sin(angle) * 1.42 + 0.17, -0.35 + Math.sin(i) * 0.14);
+    tile.position.copy(base);
+    tile.rotation.set(0.05, Math.cos(angle) * -0.16, Math.cos(angle) * 0.07);
+    tile.scale.setScalar(0.71);
+    calendarWorld.add(tile);
+    calendarTiles.push({ tile, base, angle });
+  });
+
+  /* The calendar's circles become a miniature performance stage and light rig. */
+  const theatre = worlds[2];
+  const theatreFloor = new THREE.Mesh(new THREE.CylinderGeometry(2.28, 2.35, 0.22, 56), ink);
+  theatreFloor.position.y = -1.82;
+  theatre.add(theatreFloor);
+  const theatreRim = new THREE.Mesh(new THREE.TorusGeometry(2.3, 0.045, 8, 72), honey);
+  theatreRim.rotation.x = Math.PI / 2;
+  theatreRim.position.y = -1.69;
+  theatre.add(theatreRim);
+  box(theatre, ink, [0, 2.15, -0.7], [4.25, 0.15, 0.15]);
+  [-1, 1].forEach((sign) => {
+    box(theatre, ink, [sign * 2.04, 0.22, -0.7], [0.13, 3.85, 0.13]);
+    for (let j = 0; j < 7; j++) {
+      const brace = box(theatre, honey, [sign * 2.04, -1.35 + j * 0.5, -0.7], [0.28, 0.034, 0.09]);
+      brace.rotation.z = sign * (j % 2 ? -0.65 : 0.65);
+    }
+    const speaker = box(theatre, ink, [sign * 1.83, -1.15, 0.4], [0.56, 0.95, 0.5]);
+    const speakerCone = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.18, 0.025, 24), cream);
+    speakerCone.rotation.x = Math.PI / 2;
+    speakerCone.position.set(sign * 1.83, -1.24, 0.668);
+    theatre.add(speakerCone);
+    speaker.rotation.y = -sign * 0.12;
+    const fixture = new THREE.Group();
+    fixture.position.set(sign * 1.45, 1.98, -0.65);
+    const lamp = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.23, 0.43, 18), ink);
+    lamp.rotation.x = 0.2;
+    fixture.add(lamp);
+    const beam = new THREE.Mesh(new THREE.ConeGeometry(0.8, 3.15, 24, 1, true), new THREE.MeshBasicMaterial({
+      color: sign < 0 ? "#f5cf6a" : "#91dce8", transparent: true, opacity: 0.12, depthWrite: false, side: THREE.DoubleSide
+    }));
+    beam.position.y = -1.75;
+    beam.rotation.z = -sign * 0.14;
+    fixture.add(beam);
+    theatre.add(fixture);
+    stageBeams.push({ fixture, beam, sign });
+  });
+  for (let i = 0; i < 5; i++) {
+    const bulb = ball(theatre, coloredMaterials[i], [-1.36 + i * 0.68, 2.13, -0.62], [0.07, 0.07, 0.1]);
+    bulb.material = new THREE.MeshStandardMaterial({ color: palette[i], emissive: palette[i], emissiveIntensity: 0.65, roughness: 0.3 });
+  }
+
+  /* A dance orbit: sculpted notes and a consent-led video keepsake motif. */
+  const notesWorld = worlds[3];
+  for (let i = 0; i < 7; i++) {
+    const note = new THREE.Group();
+    const material = coloredMaterials[i % palette.length];
+    ball(note, material, [-0.1, -0.15, 0], [0.18, 0.115, 0.09]);
+    box(note, material, [0.04, 0.16, 0], [0.065, 0.64, 0.065]);
+    const flag = box(note, material, [0.2, 0.42, 0], [0.33, 0.12, 0.08]);
+    flag.rotation.z = -0.28;
+    const angle = i * TAU / 7;
+    const base = new THREE.Vector3(Math.cos(angle) * 2.05, Math.sin(angle) * 1.62 + 0.18, Math.sin(angle * 2) * 0.18);
+    note.position.copy(base);
+    note.rotation.z = Math.sin(angle) * 0.22;
+    notesWorld.add(note);
+    musicNotes.push({ note, base, phase: angle });
+  }
+  const danceDisc = new THREE.Mesh(new THREE.CylinderGeometry(1.62, 1.7, 0.14, 56), coloredMaterials[3]);
+  danceDisc.position.y = -1.77;
+  notesWorld.add(danceDisc);
+  const danceRings = new THREE.Group();
+  [0.75, 1.2, 1.6].forEach((radius) => {
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(radius, 0.018, 6, 56), cream);
+    ring.rotation.x = Math.PI / 2;
+    ring.position.y = -1.68;
+    danceRings.add(ring);
+  });
+  notesWorld.add(danceRings);
+
+  /* The recurring round frame match-cuts into a camera lens and a film ribbon. */
+  const memories = worlds[4];
+  const perforationTransform = new THREE.Object3D();
+  const cameraBody = new THREE.Group();
+  cameraBody.position.set(0.52, -0.38, 0.13);
+  cameraBody.rotation.set(-0.03, -0.12, 0.025);
+  box(cameraBody, ink, [0, 0, 0], [2.65, 1.65, 0.66]);
+  box(cameraBody, ink, [-0.65, 0.95, -0.07], [0.72, 0.26, 0.5]);
+  box(cameraBody, honey, [0.82, 0.92, 0.01], [0.36, 0.12, 0.25]);
+  box(cameraBody, cream, [-0.85, 0.45, 0.349], [0.44, 0.2, 0.035]);
+  const lens = new THREE.Mesh(new THREE.CylinderGeometry(0.77, 0.86, 0.5, 56), ink);
+  lens.rotation.x = Math.PI / 2;
+  lens.position.set(0.19, -0.05, 0.56);
+  cameraBody.add(lens);
+  const lensGlass = new THREE.Mesh(new THREE.CircleGeometry(0.63, 56), new THREE.MeshPhysicalMaterial({ color: "#39768e", metalness: 0.72, roughness: 0.11, clearcoat: 1 }));
+  lensGlass.position.set(0.19, -0.05, 0.824);
+  cameraBody.add(lensGlass);
+  [0.66, 0.77, 0.9].forEach((radius, i) => {
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(radius, 0.025, 8, 72), i === 2 ? honey : cream);
+    ring.position.set(0.19, -0.05, 0.82 - i * 0.16);
+    cameraBody.add(ring);
+  });
+  ball(cameraBody, white, [0.01, 0.17, 0.84], [0.13, 0.13, 0.017]);
+  memories.add(cameraBody);
+  for (let i = 0; i < 7; i++) {
+    const frame = new THREE.Group();
+    box(frame, ink, [0, 0, 0], [0.8, 0.66, 0.055]);
+    box(frame, coloredMaterials[i % palette.length], [0, 0, 0.035], [0.64, 0.4, 0.02]);
+    const perforations = new THREE.InstancedMesh(unitBox, cream, 8);
+    for (let j = 0; j < 8; j++) {
+      perforationTransform.position.set(-0.27 + (j % 4) * 0.18, j < 4 ? -0.265 : 0.265, 0.04);
+      perforationTransform.scale.set(0.08, 0.05, 0.01);
+      perforationTransform.updateMatrix();
+      perforations.setMatrixAt(j, perforationTransform.matrix);
+    }
+    frame.add(perforations);
+    const angle = -0.8 + i * 0.5;
+    const base = new THREE.Vector3(Math.sin(angle) * 2.5, 1.46 + Math.cos(angle) * 0.28, -0.65 + Math.cos(angle) * 0.4);
+    frame.position.copy(base);
+    frame.rotation.set(-0.08, angle * 0.18, -Math.cos(angle) * 0.1);
+    memories.add(frame);
+    filmFrames.push({ frame, base, angle });
+  }
+
+  /* One connected final flourish, without any added claims or fabricated imagery. */
+  const finale = worlds[5];
+  const infinityPoints = Array.from({ length: 97 }, (_, i) => {
+    const t = i * TAU / 96;
+    return [Math.sin(t) * 2.3, Math.sin(t * 2) * 0.83 + 0.2, -0.65 + Math.cos(t) * 0.18];
+  });
+  const infinity = tube(finale, infinityPoints, 0.073, honey);
+  const confettiGeometry = new THREE.BoxGeometry(0.075, 0.16, 0.035);
+  for (let i = 0; i < 24; i++) {
+    const angle = i * TAU / 24;
+    const mesh = new THREE.Mesh(confettiGeometry, coloredMaterials[i % palette.length]);
+    const base = new THREE.Vector3(Math.cos(angle) * (2.08 + i % 3 * 0.15), Math.sin(angle) * 1.9 + 0.16, Math.sin(i * 2.3) * 0.4);
+    mesh.position.copy(base);
+    mesh.rotation.set(i * 0.37, i * 0.23, angle);
+    finale.add(mesh);
+    confetti.push({ mesh, base, phase: angle });
+  }
 
   const stage = new THREE.Mesh(new THREE.CylinderGeometry(1.3, 1.4, 0.16, 64), [cream, white, cream]);
   stage.position.y = -1.84;
@@ -235,7 +424,7 @@ function bootScene() {
   const decal = new THREE.Mesh(new THREE.PlaneGeometry(0.61, 0.61), logoMaterial);
   decal.position.z = 0.043;
   keepsake.add(decal);
-  orbit.add(keepsake);
+  worlds[0].add(keepsake);
   new THREE.TextureLoader().load(new URL("../assets/images/logo/Bee.png", import.meta.url).href, (texture) => {
     if (dead) { texture.dispose(); return; }
     texture.colorSpace = THREE.SRGBColorSpace;
@@ -266,10 +455,12 @@ function bootScene() {
   }
 
   const poses = [
-    { x: 0.72, y: 0.51, z: 0, scale: 0.98, yaw: -0.24, roll: -0.035, camera: 10.2 },
-    { x: 0.27, y: 0.5, z: 0.25, scale: 0.94, yaw: 0.34, roll: 0.045, camera: 9.4 },
-    { x: 0.72, y: 0.38, z: -0.2, scale: 0.87, yaw: -0.04, roll: -0.025, camera: 10.6 },
-    { x: 0.72, y: 0.51, z: 0.15, scale: 0.96, yaw: -0.3, roll: 0.035, camera: 9.8 }
+    { x: 0.75, y: 0.49, z: 0, scale: 0.98, yaw: -0.2, roll: -0.025, camera: 10.7, beeX: 0, beeY: 0, beeScale: 1, ringScale: 1, ringX: 0, ringY: 0.1, ringZ: -0.53, ringTilt: 0.17 },
+    { x: 0.25, y: 0.49, z: 0, scale: 0.9, yaw: 0.14, roll: 0.025, camera: 10.9, beeX: 0, beeY: 0.05, beeScale: 0.69, ringScale: 1.08, ringX: 0, ringY: 0.1, ringZ: -0.6, ringTilt: 0.7 },
+    { x: 0.75, y: 0.48, z: 0, scale: 0.94, yaw: -0.15, roll: -0.015, camera: 11.1, beeX: 0, beeY: -0.17, beeScale: 0.82, ringScale: 1.08, ringX: 0, ringY: 0.14, ringZ: -0.85, ringTilt: 0.02 },
+    { x: 0.25, y: 0.49, z: 0.05, scale: 0.96, yaw: 0.16, roll: 0.03, camera: 10.7, beeX: 0, beeY: -0.04, beeScale: 0.86, ringScale: 0.95, ringX: 0, ringY: 0.04, ringZ: -0.65, ringTilt: 0.5 },
+    { x: 0.75, y: 0.48, z: 0, scale: 0.94, yaw: -0.12, roll: -0.015, camera: 10.9, beeX: -1.28, beeY: 0.12, beeScale: 0.68, ringScale: 0.42, ringX: 0.68, ringY: -0.4, ringZ: 0.95, ringTilt: -0.03 },
+    { x: 0.75, y: 0.49, z: 0.05, scale: 0.96, yaw: -0.2, roll: 0.015, camera: 10.5, beeX: 0, beeY: 0, beeScale: 0.98, ringScale: 1.08, ringX: 0, ringY: 0.08, ringZ: -0.75, ringTilt: 0.2 }
   ];
 
   function canAnimate() {
@@ -317,13 +508,17 @@ function bootScene() {
       progress = targetProgress;
       pointer.set(0, 0);
     }
-    const section = clamp(progress * 3, 0, 3);
-    const index = Math.min(2, Math.floor(section));
-    const mix = THREE.MathUtils.smoothstep(section - index, 0, 1);
+    const section = clamp(progress * (poses.length - 1), 0, poses.length - 1);
+    const current = Math.min(poses.length - 1, Math.floor(section));
+    const index = Math.min(poses.length - 2, current);
+    const local = section - index;
+    /* Hold the scene beside its copy; the match cut happens in the chapter's exit. */
+    const mix = current === poses.length - 1 ? 1 : (paused || reducedMotion ? 0 : THREE.MathUtils.smoothstep(local, 0.68, 0.98));
     const start = poses[index];
     const end = poses[index + 1];
     const value = (property) => THREE.MathUtils.lerp(start[property], end[property], mix);
-    const cameraZ = value("camera") + (mobile ? 0.8 : 0);
+    const cutPulse = paused || reducedMotion ? 0 : Math.sin(mix * Math.PI);
+    const cameraZ = value("camera") + (mobile ? 0.8 : 0) - cutPulse * 0.28;
     camera.position.set(pointer.x * 0.1, 0.2 + pointer.y * 0.07, cameraZ);
     camera.lookAt(lookAt.set(0, 0, 0));
     const worldHeight = 2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * (cameraZ - value("z"));
@@ -340,24 +535,69 @@ function bootScene() {
     }
     const screenY = centerY / height;
     rig.position.set((screenX - 0.5) * worldHeight * camera.aspect, (0.5 - screenY) * worldHeight, value("z"));
-    rig.scale.setScalar(value("scale") * (mobile ? 0.48 : 1) * scaleFit);
+    /* Portrait tablets keep the entire world inside the column beside the copy. */
+    const columnFit = mobile ? 1 : Math.min(1, width * 0.41 / (5.7 * value("scale") * height / worldHeight));
+    rig.scale.setScalar(value("scale") * (mobile ? 0.48 : columnFit) * scaleFit);
     rig.rotation.set(pointer.y * 0.035, value("yaw") + pointer.x * 0.1, value("roll"));
-    bee.position.y = Math.sin(elapsed * 1.7) * 0.07;
-    bee.rotation.y = Math.sin(elapsed * 0.65) * 0.045;
+    const weights = worlds.map((_, i) => i === index ? 1 - mix : (i === index + 1 ? mix : 0));
+    worlds.forEach((world, i) => {
+      const weight = weights[i];
+      world.visible = weight > 0.008;
+      world.scale.setScalar(Math.max(0.001, weight));
+      world.rotation.y = (1 - weight) * (i % 2 ? -0.32 : 0.32);
+    });
+    const dance = weights[3];
+    const ending = weights[5];
+    bee.position.set(value("beeX") + Math.sin(elapsed * 1.8) * dance * 0.12, value("beeY") + Math.sin(elapsed * 1.7) * (0.06 + dance * 0.025), 0);
+    bee.scale.setScalar(value("beeScale"));
+    bee.rotation.set(Math.sin(elapsed * 0.9) * ending * 0.035, Math.sin(elapsed * 0.65) * 0.045, Math.sin(elapsed * 1.8) * dance * 0.045);
     wings.forEach(({ pivot, sign }) => {
       pivot.rotation.y = sign * (0.25 + Math.sin(elapsed * 15) * 0.21);
       pivot.rotation.z = -sign * (0.48 + Math.sin(elapsed * 15) * 0.025);
     });
-    const worldMoment = Math.sin(progress * Math.PI) ** 2;
-    orbit.rotation.y = Math.sin(elapsed * 0.2) * 0.035 + progress * 0.16;
-    halo.rotation.z = 0.36 + elapsed * 0.025;
-    equator.rotation.z = -0.26 - elapsed * 0.018;
+    clapperBar.rotation.z = 0.16 + Math.sin(elapsed * 1.15) * (weights[2] + weights[4]) * 0.075;
+    orbit.rotation.y = Math.sin(elapsed * 0.2) * 0.035;
+    halo.position.set(value("ringX"), value("ringY"), value("ringZ"));
+    halo.scale.setScalar(value("ringScale") * (1 + cutPulse * 0.06));
+    halo.rotation.set(value("ringTilt"), -0.12 + pointer.x * 0.035, 0.36 + elapsed * 0.025 + section * 0.19);
+    equator.visible = weights[4] < 0.96;
+    equator.scale.setScalar(1 - weights[4] * 0.62);
+    equator.rotation.set(1.12 - weights[2] * 0.7, 0.2, -0.26 - elapsed * 0.018 + section * 0.13);
+    stage.visible = weights[0] + ending > 0.015;
+    stage.scale.setScalar(Math.max(0.001, weights[0] + ending));
+    stageRim.visible = stage.visible;
+    stageRim.scale.copy(stage.scale);
     trinkets.forEach(({ mesh, base, phase }) => {
-      mesh.position.copy(base).multiplyScalar(1 + worldMoment * 0.12);
+      mesh.position.copy(base).multiplyScalar(1 + cutPulse * 0.12);
       mesh.position.y += Math.sin(elapsed * 1.1 + phase) * 0.035;
       mesh.rotation.y = phase + elapsed * 0.14;
     });
+    calendarTiles.forEach(({ tile, base, angle }) => {
+      tile.position.copy(base);
+      tile.position.y += Math.sin(elapsed * 0.9 + angle) * 0.035;
+      tile.rotation.y = Math.cos(angle) * -0.16 + Math.sin(elapsed * 0.35) * 0.045;
+    });
+    stageBeams.forEach(({ fixture, beam, sign }) => {
+      fixture.rotation.z = sign * (0.12 + Math.sin(elapsed * 0.62 + sign) * 0.08);
+      beam.material.opacity = 0.1 + Math.sin(elapsed * 0.7 + sign) * 0.018;
+    });
+    musicNotes.forEach(({ note, base, phase }) => {
+      note.position.copy(base);
+      note.position.y += Math.sin(elapsed * 1.45 + phase) * 0.12;
+      note.rotation.y = Math.sin(elapsed * 0.65 + phase) * 0.18;
+    });
+    filmFrames.forEach(({ frame, base, angle }) => {
+      frame.position.copy(base);
+      frame.position.y += Math.sin(elapsed * 0.65 + angle) * 0.025;
+    });
+    cameraBody.rotation.y = -0.12 + Math.sin(elapsed * 0.42) * 0.045;
+    infinity.rotation.y = Math.sin(elapsed * 0.35) * 0.06;
+    confetti.forEach(({ mesh, base, phase }) => {
+      mesh.position.copy(base).multiplyScalar(1 + Math.sin(elapsed * 0.8 + phase) * 0.028);
+      mesh.rotation.y = phase + elapsed * 0.23;
+    });
     keepsake.rotation.y = -0.18 + Math.sin(elapsed * 0.8) * 0.08;
+    canvas.dataset.sceneChapter = sceneNames[mix < 0.5 ? index : index + 1];
   }
 
   function failScene() {
@@ -381,6 +621,7 @@ function bootScene() {
     try {
       applyPose(delta);
       renderer.render(scene, camera);
+      canvas.dataset.drawCalls = String(renderer.info.render.calls);
       if (renderer.getContext().isContextLost()) { failScene(); return; }
       if (!ready && renderer.info.render.calls > 0) {
         ready = true;

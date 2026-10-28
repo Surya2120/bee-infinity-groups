@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import Navbar from "./components/Navbar";
 import CartDrawer from "./components/CartDrawer";
+import MrBee from "./components/MrBee";
 import Home from "./pages/Home";
 import Catalog from "./pages/Catalog";
 import ProductDetail from "./pages/ProductDetail";
@@ -31,6 +32,7 @@ export default function App() {
 
       <Navbar />
       <CartDrawer />
+      <MrBee />
 
       <main className="merch-page-content">
         <AnimatePresence mode="wait">

@@ -3,18 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Discover SPECTRUM by Bee Infinity Groups for creative, memorable school celebrations. Connect with our team to explore the possibilities.">
+  <meta name="description" content="SPECTRUM by Bee Infinity Groups brings school celebrations together: Annual Day, Sports Day, stage, sound, lighting, choreography and memorable creative experiences across the school year.">
   <meta name="theme-color" content="#102c4a">
   <title>Spectrum | School Celebrations | Bee Infinity Groups</title>
   <link rel="icon" href="assets/images/logo/favicon.png">
   <link rel="stylesheet" href="css/home.css">
-  <link rel="stylesheet" href="css/spectrum.css?v=bee-footer-fix">
-  <script src="js/spectrum-scroll.js?v=bee-footer-fix" defer></script>
-  <script type="module" src="js/spectrum-scene.js?v=bee-footer-fix"></script>
+  <link rel="stylesheet" href="css/spectrum.css?v=spectrum-cinematic-v2">
+  <script src="js/spectrum-scroll.js?v=spectrum-cinematic-v2" defer></script>
+  <script type="module" src="js/spectrum-scene.js?v=spectrum-cinematic-v2"></script>
   <script src="js/home.js?v=shared-header" defer></script>
   <link rel="stylesheet" href="css/site-header.css">
   <link rel="stylesheet" href="css/site-header-pages.css">
   <script src="js/site-header.js" defer></script>
+  <link rel="stylesheet" href="css/mrbee.css?v=sitewide-v1">
+  <script src="js/mrbee.js?v=sitewide-v1" defer></script>
 </head>
 <body class="has-site-header spectrum-immersive">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -51,44 +53,90 @@
     <canvas id="spectrumCanvas" aria-hidden="true"></canvas>
   </div>
   <main id="main" class="spectrum-story">
-    <section class="spectrum-chapter spectrum-chapter--start" id="spectrum-start" data-spectrum-step="0" aria-labelledby="spectrum-page-title">
-      <div class="spectrum-section-inner"><div class="spectrum-copy">
-        <div class="spectrum-brand-line"><img src="assets/images/spectrum/spectrumlogo.png" alt="Spectrum — Institutional Event Management" width="2172" height="724" fetchpriority="high"><span>A Bee Infinity Groups experience</span></div>
-        <p class="spectrum-kicker"><span></span> A brighter kind of school celebration</p>
-        <h1 id="spectrum-page-title">School moments.<br><em>Made memorable.</em></h1>
-        <p class="spectrum-intro">Creativity, celebration and moments that bring your school together. SPECTRUM brings the Bee Infinity spirit to school celebrations.</p>
-        <a class="spectrum-button spectrum-button--dark" href="contact.html">Enquire about Spectrum <span aria-hidden="true">↗</span></a>
-        <a class="spectrum-scroll-cue" href="#spectrum-spark"><span class="spectrum-scroll-circle" aria-hidden="true">↓</span><span>Follow the spark<small>Scroll to explore</small></span></a>
+    <section class="spectrum-chapter spectrum-chapter--start" id="spectrum-start" data-spectrum-step="0" data-scene="intro" aria-labelledby="spectrum-page-title">
+      <div class="spectrum-section-inner"><div class="spectrum-copy" data-spectrum-reveal>
+        <div class="spectrum-brand-line"><img src="assets/images/spectrum/spectrumlogo.png" alt="Spectrum — Institutional Event Management" width="2172" height="724" fetchpriority="high"><span>By Bee Infinity Groups</span></div>
+        <p class="spectrum-kicker"><span></span> School celebrations, in full colour</p>
+        <h1 id="spectrum-page-title">One school year.<br><em>A world of moments.</em></h1>
+        <p class="spectrum-intro">The first step on stage. The cheer from the sidelines. The applause that brings everyone together.</p>
+        <p class="spectrum-body-copy">SPECTRUM is our annual school event partnership, bringing creative experiences and event coordination to the celebrations that make your school year special. From a proud Annual Day to a spirited Sports Day, we help your school give every occasion its own character.</p>
+        <div class="spectrum-hero-actions"><a class="spectrum-button spectrum-button--dark" href="contact.html#contact-form">Discuss your school year <span aria-hidden="true">↗</span></a><a class="spectrum-scroll-cue" href="#spectrum-calendar"><span class="spectrum-scroll-circle" aria-hidden="true">↓</span><span>Follow Mr. Bee<small>A little scroll. A lot of possibility.</small></span></a></div>
+        <div class="spectrum-values" aria-label="What Spectrum brings"><span>School spirit</span><span>Creative experiences</span><span>Memories that stay</span></div>
       </div></div>
-      <div class="spectrum-hero-note" aria-hidden="true"><span class="spectrum-note-line"></span> A little imagination changes everything.</div>
+      <div class="spectrum-scene-caption" aria-hidden="true"><span>01 / THE SPARK</span><i></i> Every great celebration starts somewhere.</div>
     </section>
-    <section class="spectrum-chapter spectrum-chapter--spark" id="spectrum-spark" data-spectrum-step="1" aria-labelledby="spectrum-spark-title">
-      <div class="spectrum-section-inner spectrum-section-inner--right"><div class="spectrum-copy">
-        <p class="spectrum-kicker"><span></span> 01 / The spark</p>
-        <h2 id="spectrum-spark-title">Small sparks.<br><em>Big school memories.</em></h2>
-        <p class="spectrum-intro">A stage for student talent. A reason to come together. A moment your school can be proud of.</p>
-        <div class="spectrum-values"><span>Student talent</span><span>School spirit</span><span>Shared joy</span></div>
-        <div class="spectrum-bee-signature"><img src="assets/images/logo/Bee.png" alt="Bee Infinity bee with a clapperboard" width="156" height="144" loading="lazy"><p>A little Bee Infinity spirit.<br><strong>A world of possibility.</strong></p></div>
+    <section class="spectrum-chapter spectrum-chapter--calendar" id="spectrum-calendar" data-spectrum-step="1" data-scene="calendar" aria-labelledby="spectrum-calendar-title">
+      <div class="spectrum-section-inner spectrum-section-inner--right"><div class="spectrum-copy" data-spectrum-reveal>
+        <p class="spectrum-kicker"><span></span> 01 / A year worth celebrating</p>
+        <h2 id="spectrum-calendar-title">Big days.<br><em>And all the days between.</em></h2>
+        <p class="spectrum-intro">Your school has its own traditions, milestones and reasons to celebrate. SPECTRUM can support the occasions that matter to your community.</p>
+        <div class="spectrum-calendar-grid">
+          <article class="spectrum-calendar-card"><span class="spectrum-card-symbol" aria-hidden="true">✦</span><h3>Annual Day</h3><p>Student talent, school pride and a celebration shared with families.</p></article>
+          <article class="spectrum-calendar-card"><span class="spectrum-card-symbol" aria-hidden="true">↗</span><h3>Sports Day</h3><p>Team spirit, participation and the energy of coming together.</p></article>
+          <article class="spectrum-calendar-card"><span class="spectrum-card-symbol" aria-hidden="true">◈</span><h3>National celebrations</h3><p>Independence Day and Republic Day with a sense of occasion.</p></article>
+          <article class="spectrum-calendar-card"><span class="spectrum-card-symbol" aria-hidden="true">✳</span><h3>People who matter</h3><p>Children’s Day and Teachers’ Day, with joy and appreciation.</p></article>
+          <article class="spectrum-calendar-card"><span class="spectrum-card-symbol" aria-hidden="true">↔</span><h3>New chapters</h3><p>Orientation, farewell and Foundation Day programmes.</p></article>
+          <article class="spectrum-calendar-card"><span class="spectrum-card-symbol" aria-hidden="true">❋</span><h3>Culture &amp; festivals</h3><p>Celebrations that reflect your school’s community and identity.</p></article>
+        </div>
+        <p class="spectrum-footnote">A partnership shaped around your school’s event requirements.</p>
       </div></div>
+      <div class="spectrum-scene-caption spectrum-scene-caption--left" aria-hidden="true"><span>02 / THE POSSIBILITIES</span><i></i> Make room for every kind of school spirit.</div>
     </section>
-    <section class="spectrum-chapter spectrum-chapter--world" id="spectrum-world" data-spectrum-step="2" aria-labelledby="spectrum-world-title">
+    <section class="spectrum-chapter spectrum-chapter--stagecraft" id="spectrum-stagecraft" data-spectrum-step="2" data-scene="stagecraft" aria-labelledby="spectrum-stagecraft-title">
+      <div class="spectrum-section-inner"><div class="spectrum-copy" data-spectrum-reveal>
+        <p class="spectrum-kicker"><span></span> 02 / The details make the difference</p>
+        <h2 id="spectrum-stagecraft-title">Set the scene.<br><em>Let talent shine.</em></h2>
+        <p class="spectrum-intro">Creative touches and practical event support, connected around the celebration you have in mind.</p>
+        <div class="spectrum-service-grid">
+          <article class="spectrum-service-card"><span>01</span><h3>Stage, sound &amp; lighting</h3><p>A setting for performances, with the technical arrangements your event needs.</p></article>
+          <article class="spectrum-service-card"><span>02</span><h3>Décor &amp; event setup</h3><p>Visual details and spaces that bring your celebration’s theme to life.</p></article>
+          <article class="spectrum-service-card"><span>03</span><h3>Choreography &amp; rehearsals</h3><p>Movement, practice and performance support for students taking the stage.</p></article>
+          <article class="spectrum-service-card"><span>04</span><h3>Event planning &amp; execution</h3><p>Coordination that keeps the agreed elements of your celebration connected.</p></article>
+          <article class="spectrum-service-card"><span>05</span><h3>Vendors &amp; arrangements</h3><p>A main point of contact for the event services included in your partnership.</p></article>
+          <article class="spectrum-service-card"><span>06</span><h3>Photography &amp; videography</h3><p>Capture the performances, expressions and moments you want to remember.</p></article>
+        </div>
+        <p class="spectrum-footnote">Services are tailored to your school and included where agreed in your proposal.</p>
+      </div></div>
+      <div class="spectrum-scene-caption" aria-hidden="true"><span>03 / THE SPOTLIGHT</span><i></i> A stage for the next unforgettable moment.</div>
+    </section>
+    <section class="spectrum-chapter spectrum-chapter--extras" id="spectrum-extras" data-spectrum-step="3" data-scene="extras" aria-labelledby="spectrum-extras-title">
+      <div class="spectrum-section-inner spectrum-section-inner--right"><div class="spectrum-copy" data-spectrum-reveal>
+        <p class="spectrum-kicker"><span></span> 03 / More than the big day</p>
+        <h2 id="spectrum-extras-title">A little more rhythm.<br><em>A lot more confidence.</em></h2>
+        <p class="spectrum-intro">A school celebration can be the beginning of something bigger: confidence, expression and a stronger connection with your community.</p>
+        <article class="spectrum-extra-card"><div class="spectrum-extra-top"><span>MOVE. EXPRESS. GROW.</span><span class="spectrum-included">Complimentary</span></div><h3>Weekly dance classes</h3><p>The SPECTRUM partnership includes weekly dance classes on an agreed schedule. Give students more opportunities to enjoy movement, develop their expression and build confidence beyond a single performance.</p></article>
+        <article class="spectrum-extra-card"><div class="spectrum-extra-top"><span>REAL VOICES. SHARED PRIDE.</span><span class="spectrum-included">Complimentary</span></div><h3>Parent testimonial videos</h3><p>Let parents share their school experience in their own words. Complimentary testimonial video production is available with consent and school approval.</p></article>
+      </div></div>
+      <div class="spectrum-scene-caption spectrum-scene-caption--left" aria-hidden="true"><span>04 / THE EXPRESSION</span><i></i> Some moments become part of who we are.</div>
+    </section>
+    <section class="spectrum-chapter spectrum-chapter--world" id="spectrum-world" data-spectrum-step="4" data-scene="memories" aria-labelledby="spectrum-world-title">
       <div class="spectrum-section-inner">
-        <div class="spectrum-copy spectrum-world-heading"><p class="spectrum-kicker"><span></span> 02 / A world of celebration</p><h2 id="spectrum-world-title">More colour.<br><em>More connection.</em></h2><p class="spectrum-intro">From cultural celebrations to school milestones, make room for moments that stay with your community.</p></div>
-        <div class="spectrum-gallery" aria-label="A glimpse of the Bee Infinity creative world">
-          <figure class="spectrum-depth-card spectrum-depth-card--one"><div><img src="assets/images/dance/dance (27).jpg" alt="Students celebrating together on a school ground" width="1200" height="800" loading="lazy" decoding="async"></div><figcaption><span>01</span> Together feels different.</figcaption></figure>
-          <figure class="spectrum-depth-card spectrum-depth-card--two"><div><img src="assets/images/dance/dance (45).jpg" alt="A group dance performance on stage" width="1200" height="800" loading="lazy" decoding="async"></div><figcaption><span>02</span> Every talent deserves a stage.</figcaption></figure>
-          <figure class="spectrum-depth-card spectrum-depth-card--three"><div><img src="assets/images/spectrum/spectrumbanner.png" alt="Spectrum’s colourful school celebration world" width="1672" height="941" loading="lazy" decoding="async"></div><figcaption><span>03</span> Your school. In full colour.</figcaption></figure>
+        <div class="spectrum-copy spectrum-world-heading" data-spectrum-reveal><p class="spectrum-kicker"><span></span> 04 / The feeling stays</p><h2 id="spectrum-world-title">The day passes.<br><em>The moments stay.</em></h2><p class="spectrum-intro">The courage before a performance. Friends cheering each other on. A school ground full of colour. These are the memories worth making.</p><p class="spectrum-body-copy">A glimpse of the Bee Infinity creative world, and the spirit we bring to school celebrations.</p></div>
+        <div class="spectrum-gallery" aria-label="A glimpse of the Bee Infinity creative world" data-spectrum-reveal>
+          <figure class="spectrum-depth-card spectrum-depth-card--one"><div><img src="assets/images/dance/dance (27).jpg" alt="Students in colourful team shirts taking part in activities on a school ground" width="4000" height="2252" loading="lazy" decoding="async"></div><figcaption><span>01</span> Together feels different.</figcaption></figure>
+          <figure class="spectrum-depth-card spectrum-depth-card--two"><div><img src="assets/images/dance/dance (45).jpg" alt="Children in red and green costumes performing a group dance on stage" width="6000" height="4000" loading="lazy" decoding="async"></div><figcaption><span>02</span> A stage for every talent.</figcaption></figure>
+          <figure class="spectrum-depth-card spectrum-depth-card--three"><div><img src="assets/images/spectrum/spectrumbanner.png" alt="Spectrum brand artwork showing a colourful celebration venue" width="1672" height="941" loading="lazy" decoding="async"></div><figcaption><span>03</span> Imagine your school, in full colour.</figcaption></figure>
         </div>
       </div>
+      <div class="spectrum-scene-caption" aria-hidden="true"><span>05 / THE MEMORY</span><i></i> Worth being there. Worth remembering.</div>
     </section>
-    <section class="spectrum-chapter spectrum-chapter--connect" id="spectrum-connect" data-spectrum-step="3" aria-labelledby="spectrum-connect-title">
-      <div class="spectrum-section-inner"><div class="spectrum-copy"><p class="spectrum-kicker"><span></span> 03 / Your next big moment</p><h2 id="spectrum-connect-title">Something in mind<br><em>for your school?</em></h2><p class="spectrum-intro">Connect with our team to explore what SPECTRUM can bring to your next celebration.</p><a class="spectrum-button spectrum-button--dark" href="contact.html">Talk to our team <span aria-hidden="true">↗</span></a><a class="spectrum-page-back" href="index.html">Explore Bee Infinity Groups <span aria-hidden="true">↗</span></a></div></div>
+    <section class="spectrum-chapter spectrum-chapter--connect" id="spectrum-connect" data-spectrum-step="5" data-scene="connect" aria-labelledby="spectrum-connect-title">
+      <div class="spectrum-section-inner"><div class="spectrum-copy" data-spectrum-reveal>
+        <p class="spectrum-kicker"><span></span> 05 / Your next school chapter</p>
+        <h2 id="spectrum-connect-title">Your school.<br><em>Your next big moment.</em></h2>
+        <p class="spectrum-intro">One creative partner for the celebrations ahead. More space for your school team to focus on the people who make them special.</p>
+        <ul class="spectrum-partnership-list"><li><span aria-hidden="true">↗</span><span><strong>One main contact</strong>Less separate follow-up across the services in your partnership.</span></li><li><span aria-hidden="true">↗</span><span><strong>A proposal that fits</strong>A tailored scope and one billing relationship for agreed services.</span></li><li><span aria-hidden="true">↗</span><span><strong>Your school stays in control</strong>Your management retains its decisions and approvals.</span></li></ul>
+        <p class="spectrum-body-copy">Tell us your school name, location, academic year and the events you have in mind. We’ll discuss your requirements and prepare a tailored SPECTRUM proposal.</p>
+        <a class="spectrum-button spectrum-button--dark" href="contact.html#contact-form">Request a SPECTRUM proposal <span aria-hidden="true">↗</span></a>
+        <a class="spectrum-page-back" href="index.html">Explore Bee Infinity Groups <span aria-hidden="true">↗</span></a>
+      </div></div>
+      <div class="spectrum-scene-caption" aria-hidden="true"><span>06 / THE NEXT CHAPTER</span><i></i> Shall we make something memorable?</div>
     </section>
   </main>
   <div class="spectrum-experience-controls">
     <button class="spectrum-motion-control" id="spectrumMotion" type="button" aria-pressed="false" aria-label="Pause decorative motion"><span class="spectrum-motion-dot" aria-hidden="true"></span><span id="spectrumMotionLabel">Motion on</span></button>
-    <nav class="spectrum-chapter-nav" aria-label="Spectrum chapters"><a href="#spectrum-start" aria-label="Introduction" aria-current="location"><span>01</span></a><a href="#spectrum-spark" aria-label="The spark"><span>02</span></a><a href="#spectrum-world" aria-label="A world of celebration"><span>03</span></a><a href="#spectrum-connect" aria-label="Talk to our team"><span>04</span></a></nav>
-    <span class="spectrum-scroll-status" aria-hidden="true"><span id="spectrumStepNumber">01</span> <span>/ 04</span></span>
+    <nav class="spectrum-chapter-nav" aria-label="Spectrum chapters"><a href="#spectrum-start" aria-label="Introduction" aria-current="location"><span>01</span></a><a href="#spectrum-calendar" aria-label="The school event year"><span>02</span></a><a href="#spectrum-stagecraft" aria-label="Event services"><span>03</span></a><a href="#spectrum-extras" aria-label="Dance classes and parent videos"><span>04</span></a><a href="#spectrum-world" aria-label="Celebration memories"><span>05</span></a><a href="#spectrum-connect" aria-label="Request a Spectrum proposal"><span>06</span></a></nav>
+    <span class="spectrum-scroll-status" aria-hidden="true"><span id="spectrumStepNumber">01</span> <span>/ 06</span></span>
   </div>
   <div class="spectrum-scroll-progress" aria-hidden="true"><span></span></div>
   <footer class="home-footer page-width"><div class="footer-top"><a class="footer-wordmark" href="index.html">Bee Infinity Groups<span>Elegant creativity. Complete solutions.</span></a><nav aria-label="Footer navigation"><a href="about.html">About</a><a href="ourservices.html">Services</a><a href="gallery.html">Gallery</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a></nav></div><div class="footer-bottom"><span>© <span id="homeYear">2026</span> Bee Infinity Groups</span><span>Film. Events. Dance. All connected.</span></div></footer>
