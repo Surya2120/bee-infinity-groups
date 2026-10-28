@@ -14,10 +14,10 @@
   <link rel="stylesheet" href="css/site-header.css">
   <link rel="stylesheet" href="css/site-header-pages.css">
   <script src="js/site-header.js" defer></script>
-  <link rel="stylesheet" href="css/mrbee-welcome.css">
-  <script src="js/mrbee-welcome.js" defer></script>
-  <link rel="stylesheet" href="css/mrbee.css?v=sitewide-v1">
-  <script src="js/mrbee.js?v=sitewide-v1" defer></script>
+  <link rel="stylesheet" href="css/mrbee-welcome.css?v=guided-v2">
+  <script src="js/mrbee-welcome.js?v=guided-v2" defer></script>
+  <link rel="stylesheet" href="css/mrbee.css?v=guided-v2">
+  <script src="js/mrbee.js?v=guided-v2" defer></script>
 </head>
 <body class="has-site-header">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -325,8 +325,12 @@
       <button class="mrbee-close" id="mrbeeWelcomeClose" type="button" aria-label="Close Mr. Bee’s welcome"><span aria-hidden="true">×</span></button>
       <p class="mrbee-eyebrow"><span aria-hidden="true"></span> Your friendly host</p>
       <h2 id="mrbeeWelcomeTitle">Hi, I’m <em>Mr. Bee!</em></h2>
-      <p class="mrbee-message" id="mrbeeWelcomeText">Welcome to Bee Infinity Groups.<br>It’s lovely to have you here.</p>
-      <button class="mrbee-continue" id="mrbeeWelcomeContinue" type="button">Let’s explore <span aria-hidden="true">↗</span></button>
+      <p class="mrbee-message" id="mrbeeWelcomeText" role="status" aria-live="polite" aria-atomic="true">Welcome to Bee Infinity Groups.<br>Shall I help you find your way?</p>
+      <div class="mrbee-welcome-actions" id="mrbeeWelcomeChoices">
+        <button class="mrbee-continue" id="mrbeeWelcomeContinue" type="button">Yes, show me around <span aria-hidden="true">↗</span></button>
+        <button class="mrbee-browse" id="mrbeeWelcomeBrowse" type="button">No, I’ll explore myself</button>
+      </div>
+      <button class="mrbee-continue mrbee-corner" id="mrbeeWelcomeCorner" type="button" hidden>See you in the corner <span aria-hidden="true">↙</span></button>
     </div>
   </dialog>
 </body>

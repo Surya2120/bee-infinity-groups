@@ -8,10 +8,10 @@
   background: transparent;
   overflow: visible;
   display: grid;
-  grid-template-columns: 200px minmax(0, 1fr);
+  grid-template-columns: 210px minmax(0, 1fr);
   align-items: center;
   gap: 12px;
-  width: min(640px, calc(100% - 48px));
+  width: min(680px, calc(100% - 48px));
   max-width: none;
   max-height: calc(100dvh - 32px);
   color: #102c4a;
@@ -19,10 +19,11 @@
   animation: mrbee-greeting-arrive .45s ease both;
 }
 .mrbee-welcome:not([open]) { display: none; }
+.mrbee-welcome [hidden] { display: none !important; }
 .mrbee-welcome::backdrop { background: rgb(5 19 35 / .76); backdrop-filter: blur(7px); -webkit-backdrop-filter: blur(7px); animation: mrbee-backdrop-arrive .35s ease both; }
 html.mrbee-welcome-open { overflow: hidden; }
 .mrbee-welcome *, .mrbee-welcome *::before, .mrbee-welcome *::after { box-sizing: border-box; }
-.mrbee-welcome .mrbee-avatar { position: relative; width: 200px; height: 280px; }
+.mrbee-welcome .mrbee-avatar { position: relative; width: 210px; height: 286px; }
 .mrbee-welcome .mrbee-avatar > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 12px 12px #102c4a18); }
 .mrbee-welcome .mrbee-avatar > canvas { position: relative; display: block; width: 100%; height: 100%; opacity: 0; transition: opacity .25s ease; }
 .mrbee-welcome .mrbee-avatar > canvas.is-ready { opacity: 1; }
@@ -46,7 +47,15 @@ html.mrbee-welcome-open { overflow: hidden; }
 .mrbee-welcome h2 { margin: 0; font-size: 34px; font-weight: 600; letter-spacing: -.9px; line-height: 1.15; }
 .mrbee-welcome h2 em { color: #937124; font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
 .mrbee-welcome .mrbee-message { margin: 16px 0 0; color: #62716e; font-size: 14px; line-height: 1.85; }
-.mrbee-welcome .mrbee-continue { display: inline-flex; align-items: center; justify-content: space-between; gap: 30px; min-height: 46px; margin-top: 24px; padding: 12px 18px; border: 1px solid #102c4a; border-radius: 4px; color: white; background: #102c4a; font: 600 12px/1.5 "Segoe UI", Arial, sans-serif; cursor: pointer; }
+.mrbee-welcome .mrbee-welcome-actions { display: grid; gap: 10px; margin-top: 24px; }
+.mrbee-welcome .mrbee-continue,.mrbee-welcome .mrbee-browse { display: inline-flex; align-items: center; justify-content: space-between; gap: 20px; width: 100%; min-height: 46px; margin: 0; padding: 12px 18px; border: 1px solid #102c4a; border-radius: 5px; color: white; background: #102c4a; font: 600 12px/1.5 "Segoe UI", Arial, sans-serif; cursor: pointer; }
+.mrbee-welcome .mrbee-browse { justify-content: center; color: #566761; border-color: #d8dccc; background: #f6f6ee; }
+.mrbee-welcome .mrbee-browse:hover { color: #102c4a; border-color: #b9c2ae; background: #edeee3; }
+.mrbee-welcome .mrbee-corner { margin-top: 24px; }
+.mrbee-welcome[data-phase="excited"] .mrbee-bubble { border-color: #cfc49f; }
+.mrbee-welcome[data-phase="declined"] .mrbee-bubble { border-color: #d0d7d4; }
+.mrbee-welcome[data-phase="excited"] .mrbee-welcome-actions { opacity: .55; pointer-events: none; }
+.mrbee-welcome button:disabled { cursor: default; }
 .mrbee-welcome .mrbee-continue > span { font-size: 17px; font-weight: 400; line-height: 1; }
 .mrbee-welcome .mrbee-continue:hover { background: #1b4b77; }
 .mrbee-welcome button:focus-visible { outline: 3px solid #1875be; outline-offset: 4px; }
@@ -60,7 +69,16 @@ html.mrbee-welcome-open { overflow: hidden; }
   .mrbee-welcome h2 { font-size: 29px; }
   .mrbee-welcome .mrbee-message { font-size: 13px; }
   .mrbee-welcome .mrbee-eyebrow { justify-content: center; margin-right: 0; font-size: 8px; letter-spacing: 1.2px; }
-  .mrbee-welcome .mrbee-continue { gap: 24px; margin-top: 20px; }
+  .mrbee-welcome .mrbee-continue { gap: 24px; }
+  .mrbee-welcome .mrbee-welcome-actions,.mrbee-welcome .mrbee-corner { margin-top: 20px; }
+}
+@media (max-width: 600px) and (max-height: 700px) {
+  .mrbee-welcome .mrbee-avatar { width: 128px; height: 140px; margin-bottom: 4px; }
+  .mrbee-welcome .mrbee-bubble { padding: 25px 20px 22px; }
+  .mrbee-welcome h2 { font-size: 27px; }
+  .mrbee-welcome .mrbee-message { margin-top: 12px; line-height: 1.7; }
+  .mrbee-welcome .mrbee-eyebrow { margin-bottom: 10px; }
+  .mrbee-welcome .mrbee-welcome-actions,.mrbee-welcome .mrbee-corner { margin-top: 18px; }
 }
 @media (max-height: 450px) {
   .mrbee-welcome { width: min(540px, calc(100% - 32px)); grid-template-columns: 120px minmax(0, 1fr); gap: 12px; max-height: calc(100dvh - 24px); }
@@ -70,6 +88,6 @@ html.mrbee-welcome-open { overflow: hidden; }
   .mrbee-welcome .mrbee-eyebrow { display: none; }
   .mrbee-welcome h2 { font-size: 23px; }
   .mrbee-welcome .mrbee-message { margin-top: 9px; font-size: 12px; }
-  .mrbee-welcome .mrbee-continue { margin-top: 12px; }
+  .mrbee-welcome .mrbee-welcome-actions,.mrbee-welcome .mrbee-corner { margin-top: 12px; }
 }
 @media (prefers-reduced-motion: reduce) { .mrbee-welcome, .mrbee-welcome::backdrop { animation: none; }.mrbee-welcome .mrbee-avatar > canvas { transition: none; } }

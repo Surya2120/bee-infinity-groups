@@ -5,6 +5,28 @@
 document.addEventListener("DOMContentLoaded", () => {
   const divisionHeads = document.querySelectorAll(".division-head");
 
+  // Guide links open the requested division as well as taking visitors to it.
+  function openLinkedDivision() {
+    let id;
+    try { id = decodeURIComponent(location.hash.slice(1)); } catch { return; }
+    const target = document.getElementById(id);
+    if (!target?.classList.contains("division-body")) return;
+    document.querySelectorAll(".division-body").forEach(body => {
+      const open = body === target;
+      body.classList.toggle("active", open);
+      const button = body.previousElementSibling?.querySelector(".expand-btn");
+      if (button) {
+        button.textContent = open ? "−" : "+";
+        button.style.transform = open ? "rotate(180deg)" : "rotate(0deg)";
+      }
+    });
+    requestAnimationFrame(() => target.previousElementSibling?.scrollIntoView({ block: "start", behavior: "instant" }));
+  }
+  addEventListener("hashchange", openLinkedDivision);
+  addEventListener("pageshow", openLinkedDivision);
+  addEventListener("load", openLinkedDivision, { once: true });
+  openLinkedDivision();
+
   divisionHeads.forEach(head => {
     head.addEventListener("click", () => {
 

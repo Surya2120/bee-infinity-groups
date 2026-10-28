@@ -23,8 +23,8 @@ export default function MrBee() {
 
   useEffect(() => {
     const publish = () => window.dispatchEvent(new CustomEvent("mrbee:context", { detail: latest.current }));
-    const stylesheet = "/css/mrbee.css?v=sitewide-v1";
-    const source = "/js/mrbee.js?v=sitewide-v1";
+    const stylesheet = "/css/mrbee.css?v=guided-v2";
+    const source = "/js/mrbee.js?v=guided-v2";
     let link = document.querySelector<HTMLLinkElement>('link[data-mrbee-shared="styles"]');
     if (!link) {
       link = document.createElement("link");

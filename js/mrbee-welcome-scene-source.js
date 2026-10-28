@@ -1,9 +1,9 @@
-/* A small, isolated portrait of the existing rounded Spectrum bee. */
+/* The existing rounded Mr. Bee, with a direct gaze and three expressive poses. */
 import * as THREE from "three";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
 
 const instances = new WeakMap();
-const noop = Object.freeze({ start() {}, stop() {}, dispose() {} });
+const noop = Object.freeze({ start() {}, stop() {}, dispose() {}, setMood() {} });
 
 export function createWelcomeBee(canvas) {
   if (!canvas || typeof canvas.getContext !== "function") return noop;
@@ -24,7 +24,14 @@ export function createWelcomeBee(canvas) {
   const scene = new THREE.Scene();
   const camera = new THREE.OrthographicCamera(-2, 2, 2, -2, 0.1, 30);
   const bee = new THREE.Group();
+  const head = new THREE.Group();
   const wings = [];
+  const eyes = [];
+  const brows = [];
+  const arms = [];
+  const legs = [];
+  const antennae = [];
+  const mouths = [];
   let environmentTarget;
   let resizeObserver;
   let frame = 0;
@@ -33,8 +40,12 @@ export function createWelcomeBee(canvas) {
   let disposed = false;
   let elapsed = 0;
   let lastPaint = 0;
+  let mood = "neutral";
+  let expression = { excited: 0, sad: 0 };
+  let transition = null;
   const center = new THREE.Vector3();
   const size = new THREE.Vector3();
+  const portraitBounds = new THREE.Box3();
 
   renderer.setClearColor(0x000000, 0);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -70,6 +81,18 @@ export function createWelcomeBee(canvas) {
     return mesh;
   }
 
+  function expressiveTube(parent, neutral, excited, sad, radius, material) {
+    const make = points => new THREE.TubeGeometry(new THREE.CatmullRomCurve3(points.map(point => new THREE.Vector3(...point))), 22, radius, 7, false);
+    const geometry = make(neutral);
+    const variants = [make(excited), make(sad)];
+    geometry.morphAttributes.position = variants.map(variant => variant.attributes.position.clone());
+    geometry.morphAttributes.normal = variants.map(variant => variant.attributes.normal.clone());
+    variants.forEach(variant => variant.dispose());
+    const mesh = new THREE.Mesh(geometry, material);
+    parent.add(mesh);
+    return mesh;
+  }
+
   function box(parent, material, position, scale) {
     const mesh = new THREE.Mesh(new THREE.BoxGeometry(...scale), material);
     mesh.position.set(...position);
@@ -86,20 +109,43 @@ export function createWelcomeBee(canvas) {
     stripe.position.y = y;
     bee.add(stripe);
   });
-  ball(bee, gold, [0, 0.88, 0.12], [0.79, 0.73, 0.66]);
-  ball(bee, honey, [-0.48, 0.68, 0.62], [0.15, 0.105, 0.07]);
-  ball(bee, honey, [0.48, 0.68, 0.62], [0.15, 0.105, 0.07]);
+  head.position.set(0, 0.88, 0.12);
+  bee.add(head);
+  const facePoint = ([x, y, z]) => [x, y - 0.88, z - 0.12];
+  ball(head, gold, [0, 0, 0], [0.79, 0.73, 0.66]);
+  ball(head, honey, facePoint([-0.48, 0.68, 0.62]), [0.15, 0.105, 0.07]);
+  ball(head, honey, facePoint([0.48, 0.68, 0.62]), [0.15, 0.105, 0.07]);
   [-1, 1].forEach((sign) => {
-    ball(bee, white, [sign * 0.28, 1.02, 0.69], [0.225, 0.275, 0.1]);
-    ball(bee, ink, [sign * 0.255, 1.015, 0.785], [0.108, 0.145, 0.055]);
-    ball(bee, white, [sign * 0.255 - 0.028, 1.065, 0.829], [0.035, 0.042, 0.017]);
-    tube(bee, [[sign * 0.12, 1.34, 0.63], [sign * 0.28, 1.4, 0.66], [sign * 0.43, 1.35, 0.61]], 0.024, ink);
-    tube(bee, [[sign * 0.28, 1.5, 0.1], [sign * 0.32, 1.8, 0.07], [sign * 0.47, 1.99, 0.09]], 0.028, ink);
-    ball(bee, honey, [sign * 0.47, 1.99, 0.09], [0.075, 0.075, 0.075]);
-    tube(bee, [[sign * 0.53, 0.06, 0.07], [sign * 0.86, -0.08, 0.39], [sign * 0.94, -0.44, 0.64]], 0.065, ink);
-    ball(bee, gold, [sign * 0.94, -0.44, 0.64], [0.145, 0.15, 0.13]);
-    tube(bee, [[sign * 0.26, -1.02, 0.1], [sign * 0.28, -1.3, 0.16], [sign * 0.34, -1.39, 0.2]], 0.06, ink);
-    ball(bee, ink, [sign * 0.34, -1.4, 0.25], [0.23, 0.13, 0.32]);
+    const eye = ball(head, white, facePoint([sign * 0.28, 1.02, 0.69]), [0.225, 0.275, 0.1]);
+    const pupil = ball(head, ink, facePoint([sign * 0.28, 1.02, 0.785]), [0.108, 0.145, 0.055]);
+    const glint = ball(head, white, facePoint([sign * 0.28 - 0.028, 1.07, 0.829]), [0.035, 0.042, 0.017]);
+    eyes.push({ eye, pupil, glint });
+    const brow = expressiveTube(head,
+      [[sign * 0.12, 1.34, 0.63], [sign * 0.28, 1.4, 0.66], [sign * 0.43, 1.35, 0.61]].map(facePoint),
+      [[sign * 0.12, 1.45, 0.63], [sign * 0.28, 1.51, 0.66], [sign * 0.43, 1.46, 0.61]].map(facePoint),
+      [[sign * 0.12, 1.47, 0.63], [sign * 0.28, 1.4, 0.66], [sign * 0.43, 1.29, 0.61]].map(facePoint), 0.024, ink);
+    brows.push(brow);
+    const antenna = new THREE.Group();
+    antenna.position.set(...facePoint([sign * 0.28, 1.5, 0.1]));
+    tube(antenna, [[0, 0, 0], [sign * 0.04, 0.3, -0.03], [sign * 0.19, 0.49, -0.01]], 0.028, ink);
+    ball(antenna, honey, [sign * 0.19, 0.49, -0.01], [0.075, 0.075, 0.075]);
+    head.add(antenna);
+    antennae.push({ antenna, sign });
+    const arm = new THREE.Group();
+    arm.position.set(sign * 0.53, 0.06, 0.07);
+    tube(arm, [[0, 0, 0], [sign * 0.33, -0.14, 0.32], [sign * 0.41, -0.5, 0.57]], 0.065, ink);
+    ball(arm, gold, [sign * 0.41, -0.5, 0.57], [0.145, 0.15, 0.13]);
+    bee.add(arm);
+    arms.push({ arm, sign });
+    const leg = new THREE.Group();
+    leg.position.set(sign * 0.26, -1.02, 0.1);
+    const shin = expressiveTube(leg,
+      [[0, 0, 0], [sign * 0.02, -0.28, 0.06], [sign * 0.08, -0.37, 0.1]],
+      [[0, 0, 0], [sign * 0.02, -0.25, 0.06], [sign * 0.08, -0.35, 0.1]],
+      [[0, 0, 0], [sign * 0.15, -0.18, 0.35], [sign * 0.29, -0.12, 0.65]], 0.06, ink);
+    const shoe = ball(leg, ink, [sign * 0.08, -0.38, 0.15], [0.23, 0.13, 0.32]);
+    bee.add(leg);
+    legs.push({ leg, shin, shoe, sign });
 
     const pivot = new THREE.Group();
     pivot.position.set(sign * 0.4, 0.28, -0.4);
@@ -111,7 +157,13 @@ export function createWelcomeBee(canvas) {
     wings.push({ pivot, sign });
     bee.add(pivot);
   });
-  tube(bee, [[-0.2, 0.65, 0.735], [0, 0.57, 0.77], [0.2, 0.65, 0.735]], 0.022, ink);
+  const mouth = expressiveTube(head,
+    [[-0.2, 0.65, 0.735], [0, 0.57, 0.77], [0.2, 0.65, 0.735]].map(facePoint),
+    [[-0.25, 0.67, 0.735], [0, 0.51, 0.79], [0.25, 0.67, 0.735]].map(facePoint),
+    [[-0.2, 0.53, 0.735], [0, 0.65, 0.77], [0.2, 0.53, 0.735]].map(facePoint), 0.022, ink);
+  mouths.push(mouth);
+  const openSmile = ball(head, ink, facePoint([0, 0.595, 0.761]), [0.205, 0.11, 0.025]);
+  const smileTeeth = ball(head, white, facePoint([0, 0.651, 0.787]), [0.15, 0.024, 0.012]);
 
   const clapper = new THREE.Group();
   clapper.position.set(-0.77, -0.83, 0.8);
@@ -129,7 +181,9 @@ export function createWelcomeBee(canvas) {
     const stripe = box(clapperBar, white, [-0.44 + i * 0.176, 0, 0.078], [0.09, 0.155, 0.014]);
     stripe.rotation.z = -0.38;
   }
-  bee.add(clapper);
+  clapper.add(clapperBar);
+  clapper.position.set(-0.24, -0.89, 0.73);
+  arms.find(({ sign }) => sign === -1).arm.add(clapper);
 
   const hemisphere = new THREE.HemisphereLight(0xfff9e8, 0x9bafc4, 2.0);
   scene.add(hemisphere);
@@ -150,25 +204,63 @@ export function createWelcomeBee(canvas) {
   } catch { /* The same direct lights provide a complete portrait without reflections. */ }
 
   function pose() {
-    bee.rotation.set(0, -0.24, -0.035);
-    bee.position.y = Math.sin(elapsed * 1.7) * 0.035;
+    const { excited, sad } = expression;
+    const motion = media.matches ? 0 : 1;
+    bee.rotation.set(0, 0, -sad * 0.025 + Math.sin(elapsed * 3) * excited * motion * 0.018);
+    bee.position.y = -sad * 0.09 + Math.sin(elapsed * (1.7 + excited * 1.6)) * (0.025 + excited * 0.045) * (1 - sad) * motion;
+    head.position.set(0, 0.88 - sad * 0.17 + excited * 0.025, 0.12);
+    head.rotation.set(sad * 0.12 - excited * 0.018, 0, -sad * 0.055);
+    eyes.forEach(({ eye, pupil, glint }) => {
+      eye.scale.y = 0.275 * (1 + excited * 0.09 + sad * 0.04);
+      pupil.position.y = 0.14 - sad * 0.035 + excited * 0.01;
+      pupil.scale.y = 0.145 * (1 + excited * 0.07);
+      glint.position.y = 0.19 - sad * 0.035 + excited * 0.01;
+      const sparkle = 1 + sad * 0.1;
+      glint.scale.set(0.035 * sparkle, 0.042 * sparkle, 0.017 * sparkle);
+    });
+    [...brows, ...mouths].forEach(mesh => { mesh.morphTargetInfluences[0] = excited; mesh.morphTargetInfluences[1] = sad; });
+    openSmile.visible = excited > 0.02;
+    smileTeeth.visible = excited > 0.02;
+    openSmile.scale.set(0.205, Math.max(0.001, 0.11 * excited), 0.025);
+    smileTeeth.scale.set(0.15, Math.max(0.001, 0.024 * excited), 0.012);
+    antennae.forEach(({ antenna, sign }) => { antenna.rotation.z = sign * (sad * 0.18 - excited * 0.05); });
+    arms.forEach(({ arm, sign }) => {
+      arm.rotation.set(-sad * 0.1, 0, sign * (excited * 0.56 - sad * 0.12));
+    });
+    legs.forEach(({ leg, shin, shoe, sign }) => {
+      shin.morphTargetInfluences[0] = excited;
+      shin.morphTargetInfluences[1] = sad;
+      shoe.position.set(sign * (0.08 + sad * 0.21), -0.38 + sad * 0.26 + excited * 0.03, 0.15 + sad * 0.6);
+      shoe.rotation.x = -sad * 0.12;
+      leg.rotation.z = sign * excited * 0.05;
+    });
     wings.forEach(({ pivot, sign }) => {
-      pivot.rotation.y = sign * (0.25 + Math.sin(elapsed * 12) * 0.18);
-      pivot.rotation.z = -sign * (0.48 + Math.sin(elapsed * 12) * 0.025);
+      const flutter = Math.sin(elapsed * (12 + excited * 3)) * (0.18 + excited * 0.04) * (1 - sad) * motion;
+      pivot.rotation.y = sign * (0.25 + sad * 0.4 + flutter);
+      pivot.rotation.z = -sign * (0.48 + sad * 1.65 + Math.sin(elapsed * 12) * 0.025 * (1 - sad) * motion);
     });
   }
 
+  /* A single union envelope keeps eye contact and scale stable across expressions. */
+  [{ excited: 0, sad: 0 }, { excited: 1, sad: 0 }, { excited: 0, sad: 1 }].forEach(state => {
+    expression = state;
+    pose();
+    bee.updateMatrixWorld(true);
+    portraitBounds.expandByObject(bee);
+  });
+  expression = { excited: 0, sad: 0 };
+  pose();
+  portraitBounds.getCenter(center);
+  portraitBounds.getSize(size);
+  canvas.dataset.mood = mood;
+
   function resize() {
-    if (disposed || !running) return;
+    if (disposed) return;
     const rect = canvas.getBoundingClientRect();
     const width = Math.max(1, rect.width || canvas.clientWidth || 150);
     const height = Math.max(1, rect.height || canvas.clientHeight || 190);
     const aspect = width / height;
-    pose();
-    const bounds = new THREE.Box3().setFromObject(bee);
-    bounds.getCenter(center);
-    bounds.getSize(size);
-    const halfHeight = Math.max(size.y / 2 + 0.16, (size.x / 2 + 0.12) / aspect);
+    const halfHeight = Math.max(size.y / 2 + 0.13, (size.x / 2 + 0.11) / aspect);
     camera.left = -halfHeight * aspect;
     camera.right = halfHeight * aspect;
     camera.top = halfHeight;
@@ -184,6 +276,53 @@ export function createWelcomeBee(canvas) {
     if (running && !disposed && !document.hidden && !frame) frame = window.requestAnimationFrame(paint);
   }
 
+  function updateExpression(timestamp) {
+    if (!transition) return;
+    const amount = Math.min(1, Math.max(0, (timestamp - transition.started) / 400));
+    const blend = amount * amount * (3 - 2 * amount);
+    expression.excited = THREE.MathUtils.lerp(transition.from.excited, transition.to.excited, blend);
+    expression.sad = THREE.MathUtils.lerp(transition.from.sad, transition.to.sad, blend);
+    if (amount === 1) transition = null;
+  }
+
+  function draw(timestamp) {
+    if (disposed || document.hidden) return;
+    try {
+      updateExpression(timestamp);
+      pose();
+      renderer.render(scene, camera);
+      if (renderer.getContext().isContextLost()) throw new Error("Context lost");
+      if (renderer.info.render.calls > 0) canvas.classList.add("is-ready");
+    } catch (error) {
+      canvas.dataset.renderError = error instanceof Error ? error.message : "Portrait render failed";
+      dispose("render-error");
+    }
+  }
+
+  function renderStill() {
+    if (disposed || document.hidden) return;
+    resize();
+    draw(window.performance.now());
+  }
+
+  function setMood(nextMood = "neutral") {
+    if (disposed) return;
+    const next = ["neutral", "excited", "sad"].includes(nextMood) ? nextMood : "neutral";
+    if (next === mood && canvas.classList.contains("is-ready")) return;
+    updateExpression(window.performance.now());
+    mood = next;
+    canvas.dataset.mood = mood;
+    const target = { excited: mood === "excited" ? 1 : 0, sad: mood === "sad" ? 1 : 0 };
+    if (running && !media.matches && !document.hidden) {
+      transition = { from: { ...expression }, to: target, started: window.performance.now() };
+      requestRender();
+    } else {
+      transition = null;
+      expression = target;
+      renderStill();
+    }
+  }
+
   function paint(timestamp, force = false) {
     frame = 0;
     if (!running || disposed || document.hidden) return;
@@ -193,16 +332,8 @@ export function createWelcomeBee(canvas) {
     }
     if (!media.matches && lastPaint) elapsed += Math.min((timestamp - lastPaint) / 1000, 0.08);
     lastPaint = timestamp;
-    try {
-      pose();
-      renderer.render(scene, camera);
-      if (renderer.getContext().isContextLost()) throw new Error("Context lost");
-      if (renderer.info.render.calls > 0) canvas.classList.add("is-ready");
-    } catch {
-      dispose();
-      return;
-    }
-    if (!media.matches) requestRender();
+    draw(timestamp);
+    if (!disposed && !media.matches) requestRender();
   }
 
   function start() {
@@ -219,12 +350,18 @@ export function createWelcomeBee(canvas) {
     if (frame) window.cancelAnimationFrame(frame);
     frame = 0;
     lastPaint = 0;
+    if (transition) {
+      expression = { ...transition.to };
+      transition = null;
+      renderStill();
+    }
   }
 
-  function dispose() {
+  function dispose(reason = "api") {
     if (disposed) return;
-    stop();
+    canvas.dataset.disposeReason = String(reason);
     disposed = true;
+    stop();
     events.abort();
     resizeObserver?.disconnect();
     const geometries = new Set();
@@ -237,25 +374,32 @@ export function createWelcomeBee(canvas) {
     materials.forEach((material) => material.dispose());
     environmentTarget?.dispose();
     renderer.dispose();
+    renderer.forceContextLoss();
     canvas.classList.remove("is-ready");
     instances.delete(canvas);
   }
 
   function refresh() {
-    if (!running || disposed) return;
+    if (disposed) return;
     if (frame) window.cancelAnimationFrame(frame);
     frame = 0;
     lastPaint = 0;
     if (!document.hidden) {
+      if (media.matches && transition) { expression = { ...transition.to }; transition = null; }
       resize();
-      paint(window.performance.now(), true);
+      if (running) paint(window.performance.now(), true);
+      else draw(window.performance.now());
     }
   }
 
   document.addEventListener("visibilitychange", refresh, { signal });
   media.addEventListener("change", refresh, { signal });
   window.addEventListener("resize", refresh, { passive: true, signal });
-  canvas.addEventListener("webglcontextlost", (event) => { event.preventDefault(); dispose(); }, { signal });
+  canvas.addEventListener("webglcontextlost", (event) => {
+    event.preventDefault();
+    canvas.dataset.renderError = "WebGL context lost";
+    dispose("webgl-context-lost");
+  }, { signal });
   if (typeof ResizeObserver === "function") {
     resizeObserver = new ResizeObserver(refresh);
     resizeObserver.observe(canvas);
@@ -265,7 +409,7 @@ export function createWelcomeBee(canvas) {
       const wasRunning = running;
       stop();
       resumeAfterRestore = wasRunning;
-    } else dispose();
+    } else dispose("pagehide");
   }, { signal });
   window.addEventListener("pageshow", (event) => {
     if (event.persisted && resumeAfterRestore) {
@@ -273,7 +417,7 @@ export function createWelcomeBee(canvas) {
       start();
     }
   }, { signal });
-  const api = Object.freeze({ start, stop, dispose });
+  const api = Object.freeze({ start, stop, dispose, setMood });
   instances.set(canvas, api);
   return api;
 }

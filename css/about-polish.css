@@ -116,6 +116,16 @@
 .about-page .team-section { border-top: 1px solid #ffffff24; }
 .about-page .team-section .team-card { border-radius: 10px; box-shadow: 0 12px 30px #0413251f; }
 .about-page .team-section .team-card-content { background: var(--about-paper); border-top-color: var(--about-gold); }
+.about-page .team-section .team-photo--pending .team-photo-note {
+  position: absolute;
+  right: 16px;
+  bottom: 20px;
+  left: 16px;
+  color: #dce8f1;
+  font-size: 12px;
+  letter-spacing: .04em;
+  text-align: center;
+}
 .about-page .team-section h3 { font-weight: 600; }
 .about-page .team-section .team-role { color: #52616c; background: transparent; border-color: var(--about-line); }
 

@@ -1,14 +1,84 @@
-/* Mr. Bee's curated voice. These are mascot lines, never quotes from the team. */
-export const jokes = [
-  "Surya brings the big ideas. I bring the very small wings. Every team needs balance.",
-  "Surya and Bharathi lead the team. I’m still trying to get ‘Chief Buzz Officer’ onto my name badge.",
-  "I’m ready for the team photo. Just waiting for someone to say, ‘Everybody hover.’",
-  "My dance routine has one move: wing it. The real choreography is best left to our dance team.",
-  "I can’t carry a camera, but I’m excellent at hovering behind one. A very small behind-the-scenes crew.",
-  "Big ideas, tiny wings. That’s my entire presentation. Thank you for your time.",
-  "The team takes care of the details. I take care of looking enthusiastic beside them.",
-  "I was promised a role in the next production. Still hoping it’s more than a fly-by appearance."
-];
+/* Founder jokes and bee stories are fictional mascot banter, never team quotes.
+   Company facts are kept in their own category and grounded in the site copy. */
+export const banter = {
+  secrets: {
+    label: "Little secrets",
+    lines: [
+      "Psst… don’t tell the founders: my serious meeting face is just my normal face.",
+      "Secret: I hid honey beside the storyboards. The plot has thickened.",
+      "Don’t tell Surya: I rehearsed my entrance more than the dancers.",
+      "Between us, Bharathi hasn’t approved my executive honey jar.",
+      "I have a secret shortcut to the founders: mention a creative idea.",
+      "Confidential: my corner office is literally this corner.",
+      "Don’t tell the founders: I’ve been taking applause meant for the team.",
+      "Little secret: I practise my dramatic reveal behind the loading screen."
+    ]
+  },
+  founders: {
+    label: "Founder fun",
+    lines: [
+      "The founders’ weakness? A good idea. Mine? A very small honey jar.",
+      "Surya says one last idea. My antennae know there’s a sequel.",
+      "Bharathi keeps things moving. I keep asking whether flying counts as attendance.",
+      "The founders see a blank stage. I see an excellent landing spot.",
+      "Our founders love a creative challenge. I’m their smallest one.",
+      "Surya’s idea of a cliffhanger? One more thought before we wrap.",
+      "The founders brought the vision. I brought stripes to the meeting.",
+      "Don’t tell the founders: I’ve awarded myself Employee of the Flower."
+    ]
+  },
+  scolded: {
+    label: "I got told off",
+    lines: [
+      "Got told off for putting my badge before the company logo.",
+      "The founders said make an entrance. Apparently, through the window was too literal.",
+      "I called buzzing a soundcheck. The studio team disagreed.",
+      "Surya asked for a close-up. I landed on the lens. Too close.",
+      "Bharathi said stay on the page. I was already in the margins.",
+      "The founders asked for less drama. I delivered a tiny dramatic sigh.",
+      "I tried signing the call sheet with honey. Apparently, that’s not a signature.",
+      "Got told off for shouting action during a dance rehearsal."
+    ]
+  },
+  bee: {
+    label: "Bee life",
+    lines: [
+      "My dance count is five, six, seven… wings.",
+      "I auditioned for a close-up. The camera needed a magnifying glass.",
+      "My wings do surround sound. The sound team calls it a first draft.",
+      "I’m camera-ready. Every stripe has been personally arranged.",
+      "I promised not to photobomb. Nobody mentioned video.",
+      "Stage fright? Only when someone mistakes me for a spotlight moth.",
+      "My backstage pass is tiny. My entrance is unnecessarily grand.",
+      "I tried clapping for the crew. Six legs made it complicated."
+    ]
+  },
+  company: {
+    label: "Company facts",
+    lines: [
+      "Bee Infinity Groups brings together film production, event management and dance choreography.",
+      "Surya Sharavana is our founder; Bharathi M is our co-founder.",
+      "Our multi-division vision took shape during the 2020 lockdown.",
+      "Bee Infinity Groups formed in 2022, with Bharathi as co-founder.",
+      "Our in-house dubbing studio was built from the ground up in 2023.",
+      "B.I.G Cinemaz is the film division of Bee Infinity Groups.",
+      "Our film services include production, post-production, dubbing and sound design.",
+      "Bee Infinity Events works on creative event concepts, design and execution.",
+      "Bee Infinity Dance Crew offers dance training and school or college choreography.",
+      "SPECTRUM is Bee Infinity Groups’ annual school event partnership.",
+      "SPECTRUM can support Annual Day, Sports Day and other school celebrations.",
+      "SPECTRUM includes complimentary weekly dance classes on an agreed schedule.",
+      "Complimentary parent testimonial videos under SPECTRUM require consent and school approval."
+    ]
+  }
+};
+
+// Keep the existing joke API, alternating themes so quick jokes feel varied.
+const jokeCategories = ["secrets", "founders", "scolded", "bee"].map(key => banter[key].lines);
+export const jokes = Array.from(
+  { length: Math.max(...jokeCategories.map(lines => lines.length)) },
+  (_, index) => jokeCategories.map(lines => lines[index]).filter(Boolean)
+).flat();
 
 export const pages = {
   home: {
@@ -26,7 +96,7 @@ export const pages = {
     intro: "This is the people part of the story: our journey, leadership and team. I bring the wings; they bring the work.",
     tips: [
       "Surya Sharavana is our founder, and Bharathi M is our co-founder. Keep exploring to meet more of the people behind Bee Infinity Groups.",
-      "The Meet our team section puts names to the people who help connect us with clients and our community.",
+      "Meet Navya, our Dance Instructor, alongside the people who bring Bee Infinity Groups’ work to life in the team section.",
       "Have something you’d like to create with the team? The contact page is the next stop. I’ll leave the actual conversation to the humans."
     ],
     links: [{ label: "Meet our team", href: "about.html#team" }, { label: "Explore our work", href: "gallery.html" }, { label: "Talk to the team", href: "contact.html#contact-form" }]

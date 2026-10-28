@@ -21,6 +21,7 @@
 }
 .divisions-page :focus-visible { outline: 3px solid #1875be; outline-offset: 5px; }
 .divisions-page .division-body[id] { scroll-margin-top: 110px; }
+.divisions-page .division-head { scroll-margin-top: 110px; }
 
 /* Match the finished About navigation while retaining the shared menu hooks. */
 .divisions-page .navbar,

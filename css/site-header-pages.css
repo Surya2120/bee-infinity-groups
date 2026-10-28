@@ -1,4 +1,11 @@
 /* Keep full-screen introductions and existing back links below the shared header. */
+.has-site-header #film-production,
+.has-site-header #post-production,
+.has-site-header #dubbing-sound,
+.has-site-header #dance-services,
+.has-site-header #event-services {
+  scroll-margin-top: calc(var(--site-header-height, 92px) + 20px);
+}
 .has-site-header.site-page--launch > .back-btn,
 .has-site-header.site-page--apply .apply-page > .back-btn,
 .has-site-header.site-page--cinemaz .cinemaz-hero > .back-btn {
