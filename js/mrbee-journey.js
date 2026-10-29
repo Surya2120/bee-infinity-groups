@@ -48,7 +48,7 @@ export const nodes = {
     choices: [
       { label: "Discover Spectrum", href: "spectrum.html" },
       { label: "School event services", href: "spectrum.html#spectrum-stagecraft" },
-      { label: "Dance classes & school extras", href: "spectrum.html#spectrum-extras" },
+      { label: "Weekly dance classes", href: "spectrum.html#spectrum-extras" },
       { label: "Request a school proposal", href: "contact.html#contact-form" }
     ]
   },

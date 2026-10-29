@@ -67,8 +67,7 @@ export const banter = {
       "Bee Infinity Dance Crew offers dance training and school or college choreography.",
       "SPECTRUM is Bee Infinity Groups’ annual school event partnership.",
       "SPECTRUM can support Annual Day, Sports Day and other school celebrations.",
-      "SPECTRUM includes complimentary weekly dance classes on an agreed schedule.",
-      "Complimentary parent testimonial videos under SPECTRUM require consent and school approval."
+      "SPECTRUM provides weekly dance classes for your school on an agreed schedule."
     ]
   }
 };
@@ -96,7 +95,7 @@ export const pages = {
     intro: "This is the people part of the story: our journey, leadership and team. I bring the wings; they bring the work.",
     tips: [
       "Surya Sharavana is our founder, and Bharathi M is our co-founder. Keep exploring to meet more of the people behind Bee Infinity Groups.",
-      "Meet Navya, our Dance Instructor, alongside the people who bring Bee Infinity Groups’ work to life in the team section.",
+      "Meet Navya K, our Dance Instructor, alongside the people who bring Bee Infinity Groups’ work to life in the team section.",
       "Have something you’d like to create with the team? The contact page is the next stop. I’ll leave the actual conversation to the humans."
     ],
     links: [{ label: "Meet our team", href: "about.html#team" }, { label: "Explore our work", href: "gallery.html" }, { label: "Talk to the team", href: "contact.html#contact-form" }]
@@ -138,7 +137,7 @@ export const pages = {
       "The numbered buttons take you through Spectrum’s chapters. Prefer a calmer visit? Use the Motion control at the bottom.",
       "Annual Day, Sports Day, national celebrations and school milestones can all be part of the conversation. Your proposal is tailored to the agreed services.",
       "For a school enquiry, share your school name, location, academic year and planned events. The team can discuss a proposal with you.",
-      "Weekly dance classes follow an agreed schedule. Parent testimonial videos need consent and school approval. The team can explain the details."
+      "Weekly dance classes follow an agreed schedule. The team can explain the details."
     ],
     links: [{ label: "School celebrations", href: "spectrum.html#spectrum-calendar" }, { label: "Explore the services", href: "spectrum.html#spectrum-stagecraft" }, { label: "Request a proposal", href: "contact.html#contact-form" }]
   },

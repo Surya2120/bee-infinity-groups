@@ -98,12 +98,15 @@
 .divisions-page .spectrum-division-card .division-title h2 { font-size: 32px; letter-spacing: -.035em; }
 .divisions-page .spectrum-card-art { border-radius: 6px; box-shadow: none; }
 
-/* Retain the flagship photo, hover motion, and scroll reveal. */
-.divisions-page .ultra-flagship { padding-block: 112px 88px; background: var(--divisions-paper); }
-.divisions-page .ultra-badge { top: 46px; padding: 10px 16px; border: 1px solid #d9c37c; border-radius: 4px; background: #f1cc5229; color: var(--divisions-navy); box-shadow: none; letter-spacing: 2px; font-weight: 650; }
-.divisions-page .ultra-card { border: 1px solid #102c4a26; border-radius: 14px; box-shadow: 0 18px 44px #102c4a18; }
-.divisions-page .ultra-content { padding: 64px; }
-.divisions-page .ultra-desc { font-family: Georgia, "Times New Roman", serif; font-size: clamp(21px, 2.3vw, 30px); line-height: 1.55; opacity: 1; }
+/* Keep the original banner intact and centred, including during its reveal. */
+.divisions-page .ultra-flagship { padding-block: 64px 88px; background: var(--divisions-paper); scroll-margin-top: 110px; }
+.divisions-page .ultra-badge { position: relative; inset: auto; width: fit-content; max-width: 100%; margin: 0 auto 28px; padding: 10px 16px; border: 1px solid #d9c37c; border-radius: 4px; background: #f1cc5229; color: var(--divisions-navy); box-shadow: none; letter-spacing: 2px; font-weight: 650; text-align: center; transform: translateY(18px); }
+.divisions-page .ultra-card { width: 100%; max-width: 1200px; height: auto; aspect-ratio: 8 / 3; margin-inline: auto; border: 1px solid #102c4a26; border-radius: 14px; background: #080904; box-shadow: 0 18px 44px #102c4a18; transform: translateY(18px); }
+.divisions-page .ultra-card.show, .divisions-page .ultra-badge.show { transform: translateY(0); }
+.divisions-page .ultra-bg { background-size: contain; background-repeat: no-repeat; background-position: center; }
+.divisions-page .ultra-card:hover .ultra-bg { transform: scale(1); }
+.divisions-page .ultra-content { width: 58%; padding: clamp(22px, 3.5vw, 44px); }
+.divisions-page .ultra-desc { margin-bottom: clamp(18px, 2vw, 30px); font-family: Georgia, "Times New Roman", serif; font-size: clamp(21px, 2.3vw, 30px); line-height: 1.55; opacity: 1; }
 .divisions-page .ultra-action { color: var(--divisions-gold); font-size: 12px; letter-spacing: 1.4px; }
 
 .divisions-page .footer-modern { font-family: "Segoe UI", Arial, sans-serif; }
@@ -167,11 +170,16 @@
   .divisions-page .spectrum-division-card { width: 90%; margin-inline: 5%; }
   .divisions-page .spectrum-division-card .division-head { padding: 24px; }
   .divisions-page .spectrum-division-card .division-title h2 { font-size: 24px; }
-  .divisions-page .ultra-flagship { padding: 96px 5% 64px; }
-  .divisions-page .ultra-badge { top: 36px; left: 5%; }
-  .divisions-page .ultra-card { width: 100%; aspect-ratio: 4 / 3; min-height: 300px; }
-  .divisions-page .ultra-content { padding: 28px; }
+  .divisions-page .ultra-flagship { padding: 56px 5% 64px; }
+  .divisions-page .ultra-badge { inset: auto; }
+  .divisions-page .ultra-card { width: 100%; aspect-ratio: auto; min-height: 0; }
+  /* The lettering is centred at 24.2% of the original wide artwork.
+     Show that part above the copy rather than cropping it behind the text. */
+  .divisions-page .ultra-bg { position: relative; inset: auto; width: 100%; aspect-ratio: 2 / 1; background-size: 205% auto; background-position: left top; }
+  .divisions-page .ultra-overlay { display: none; }
+  .divisions-page .ultra-content { position: relative; inset: auto; width: 100%; max-width: none; height: auto; margin: 0; padding: 0 28px 32px; align-items: center; justify-content: center; text-align: center; }
   .divisions-page .ultra-desc { font-size: 23px; margin-bottom: 24px; }
+  .divisions-page .ultra-action { margin-inline: auto; }
   .divisions-page .footer-container { gap: 32px; padding: 56px 6%; }
   .divisions-page .footer-right { min-width: 0; }
   .divisions-page .footer-tagline { font-size: 9px; letter-spacing: 1px; }
@@ -185,7 +193,7 @@
   .divisions-page .divisions-hero { margin-inline: 12px; }
   .divisions-page .division-title h2 { font-size: 25px; }
   .divisions-page .division-cta { margin-right: 0; padding-inline: 14px; }
-  .divisions-page .ultra-content { padding: 22px; }
+  .divisions-page .ultra-content { padding: 0 22px 28px; }
   .divisions-page .ultra-desc { font-size: 21px; }
   .divisions-page .footer-container { flex-direction: column !important; align-items: flex-start; }
   .divisions-page .footer-left { max-width: 100%; }

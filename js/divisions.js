@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!ultra || !badge) return;
 
-  window.addEventListener("scroll", () => {
+  function revealFlagship() {
     const trigger = window.innerHeight * 0.85;
     const top = ultra.getBoundingClientRect().top;
 
@@ -82,6 +82,11 @@ document.addEventListener("DOMContentLoaded", () => {
       ultra.classList.add("show");
       badge.classList.add("show");
     }
-  });
+  }
+
+  window.addEventListener("scroll", revealFlagship, { passive: true });
+  window.addEventListener("load", revealFlagship, { once: true });
+  window.addEventListener("pageshow", revealFlagship);
+  revealFlagship();
 
 });
