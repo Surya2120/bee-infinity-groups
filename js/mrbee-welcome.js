@@ -44,7 +44,7 @@
   }
   function loadScene() {
     if (scenePromise) return;
-    scenePromise = import("./mrbee-welcome-scene.js?v=guided-v2").then(module => {
+    scenePromise = import("./mrbee-welcome-scene.js?v=briefcase-v1").then(module => {
       if (dismissed) return;
       scene = module.createWelcomeBee(canvas);
       scene.setMood?.(mood);

@@ -32,7 +32,7 @@ body {
 
 /* ================= HERO ================= */
 .careers h1,
-.internship h1 {
+.internship h2 {
   font-size: 64px;
   margin-bottom: 15px;
   padding-left: 8%;
@@ -461,7 +461,7 @@ body {
 /* ================= MOBILE ================= */
 @media (max-width: 768px) {
   .careers h1,
-  .internship h1 {
+  .internship h2 {
     font-size: 36px;
     padding-left: 5%;
   }

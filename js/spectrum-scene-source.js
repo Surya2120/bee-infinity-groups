@@ -105,7 +105,7 @@ function bootScene() {
     return mesh;
   }
 
-  /* Rounded anatomy, raised stripes, and the clapper cue from the supplied Bee.png. */
+  /* Rounded anatomy and raised stripes from the supplied Bee.png. */
   ball(bee, gold, [0, -0.3, 0], [0.76, 0.94, 0.61]);
   [-0.85, -0.45, -0.05].forEach((y) => {
     const radius = 0.76 * Math.sqrt(1 - ((y + 0.3) / 0.94) ** 2);
@@ -142,24 +142,33 @@ function bootScene() {
   });
   tube(bee, [[-0.2, 0.65, 0.735], [0, 0.57, 0.77], [0.2, 0.65, 0.735]], 0.022, ink);
 
-  const clapper = new THREE.Group();
-  clapper.position.set(-0.77, -0.83, 0.8);
-  clapper.rotation.z = -0.18;
-  clapper.scale.setScalar(0.78);
-  box(clapper, ink, [0, 0, 0], [1.03, 0.65, 0.12]);
-  box(clapper, cream, [0, 0.12, 0.068], [0.77, 0.025, 0.015]);
-  box(clapper, cream, [0, -0.04, 0.068], [0.77, 0.018, 0.015]);
-  box(clapper, cream, [0, -0.2, 0.068], [0.77, 0.018, 0.015]);
-  const clapperBar = new THREE.Group();
-  clapperBar.position.set(-0.02, 0.43, 0.01);
-  clapperBar.rotation.z = 0.16;
-  box(clapperBar, ink, [0, 0, 0], [1.1, 0.18, 0.14]);
-  for (let i = 0; i < 6; i++) {
-    const stripe = box(clapperBar, white, [-0.44 + i * 0.176, 0, 0.078], [0.09, 0.155, 0.014]);
-    stripe.rotation.z = -0.38;
-  }
-  clapper.add(clapperBar);
-  bee.add(clapper);
+  const briefcase = new THREE.Group();
+  briefcase.position.set(-0.94, -0.87, 0.69);
+  briefcase.rotation.z = -0.08;
+  briefcase.scale.setScalar(0.82);
+  const caseShape = new THREE.Shape();
+  caseShape.moveTo(-0.45, -0.31);
+  caseShape.lineTo(0.45, -0.31);
+  caseShape.quadraticCurveTo(0.5, -0.31, 0.5, -0.26);
+  caseShape.lineTo(0.5, 0.25);
+  caseShape.quadraticCurveTo(0.5, 0.31, 0.44, 0.31);
+  caseShape.lineTo(-0.44, 0.31);
+  caseShape.quadraticCurveTo(-0.5, 0.31, -0.5, 0.25);
+  caseShape.lineTo(-0.5, -0.26);
+  caseShape.quadraticCurveTo(-0.5, -0.31, -0.45, -0.31);
+  const caseShell = new THREE.Mesh(new THREE.ExtrudeGeometry(caseShape, {
+    depth: 0.16, bevelEnabled: true, bevelThickness: 0.025, bevelSize: 0.025, bevelSegments: 2
+  }), ink);
+  caseShell.position.z = -0.08;
+  briefcase.add(caseShell);
+  const casePanel = new THREE.MeshStandardMaterial({ color: "#3c4652", roughness: 0.4, metalness: 0.14 });
+  box(briefcase, casePanel, [0, -0.015, 0.113], [0.87, 0.5, 0.025]);
+  box(briefcase, cream, [0, 0.105, 0.133], [0.84, 0.018, 0.012]);
+  [-0.3, 0.3].forEach(x => box(briefcase, cream, [x, 0.105, 0.144], [0.075, 0.095, 0.018]));
+  box(briefcase, honey, [0, 0.105, 0.147], [0.075, 0.065, 0.02]);
+  tube(briefcase, [[-0.19, 0.3, -0.04], [-0.19, 0.47, -0.04], [0, 0.52, -0.04], [0.19, 0.47, -0.04], [0.19, 0.3, -0.04]], 0.038, ink);
+  box(briefcase, cream, [0, 0.52, -0.04], [0.16, 0.018, 0.018]);
+  bee.add(briefcase);
 
   function rainbowRing(radius, thickness, arc) {
     const geometry = new THREE.TorusGeometry(radius, thickness, 10, 128, arc);
@@ -555,7 +564,6 @@ function bootScene() {
       pivot.rotation.y = sign * (0.25 + Math.sin(elapsed * 15) * 0.21);
       pivot.rotation.z = -sign * (0.48 + Math.sin(elapsed * 15) * 0.025);
     });
-    clapperBar.rotation.z = 0.16 + Math.sin(elapsed * 1.15) * (weights[2] + weights[4]) * 0.075;
     orbit.rotation.y = Math.sin(elapsed * 0.2) * 0.035;
     halo.position.set(value("ringX"), value("ringY"), value("ringZ"));
     halo.scale.setScalar(value("ringScale") * (1 + cutPulse * 0.06));

@@ -57,6 +57,42 @@
 .divisions-page .divisions-hero h1 em { color: #ffe18a; font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
 .divisions-page .divisions-hero p { color: #d8e2ec; font-size: 16px; line-height: 1.8; letter-spacing: .3px; opacity: 1; }
 
+.divisions-page .division-jump {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: min(1200px, calc(100% - 64px));
+  margin: 24px auto 0;
+  padding: 13px 16px;
+  border: 1px solid var(--divisions-line);
+  border-radius: 8px;
+  background: #fffefa;
+  box-shadow: 0 8px 25px #102c4a0a;
+}
+.divisions-page .division-jump__label { margin-right: 7px; color: #7b621a; font-size: 10px; font-weight: 750; letter-spacing: 1.4px; text-transform: uppercase; white-space: nowrap; }
+.divisions-page .division-jump a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  margin: 0;
+  padding: 8px 13px;
+  border: 1px solid #d8ddd7;
+  border-radius: 5px;
+  color: var(--divisions-navy);
+  background: var(--divisions-paper);
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.4;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: border-color .2s ease, background .2s ease;
+}
+.divisions-page .division-jump a:hover,
+.divisions-page .division-jump a:focus-visible { border-color: #c5a95b; background: #fff3ce; }
+
 /* Keep the ecosystem diagram followed by the four expandable divisions. */
 .divisions-page .divisions-stack { padding-block: 72px 0; }
 .divisions-page .ecosystem { padding: 64px 5%; margin-bottom: 40px; background: var(--divisions-navy); border: 1px solid #ffffff22; border-radius: 12px; }
@@ -66,6 +102,19 @@
 .divisions-page .ecosystem-flow { gap: 20px; }
 .divisions-page .flow-box { padding: 17px 22px; border-color: #f1cc5255; border-radius: 5px; background: #ffffff06; color: #f4ead0; font-size: 13px; font-weight: 600; letter-spacing: .1px; }
 .divisions-page .flow-line { width: 42px; }
+.divisions-page .ecosystem-content .ecosystem-programme {
+  max-width: 710px;
+  margin: 30px auto 0;
+  padding: 14px 18px;
+  border: 1px solid #f1cc5255;
+  border-radius: 6px;
+  color: #e2e9ee;
+  background: #ffffff0b;
+  font-size: 13px;
+  line-height: 1.75;
+  text-align: center;
+}
+.divisions-page .ecosystem-programme a { color: #ffe18a; font-weight: 700; text-underline-offset: 3px; }
 
 .divisions-page .division-card { border: 1px solid var(--divisions-line); border-radius: 10px; margin-bottom: 24px; background: #fffefa; box-shadow: 0 8px 24px #102c4a05; }
 .divisions-page .division-head { padding: 28px 32px; background: #f0efe7; }
@@ -129,6 +178,17 @@
   .divisions-page .ecosystem-flow { gap: 14px; }
   .divisions-page .flow-box { padding-inline: 16px; }
   .divisions-page .flow-line { width: 26px; }
+}
+@media (max-width: 860px) {
+  .divisions-page .division-jump {
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    width: calc(100% - 40px);
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+  .divisions-page .division-jump__label { flex: 0 0 auto; }
+  .divisions-page .division-jump a { flex: 0 0 auto; }
 }
 @media (max-width: 768px) {
   .divisions-page { padding-top: 80px; }

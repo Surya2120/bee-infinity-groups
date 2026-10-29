@@ -5,58 +5,45 @@
 document.addEventListener("DOMContentLoaded", () => {
   const divisionHeads = document.querySelectorAll(".division-head");
 
+  function setDivisionState(body, open) {
+    body.classList.toggle("active", open);
+    const button = body.previousElementSibling?.querySelector(".expand-btn");
+    if (!button) return;
+    button.textContent = open ? "−" : "+";
+    button.setAttribute("aria-expanded", String(open));
+    button.style.transform = open ? "rotate(180deg)" : "rotate(0deg)";
+  }
+
   // Guide links open the requested division as well as taking visitors to it.
   function openLinkedDivision() {
     let id;
     try { id = decodeURIComponent(location.hash.slice(1)); } catch { return; }
     const target = document.getElementById(id);
     if (!target?.classList.contains("division-body")) return;
-    document.querySelectorAll(".division-body").forEach(body => {
-      const open = body === target;
-      body.classList.toggle("active", open);
-      const button = body.previousElementSibling?.querySelector(".expand-btn");
-      if (button) {
-        button.textContent = open ? "−" : "+";
-        button.style.transform = open ? "rotate(180deg)" : "rotate(0deg)";
-      }
-    });
-    requestAnimationFrame(() => target.previousElementSibling?.scrollIntoView({ block: "start", behavior: "instant" }));
+    document.querySelectorAll(".division-body").forEach(body => setDivisionState(body, body === target));
+    requestAnimationFrame(() => target.previousElementSibling?.scrollIntoView({ block: "start", behavior: "auto" }));
   }
   addEventListener("hashchange", openLinkedDivision);
   addEventListener("pageshow", openLinkedDivision);
   addEventListener("load", openLinkedDivision, { once: true });
   openLinkedDivision();
 
+  document.querySelectorAll('.division-jump a[href^="#"], .ecosystem-programme a[href^="#"]').forEach(link => {
+    link.addEventListener("click", event => {
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      const target = document.getElementById(link.hash.slice(1));
+      if (!target?.classList.contains("division-body")) return;
+      event.preventDefault();
+      if (location.hash !== link.hash) history.pushState(null, "", link.hash);
+      openLinkedDivision();
+    });
+  });
+
   divisionHeads.forEach(head => {
     head.addEventListener("click", () => {
-
       const currentBody = head.nextElementSibling;
-      const currentBtn = head.querySelector(".expand-btn");
-
-      // Close all others
-      document.querySelectorAll(".division-body").forEach(body => {
-        if (body !== currentBody) {
-          body.classList.remove("active");
-        }
-      });
-
-      document.querySelectorAll(".expand-btn").forEach(btn => {
-        if (btn !== currentBtn) {
-          btn.textContent = "+";
-          btn.style.transform = "rotate(0deg)";
-        }
-      });
-
-      // Toggle current
-      if (currentBody.classList.contains("active")) {
-        currentBody.classList.remove("active");
-        currentBtn.textContent = "+";
-        currentBtn.style.transform = "rotate(0deg)";
-      } else {
-        currentBody.classList.add("active");
-        currentBtn.textContent = "−";
-        currentBtn.style.transform = "rotate(180deg)";
-      }
+      const open = !currentBody.classList.contains("active");
+      document.querySelectorAll(".division-body").forEach(body => setDivisionState(body, body === currentBody && open));
     });
   });
 });

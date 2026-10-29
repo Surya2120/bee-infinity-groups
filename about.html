@@ -5,17 +5,22 @@
   <meta charset="UTF-8">
   <title>About | Bee Infinity Groups</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Meet the people and story behind Bee Infinity Groups, from our founder’s journey to film, events, and dance.">
     <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/about.css">
   <link rel="stylesheet" href="css/team.css">
   <link rel="stylesheet" href="css/about-polish.css?v=20261029-team">
+  <link rel="stylesheet" href="css/about-join.css?v=1">
+  <link rel="stylesheet" href="css/about-jump.css?v=1">
   <script src="js/team.js" defer></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="css/site-header.css">
   <link rel="stylesheet" href="css/site-header-pages.css">
   <script src="js/site-header.js" defer></script>
   <link rel="stylesheet" href="css/mrbee.css?v=guided-v2">
-  <script src="js/mrbee.js?v=guided-v2" defer></script>
+  <script src="js/mrbee.js?v=join-team-v1" defer></script>
+  <script src="js/about-join.js?v=2" defer></script>
+  <script src="js/about-jump.js?v=1" defer></script>
 </head>
 
 <body class="about-page has-site-header">
@@ -55,6 +60,23 @@
     </div>
   </header>
 
+  <nav class="about-jump" id="aboutJump" aria-label="About page sections">
+    <button class="about-jump__toggle" id="aboutJumpToggle" type="button" aria-expanded="false" aria-controls="aboutJumpLinks">
+      <span class="about-jump__toggle-kicker">Jump to section</span>
+      <span class="about-jump__toggle-current" id="aboutJumpCurrent">About</span>
+      <span class="about-jump__toggle-arrow" aria-hidden="true">⌄</span>
+    </button>
+    <div class="about-jump__links" id="aboutJumpLinks">
+      <a href="#about-intro" data-label="About"><span class="about-jump__number" aria-hidden="true">01</span><span class="about-jump__label">About</span></a>
+      <a href="#journey" data-label="Journey"><span class="about-jump__number" aria-hidden="true">02</span><span class="about-jump__label">Journey</span></a>
+      <a href="#divisions" data-label="Divisions"><span class="about-jump__number" aria-hidden="true">03</span><span class="about-jump__label">Divisions</span></a>
+      <a href="#results" data-label="Results"><span class="about-jump__number" aria-hidden="true">04</span><span class="about-jump__label">Results</span></a>
+      <a href="#vision" data-label="Vision"><span class="about-jump__number" aria-hidden="true">05</span><span class="about-jump__label">Vision</span></a>
+      <a href="#people" data-label="People"><span class="about-jump__number" aria-hidden="true">06</span><span class="about-jump__label">People</span></a>
+      <a href="#teamJoin" data-label="Careers"><span class="about-jump__number" aria-hidden="true">07</span><span class="about-jump__label">Careers</span></a>
+    </div>
+  </nav>
+
 
   <!-- HERO -->
   <section class="about-hero">
@@ -65,7 +87,7 @@
     </div>
   </section>
 <!-- WHO WE ARE -->
-<section class="who-we-are">
+<section class="who-we-are" id="about-intro">
 
   <!-- LEFT TEXT -->
   <div class="who-text">
@@ -93,7 +115,7 @@
     <div class="who-left">
       <img src="assets/images/dance/dance (9).JPG" alt="">
       <img src="assets/images/dance/dance (13).jpg" alt="">
-      <img src="assets/images/dance/dance (6).jpg" alt="">
+      <img src="assets/images/dance/dance (6).JPG" alt="">
     </div>
 
     <!-- RIGHT TALL IMAGE -->
@@ -107,7 +129,7 @@
   <!-- JORENEY -->
 
 
-  <section class="journey-section">
+  <section class="journey-section" id="journey">
 
     <div class="journey-bg"></div>
 
@@ -408,7 +430,7 @@ with a strong focus on scalability and long-term sustainability.
 
 
   <!-- DIVISION : CINEMAZ -->
-  <section class="division-row">
+  <section class="division-row" id="divisions">
     <div class="division-block">
       <h2>B.I.G Cinemaz</h2>
       <span class="division-tag">Film Production & Post Production</span>
@@ -423,23 +445,23 @@ with a strong focus on scalability and long-term sustainability.
 
     <div class="division-media">
       <div class="media-track">
-        <img src="assets/images/bigcinemaz/bigcinemaz (1).jpg">
-        <img src="assets/images/bigcinemaz/bigcinemaz (2).jpg">
-        <img src="assets/images/bigcinemaz/bigcinemaz (3).jpg">
-        <img src="assets/images/bigcinemaz/bigcinemaz (4).jpg">
-        <img src="assets/images/bigcinemaz/bigcinemaz (5).jpg">
-        <img src="assets/images/bigcinemaz/bigcinemaz (6).jpg">
-        <img src="assets/images/bigcinemaz/bigcinemaz (7).jpg">
-        <img src="assets/images/bigcinemaz/bigcinemaz (8).jpg">
-        <img src="assets/images/bigcinemaz/bigcinemaz (9).jpg">
-        <img src="assets/images/bigcinemaz/bigcinemaz (10).jpg">
-        <img src="assets/images/bigcinemaz/bigcinemaz (11).jpg">
-        <img src="assets/images/bigcinemaz/bigcinemaz (12).jpg">
-        <img src="assets/images/bigcinemaz/bigcinemaz (13).jpg">
-        <img src="assets/images/bigcinemaz/bigcinemaz (14).jpg">
-        <img src="assets/images/bigcinemaz/bigcinemaz (15).jpg">
-        <img src="assets/images/bigcinemaz/bigcinemaz (16).jpg">
-        <img src="assets/images/bigcinemaz/bigcinemaz (17).jpg">
+        <img src="assets/images/bigcinemaz/bigcinemaz (1).jpg" alt="">
+        <img src="assets/images/bigcinemaz/bigcinemaz (2).jpg" alt="">
+        <img src="assets/images/bigcinemaz/bigcinemaz (3).jpg" alt="">
+        <img src="assets/images/bigcinemaz/bigcinemaz (4).jpg" alt="">
+        <img src="assets/images/bigcinemaz/bigcinemaz (5).jpg" alt="">
+        <img src="assets/images/bigcinemaz/bigcinemaz (6).jpg" alt="">
+        <img src="assets/images/bigcinemaz/bigcinemaz (7).jpg" alt="">
+        <img src="assets/images/bigcinemaz/bigcinemaz (8).jpg" alt="">
+        <img src="assets/images/bigcinemaz/bigcinemaz (9).jpg" alt="">
+        <img src="assets/images/bigcinemaz/bigcinemaz (10).jpg" alt="">
+        <img src="assets/images/bigcinemaz/bigcinemaz (11).jpg" alt="">
+        <img src="assets/images/bigcinemaz/bigcinemaz (12).jpg" alt="">
+        <img src="assets/images/bigcinemaz/bigcinemaz (13).jpg" alt="">
+        <img src="assets/images/bigcinemaz/bigcinemaz (14).jpg" alt="">
+        <img src="assets/images/bigcinemaz/bigcinemaz (15).jpg" alt="">
+        <img src="assets/images/bigcinemaz/bigcinemaz (16).jpg" alt="">
+        <img src="assets/images/bigcinemaz/bigcinemaz (17).jpg" alt="">
       
         
 
@@ -462,33 +484,33 @@ with a strong focus on scalability and long-term sustainability.
 
     <div class="division-media">
       <div class="media-track">
-        <img src="assets/images/events/events (1).jpg">
-        <img src="assets/images/events/events (2).jpg">
-        <img src="assets/images/events/events (3).jpg">
-        <img src="assets/images/events/events (4).jpg">
-        <img src="assets/images/events/events (5).jpg">
-        <img src="assets/images/events/events (6).jpg">
-        <img src="assets/images/events/events (7).jpg">
-        <img src="assets/images/events/events (8).jpg">
-        <img src="assets/images/events/events (9).jpg">
-        <img src="assets/images/events/events (10).jpg">
-        <img src="assets/images/events/events (11).jpg">
-        <img src="assets/images/events/events (12).jpg">
-        <img src="assets/images/events/events (13).jpg">
-        <img src="assets/images/events/events (14).jpg">
-        <img src="assets/images/events/events (15).jpg">
-        <img src="assets/images/events/events (16).jpg">
-        <img src="assets/images/events/events (17).jpg">
+        <img src="assets/images/events/events (1).jpg" alt="">
+        <img src="assets/images/events/events (2).jpg" alt="">
+        <img src="assets/images/events/events (3).jpg" alt="">
+        <img src="assets/images/events/events (4).jpg" alt="">
+        <img src="assets/images/events/events (5).jpg" alt="">
+        <img src="assets/images/events/events (6).JPG" alt="">
+        <img src="assets/images/events/events (7).jpg" alt="">
+        <img src="assets/images/events/events (8).jpg" alt="">
+        <img src="assets/images/events/events (9).jpg" alt="">
+        <img src="assets/images/events/events (10).jpg" alt="">
+        <img src="assets/images/events/events (11).jpg" alt="">
+        <img src="assets/images/events/events (12).jpg" alt="">
+        <img src="assets/images/events/events (13).jpg" alt="">
+        <img src="assets/images/events/events (14).jpg" alt="">
+        <img src="assets/images/events/events (15).jpg" alt="">
+        <img src="assets/images/events/events (16).jpg" alt="">
+        <img src="assets/images/events/events (17).jpg" alt="">
         <!--
-        <img src="assets/images/events/events (18).jpg">
-        <img src="assets/images/events/events (19).jpg">
-        <img src="assets/images/events/events (20).jpg">
-        <img src="assets/images/events/events (21).jpg">
-        <img src="assets/images/events/events (22).jpg">
-        <img src="assets/images/events/events (23).jpg">
-        <img src="assets/images/events/events (24).jpg">
-        <img src="assets/images/events/events (25).jpg">
-        <img src="assets/images/events/events (26).jpg">-->
+        <img src="assets/images/events/events (18).jpg" alt="">
+        <img src="assets/images/events/events (19).jpg" alt="">
+        <img src="assets/images/events/events (20).jpg" alt="">
+        <img src="assets/images/events/events (21).jpg" alt="">
+        <img src="assets/images/events/events (22).jpg" alt="">
+        <img src="assets/images/events/events (23).jpg" alt="">
+        <img src="assets/images/events/events (24).jpg" alt="">
+        <img src="assets/images/events/events (25).jpg" alt="">
+        <img src="assets/images/events/events (26).jpg" alt="">-->
       </div>
     </div>
   </section>
@@ -508,44 +530,44 @@ with a strong focus on scalability and long-term sustainability.
 
     <div class="division-media">
       <div class="media-track">
-        <img src="assets/images/dance/dance (1).jpg">
-        <img src="assets/images/dance/dance (2).jpg">
-        <img src="assets/images/dance/dance (3).jpg">
-        <img src="assets/images/dance/dance (4).jpg">
-        <img src="assets/images/dance/dance (5).jpg">
-        <img src="assets/images/dance/dance (6).jpg">
-        <img src="assets/images/dance/dance (7).jpg">
-        <img src="assets/images/dance/dance (8).jpg">
-        <img src="assets/images/dance/dance (9).jpg">
-        <img src="assets/images/dance/dance (10).jpg">
-        <img src="assets/images/dance/dance (11).jpg">
-        <img src="assets/images/dance/dance (12).jpg">
-        <img src="assets/images/dance/dance (13).jpg">
-        <img src="assets/images/dance/dance (14).jpg">
-        <img src="assets/images/dance/dance (15).jpg">
-        <img src="assets/images/dance/dance (16).jpg">
-        <img src="assets/images/dance/dance (17).jpg">
+        <img src="assets/images/dance/dance (1).jpg" alt="">
+        <img src="assets/images/dance/dance (2).jpg" alt="">
+        <img src="assets/images/dance/dance (3).jpg" alt="">
+        <img src="assets/images/dance/dance (4).jpg" alt="">
+        <img src="assets/images/dance/dance (5).jpg" alt="">
+        <img src="assets/images/dance/dance (6).JPG" alt="">
+        <img src="assets/images/dance/dance (7).jpg" alt="">
+        <img src="assets/images/dance/dance (8).JPG" alt="">
+        <img src="assets/images/dance/dance (9).JPG" alt="">
+        <img src="assets/images/dance/dance (10).JPG" alt="">
+        <img src="assets/images/dance/dance (11).jpg" alt="">
+        <img src="assets/images/dance/dance (12).jpg" alt="">
+        <img src="assets/images/dance/dance (13).jpg" alt="">
+        <img src="assets/images/dance/dance (14).jpg" alt="">
+        <img src="assets/images/dance/dance (15).jpg" alt="">
+        <img src="assets/images/dance/dance (16).JPG" alt="">
+        <img src="assets/images/dance/dance (17).jpg" alt="">
         <!--
-        <img src="assets/images/dance/dance (18).jpg">
-        <img src="assets/images/dance/dance (19).jpg">
-        <img src="assets/images/dance/dance (20).jpg">
-        <img src="assets/images/dance/dance (21).jpg">
-        <img src="assets/images/dance/dance (22).jpg">
-        <img src="assets/images/dance/dance (23).jpg">
-        <img src="assets/images/dance/dance (24).jpg">
-        <img src="assets/images/dance/dance (25).jpg">
-        <img src="assets/images/dance/dance (26).jpg">
-        <img src="assets/images/dance/dance (27).jpg">
-        <img src="assets/images/dance/dance (28).jpg">
-        <img src="assets/images/dance/dance (29).jpg">
-        <img src="assets/images/dance/dance (30).jpg">
-        <img src="assets/images/dance/dance (31).jpg">
-        <img src="assets/images/dance/dance (32).jpg">
-        <img src="assets/images/dance/dance (33).jpg">
-        <img src="assets/images/dance/dance (34).jpg">
-        <img src="assets/images/dance/dance (35).jpg">
-        <img src="assets/images/dance/dance (36).jpg">
-        <img src="assets/images/dance/dance (37).jpg">-->
+        <img src="assets/images/dance/dance (18).jpg" alt="">
+        <img src="assets/images/dance/dance (19).jpg" alt="">
+        <img src="assets/images/dance/dance (20).jpg" alt="">
+        <img src="assets/images/dance/dance (21).jpg" alt="">
+        <img src="assets/images/dance/dance (22).jpg" alt="">
+        <img src="assets/images/dance/dance (23).jpg" alt="">
+        <img src="assets/images/dance/dance (24).jpg" alt="">
+        <img src="assets/images/dance/dance (25).jpg" alt="">
+        <img src="assets/images/dance/dance (26).jpg" alt="">
+        <img src="assets/images/dance/dance (27).jpg" alt="">
+        <img src="assets/images/dance/dance (28).jpg" alt="">
+        <img src="assets/images/dance/dance (29).jpg" alt="">
+        <img src="assets/images/dance/dance (30).jpg" alt="">
+        <img src="assets/images/dance/dance (31).jpg" alt="">
+        <img src="assets/images/dance/dance (32).jpg" alt="">
+        <img src="assets/images/dance/dance (33).jpg" alt="">
+        <img src="assets/images/dance/dance (34).jpg" alt="">
+        <img src="assets/images/dance/dance (35).jpg" alt="">
+        <img src="assets/images/dance/dance (36).jpg" alt="">
+        <img src="assets/images/dance/dance (37).jpg" alt="">-->
 
         
       </div>
@@ -555,11 +577,78 @@ with a strong focus on scalability and long-term sustainability.
 
 
 
+  <!-- WHY CHOOSE US -->
+  <section class="why-us" id="results">
+    <h2>Why Choose Us</h2>
+    <div class="why-grid">
+      <div>End-to-end creative solutions</div>
+      <div>Multi-industry experience</div>
+      <div>Dedicated professional team</div>
+      <div>Reliable delivery & transparency</div>
+      <div>Creative + technical balance</div>
+      <div>Client-first approach</div>
+    </div>
+  </section>
+
+
+  <!-- IMPACT STRIP -->
+  <section class="impact-strip">
+
+    <div class="impact-grid">
+
+<div class="impact-item">
+  <h3 class="impact-number" data-target="120">0+</h3>
+  <p class="impact-label">Creative Projects Delivered</p>
+</div>
+
+<div class="impact-item">
+  <h3 class="impact-number" data-target="80">0+</h3>
+  <p class="impact-label">Live Events Executed</p>
+</div>
+
+<div class="impact-item">
+  <h3 class="impact-number" data-target="4000">0+</h3>
+  <p class="impact-label">Students Trained Across Schools, Colleges & Personal Choreography</p>
+</div>
+
+<div class="impact-item">
+  <h3 class="impact-number" data-target="10">0+</h3>
+  <p class="impact-label">Years of Creative Excellence</p>
+</div>
+    </div>
+
+  </section>
+
+
+  <!-- CLIENTS -->
+  <section class="clients">
+    <h2>Our Clients</h2>
+
+    <div class="clients-wrapper">
+      <div class="clients-scroll" id="logoTrack">
+      <div class="client-logo"><img src="assets/images/clientslogo/cnt.png" alt="CNT"></div>
+      <div class="client-logo"><img src="assets/images/clientslogo/msfilm.png" alt="MS Film"></div>
+      <div class="client-logo"><img src="assets/images/clientslogo/KET.png" alt="KET"></div>
+      <div class="client-logo"><img src="assets/images/clientslogo/KRS.png" alt="KRS"></div>
+      <div class="client-logo"><img src="assets/images/clientslogo/RJfilms.jpg" alt="Rjfilms"></div>
+      <div class="client-logo"><img src="assets/images/clientslogo/zeromusical.jpg" alt="zeromusical"></div>
+      <div class="client-logo"><img src="assets/images/clientslogo/Rainbowroots.png" alt="Rainbow Roots"></div>
+      <div class="client-logo"><img src="assets/images/clientslogo/sdt.png" alt="SDT"></div>
+      <div class="client-logo"><img src="assets/images/clientslogo/SKVM.png" alt="SKVM"></div>
+      <div class="client-logo"><img src="assets/images/clientslogo/sudirgha.png" alt="Sudirgha"></div>
+      <div class="client-logo"><img src="assets/images/clientslogo/venkatachalapatifilms.png" alt="Venkatachalapati Films"></div>
+
+        <!-- SET 2 (Exact Same 10 logos again) -->
+
+      </div>
+    </div>
+  </section>
+
 <!-- =========================================
      VISION • MISSION • FUTURE
 ========================================= -->
 
-<section class="vision-mission">
+<section class="vision-mission" id="vision">
 
   <!-- VISION -->
   <div class="vision-item">
@@ -704,7 +793,7 @@ with a strong focus on scalability and long-term sustainability.
 
 </section>
 <!-- LEADERSHIP -->
-<section class="leadership-section">
+<section class="leadership-section" id="people">
 
   <div class="gold-line top-line"></div>
 
@@ -800,17 +889,17 @@ with a strong focus on scalability and long-term sustainability.
             <p class="team-role">Social Media Manager</p>
           </div>
         </article>
-        <article class="team-card" aria-labelledby="team-xyz-name">
-          <div class="team-photo">
+        <article class="team-card" aria-labelledby="team-xyz-name" data-photo-name="xyz">
+          <div class="team-photo team-photo--pending" role="img" aria-label="Photo placeholder for XYZ; photo coming soon">
             <span class="team-initials" aria-hidden="true">XYZ</span>
-            <img src="assets/images/meetourteam/xyz.jpg" alt="XYZ" width="640" height="800" loading="lazy" decoding="async">
+            <span class="team-photo-note" aria-hidden="true">Photo coming soon</span>
           </div>
           <div class="team-card-content">
             <h3 id="team-xyz-name">XYZ</h3>
             <p class="team-role">Social Media Manager</p>
           </div>
         </article>
-                <article class="team-card" aria-labelledby="team-deepa-name">
+        <article class="team-card" aria-labelledby="team-deepa-name">
           <div class="team-photo">
             <span class="team-initials" aria-hidden="true">DK</span>
             <img src="assets/images/meetourteam/deepa.jpeg" alt="Deepa Krishnan" width="640" height="800" loading="lazy" decoding="async">
@@ -852,73 +941,24 @@ with a strong focus on scalability and long-term sustainability.
           </div>
         </article>
       </div>
-    </div>
-  </section>
-
-  <!-- WHY CHOOSE US -->
-  <section class="why-us">
-    <h2>Why Choose Us</h2>
-    <div class="why-grid">
-      <div>End-to-end creative solutions</div>
-      <div>Multi-industry experience</div>
-      <div>Dedicated professional team</div>
-      <div>Reliable delivery & transparency</div>
-      <div>Creative + technical balance</div>
-      <div>Client-first approach</div>
-    </div>
-  </section>
-
-
-  <!-- IMPACT STRIP -->
-  <section class="impact-strip">
-
-    <div class="impact-grid">
-
-<div class="impact-item">
-  <h3 class="impact-number" data-target="120">0+</h3>
-  <p class="impact-label">Creative Projects Delivered</p>
-</div>
-
-<div class="impact-item">
-  <h3 class="impact-number" data-target="80">0+</h3>
-  <p class="impact-label">Live Events Executed</p>
-</div>
-
-<div class="impact-item">
-  <h3 class="impact-number" data-target="4000">0+</h3>
-  <p class="impact-label">Students Trained Across Schools, Colleges & Personal Choreography</p>
-</div>
-
-<div class="impact-item">
-  <h3 class="impact-number" data-target="10">0+</h3>
-  <p class="impact-label">Years of Creative Excellence</p>
-</div>
-    </div>
-
-  </section>
-
-
-  <!-- CLIENTS -->
-  <section class="clients">
-    <h2>Our Clients</h2>
-
-    <div class="clients-wrapper">
-      <div class="clients-scroll" id="logoTrack">
-      <div class="client-logo"><img src="assets/images/clientslogo/cnt.png" alt="CNT"></div>
-      <div class="client-logo"><img src="assets/images/clientslogo/msfilm.png" alt="MS Film"></div>
-      <div class="client-logo"><img src="assets/images/clientslogo/KET.png" alt="KET"></div>
-      <div class="client-logo"><img src="assets/images/clientslogo/KRS.png" alt="KRS"></div>
-      <div class="client-logo"><img src="assets/images/clientslogo/RJfilms.jpg" alt="Rjfilms"></div>
-      <div class="client-logo"><img src="assets/images/clientslogo/zeromusical.jpg" alt="zeromusical"></div>
-      <div class="client-logo"><img src="assets/images/clientslogo/Rainbowroots.png" alt="Rainbow Roots"></div>
-      <div class="client-logo"><img src="assets/images/clientslogo/sdt.png" alt="SDT"></div>
-      <div class="client-logo"><img src="assets/images/clientslogo/SKVM.png" alt="SKVM"></div>
-      <div class="client-logo"><img src="assets/images/clientslogo/sudirgha.png" alt="Sudirgha"></div>
-      <div class="client-logo"><img src="assets/images/clientslogo/venkatachalapatifilms.png" alt="Venkatachalapati Films"></div>
-
-        <!-- SET 2 (Exact Same 10 logos again) -->
-
-      </div>
+      <aside class="team-join" id="teamJoin" aria-labelledby="teamJoinTitle">
+        <div class="team-join__copy">
+          <p class="team-join__eyebrow">There is room for one more story</p>
+          <h3 id="teamJoinTitle">Want to join <em>Bee Infinity Groups?</em></h3>
+          <p>Love bringing ideas to life? Join the people behind the films, events, dance, and everything in between at Bee Infinity Groups.</p>
+        </div>
+        <div class="team-join__action">
+          <a class="team-join__cta" id="teamJoinCta" href="careers.html" aria-controls="teamJoinPrompt" aria-expanded="false">Explore careers <span aria-hidden="true">↗</span></a>
+          <div class="team-join__prompt" id="teamJoinPrompt" hidden>
+            <p class="team-join__speaker">A quick word from Mr. Bee</p>
+            <p class="team-join__line" id="teamJoinLine" role="status" aria-live="polite" aria-atomic="true"></p>
+            <div class="team-join__choices" id="teamJoinChoices">
+              <button type="button" id="teamJoinYes">Yes, show me</button>
+              <button type="button" id="teamJoinNo">Not now</button>
+            </div>
+          </div>
+        </div>
+      </aside>
     </div>
   </section>
 
@@ -954,9 +994,9 @@ with a strong focus on scalability and long-term sustainability.
     <!-- LEFT SIDE (BIG BRAND) -->
     <div class="footer-left">
 
-      <h1 class="footer-big-title">
+      <h2 class="footer-big-title">
         Bee <span>Infinity</span> Groups
-      </h1>
+      </h2>
 
       <p class="footer-tagline">
         CINEMATIC EXPERIENCES • EVENTS • DANCE
@@ -992,7 +1032,7 @@ with a strong focus on scalability and long-term sustainability.
 </footer>
 
 
-  <script src="js/about.js"></script>
+  <script src="js/about.js?v=site-polish-v1"></script>
   <script src="js/global.js"></script>
 <button id="scrollTopBtn">
   <i class="fas fa-arrow-up"></i>

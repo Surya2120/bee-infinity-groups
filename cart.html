@@ -4,12 +4,14 @@
   <meta charset="UTF-8">
   <title>Your Cart - Bee Infinity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Review your Bee Infinity Groups merchandise cart.">
+  <link rel="icon" type="image/png" href="assets/images/logo/favicon.png">
   <link rel="stylesheet" href="css/cart.css">
   <link rel="stylesheet" href="css/site-header.css">
   <link rel="stylesheet" href="css/site-header-pages.css">
   <script src="js/site-header.js" defer></script>
   <link rel="stylesheet" href="css/mrbee.css?v=guided-v2">
-  <script src="js/mrbee.js?v=guided-v2" defer></script>
+  <script src="js/mrbee.js?v=briefcase-v1" defer></script>
 </head>
 
 <body class="has-site-header site-page--legacy-commerce">
@@ -47,7 +49,7 @@
       </nav>
     </div>
   </header>
-  <div class="site-shop-context"><a href="merch.html">← Back to Shop</a><h2>Your Cart 🛒</h2></div>
+  <div class="site-shop-context"><a href="merch/">← Back to Shop</a><h2>Your Cart 🛒</h2></div>
 
 <section class="cart-page">
 
@@ -112,7 +114,7 @@ function renderCart(){
     div.className = "cart-card";
 
     div.innerHTML = `
-      <img src="${productImages[item.name]}" class="cart-img">
+      <img src="${productImages[item.name]}" class="cart-img" alt="Product image">
 
       <div class="cart-info">
         <h4>${item.name}</h4>
@@ -208,7 +210,7 @@ function payNow(){
     handler: function(){
       alert("Payment Successful 🎉");
       localStorage.removeItem("cart");
-      window.location.href = "merch.html";
+      window.location.href = "merch/";
     }
   };
 

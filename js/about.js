@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
     [ // ✅ FIXED (comma added)
       "assets/images/dance/dance (9).JPG",
       "assets/images/dance/dance (13).jpg",
-      "assets/images/dance/dance (6).jpg"
+      "assets/images/dance/dance (6).JPG"
     ],
     [
       "assets/images/dance/dance (1).jpg",
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ],
     [
       "assets/images/events/events (14).jpg",
-      "assets/images/dance/dance (10).jpg",
+      "assets/images/dance/dance (10).JPG",
       "assets/images/dance/dance (11).jpg"
     ]
   ];
@@ -723,7 +723,22 @@ document.addEventListener("DOMContentLoaded", () => {
 window.addEventListener("load", () => {
 
   const brand = document.getElementById("brandStart");
-  if (!brand) return;
+  if (!brand || location.hash || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  let cancelled = false;
+  let introTimer;
+  const guards = new AbortController();
+  function cancelIntro() {
+    cancelled = true;
+    clearTimeout(introTimer);
+    guards.abort();
+  }
+  window.addEventListener("about:section-jump", cancelIntro, { signal: guards.signal });
+  window.addEventListener("wheel", cancelIntro, { passive: true, signal: guards.signal });
+  window.addEventListener("touchstart", cancelIntro, { passive: true, signal: guards.signal });
+  window.addEventListener("keydown", event => {
+    if (["ArrowDown", "ArrowUp", "PageDown", "PageUp", "Home", "End", " "].includes(event.key)) cancelIntro();
+  }, { signal: guards.signal });
 
   // STEP 1: center brand section (no calculation issues)
   brand.scrollIntoView({
@@ -732,13 +747,16 @@ window.addEventListener("load", () => {
   });
 
   // STEP 2: after 3 sec → smooth scroll to top
-  setTimeout(() => {
+  introTimer = setTimeout(() => {
+
+    if (cancelled) return;
 
     const start = window.scrollY;
     const duration = 4000;
     let startTime = null;
 
     function scrollUp(currentTime) {
+      if (cancelled) return;
       if (!startTime) startTime = currentTime;
 
       const time = currentTime - startTime;
@@ -751,7 +769,7 @@ window.addEventListener("load", () => {
 
       if (time < duration) {
         requestAnimationFrame(scrollUp);
-      }
+      } else guards.abort();
     }
 
     requestAnimationFrame(scrollUp);

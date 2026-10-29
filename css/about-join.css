@@ -1,0 +1,157 @@
+.about-page .team-join {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(270px, 350px);
+  align-items: center;
+  gap: clamp(30px, 5vw, 78px);
+  margin-top: clamp(48px, 6vw, 80px);
+  padding: clamp(28px, 4vw, 54px);
+  overflow: visible;
+  border: 1px solid #e9d692;
+  border-radius: 12px;
+  background: linear-gradient(115deg, #fffdf5 0%, #f8f2df 100%);
+  box-shadow: 0 24px 55px #06172c3b;
+}
+.about-page .team-join::before {
+  position: absolute;
+  top: 0;
+  left: clamp(28px, 4vw, 54px);
+  width: 78px;
+  height: 4px;
+  background: #d9aa37;
+  content: "";
+}
+.about-page .team-join__eyebrow,
+.about-page .team-join__speaker {
+  margin: 0 0 13px;
+  color: #826b2c;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+.about-page .team-join h3 {
+  max-width: 680px;
+  margin: 0;
+  color: #102c4a;
+  font-size: clamp(30px, 3.2vw, 48px);
+  font-weight: 650;
+  letter-spacing: -1.5px;
+  line-height: 1.14;
+}
+.about-page .team-join h3 em {
+  color: #a17a20;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+}
+.about-page .team-join__copy > p:last-child {
+  max-width: 590px;
+  margin: 18px 0 0;
+  color: #536679;
+  font-size: 15px;
+  line-height: 1.8;
+}
+.about-page .team-join__action { min-width: 0; }
+.about-page .team-join__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  width: 100%;
+  min-height: 58px;
+  padding: 15px 20px;
+  border: 1px solid #102c4a;
+  border-radius: 5px;
+  color: #fff;
+  background: #102c4a;
+  box-shadow: 0 9px 22px #102c4a24;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+  text-decoration: none;
+  transition: background .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.about-page .team-join__cta:hover,
+.about-page .team-join__cta:focus-visible {
+  color: #102c4a;
+  background: #f2cf61;
+  box-shadow: 0 12px 26px #102c4a2b;
+  transform: translateY(-2px);
+}
+.about-page .team-join__cta span { font-size: 22px; line-height: 1; }
+.about-page .team-join__cta:focus-visible,
+.about-page .team-join__choices button:focus-visible { outline: 3px solid #c38711; outline-offset: 3px; }
+.about-page .team-join__prompt[hidden],
+.about-page .team-join__choices[hidden] { display: none; }
+.about-page .team-join__prompt {
+  margin-top: 15px;
+  padding: 19px;
+  border: 1px solid #e8d6a9;
+  border-radius: 7px;
+  color: #102c4a;
+  background: #fffdf8;
+  box-shadow: 0 9px 24px #102c4a12;
+  animation: team-join-appear .25s ease both;
+}
+.about-page .team-join__speaker { margin-bottom: 7px; font-size: 9px; }
+.about-page .team-join__line { margin: 0; color: #27445a; font-size: 13px; line-height: 1.65; }
+.about-page .team-join__choices { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
+.about-page .team-join__choices button {
+  flex: 1 1 120px;
+  min-height: 44px;
+  margin: 0;
+  padding: 9px 12px;
+  border: 1px solid #b9b7a9;
+  border-radius: 5px;
+  color: #102c4a;
+  background: #fff;
+  box-shadow: none;
+  font: 650 12px/1.4 "Segoe UI", Arial, sans-serif;
+  text-transform: none;
+  transform: none;
+  cursor: pointer;
+}
+.about-page .team-join__choices button:first-child { border-color: #102c4a; color: #fff; background: #102c4a; }
+.about-page .team-join__choices button:hover { border-color: #b38926; background: #f8e8b7; color: #102c4a; }
+.about-page .mrbee-guide[data-recruiting="true"] .mrbee-launcher,
+.about-page .mrbee-guide[data-returning="true"] .mrbee-launcher {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+  pointer-events: none;
+}
+.about-page .mrbee-guide[data-recruiting="true"] .mrbee-launcher-label,
+.about-page .mrbee-guide[data-returning="true"] .mrbee-launcher-label { opacity: 0; }
+.about-page .mrbee-guide .mrbee-portrait { transition: transform .78s cubic-bezier(.22,.8,.22,1); }
+.about-page .mrbee-guide[data-recruiting="true"] .mrbee-portrait {
+  transform: translate3d(var(--mrbee-recruit-x, 0px), var(--mrbee-recruit-y, 0px), 0) scale(1.17);
+}
+.about-page .mrbee-guide[data-recruiting="true"][data-mood="excited"] .mrbee-portrait > img,
+.about-page .mrbee-guide[data-recruiting="true"][data-mood="excited"] .mrbee-portrait > canvas {
+  animation: team-bee-buzz .8s ease-in-out infinite;
+}
+@keyframes team-join-appear {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes team-bee-buzz {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-4px) rotate(2deg); }
+}
+@media (max-width: 760px) {
+  .about-page .team-join { grid-template-columns: minmax(0, 1fr); gap: 25px; }
+}
+@media (max-width: 600px) {
+  .about-page .team-join { margin-top: 44px; padding: 30px 23px; }
+  .about-page .team-join::before { left: 23px; }
+  .about-page .team-join h3 { font-size: clamp(30px, 8vw, 39px); }
+  .about-page .team-join__copy > p:last-child { font-size: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .about-page .team-join__cta,
+  .about-page .mrbee-guide .mrbee-portrait { transition: none; }
+  .about-page .team-join__prompt { animation: none; }
+  .about-page .mrbee-guide[data-recruiting="true"] .mrbee-portrait > img,
+  .about-page .mrbee-guide[data-recruiting="true"] .mrbee-portrait > canvas { animation: none; }
+}

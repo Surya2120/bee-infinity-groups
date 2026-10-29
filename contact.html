@@ -4,20 +4,19 @@
   <meta charset="UTF-8">
   <title>Contact | Bee Infinity Groups</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/global.css">
-  <link rel="stylesheet" href="css/contact.css">
-  <!-- EmailJS -->
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <meta name="description" content="Get in touch with Bee Infinity Groups for film, events, dance, school programmes, and creative collaborations.">
+  <link rel="icon" type="image/png" href="assets/images/logo/favicon.png">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/contact.css?v=redesign-1">
   <link rel="stylesheet" href="css/site-header.css">
   <link rel="stylesheet" href="css/site-header-pages.css">
   <script src="js/site-header.js" defer></script>
   <link rel="stylesheet" href="css/mrbee.css?v=guided-v2">
-  <script src="js/mrbee.js?v=guided-v2" defer></script>
+  <script src="js/mrbee.js?v=briefcase-v1" defer></script>
 </head>
-<body class="has-site-header">
+<body class="contact-page has-site-header">
 
-    <!-- HEADER -->
-       <canvas id="particles"></canvas>
+  <!-- HEADER -->
   <header class="site-header" id="siteHeader">
     <div class="site-header__inner">
       <a class="site-brand" href="index.html" aria-label="Bee Infinity Groups home">
@@ -46,97 +45,85 @@
     </div>
   </header>
 
-<!-- HERO -->
-<section class="contact-hero" id="contactHero">
-  <div class="hero-overlay"></div>
-
-  <div class="hero-content">
-    <h1 id="typing-text">Let’s Build Something Legendary</h1>
-    <p>Films • Events • Dance • Collaborations</p>
-  </div>
-</section>
-
-<!-- CONTACT SECTION -->
-<section class="contact-section">
-
-
-  <div class="contact-form-wrapper">
-    <form id="contact-form">
-
-      <div class="input-group">
-        <input type="text" name="name" required>
-        <label>Name</label>
+<main>
+  <section class="contact-hero" aria-labelledby="contactHeroTitle">
+    <div class="contact-hero__copy">
+      <p class="contact-eyebrow"><span aria-hidden="true"></span> Bee Infinity Groups / Contact</p>
+      <h1 id="contactHeroTitle">A good idea starts with <em>hello.</em></h1>
+      <p class="contact-hero__intro">Planning a film, an event, a dance project, or a school programme? Tell us what you have in mind. We’ll connect you with the right team.</p>
+      <div class="contact-hero__actions">
+        <a class="contact-primary-link" href="#contact-form">Send an enquiry <span aria-hidden="true">↗</span></a>
+        <a class="contact-secondary-link" href="tel:+919739710942">Call us <span aria-hidden="true">↗</span></a>
       </div>
-
-      <div class="input-group">
-        <input type="email" name="email" required>
-        <label>Email</label>
+      <p class="contact-hero__services">Film <span aria-hidden="true">•</span> Events <span aria-hidden="true">•</span> Dance <span aria-hidden="true">•</span> Schools</p>
+    </div>
+    <div class="contact-hero__visual">
+      <div class="contact-hero__halo" aria-hidden="true"></div>
+      <div class="contact-hero__bee">
+        <img src="assets/images/logo/Bee.png" alt="Mr. Bee, the Bee Infinity Groups mascot" width="156" height="144" decoding="async">
+        <canvas id="contactBeeCanvas" aria-hidden="true"></canvas>
       </div>
-
-      <div class="input-group">
-        <input type="tel" name="phone" required>
-        <label>Phone</label>
+      <div class="contact-hero__bee-note">
+        <p>Mr. Bee says</p>
+        <p id="contactBeeLine">“Tell me your idea. I’ll get the right humans involved. The founders still won’t let me run the budget.”</p>
       </div>
+    </div>
+  </section>
 
-      <div class="input-group">
-        <textarea name="message" rows="4" required></textarea>
-        <label>Message</label>
-      </div>
-
-      <button type="submit" class="submit-btn">
-        <span class="btn-text">Send Message</span>
-        <span class="loader"></span>
-      </button>
-
-    </form>
-  </div>
-
-
-  <div class="contact-info">
-    <h2>Connect With Us</h2>
-
-    <div class="info-item">
-      <h4>Phone</h4>
-      <p>+91 9739710942</p>
+  <section class="contact-section" aria-label="Contact options">
+    <div class="contact-form-wrapper">
+      <p class="contact-section__eyebrow">01 / Your message</p>
+      <h2>Tell us what you’re imagining.</h2>
+      <p class="contact-section__intro">A few details are enough to start the conversation.</p>
+      <form id="contact-form">
+        <div class="contact-fields">
+          <div class="input-group">
+            <label for="contactName">Your name</label>
+            <input id="contactName" type="text" name="name" autocomplete="name" placeholder="Your full name" required>
+          </div>
+          <div class="input-group">
+            <label for="contactEmail">Email address</label>
+            <input id="contactEmail" type="email" name="email" autocomplete="email" placeholder="you@example.com" required>
+          </div>
+          <div class="input-group input-group--wide">
+            <label for="contactPhone">Phone number</label>
+            <input id="contactPhone" type="tel" name="phone" autocomplete="tel" placeholder="Your contact number" required>
+          </div>
+          <div class="input-group input-group--wide">
+            <label for="contactMessage">Tell us about your idea</label>
+            <textarea id="contactMessage" name="message" rows="5" placeholder="What are you planning, and how can we help?" required></textarea>
+          </div>
+        </div>
+        <button type="submit" class="submit-btn"><span class="btn-text">Send message</span><span class="btn-arrow" aria-hidden="true">↗</span></button>
+        <p class="contact-form-status" id="contactStatus" role="status" aria-live="polite" hidden></p>
+      </form>
     </div>
 
-    <div class="info-item">
-      <h4>Email</h4>
-      <p>beeinfinitygroups2020@gmail.com</p>
-    </div>
+    <aside class="contact-info" aria-labelledby="contactInfoTitle">
+      <p class="contact-section__eyebrow">02 / Reach us directly</p>
+      <h2 id="contactInfoTitle">Choose your way to connect.</h2>
+      <p class="contact-section__intro">Prefer a call or a quick note? Our team is here.</p>
+      <div class="contact-info__list">
+        <a class="info-item" href="tel:+919739710942"><span class="info-item__label">Call</span><span class="info-item__value">+91 9739710942</span><span class="info-item__arrow" aria-hidden="true">↗</span></a>
+        <a class="info-item" href="mailto:beeinfinitygroups2020@gmail.com"><span class="info-item__label">Email</span><span class="info-item__value">beeinfinitygroups2020@gmail.com</span><span class="info-item__arrow" aria-hidden="true">↗</span></a>
+        <a class="info-item" href="https://wa.me/919739710942?text=Hi%20Bee%20Infinity%20Groups" target="_blank" rel="noopener noreferrer"><span class="info-item__label">WhatsApp</span><span class="info-item__value">Start a conversation</span><span class="info-item__arrow" aria-hidden="true">↗</span></a>
+      </div>
+      <div class="contact-info__location"><span class="contact-info__location-mark" aria-hidden="true">⌁</span><div><p>Based in</p><strong>Bengaluru, India</strong></div></div>
+    </aside>
+  </section>
 
-    <div class="info-item">
-      <h4>Location</h4>
-      <p>Bangalore, India</p>
-    </div>
-  </div>
+  <section class="map-section" aria-labelledby="mapTitle">
+    <div class="map-section__heading"><div><p class="contact-section__eyebrow">03 / Our location</p><h2 id="mapTitle">Find us in Bengaluru.</h2></div><p>Planning an in-person meeting? Find our Bengaluru location below.</p></div>
+    <div class="map-section__frame"><iframe
+      title="Map showing Bee Infinity Groups in Bengaluru"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d243.05879485125078!2d77.5392574918576!3d12.911531757475379!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae3fc9d78adce1%3A0x197f53f55e804a2c!2s3%2C%202nd%20Cross%20Rd%2C%20Anjanaswami%20Layout%2C%20Arehalli%2C%20Banashankari%2C%20Bengaluru%2C%20Karnataka%20560061!5e0!3m2!1sen!2sin!4v1775374834465!5m2!1sen!2sin"
+      loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+  </section>
+</main>
 
+<footer class="contact-footer"><span>Bee Infinity Groups</span><p>Good ideas grow when we build them together.</p><a href="index.html">Back to home ↗</a></footer>
 
-</section>
-
-<!-- MAP -->
-<section class="map-section">
-  <iframe 
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d243.05879485125078!2d77.5392574918576!3d12.911531757475379!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae3fc9d78adce1%3A0x197f53f55e804a2c!2s3%2C%202nd%20Cross%20Rd%2C%20Anjanaswami%20Layout%2C%20Arehalli%2C%20Banashankari%2C%20Bengaluru%2C%20Karnataka%20560061!5e0!3m2!1sen!2sin!4v1775374834465!5m2!1sen!2sin"
-    style="border:0;"
-    allowfullscreen=""
-    loading="lazy"
-    referrerpolicy="no-referrer-when-downgrade">
-  </iframe>
-</section>
-
-<!-- WHATSAPP BUTTON -->
-<a href="https://wa.me/919739730942?text=Hi%20Bee%20Infinity%20Groups"
-   class="whatsapp-btn"
-   target="_blank"
-   rel="noopener noreferrer">
-   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-   <span class="notif">1</span>
-</a>
-
-
-
-<script src="js/contact.js"></script>
+<script src="js/contact.js?v=redesign-1"></script>
 <script src="js/global.js"></script>
 
 </body>

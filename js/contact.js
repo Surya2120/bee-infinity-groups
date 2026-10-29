@@ -1,219 +1,110 @@
-document.addEventListener("DOMContentLoaded", function(){
+/* Contact form and the lightweight Mr. Bee appearance in the page hero. */
+(() => {
+  "use strict";
+  const form = document.getElementById("contact-form");
+  const status = document.getElementById("contactStatus");
+  const submit = form?.querySelector('.submit-btn');
+  const submitText = submit?.querySelector('.btn-text');
+  const beeLine = document.getElementById("contactBeeLine");
+  const beeCanvas = document.getElementById("contactBeeCanvas");
+  const beeFigure = beeCanvas?.parentElement;
+  if (!form || !status || !submit || !submitText) return;
 
-  
-const form = document.getElementById("contact-form");
-const submitBtn = document.querySelector(".submit-btn");
-const btnText = document.querySelector(".btn-text");
-const loader = document.querySelector(".loader");
+  const endpoint = "https://script.google.com/macros/s/AKfycbzyEpagQaJLVrsJGWFGGcf1P-3CripF7nZcmoKI_YFTTvA-OlowqlXfCCMlBnWmgk5LSg/exec";
+  const originalBeeLine = beeLine?.textContent || "";
+  let sending = false;
+  let buttonTimer = 0;
+  let beeLineTimer = 0;
+  let beeScene;
+  let beePromise;
+  let beeVisible = false;
 
-form.addEventListener("submit", async function(e) {
-  e.preventDefault();
+  function setStatus(message, kind) {
+    status.textContent = message;
+    status.dataset.kind = kind;
+    status.hidden = false;
+  }
+  function setBeeMood(value, message) {
+    dispatchEvent(new CustomEvent("mrbee:welcome-mood", { detail: { mood: value } }));
+    beeScene?.setMood?.(value);
+    if (!beeLine) return;
+    clearTimeout(beeLineTimer);
+    beeLine.textContent = message;
+    beeLineTimer = setTimeout(() => { beeLine.textContent = originalBeeLine; }, 5000);
+  }
 
-  if (submitBtn.disabled) return;
+  form.addEventListener("submit", async event => {
+    event.preventDefault();
+    if (sending || !form.reportValidity()) return;
+    clearTimeout(buttonTimer);
+    sending = true;
+    submit.disabled = true;
+    submitText.textContent = "Sending...";
+    form.setAttribute("aria-busy", "true");
+    setStatus("Sending your message…", "sending");
 
-  // UI loading
-  btnText.style.display = "none";
-  loader.style.display = "inline-block";
-  submitBtn.disabled = true;
+    const fields = new FormData(form);
+    const data = {
+      name: String(fields.get("name") || "").trim(),
+      email: String(fields.get("email") || "").trim(),
+      phone: String(fields.get("phone") || "").trim(),
+      message: String(fields.get("message") || "").trim()
+    };
 
-  const data = {
-    name: form.name.value,
-    email: form.email.value,
-    phone: form.phone.value,
-    message: form.message.value
-  };
+    try {
+      const response = await fetch(endpoint, { method: "POST", body: JSON.stringify(data) });
+      if (!response.ok) throw new Error(`Request failed (${response.status})`);
+      form.reset();
+      submitText.textContent = "Message sent";
+      setStatus("Thanks! Your message has been sent to Bee Infinity Groups.", "success");
+      setBeeMood("excited", "Message delivered! I’ll let the founders take it from here. They’re better at email than I am.");
+      buttonTimer = setTimeout(() => { submitText.textContent = "Send message"; }, 5000);
+    } catch {
+      submitText.textContent = "Send message";
+      setStatus("Your message couldn’t be sent. Please try again, or call or email us directly.", "error");
+      setBeeMood("sad", "A little turbulence! Please try again, or reach the team by phone or email.");
+    } finally {
+      sending = false;
+      submit.disabled = false;
+      form.removeAttribute("aria-busy");
+    }
+  });
 
-  try {
-    const response = await fetch("https://script.google.com/macros/s/AKfycbzyEpagQaJLVrsJGWFGGcf1P-3CripF7nZcmoKI_YFTTvA-OlowqlXfCCMlBnWmgk5LSg/exec", {
-      method: "POST",
-      body: JSON.stringify(data)
+  if (beeCanvas && beeFigure) {
+    const readiness = new MutationObserver(() => {
+      if (beeCanvas.classList.contains("is-ready")) beeFigure.classList.add("is-rendered");
     });
+    readiness.observe(beeCanvas, { attributes: true, attributeFilter: ["class"] });
 
-    if (!response.ok) {
-      throw new Error(`Request failed (${response.status})`);
+    function loadBee() {
+      if (!beePromise) {
+        beePromise = import("./mrbee-welcome-scene.js?v=briefcase-v1").then(module => {
+          beeScene = module.createWelcomeBee(beeCanvas);
+          beeScene.setMood?.("neutral");
+          if (beeVisible) beeScene.start?.();
+        }).catch(() => { /* Keep the original bee image as the fallback. */ });
+      } else if (beeScene && beeVisible) beeScene.start?.();
     }
 
-    form.reset();
-
-    btnText.innerHTML = "✔ Sent";
-    btnText.style.display = "inline";
-    loader.style.display = "none";
-
-    setTimeout(() => {
-      btnText.innerHTML = "Send Message";
-      submitBtn.disabled = false;
-    }, 3000);
-  } catch (error) {
-    alert("Error sending message");
-
-    btnText.innerHTML = "Send Message";
-    btnText.style.display = "inline";
-    loader.style.display = "none";
-    submitBtn.disabled = false;
-  }
-});
-
-/* =====================================================
-   2️⃣ CINEMATIC TYPING EFFECT
-===================================================== */
-const textElement = document.getElementById("typing-text");
-const text = "Let’s Build Something Legendary";
-
-let index = 0;
-textElement.textContent = ""; // CLEAR FIRST
-
-function typeEffect() {
-  if (index < text.length) {
-    textElement.textContent += text.charAt(index);
-    index++;
-    setTimeout(typeEffect, 50);
-  }
-}
-
-typeEffect();
-
-/* ===============================
-   PREMIUM PARTICLES (Opposite Cursor)
-================================= */
-
-const canvas = document.getElementById("particles");
-const ctx = canvas.getContext("2d");
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let particlesArray = [];
-const numberOfParticles = 200;
-
-let mouse = {
-  x: null,
-  y: null
-};
-
-window.addEventListener("mousemove", function(e){
-  mouse.x = e.x;
-  mouse.y = e.y;
-});
-
-window.addEventListener("resize", function(){
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  initParticles();
-});
-
-class Particle {
-  constructor(){
-    this.x = Math.random() * canvas.width;
-    this.y = Math.random() * canvas.height;
-    this.size = Math.random() * 2 + 1;
-    this.baseX = this.x;
-    this.baseY = this.y;
-    this.speedX = Math.random() * 0.3 - 0.15;
-    this.speedY = Math.random() * 0.3 - 0.15;
-  }
-
-  update(){
-    this.x += this.speedX;
-    this.y += this.speedY;
-
-    // Opposite cursor movement
-    if(mouse.x && mouse.y){
-      let dx = this.x - mouse.x;
-      let dy = this.y - mouse.y;
-      let distance = Math.sqrt(dx * dx + dy * dy);
-
-      if(distance < 150){
-        let force = (150 - distance) / 150;
-        this.x += dx * force * 0.08;
-        this.y += dy * force * 0.08;
-      }
+    if (typeof IntersectionObserver === "function") {
+      const observer = new IntersectionObserver(entries => {
+        beeVisible = entries.some(entry => entry.isIntersecting);
+        if (beeVisible) loadBee();
+        else beeScene?.stop?.();
+      }, { rootMargin: "80px 0px", threshold: 0.05 });
+      observer.observe(beeFigure);
+      addEventListener("pagehide", event => {
+        if (!event.persisted) {
+          observer.disconnect();
+          readiness.disconnect();
+          beeScene?.dispose?.();
+        }
+      });
+    } else {
+      beeVisible = true;
+      loadBee();
+      addEventListener("pagehide", () => readiness.disconnect());
     }
-
-    // Wrap edges
-    if(this.x > canvas.width) this.x = 0;
-    if(this.x < 0) this.x = canvas.width;
-    if(this.y > canvas.height) this.y = 0;
-    if(this.y < 0) this.y = canvas.height;
   }
-
-  draw(){
-ctx.fillStyle = "rgba(242,196,0,0.4)";
-ctx.shadowColor = "#f2c400";
-ctx.shadowBlur = 10;
-
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-    ctx.fill();
-  }
-}
-
-function initParticles(){
-  particlesArray = [];
-  for(let i = 0; i < numberOfParticles; i++){
-    particlesArray.push(new Particle());
-  }
-}
-
-
-function animate(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-
-  for(let i = 0; i < particlesArray.length; i++){
-    particlesArray[i].update();
-    particlesArray[i].draw();
-  }
-
-
-  requestAnimationFrame(animate);
-}
-
-initParticles();
-animate();
-
-/* =====================================================
-   4️⃣ 3D TILT EFFECT ON FORM
-===================================================== */
-const formWrapper = document.querySelector(".contact-form-wrapper");
-
-formWrapper.addEventListener("mousemove", (e) => {
-  const rect = formWrapper.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
-
-  const centerX = rect.width / 2;
-  const centerY = rect.height / 2;
-
-  const rotateX = -(y - centerY) / 25;
-  const rotateY = (x - centerX) / 25;
-
-  formWrapper.style.transform =
-    `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-});
-
-formWrapper.addEventListener("mouseleave", () => {
-  formWrapper.style.transform =
-    "perspective(1000px) rotateX(0deg) rotateY(0deg)";
-});
-
-
-/* =====================================================
-   5️⃣ MAGNETIC BUTTON EFFECT
-===================================================== */
-submitBtn.addEventListener("mousemove", function(e){
-  const rect = submitBtn.getBoundingClientRect();
-  const x = e.clientX - rect.left - rect.width/2;
-  const y = e.clientY - rect.top - rect.height/2;
-
-  submitBtn.style.transform = 
-    `translate(${x*0.2}px, ${y*0.2}px)`;
-});
-
-submitBtn.addEventListener("mouseleave", function(){
-  submitBtn.style.transform = "translate(0,0)";
-});
-
-});
-
-
-
-
+  addEventListener("pagehide", () => { clearTimeout(buttonTimer); clearTimeout(beeLineTimer); });
+})();

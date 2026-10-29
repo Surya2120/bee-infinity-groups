@@ -1,0 +1,154 @@
+/* Compact section navigation for the About page. */
+.about-page .about-jump {
+  position: fixed;
+  z-index: 80;
+  top: 50%;
+  right: clamp(10px, 1.6vw, 24px);
+  width: 58px;
+  transform: translateY(-50%);
+  color: #102c4a;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+.about-page .about-jump[hidden] { display: none !important; }
+.about-page .about-jump__toggle { display: none; }
+.about-page .about-jump__links {
+  display: grid;
+  gap: 6px;
+  padding: 9px;
+  border: 1px solid #d9dcd5;
+  border-radius: 16px;
+  background: #fffdf8f5;
+  box-shadow: 0 10px 30px #06172c22;
+  backdrop-filter: blur(14px);
+}
+.about-page .about-jump__links a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  color: #526679;
+  background: transparent;
+  font-size: 11px;
+  font-weight: 750;
+  text-decoration: none;
+  transition: color .2s ease, background .2s ease, border-color .2s ease;
+}
+.about-page .about-jump__links a:hover,
+.about-page .about-jump__links a:focus-visible {
+  color: #102c4a;
+  border-color: #e6d49c;
+  background: #fff4cb;
+}
+.about-page .about-jump__links a[aria-current="location"] {
+  color: #102c4a;
+  background: #f2cf61;
+}
+.about-page .about-jump__links a:focus-visible,
+.about-page .about-jump__toggle:focus-visible { outline: 3px solid #1875be; outline-offset: 3px; }
+.about-page .about-jump__number { line-height: 1; }
+.about-page .about-jump__label {
+  position: absolute;
+  top: 50%;
+  right: calc(100% + 15px);
+  width: max-content;
+  max-width: 180px;
+  padding: 8px 12px;
+  border: 1px solid #d9dcd5;
+  border-radius: 6px;
+  color: #102c4a;
+  background: #fffdf8;
+  box-shadow: 0 6px 18px #06172c20;
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.3;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(5px, -50%);
+  transition: opacity .2s ease, transform .2s ease;
+}
+.about-page .about-jump__links a:hover .about-jump__label,
+.about-page .about-jump__links a:focus-visible .about-jump__label {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+.about-page :is(#about-intro, #journey, #divisions, #results, #vision, #people, #teamJoin) {
+  scroll-margin-top: calc(var(--site-header-height, 92px) + 22px);
+}
+.about-page.site-menu-open .about-jump { visibility: hidden; }
+
+@media (max-width: 1149px) {
+  .about-page .about-jump {
+    top: calc(var(--site-header-height, 92px) + 12px);
+    right: 12px;
+    width: min(218px, calc(100vw - 24px));
+    transform: none;
+  }
+  .about-page .about-jump__toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    min-height: 48px;
+    margin: 0;
+    padding: 8px 12px;
+    border: 1px solid #d9dcd5;
+    border-radius: 8px;
+    color: #102c4a;
+    background: #fffdf8f5;
+    box-shadow: 0 8px 24px #06172c24;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    backdrop-filter: blur(14px);
+  }
+  .about-page .about-jump__toggle-kicker { color: #746337; font-size: 9px; font-weight: 700; line-height: 1.2; text-transform: uppercase; }
+  .about-page .about-jump__toggle-current { margin-left: auto; font-size: 12px; font-weight: 700; }
+  .about-page .about-jump__toggle-arrow { margin-left: 3px; font-size: 18px; line-height: 1; transition: transform .2s ease; }
+  .about-page .about-jump[data-open="true"] .about-jump__toggle-arrow { transform: rotate(180deg); }
+  .about-page .about-jump__links {
+    display: none;
+    gap: 2px;
+    max-height: calc(100dvh - var(--site-header-height, 92px) - 86px);
+    margin-top: 5px;
+    overflow-y: auto;
+    border-radius: 8px;
+  }
+  .about-page .about-jump[data-open="true"] .about-jump__links { display: grid; }
+  .about-page .about-jump__links a {
+    justify-content: flex-start;
+    gap: 12px;
+    width: 100%;
+    min-height: 42px;
+    height: auto;
+    padding: 8px 10px;
+  }
+  .about-page .about-jump__number { width: 20px; color: #826b2c; font-size: 10px; }
+  .about-page .about-jump__label {
+    position: static;
+    width: auto;
+    max-width: none;
+    padding: 0;
+    border: 0;
+    background: none;
+    box-shadow: none;
+    font-size: 12px;
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .about-page :is(#about-intro, #journey, #divisions, #results, #vision, #people, #teamJoin) {
+    scroll-margin-top: calc(var(--site-header-height, 92px) + 70px);
+  }
+}
+@media (max-width: 420px) {
+  .about-page .about-jump { width: min(198px, calc(100vw - 24px)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .about-page .about-jump__links a,
+  .about-page .about-jump__label,
+  .about-page .about-jump__toggle-arrow { transition: none; }
+}

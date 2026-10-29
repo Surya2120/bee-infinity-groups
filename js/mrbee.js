@@ -383,7 +383,7 @@
       nudgeTimer = setTimeout(hideNudge, nudgeRemaining);
     }
     function eligibleForNudge() {
-      return !destroyed && !manualUsed && mood !== "sad" && !quiet && !noAutoPages.has(context.page) && nudgeState.count < 2 && !nudgeState.pages.includes(context.page);
+      return !destroyed && !manualUsed && root.dataset.recruiting !== "true" && mood !== "sad" && !quiet && !noAutoPages.has(context.page) && nudgeState.count < 2 && !nudgeState.pages.includes(context.page);
     }
     function scheduleNudge() {
       clearTimeout(autoTimer);
@@ -433,7 +433,7 @@
     }
     function loadPortrait() {
       if (scenePromise || destroyed) return;
-      scenePromise = import(new URL("mrbee-welcome-scene.js?v=guided-v2", scriptURL).href).then(module => {
+      scenePromise = import(new URL("mrbee-welcome-scene.js?v=briefcase-v1", scriptURL).href).then(module => {
         if (destroyed) return;
         scene = module.createWelcomeBee(canvas);
         scene.setMood?.(mood);

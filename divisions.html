@@ -5,15 +5,16 @@
   <meta charset="UTF-8">
   <title>Divisions | Bee Infinity Groups</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore the film, events, and dance divisions of Bee Infinity Groups, plus Spectrum school celebrations and BOTD.">
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/divisions.css">
-  <link rel="stylesheet" href="css/divisions-polish.css?v=20261029-botd">
+  <link rel="stylesheet" href="css/divisions-polish.css?v=division-jump-v1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="css/site-header.css">
   <link rel="stylesheet" href="css/site-header-pages.css">
   <script src="js/site-header.js" defer></script>
   <link rel="stylesheet" href="css/mrbee.css?v=guided-v2">
-  <script src="js/mrbee.js?v=guided-v2" defer></script>
+  <script src="js/mrbee.js?v=briefcase-v1" defer></script>
 </head>
 <body class="divisions-page has-site-header">
   <!-- FAVICON -->
@@ -74,6 +75,15 @@
   <p>Distinct verticals. One powerful creative ecosystem.</p>
 </section>
 
+<nav class="division-jump" aria-label="Jump to a division or programme">
+  <span class="division-jump__label">Go straight to</span>
+  <a href="#cinemaz">B.I.G Cinemaz</a>
+  <a href="#events">Events</a>
+  <a href="#dance">Dance Crew</a>
+  <a href="#spectrum">Spectrum</a>
+  <a href="#botd">BOTD</a>
+</nav>
+
 <section class="divisions-stack">
 
 
@@ -96,6 +106,7 @@
       <div class="flow-line"></div>
       <div class="flow-box">Bee Infinity Dance Crew</div>
     </div>
+    <p class="ecosystem-programme">For schools, <a href="#spectrum">Spectrum</a> brings our event experience to celebrations across the academic year.</p>
 
   </div>
 
@@ -112,7 +123,7 @@
           <span>Film Production & Post Production</span>
         </div>
       </div>
-      <button class="expand-btn">+</button>
+      <button class="expand-btn" type="button" aria-label="Toggle B.I.G Cinemaz details" aria-controls="cinemaz" aria-expanded="false">+</button>
     </div>
 
     <div class="division-body" id="cinemaz">
@@ -177,7 +188,7 @@
           <span>Event Management & Experiences</span>
         </div>
       </div>
-      <button class="expand-btn">+</button>
+      <button class="expand-btn" type="button" aria-label="Toggle Bee Infinity Events details" aria-controls="events" aria-expanded="false">+</button>
     </div>
 
     <div class="division-body" id="events">
@@ -239,7 +250,7 @@
           <span>Dance, Training & Choreography</span>
         </div>
       </div>
-      <button class="expand-btn">+</button>
+      <button class="expand-btn" type="button" aria-label="Toggle Bee Infinity Dance Crew details" aria-controls="dance" aria-expanded="false">+</button>
     </div>
 
     <div class="division-body" id="dance">
@@ -285,6 +296,8 @@
         </video>
       </div> -->
 
+      <a href="ourservices.html#dance-services" class="division-cta">Explore Dance Services →</a>
+      <a href="contact.html" class="division-cta">Enquire About Dance →</a>
     </div>
   </div>
 
@@ -303,16 +316,16 @@
       <div class="division-title">
         <div>
           <h2>Spectrum</h2>
-          <span>School Celebrations</span>
+          <span>School Event Programme</span>
         </div>
       </div>
-      <button class="expand-btn" aria-label="Expand Spectrum details">+</button>
+      <button class="expand-btn" type="button" aria-label="Toggle Spectrum details" aria-controls="spectrum" aria-expanded="false">+</button>
     </div>
 
     <div class="division-body" id="spectrum">
       <p class="division-intro">
-        Spectrum brings school celebrations to life, creating memorable moments
-        for students, teachers, and families.
+        Spectrum is Bee Infinity Groups’ school event programme, bringing celebrations
+        to life for students, teachers, and families throughout the academic year.
       </p>
 
       <div class="division-box-grid">
@@ -391,9 +404,9 @@ India’s premier dance platform by Bee Infinity Groups — where talent begins 
     <!-- LEFT SIDE (BIG BRAND) -->
     <div class="footer-left">
 
-      <h1 class="footer-big-title">
+      <h2 class="footer-big-title">
         Bee <span>Infinity</span> Groups
-      </h1>
+      </h2>
 
       <p class="footer-tagline">
         CINEMATIC EXPERIENCES • EVENTS • DANCE
@@ -429,7 +442,7 @@ India’s premier dance platform by Bee Infinity Groups — where talent begins 
 </footer>
 
 
-<script src="js/divisions.js?v=20261029-botd"></script>
+<script src="js/divisions.js?v=division-jump-v1"></script>
 <script src="js/global.js"></script>
 <button id="scrollTopBtn">
   <i class="fas fa-arrow-up"></i>

@@ -16,6 +16,7 @@
   const revealTargets = [...document.querySelectorAll("[data-spectrum-reveal]")];
   const clamp = value => Math.min(1, Math.max(0, value));
   let paused = false;
+  let photoViewerOpen = false;
   let raf = 0;
   let needsMeasure = true;
   let offsets = [];
@@ -63,7 +64,7 @@
     let visible = 0;
     offsets.forEach((offset, i) => { if (visiblePosition >= offset) visible = i; });
     const navigationOpen = document.body.classList.contains("site-menu-open") || Boolean(document.getElementById("siteExplore")?.open);
-    const effectivePaused = paused || navigationOpen;
+    const effectivePaused = paused || navigationOpen || photoViewerOpen;
     document.body.style.setProperty("--spectrum-progress", String(progress));
     document.body.style.setProperty("--spectrum-chapter-progress", String(local));
     document.body.style.setProperty("--spectrum-card-shift", reducedMotion.matches || effectivePaused ? "0" : String(Math.sin(progress * Math.PI * 4)));
@@ -102,6 +103,10 @@
   addEventListener("load", measure, { once: true, signal });
   addEventListener("hashchange", () => { revealDestination(); requestUpdate(); }, { signal });
   addEventListener("spectrum:scene-ready", requestUpdate, { signal });
+  addEventListener("spectrum:photo-viewer", event => {
+    photoViewerOpen = Boolean(event.detail?.open);
+    requestUpdate();
+  }, { signal });
   document.addEventListener("visibilitychange", requestUpdate, { signal });
   document.addEventListener("focusin", event => {
     const element = event.target instanceof Element ? event.target.closest("[data-spectrum-reveal]") : null;
