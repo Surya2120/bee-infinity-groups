@@ -127,6 +127,7 @@
   text-align: center;
 }
 .about-page .team-section h3 { font-weight: 600; }
+.about-page .team-section .team-company { margin: 8px 0 0; color: #52616c; font-size: 13px; font-weight: 500; line-height: 1.5; overflow-wrap: anywhere; }
 .about-page .team-section .team-role { color: #52616c; background: transparent; border-color: var(--about-line); }
 
 .about-page .why-us { background: var(--about-paper); padding-block: 88px; }
